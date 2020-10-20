@@ -1,15 +1,15 @@
 import React from 'react';
+import { Provider } from 'react-redux';
+import { HashRouter } from 'react-router-dom';
 
-class Root extends React.Component {
-    constructor(props) {
-        super(props)
-    }
+import App from './app';
 
-    render() {
-        return(
-            <div>React Root is connected!</div>
-        )
-    }
-}
+const Root = ({ store }) => (
+    <Provider store={ store }>
+        <HashRouter>
+            <App store={store} />
+        </HashRouter>
+    </Provider>
+);
 
 export default Root;

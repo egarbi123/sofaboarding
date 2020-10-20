@@ -1,0 +1,24 @@
+I"<(function() {
+  App.rooms = App.cable.subscriptions.create("RoomsChannel", {
+    connected: function() {},
+    disconnected: function() {},
+    received: function(data) {
+      return $('#messages').append(data['me']);
+    },
+    speak: function(message) {
+      return this.perform('speak', {
+        message: message
+      });
+    }
+  });
+
+  $(document).on('keypress', '[data-behavior~=room_speaker]', function(e) {
+    if (e.keyCode === 13) {
+      App.room.speak(e.target.value);
+      e.target.value = '';
+      return e.preventDefault();
+    }
+  });
+
+}).call(this);
+:ET
