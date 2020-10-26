@@ -12,8 +12,7 @@ class RoomForm extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         this.props.action(this.state);
-        console.log('this.state:', this.state)
-        console.log('this.props:', this.props)
+        this.setState({ title: '' });
     }
 
     update(field) {

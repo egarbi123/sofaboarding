@@ -1,22 +1,27 @@
-import { RECEIVE_ROOMS, CREATE_ROOM, RECEIVE_MESSAGE, CHANGE_ROOM } from '../actions/chat_actions';
+import { RECEIVE_ROOMS, CREATE_ROOM, RECEIVE_MESSAGE, CHANGE_ROOM, RECEIVE_MESSAGES } from '../actions/chat_actions';
 
 const _nullSession = {
-    chat: null,
+    rooms: null,
+    activeRoom: null,
+    messages: []
 }
 
 const chatReducer = (oldState = _nullSession, action) => {
     Object.freeze(oldState);
     switch (action.type) {
         case RECEIVE_ROOMS:
-            console.log('in chat reducer', action);
-            return Object.assign({}, oldState, { chat: { rooms: action.rooms } });
+            return Object.assign({}, oldState, { rooms: action.rooms });
+            // return Object.assign({}, oldState, { chat: { rooms: action.rooms } });
         case CHANGE_ROOM:
-            console.log('change room reducer:', action)
-            return Object.assign({}, oldState, { chat: { activeRoom: action.id } })
+            return Object.assign({}, oldState, { activeRoom: action.roomId });
         case CREATE_ROOM:
-            return Object.assign({}, oldState, { chat: { rooms: action.rooms } });
+            console.log(action)
+            return Object.assign({}, oldState, { rooms: action.room });
+            // return Object.assign({}, oldState, { chat: { rooms: action.rooms } });
         case RECEIVE_MESSAGE:
-            return Object.assign({}, oldState, { messages: action.message })
+            return Object.assign({}, oldState, { messages: action.message });
+        case RECEIVE_MESSAGES:
+            return Object.assign({}, oldState, { messages: action.messages });
         default:
             return oldState;
     }

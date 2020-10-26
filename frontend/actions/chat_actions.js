@@ -4,10 +4,11 @@ export const RECEIVE_ROOMS = 'RECEIVE_ROOMS';
 export const CREATE_ROOM = 'CREATE_ROOM';
 export const RECEIVE_MESSAGE = 'RECEIVE_MESSAGE';
 export const CHANGE_ROOM = 'CHANGE_ROOM';
+export const RECEIVE_MESSAGES = 'RECEIVE_MESSAGES';
 
-const setActiveRoom = id => ({
+const setActiveRoom = roomId => ({
     type: CHANGE_ROOM,
-    id
+    roomId
 })
 
 const receiveRooms = rooms => ({
@@ -25,24 +26,40 @@ const receiveMessage = message => ({
     message
 })
 
-export const makeActiveRoom = id => dispatch => (
-    dispatch(setActiveRoom(id))
+const receiveMessages = messages => ({
+    type: RECEIVE_MESSAGES,
+    messages
+})
+
+export const makeActiveRoom = roomId => dispatch => (
+    dispatch(setActiveRoom(roomId))
 )
 
 export const fetchRooms = () => dispatch => (
     ChatApiUtil.fetchRooms()
     .then(rooms => {
-        console.log('in action', rooms);
         return dispatch(receiveRooms(rooms))
     })
 )
 
 export const createRoom = room => dispatch => (
-    ChatApiUtil.subscribeToRoom(room)
-    .then(room => dispatch(connectRoom(room)))
+    ChatApiUtil.createRoom(room)
+    .then(rooms => dispatch(connectRoom(rooms)))
 )
+
+export const fetchMessages = (roomId) => dispatch => {
+        console.log('in chat action', roomId)
+        return (
+            ChatApiUtil.fetchMessages(roomId)
+            .then(messages => dispatch(receiveMessages(messages)))
+        )
+    }
+    // export const fetchMessages = (roomId) => dispatch => (
+    //     ChatApiUtil.fetchMessages(roomId)
+    //     .then(messages => dispatch(receiveMessages(messages)))
+    // )
 
 export const newMessage = message => dispatch => (
     ChatApiUtil.postMessage(message)
-    .then(message => dispatch(receiveMessage(message)))
+    .then(messages => dispatch(receiveMessages(messages)))
 )

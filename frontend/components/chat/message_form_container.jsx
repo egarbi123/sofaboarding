@@ -7,7 +7,8 @@ const mSTP = state => {
     return {
     message: {
         body: '',
-        room_id: <state className="chat"></state>
+        room_id: 2,
+        user_id: 1
     },
     formtype: 'New Message'
 }};

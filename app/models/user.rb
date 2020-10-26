@@ -5,11 +5,12 @@ class User < ApplicationRecord
 
     has_many :room_memberships,
         foreign_key: :user_id,
-        class_name: :RoomMembership
+        class_name: :room_membership
 
     has_many :rooms,
         through: :room_memberships,
-        source: :room
+        source: :rooms
+
     has_many :messages, dependent: :destroy
 
     attr_reader :password

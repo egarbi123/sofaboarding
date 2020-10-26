@@ -3,7 +3,7 @@ import React from 'react';
 class MessageForm extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = this.props.message
         console.log('this.props:', this.props)
         console.log('this.state:', this.state)
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -33,8 +33,8 @@ class MessageForm extends React.Component {
                     <label>Message
                         <input
                             type="text"
-                            // value={this.state.text}
-                            onChange={this.update('text')}
+                            value={this.state.body}
+                            onChange={this.update('body')}
                         />
                     </label>
                     <button type='submit' className='button' value={this.props.formtype}></button>

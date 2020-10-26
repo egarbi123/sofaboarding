@@ -3,7 +3,7 @@ class RoomMembership < ApplicationRecord
         foreign_key: :user_id;
         class_name: :User
 
-    belongs_to :room,
+    belongs_to :rooms,
         foreign_key: :room_id,
-        class_name: :Room
+        class_name: :Rooms
 end
