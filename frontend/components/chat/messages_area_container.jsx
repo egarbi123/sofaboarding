@@ -3,7 +3,8 @@ import MessagesArea from './messages_area';
 import { fetchMessages } from '../../actions/chat_actions';
 
 const mSTP = state => ({
-    state: state,
+    activeRoom: state.chat.activeRoom,
+    messages: state.chat.messages,
 });
 
 const mDTP = dispatch => ({

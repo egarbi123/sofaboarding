@@ -12,6 +12,11 @@ class Api::RoomsController < ApplicationController
         end
     end
 
+    def show
+        @room = Room.find(params[:room_id])
+        render 
+    end
+
     private
 
     def room_params

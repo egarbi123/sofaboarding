@@ -1,4 +1,5 @@
 import React from 'react';
+import MessagesBlock from './messages_block';
 
 class RoomIndex extends React.Component {
     constructor(props) {

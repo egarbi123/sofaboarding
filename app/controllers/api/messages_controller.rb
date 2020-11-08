@@ -14,13 +14,19 @@ class Api::MessagesController < ApplicationController
     def create
         p 'in create'
         @message = Message.new(message_params)
+        room = Room.find(message_params["room_id"])
         p message_params
         if @message.save!
-            p 'in save'
+            p 'successfully saved message'
+            RoomsChannel.broadcast_to(room, {
+                room_id: message_params["room_id"],
+                user_id: message_params["user_id"],
+                body: message_params["body"]
+            })
             # @messages = Rooms.find(params[:room_id]).messages
-            @messages = Rooms.find(message_params[:room_id])
-            render 'api/messages/index'
-            head :ok
+            # @messages = Rooms.find(message_params[:room_id]).messages
+            # render 'api/messages/index'
+            # head :ok  # render nothing
             p @messages
             # render :index
             # render 'sucks'
@@ -33,7 +39,7 @@ class Api::MessagesController < ApplicationController
         @messages = Rooms.find(params[:roomId]).messages
         p @messages
         p 'right after messages in controller :)'
-        render 'chat/messages/index'
+        render 'api/messages/index'
     end
 
     private

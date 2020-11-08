@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get "/login", to: 'static_pages#root'
   get "/users", to: 'static_pages#root'
   get "/profile", to: 'static_pages#root'
-  get "/rooms", to: 'static_pages#root'
+  get "/chat", to: 'static_pages#root'
   namespace :api, defaults: { format: :json } do
     resources :users, only: [:create, :update, :index]
     resource :session, only: [:create, :destroy]

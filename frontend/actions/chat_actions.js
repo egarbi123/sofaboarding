@@ -61,5 +61,8 @@ export const fetchMessages = (roomId) => dispatch => {
 
 export const newMessage = message => dispatch => (
     ChatApiUtil.postMessage(message)
-    .then(messages => dispatch(receiveMessages(messages)))
+    .then(messages => {
+        console.log('in action,', messages)
+        return dispatch(receiveMessages(messages))
+    })
 )
