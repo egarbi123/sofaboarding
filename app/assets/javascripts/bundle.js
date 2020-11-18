@@ -90,7 +90,7 @@
 /*!******************************************!*\
   !*** ./frontend/actions/chat_actions.js ***!
   \******************************************/
-/*! exports provided: RECEIVE_ROOMS, CREATE_ROOM, RECEIVE_MESSAGE, CHANGE_ROOM, RECEIVE_MESSAGES, makeActiveRoom, fetchRooms, createRoom, fetchMessages, newMessage */
+/*! exports provided: RECEIVE_ROOMS, CREATE_ROOM, RECEIVE_MESSAGE, CHANGE_ROOM, RECEIVE_MESSAGES, CLEAR_ROOM_MESSAGES, clearRoomMessages, receiveMessage, receiveMessages, makeActiveRoom, fetchRooms, createRoom, fetchMessages, newMessage */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -100,6 +100,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_MESSAGE", function() { return RECEIVE_MESSAGE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CHANGE_ROOM", function() { return CHANGE_ROOM; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_MESSAGES", function() { return RECEIVE_MESSAGES; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CLEAR_ROOM_MESSAGES", function() { return CLEAR_ROOM_MESSAGES; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "clearRoomMessages", function() { return clearRoomMessages; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveMessage", function() { return receiveMessage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveMessages", function() { return receiveMessages; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "makeActiveRoom", function() { return makeActiveRoom; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchRooms", function() { return fetchRooms; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createRoom", function() { return createRoom; });
@@ -112,6 +116,7 @@ var CREATE_ROOM = 'CREATE_ROOM';
 var RECEIVE_MESSAGE = 'RECEIVE_MESSAGE';
 var CHANGE_ROOM = 'CHANGE_ROOM';
 var RECEIVE_MESSAGES = 'RECEIVE_MESSAGES';
+var CLEAR_ROOM_MESSAGES = 'CLEAR_ROOM_MESSAGES';
 
 var setActiveRoom = function setActiveRoom(roomId) {
   return {
@@ -134,20 +139,23 @@ var connectRoom = function connectRoom(room) {
   };
 };
 
+var clearRoomMessages = function clearRoomMessages() {
+  return {
+    type: CLEAR_ROOM_MESSAGES
+  };
+};
 var receiveMessage = function receiveMessage(message) {
   return {
     type: RECEIVE_MESSAGE,
     message: message
   };
 };
-
 var receiveMessages = function receiveMessages(messages) {
   return {
     type: RECEIVE_MESSAGES,
     messages: messages
   };
 };
-
 var makeActiveRoom = function makeActiveRoom(roomId) {
   return function (dispatch) {
     return dispatch(setActiveRoom(roomId));
@@ -169,7 +177,7 @@ var createRoom = function createRoom(room) {
 };
 var fetchMessages = function fetchMessages(roomId) {
   return function (dispatch) {
-    console.log('in chat action', roomId);
+    // console.log('in chat action', roomId)
     return _util_chat_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchMessages"](roomId).then(function (messages) {
       return dispatch(receiveMessages(messages));
     });
@@ -181,9 +189,10 @@ var fetchMessages = function fetchMessages(roomId) {
 
 var newMessage = function newMessage(message) {
   return function (dispatch) {
-    return _util_chat_api_util__WEBPACK_IMPORTED_MODULE_0__["postMessage"](message).then(function (messages) {
-      console.log('in action,', messages);
-      return dispatch(receiveMessages(messages));
+    // console.log('ACTION REPEAT?????')
+    return _util_chat_api_util__WEBPACK_IMPORTED_MODULE_0__["postMessage"](message).then(function (message) {
+      console.log('======in action,', message);
+      return dispatch(receiveMessage(message));
     });
   };
 };
@@ -475,17 +484,13 @@ var ChatBlock = /*#__PURE__*/function (_React$Component) {
   _createClass(ChatBlock, [{
     key: "showMessages",
     value: function showMessages() {
-      if (this.props.state.chat.activeRoom) {
+      if (this.props.state.session.activeRoom) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_messages_area_container__WEBPACK_IMPORTED_MODULE_3__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_message_form_container__WEBPACK_IMPORTED_MODULE_4__["default"], null));
       }
     }
   }, {
     key: "render",
     value: function render() {
-      console.log('chatBLOCK:', this.props.state.chat.activeRoom);
-
-      if (this.props.state.chat.activeRoom) {}
-
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_room_index_container__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_room_form_container__WEBPACK_IMPORTED_MODULE_2__["default"], null), this.showMessages());
     }
   }]);
@@ -578,19 +583,28 @@ var MessageForm = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, MessageForm);
 
     _this = _super.call(this, props);
-    _this.state = _this.props.message;
-    console.log('this.props:', _this.props);
-    console.log('this.state:', _this.state);
+    _this.state = _this.props.message; // console.log('this.props:', this.props)
+    // console.log('this.state:', this.state)
+
+    _this.createSocket = _this.createSocket.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(MessageForm, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.createSocket();
+    }
+  }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
-      console.log('handleSubmit', this.state);
-      this.props.action(this.state);
+      console.log('IN HANDLE SUBMIT'); // console.log('handleSubmit', this.state)
+      // console.log('HANDLINGGGG')
+      // this.props.action(this.state);
+
+      this.chats.create(this.state.room_id, this.state.user_id, this.state.body);
     }
   }, {
     key: "handleKeyPress",
@@ -609,8 +623,29 @@ var MessageForm = /*#__PURE__*/function (_React$Component) {
       };
     }
   }, {
+    key: "createSocket",
+    value: function createSocket() {
+      var room_id = this.props.activeRoom;
+      console.log('in message form room id:', room_id);
+      this.cable = ActionCable.createConsumer('ws://' + window.location.host + '/cable');
+      this.chats = this.cable.subscriptions.create({
+        channel: 'RoomsChannel',
+        room_id: room_id
+      }, {
+        connected: function connected() {},
+        create: function create(currentRoomId, currentUserId, messageBody) {
+          this.perform('create', {
+            body: messageBody,
+            room_id: currentRoomId,
+            user_id: currentUserId
+          });
+        }
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
+      // console.log('IN MESFORM, state', this.state)
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, this.props.formtype), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: this.handleSubmit
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Message", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -649,13 +684,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state) {
-  console.log('container', state);
+  // console.log('container', state)
+  // console.log('CONTAINER state', state);
   return {
     message: {
       body: '',
-      room_id: 2,
-      user_id: 1
+      room_id: state.session.activeRoom,
+      user_id: state.session.id
     },
+    activeRoom: state.session.activeRoom,
     formtype: 'New Message'
   };
 };
@@ -685,6 +722,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var actioncable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! actioncable */ "./node_modules/actioncable/lib/assets/compiled/action_cable.js");
 /* harmony import */ var actioncable__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(actioncable__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _message_form_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./message_form_container */ "./frontend/components/chat/message_form_container.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -708,7 +746,8 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 
- // import MessageForm from './message_form_container';
+
+
 
 var MessagesArea = /*#__PURE__*/function (_React$Component) {
   _inherits(MessagesArea, _React$Component);
@@ -723,54 +762,76 @@ var MessagesArea = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.state = {
       activeRoom: null
-    };
-    console.log('this.props- messagesArea', _this.props);
+    }; // console.log('this.props- messagesArea', this.props );
+
+    _this.createSocket = _this.createSocket.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(MessagesArea, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      console.log('in componentD, MessagesArea'); // this.props.fetchMessages(2);
-
+      // console.log('in componentD, MessagesArea')
+      // this.props.fetchMessages(2);
       if (this.props.activeRoom) {
         this.setState({
-          activeRoom: this.props.activeRoom
+          activeRoom: this.props.activeRoom,
+          messages: this.props.messages
         });
       }
 
       this.getMessages();
+      this.createSocket();
     }
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate(previousProps) {
+      // console.log('prevProps:', previousProps);
+      // console.log('this.props:', this.props)
       if (previousProps.activeRoom !== this.props.activeRoom) {
         this.setState({
           activeRoom: this.props.activeRoom
         });
+        this.getMessages(); // this.getMessages();
       }
+
+      ; // console.log('in conmponent update:',this.props);
+      // if (!!this.props.messages && this.props.messages.length === 0) {
+      //     this.getMessages();
+      // }
     }
   }, {
     key: "createSocket",
-    value: function createSocket() {}
+    value: function createSocket() {
+      var _this2 = this;
+
+      var room_id = this.props.activeRoom;
+      console.log('in messages area, room_id:', room_id);
+      this.cable = actioncable__WEBPACK_IMPORTED_MODULE_1___default.a.createConsumer('ws://' + window.location.host + '/cable');
+      this.chats = this.cable.subscriptions.create({
+        channel: 'RoomsChannel',
+        room_id: room_id
+      }, {
+        connected: function connected() {},
+        received: function received(data) {
+          console.log('DATA RECEIVED,', data);
+
+          _this2.props.receiveMessage(data);
+        }
+      });
+    }
   }, {
     key: "getMessages",
     value: function getMessages() {
-      console.log('in get messages-this.props', this.props);
-
-      if (this.state.activeRoom !== null) {
-        this.props.fetchMessages(this.state.activeRoom);
+      // console.log('in get messages-this.props', this.props);
+      if (this.props.activeRoom !== null) {
+        this.props.fetchMessages(this.props.activeRoom);
       } // if (!this.props.state.chat.activeRoom) {
       // } else {
       //     console.log('in getMessages for messagesArea')
       //     this.props.fetchMessages(this.props.state.chat.activeRoom);
       // }
 
-    }
-  }, {
-    key: "organizeMessages",
-    value: function organizeMessages(messages) {
-      var outputMessages = [];
     }
   }, {
     key: "mapMessages",
@@ -784,7 +845,7 @@ var MessagesArea = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      console.log('messagesArea this.props', this.props);
+      // console.log('messagesArea this.props', this.props)
       var messages = [];
 
       if (this.props.messages) {
@@ -843,8 +904,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var mSTP = function mSTP(state) {
   return {
-    activeRoom: state.chat.activeRoom,
-    messages: state.chat.messages
+    activeRoom: state.session.activeRoom,
+    messages: state.messages
   };
 };
 
@@ -852,6 +913,9 @@ var mDTP = function mDTP(dispatch) {
   return {
     fetchMessages: function fetchMessages(room_id) {
       return dispatch(Object(_actions_chat_actions__WEBPACK_IMPORTED_MODULE_2__["fetchMessages"])(room_id));
+    },
+    receiveMessage: function receiveMessage(message) {
+      return dispatch(Object(_actions_chat_actions__WEBPACK_IMPORTED_MODULE_2__["receiveMessage"])(message));
     }
   };
 };
@@ -1128,6 +1192,7 @@ var RoomIndex = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleClick",
     value: function handleClick(roomId) {
+      this.props.clearMessages();
       this.props.setActiveRoom(roomId); // this.setState({ activeRoom: id });
     } // handleReceivedRoom(response) {
     //     const { room } = response;
@@ -1149,12 +1214,14 @@ var RoomIndex = /*#__PURE__*/function (_React$Component) {
     key: "mapRooms",
     value: function mapRooms(rooms, handleClick) {
       return rooms.map(function (room) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-          key: room.id,
-          onClick: function onClick() {
-            return handleClick(room.id);
-          }
-        }, room.title);
+        if (room) {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+            key: room.id,
+            onClick: function onClick() {
+              return handleClick(room.id);
+            }
+          }, room.title);
+        }
       });
     }
   }, {
@@ -1162,8 +1229,8 @@ var RoomIndex = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var rooms = [];
 
-      if (this.props.state.chat.rooms) {
-        rooms = Object.values(this.props.state.chat.rooms);
+      if (this.props.state.rooms) {
+        rooms = Object.values(this.props.state.rooms);
       }
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Rooms:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.mapRooms(rooms, this.handleClick)));
@@ -1206,6 +1273,9 @@ var mDTP = function mDTP(dispatch) {
     },
     setActiveRoom: function setActiveRoom(roomId) {
       return dispatch(Object(_actions_chat_actions__WEBPACK_IMPORTED_MODULE_2__["makeActiveRoom"])(roomId));
+    },
+    clearMessages: function clearMessages() {
+      return dispatch(Object(_actions_chat_actions__WEBPACK_IMPORTED_MODULE_2__["clearRoomMessages"])());
     }
   };
 };
@@ -1296,7 +1366,7 @@ var NavBar = /*#__PURE__*/function (_React$Component) {
           className: "button",
           onClick: this.props.logout
         }, "Log Out")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-          classNam: "nav-link",
+          className: "nav-link",
           to: "/"
         }, "Home")));
       } else {
@@ -1500,7 +1570,7 @@ var mDTP = function mDTP(dispatch) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _user_form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./user_form */ "./frontend/components/users/user_form.jsx");
-/* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/user_actions */ "./frontend/actions/user_actions.js");
+/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
 
 
 
@@ -1519,7 +1589,7 @@ var mSTP = function mSTP(state) {
 var mDTP = function mDTP(dispatch) {
   return {
     action: function action(user) {
-      return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_2__["createUser"])(user));
+      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__["signup"])(user));
     }
   };
 };
@@ -1627,18 +1697,11 @@ var UserForm = /*#__PURE__*/function (_React$Component) {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
-      this.verifyPassword(); // console.log('password is good', this.passwordIsGood);
-      // console.log('formtype', this.props.formtype);
-      // console.log('this.state', this.state);
-
-      console.log('this.props', this.props); // this.props.action(this.state);
+      this.verifyPassword();
 
       if (this.passwordIsGood || this.props.formtype === 'Login User') {
-        console.log('in if statement');
         this.props.action(this.state);
       }
-
-      console.log(this.state);
     }
   }, {
     key: "update",
@@ -1674,7 +1737,6 @@ var UserForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "ifSignUp",
     value: function ifSignUp() {
-      // console.log('ifsignup', this.props)
       if (this.props.formtype === 'Create User') {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "row"
@@ -1963,9 +2025,48 @@ var HEADERS = {
 
 /***/ }),
 
-/***/ "./frontend/reducers/chat_reducer.js":
+/***/ "./frontend/reducers/message_reducer.js":
+/*!**********************************************!*\
+  !*** ./frontend/reducers/message_reducer.js ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_chat_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/chat_actions */ "./frontend/actions/chat_actions.js");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+var _nullSession = {};
+
+var messageReducer = function messageReducer() {
+  var oldState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _nullSession;
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(oldState);
+
+  switch (action.type) {
+    case _actions_chat_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_MESSAGES"]:
+      return Object.assign({}, oldState, action.messages);
+
+    case _actions_chat_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_MESSAGE"]:
+      return Object.assign({}, oldState, _defineProperty({}, action.message.id, action.message));
+
+    case _actions_chat_actions__WEBPACK_IMPORTED_MODULE_0__["CLEAR_ROOM_MESSAGES"]:
+      return Object.assign({}, _nullSession);
+
+    default:
+      return oldState;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (messageReducer);
+
+/***/ }),
+
+/***/ "./frontend/reducers/room_reducer.js":
 /*!*******************************************!*\
-  !*** ./frontend/reducers/chat_reducer.js ***!
+  !*** ./frontend/reducers/room_reducer.js ***!
   \*******************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -1973,53 +2074,35 @@ var HEADERS = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_chat_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/chat_actions */ "./frontend/actions/chat_actions.js");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 var _nullSession = {
-  rooms: null,
-  activeRoom: null,
-  messages: []
+  rooms: null
 };
 
-var chatReducer = function chatReducer() {
+var roomReducer = function roomReducer() {
   var oldState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _nullSession;
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(oldState);
 
   switch (action.type) {
     case _actions_chat_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ROOMS"]:
-      return Object.assign({}, oldState, {
-        rooms: action.rooms
-      });
+      // console.log('action.rooms', action.rooms)
+      return Object.assign({}, oldState, action.rooms);
     // return Object.assign({}, oldState, { chat: { rooms: action.rooms } });
-
-    case _actions_chat_actions__WEBPACK_IMPORTED_MODULE_0__["CHANGE_ROOM"]:
-      return Object.assign({}, oldState, {
-        activeRoom: action.roomId
-      });
 
     case _actions_chat_actions__WEBPACK_IMPORTED_MODULE_0__["CREATE_ROOM"]:
-      console.log(action);
-      return Object.assign({}, oldState, {
-        rooms: action.room
-      });
+      // console.log(action)
+      return Object.assign({}, oldState, _defineProperty({}, action.room.roomId, action.room));
     // return Object.assign({}, oldState, { chat: { rooms: action.rooms } });
-
-    case _actions_chat_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_MESSAGE"]:
-      return Object.assign({}, oldState, {
-        messages: action.message
-      });
-
-    case _actions_chat_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_MESSAGES"]:
-      return Object.assign({}, oldState, {
-        messages: action.messages
-      });
 
     default:
       return oldState;
   }
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (chatReducer);
+/* harmony default export */ __webpack_exports__["default"] = (roomReducer);
 
 /***/ }),
 
@@ -2035,7 +2118,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _users_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./users_reducer */ "./frontend/reducers/users_reducer.js");
 /* harmony import */ var _session_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./session_reducer */ "./frontend/reducers/session_reducer.js");
-/* harmony import */ var _chat_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./chat_reducer */ "./frontend/reducers/chat_reducer.js");
+/* harmony import */ var _room_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./room_reducer */ "./frontend/reducers/room_reducer.js");
+/* harmony import */ var _message_reducer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./message_reducer */ "./frontend/reducers/message_reducer.js");
+
 
 
 
@@ -2043,7 +2128,8 @@ __webpack_require__.r(__webpack_exports__);
 var RootReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
   users: _users_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
   session: _session_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
-  chat: _chat_reducer__WEBPACK_IMPORTED_MODULE_3__["default"]
+  rooms: _room_reducer__WEBPACK_IMPORTED_MODULE_3__["default"],
+  messages: _message_reducer__WEBPACK_IMPORTED_MODULE_4__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (RootReducer);
 
@@ -2059,9 +2145,12 @@ var RootReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])(
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/session_actions */ "./frontend/actions/session_actions.js");
+/* harmony import */ var _actions_chat_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/chat_actions */ "./frontend/actions/chat_actions.js");
+
 
 var _nullSession = {
-  id: null
+  id: null,
+  activeRoom: null
 };
 
 var sessionReducer = function sessionReducer() {
@@ -2077,7 +2166,14 @@ var sessionReducer = function sessionReducer() {
       });
 
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["LOGOUT_CURRENT_USER"]:
-      return Object.assign({}, oldState, _nullSession);
+      return Object.assign({}, oldState, {
+        id: null
+      });
+
+    case _actions_chat_actions__WEBPACK_IMPORTED_MODULE_1__["CHANGE_ROOM"]:
+      return Object.assign({}, oldState, {
+        activeRoom: action.roomId
+      });
 
     default:
       return oldState;
@@ -2247,6 +2343,7 @@ var fetchMessages = function fetchMessages(roomId) {
   });
 };
 var postMessage = function postMessage(message) {
+  // console.log('CHAT UTILLLLLLLLL');
   return $.ajax({
     method: 'POST',
     url: "/api/messages",

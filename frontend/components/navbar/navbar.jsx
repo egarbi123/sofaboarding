@@ -32,7 +32,7 @@ class NavBar extends React.Component {
                         <button className="button" onClick={this.props.logout}>Log Out</button>
                     </li>
                     <li>
-                        <Link classNam="nav-link" to="/">Home</Link>
+                        <Link className="nav-link" to="/">Home</Link>
                     </li>
                 </ul>
             )

@@ -23,13 +23,14 @@ export const fetchMessages = roomId => (
     })
 )
 
-export const postMessage = message => (
-    $.ajax({
+export const postMessage = message => {
+    // console.log('CHAT UTILLLLLLLLL');
+    return $.ajax({
         method: 'POST',
         url: `/api/messages`,
         data: { message }
     })
-)
+}
 
 export const subscribeToRoom = room => (
     fetch(`${API_ROOT}/rooms`, {

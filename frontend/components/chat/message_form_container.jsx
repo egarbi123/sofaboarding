@@ -3,13 +3,15 @@ import MessageForm from './message_form';
 import { newMessage } from '../../actions/chat_actions';
 
 const mSTP = state => {
-    console.log('container', state)
+    // console.log('container', state)
+    // console.log('CONTAINER state', state);
     return {
     message: {
         body: '',
-        room_id: 2,
-        user_id: 1
+        room_id: state.session.activeRoom,
+        user_id: state.session.id
     },
+    activeRoom: state.session.activeRoom,
     formtype: 'New Message'
 }};
 

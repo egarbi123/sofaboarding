@@ -1,6 +1,7 @@
 class Api::RoomsController < ApplicationController
     def index
         @rooms = Rooms.all
+        # p @rooms
         render :index
     end
 
@@ -13,8 +14,8 @@ class Api::RoomsController < ApplicationController
     end
 
     def show
-        @room = Room.find(params[:room_id])
-        render 
+        @room = Rooms.find(params[:room_id])
+        render :show
     end
 
     private

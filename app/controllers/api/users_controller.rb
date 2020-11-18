@@ -13,10 +13,10 @@ class Api::UsersController < ApplicationController
     def update
         @user = User.find(params[:id])
         if (@user)
-            if @user.update(post_params)
+            if @user.update(user_params)
                 render :show
             else
-                render json: @post.errors.full_messages, status: 422
+                render json: @user.errors.full_messages, status: 422
             end
         else
             render json: ["User not found"], status: 404

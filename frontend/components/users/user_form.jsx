@@ -12,16 +12,9 @@ class UserForm extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         this.verifyPassword();
-        // console.log('password is good', this.passwordIsGood);
-        // console.log('formtype', this.props.formtype);
-        // console.log('this.state', this.state);
-        console.log('this.props', this.props);
-        // this.props.action(this.state);
         if (this.passwordIsGood || this.props.formtype === 'Login User') {
-            console.log('in if statement')
             this.props.action(this.state);
         }
-        console.log(this.state)
     }
 
     update(field) {
@@ -42,7 +35,6 @@ class UserForm extends React.Component {
     }
 
     ifSignUp() {
-        // console.log('ifsignup', this.props)
         if (this.props.formtype === 'Create User') {
             return (
                 <div className="row">

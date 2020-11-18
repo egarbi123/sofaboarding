@@ -10,7 +10,7 @@ class ChatBlock extends React.Component {
     }
 
     showMessages() {
-        if (this.props.state.chat.activeRoom) {
+        if (this.props.state.session.activeRoom) {
             return (
                 <div>
                     <MessagesAreaContainer />
@@ -20,10 +20,6 @@ class ChatBlock extends React.Component {
         }
     }
     render() {
-        console.log('chatBLOCK:',  this.props.state.chat.activeRoom)
-        if (this.props.state.chat.activeRoom) {
-
-        }
         return (
             <div>
                 <RoomIndexContainer />

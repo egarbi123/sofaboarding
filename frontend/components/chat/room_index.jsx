@@ -14,6 +14,7 @@ class RoomIndex extends React.Component {
     }
 
     handleClick(roomId) {
+        this.props.clearMessages();
         this.props.setActiveRoom(roomId);
         // this.setState({ activeRoom: id });
 
@@ -38,18 +39,20 @@ class RoomIndex extends React.Component {
     
     mapRooms(rooms, handleClick) {
         return rooms.map(room => {
-            return (
-                <li key={room.id} onClick={() => handleClick(room.id)}>
-                    {room.title}
-                </li>
-            );
+            if (room) {
+                return (
+                    <li key={room.id} onClick={() => handleClick(room.id)}>
+                        {room.title}
+                    </li>
+                )
+            }
         });
     }
 
     render() {
         let rooms = [];
-        if (this.props.state.chat.rooms) {
-            rooms = Object.values(this.props.state.chat.rooms);
+        if (this.props.state.rooms) {
+            rooms = Object.values(this.props.state.rooms);
         } 
         return (
             <div>
