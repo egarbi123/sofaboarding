@@ -583,9 +583,7 @@ var MessageForm = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, MessageForm);
 
     _this = _super.call(this, props);
-    _this.state = _this.props.message; // console.log('this.props:', this.props)
-    // console.log('this.state:', this.state)
-
+    _this.state = _this.props.message;
     _this.createSocket = _this.createSocket.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
@@ -600,10 +598,6 @@ var MessageForm = /*#__PURE__*/function (_React$Component) {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
-      console.log('IN HANDLE SUBMIT'); // console.log('handleSubmit', this.state)
-      // console.log('HANDLINGGGG')
-      // this.props.action(this.state);
-
       this.chats.create(this.state.room_id, this.state.user_id, this.state.body);
     }
   }, {
@@ -626,7 +620,6 @@ var MessageForm = /*#__PURE__*/function (_React$Component) {
     key: "createSocket",
     value: function createSocket() {
       var room_id = this.props.activeRoom;
-      console.log('in message form room id:', room_id);
       this.cable = ActionCable.createConsumer('ws://' + window.location.host + '/cable');
       this.chats = this.cable.subscriptions.create({
         channel: 'RoomsChannel',
@@ -645,7 +638,6 @@ var MessageForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      // console.log('IN MESFORM, state', this.state)
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, this.props.formtype), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: this.handleSubmit
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Message", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -684,8 +676,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state) {
-  // console.log('container', state)
-  // console.log('CONTAINER state', state);
   return {
     message: {
       body: '',
@@ -762,8 +752,7 @@ var MessagesArea = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.state = {
       activeRoom: null
-    }; // console.log('this.props- messagesArea', this.props );
-
+    };
     _this.createSocket = _this.createSocket.bind(_assertThisInitialized(_this));
     return _this;
   }
@@ -771,8 +760,6 @@ var MessagesArea = /*#__PURE__*/function (_React$Component) {
   _createClass(MessagesArea, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      // console.log('in componentD, MessagesArea')
-      // this.props.fetchMessages(2);
       if (this.props.activeRoom) {
         this.setState({
           activeRoom: this.props.activeRoom,
@@ -786,19 +773,14 @@ var MessagesArea = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate(previousProps) {
-      // console.log('prevProps:', previousProps);
-      // console.log('this.props:', this.props)
       if (previousProps.activeRoom !== this.props.activeRoom) {
         this.setState({
           activeRoom: this.props.activeRoom
         });
-        this.getMessages(); // this.getMessages();
+        this.getMessages();
       }
 
-      ; // console.log('in conmponent update:',this.props);
-      // if (!!this.props.messages && this.props.messages.length === 0) {
-      //     this.getMessages();
-      // }
+      ;
     }
   }, {
     key: "createSocket",
@@ -806,7 +788,6 @@ var MessagesArea = /*#__PURE__*/function (_React$Component) {
       var _this2 = this;
 
       var room_id = this.props.activeRoom;
-      console.log('in messages area, room_id:', room_id);
       this.cable = actioncable__WEBPACK_IMPORTED_MODULE_1___default.a.createConsumer('ws://' + window.location.host + '/cable');
       this.chats = this.cable.subscriptions.create({
         channel: 'RoomsChannel',
@@ -814,8 +795,6 @@ var MessagesArea = /*#__PURE__*/function (_React$Component) {
       }, {
         connected: function connected() {},
         received: function received(data) {
-          console.log('DATA RECEIVED,', data);
-
           _this2.props.receiveMessage(data);
         }
       });
@@ -823,15 +802,9 @@ var MessagesArea = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "getMessages",
     value: function getMessages() {
-      // console.log('in get messages-this.props', this.props);
       if (this.props.activeRoom !== null) {
         this.props.fetchMessages(this.props.activeRoom);
-      } // if (!this.props.state.chat.activeRoom) {
-      // } else {
-      //     console.log('in getMessages for messagesArea')
-      //     this.props.fetchMessages(this.props.state.chat.activeRoom);
-      // }
-
+      }
     }
   }, {
     key: "mapMessages",
@@ -845,7 +818,6 @@ var MessagesArea = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      // console.log('messagesArea this.props', this.props)
       var messages = [];
 
       if (this.props.messages) {
@@ -859,30 +831,7 @@ var MessagesArea = /*#__PURE__*/function (_React$Component) {
   return MessagesArea;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (MessagesArea); // const MessagesArea = ({
-//     room: { id, title, messages },
-// }) => {
-//     return (
-//         <div className="messagesArea">
-//             <h3>{title}</h3>
-//             <ul>{orderedMessages(messages)}</ul>
-//             <MessageFrom room_id={id} />
-//         </div>
-//     );
-// };
-// // helper
-
-var orderedMessages = function orderedMessages(messages) {
-  console.log('in orderedMessages');
-  var sortedMessages = messages.sort(function (a, b) {
-    return new Date(a.created_at) - new Date(b.created_at);
-  });
-  return sortedMessages.map(function (message) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-      key: message.id
-    }, message.text);
-  });
-};
+/* harmony default export */ __webpack_exports__["default"] = (MessagesArea);
 
 /***/ }),
 
