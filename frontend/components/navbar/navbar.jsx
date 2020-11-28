@@ -51,7 +51,6 @@ class NavBar extends React.Component {
     }
 
     render() {
-        console.log('navbar', this.props);
         return (
             <div className="nav">
                 {this.welcome()}

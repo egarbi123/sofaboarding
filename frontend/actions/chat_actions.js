@@ -69,7 +69,7 @@ export const newMessage = message => dispatch => {
     // console.log('ACTION REPEAT?????')
     return ChatApiUtil.postMessage(message)
         .then(message => {
-            console.log('======in action,', message)
+            // console.log('======in action,', message)
             return dispatch(receiveMessage(message))
         })
 }
