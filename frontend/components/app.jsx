@@ -16,7 +16,7 @@ import ChatBlockContainer from './chat/chat_block_container';
 
 const customHistory = createBrowserHistory();
 const App = () => (
-    <div>
+    <div className="app">
         <Router history={customHistory}>
             <BrowserRouter>
                 <ActionCableProvider url={API_WS_ROOT}>

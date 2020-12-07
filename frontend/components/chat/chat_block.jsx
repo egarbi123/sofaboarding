@@ -12,7 +12,7 @@ class ChatBlock extends React.Component {
     showMessages() {
         if (this.props.state.session.activeRoom) {
             return (
-                <div>
+                <div className="messageBlock">
                     <MessagesAreaContainer />
                     <MessageFormContainer />
                 </div>
@@ -21,9 +21,11 @@ class ChatBlock extends React.Component {
     }
     render() {
         return (
-            <div>
-                <RoomIndexContainer />
-                <RoomFormContainer />
+            <div className="chatBlock">
+                <div className="roomBlock">
+                    <RoomIndexContainer />
+                    <RoomFormContainer />
+                </div>
                 {this.showMessages()}
                 {/* <MessagesAreaContainer />
                 <MessageFormContainer /> */}

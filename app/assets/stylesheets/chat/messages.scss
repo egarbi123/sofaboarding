@@ -1,3 +1,21 @@
 // Place all the styles related to the chat::messages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.messageBlock {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.messageArea {
+    text-align: center;
+}
+
+.messageArea ul {
+    list-style: none;
+}
+
+.messageArea ul li {
+    display: flex;
+    flex-direction: column;
+}

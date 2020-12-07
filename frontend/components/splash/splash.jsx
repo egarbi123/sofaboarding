@@ -9,9 +9,8 @@ class Splash extends React.Component {
 
     render() {
         return (
-            <div>
-                <p>in splash</p>
-                <div>
+            <div className="splash">
+                <div className="splashLinks">
                     <Link to="users">Users List</Link>
                     <Link to="chat">To chat</Link>
                 </div>

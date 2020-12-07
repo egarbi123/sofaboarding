@@ -54,8 +54,13 @@ class MessagesArea extends React.Component {
 
     mapMessages(messages) {
         return messages.map(message => {
+            console.log(message)
             return (
                 <li key={message.id}>
+                    {/* <h4>{this.props.state.users[message.user_id].name}</h4> */}
+                    <div>
+
+                    </div>
                     {message.body}
                 </li>
             )
@@ -67,10 +72,13 @@ class MessagesArea extends React.Component {
         if (this.props.messages) {
             messages = Object.values(this.props.messages);
         }
+        console.log('messages props', this.props.state.rooms)
         return (
-            <div>
-                <p>in messages area</p>
-                {this.mapMessages(messages)}
+            <div className="messageArea">
+                <h3>{this.props.state.rooms[this.props.activeRoom].title}</h3>
+                <ul>
+                    {this.mapMessages(messages)}
+                </ul>
             </div>
         )
     }

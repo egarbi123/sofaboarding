@@ -1,0 +1,18 @@
+.splash {
+    display: flex;
+    flex-direction: column;
+}
+
+.splashLinks {
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.splashLinks a {
+    width: 300px;
+    margin: auto;
+    text-align: center;
+    margin-top: 50px;
+}

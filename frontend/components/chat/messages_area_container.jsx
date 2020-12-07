@@ -5,6 +5,7 @@ import { fetchMessages, receiveMessage } from '../../actions/chat_actions';
 const mSTP = state => ({
     activeRoom: state.session.activeRoom,
     messages: state.messages,
+    state: state
 });
 
 const mDTP = dispatch => ({
