@@ -817,8 +817,13 @@ var MessagesArea = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "mapMessages",
     value: function mapMessages(messages) {
+      var _this3 = this;
+
       return messages.map(function (message) {
-        console.log(message);
+        console.log(message); // console.log('messages props', this.props.state.users[message.user_id])
+
+        var user = _this3.props.state.users[message.user_id];
+        console.log(user);
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           key: message.id
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null), message.body);
@@ -831,9 +836,9 @@ var MessagesArea = /*#__PURE__*/function (_React$Component) {
 
       if (this.props.messages) {
         messages = Object.values(this.props.messages);
-      }
+      } // console.log('messages props', this.props.state.rooms)
 
-      console.log('messages props', this.props.state.rooms);
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "messageArea"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, this.props.state.rooms[this.props.activeRoom].title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.mapMessages(messages)));
