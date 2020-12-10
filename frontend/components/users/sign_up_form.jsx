@@ -1,7 +1,7 @@
 import React from 'react';
 import {} from 'react-router-dom';
 
-class UserForm extends React.Component {
+class SignUpForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = this.props.user;
@@ -11,8 +11,10 @@ class UserForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
+        console.log('handleSubmit:', this.state)
         this.verifyPassword();
         if (this.passwordIsGood || this.props.formtype === 'Login User') {
+            console.log('password is good')
             this.props.action(this.state);
         }
     }
@@ -54,7 +56,7 @@ class UserForm extends React.Component {
     render() {
         return (
             <div className="sign">
-                <p>{this.props.formtype}</p>
+                <p>Sign Up</p>
                 <form className="sign-form" onSubmit={this.handleSubmit}>
                     <div className="row">
                         <p>Name:</p>
@@ -80,7 +82,14 @@ class UserForm extends React.Component {
                             onChange={this.update('password')}
                         />
                     </div>
-                    {this.ifSignUp()}
+                    <div className="row">
+                        <p>Repeat Password:</p>
+                        <input
+                            type="password"
+                            value={this.state.password2}
+                            onChange={this.update('password2')}
+                        />
+                    </div>
                     <button type="submit" className="button">{this.props.formtype}</button>
                 </form>
             </div>
@@ -89,4 +98,4 @@ class UserForm extends React.Component {
 }
 
 
-export default UserForm;
+export default SignUpForm;

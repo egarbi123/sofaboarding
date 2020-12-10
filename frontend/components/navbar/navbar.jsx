@@ -16,11 +16,10 @@ class NavBar extends React.Component {
     }
 
     welcome() {
-        if (this.props.state.session.id) {
-            let name = this.props.state.users[this.props.state.session.id].name
-            if (name) {
-                return (<p>Welcome {name}</p>)
-            }
+        let name = '"NAME"';
+        if (this.props.state.users[this.props.state.session.id] && this.props.state.users[this.props.state.session.id].name) {
+            name = this.props.state.users[this.props.state.session.id].name
+            return (<p>Welcome {name}</p>)
         }
     }
 
