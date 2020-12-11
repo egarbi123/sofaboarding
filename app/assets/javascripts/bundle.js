@@ -796,7 +796,7 @@ var MessagesArea = /*#__PURE__*/function (_React$Component) {
       var _this2 = this;
 
       var room_id = this.props.activeRoom;
-      this.cable = actioncable__WEBPACK_IMPORTED_MODULE_1___default.a.createConsumer('ws://' + window.location.host + '/cable');
+      this.cable = actioncable__WEBPACK_IMPORTED_MODULE_1___default.a.createConsumer('wss://' + window.location.host + '/cable');
       this.chats = this.cable.subscriptions.create({
         channel: 'RoomsChannel',
         room_id: room_id
