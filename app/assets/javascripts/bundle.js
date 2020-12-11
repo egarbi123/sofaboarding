@@ -628,7 +628,7 @@ var MessageForm = /*#__PURE__*/function (_React$Component) {
     key: "createSocket",
     value: function createSocket() {
       var room_id = this.props.activeRoom;
-      this.cable = ActionCable.createConsumer('ws://' + window.location.host + '/cable');
+      this.cable = ActionCable.createConsumer('wss://' + window.location.host + '/cable');
       this.chats = this.cable.subscriptions.create({
         channel: 'RoomsChannel',
         room_id: room_id
