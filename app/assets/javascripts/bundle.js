@@ -820,13 +820,13 @@ var MessagesArea = /*#__PURE__*/function (_React$Component) {
       var _this3 = this;
 
       return messages.map(function (message) {
-        console.log(message); // console.log('messages props', this.props.state.users[message.user_id])
+        // console.log(message)
+        // console.log('messages props', this.props.state.users[message.user_id])
+        var user = _this3.props.state.users[message.user_id]; // console.log(user)
 
-        var user = _this3.props.state.users[message.user_id];
-        console.log(user);
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           key: message.id
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null), message.body);
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, _this3.props.state.users[message.user_id].name, ":"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, message.body));
       });
     }
   }, {

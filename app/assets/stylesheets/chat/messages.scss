@@ -17,5 +17,9 @@
 
 .messageArea ul li {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+}
+
+.messageArea ul li b {
+    display: block;
 }

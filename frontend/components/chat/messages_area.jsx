@@ -54,18 +54,15 @@ class MessagesArea extends React.Component {
 
     mapMessages(messages) {
         return messages.map(message => {
-            console.log(message)
+            // console.log(message)
             // console.log('messages props', this.props.state.users[message.user_id])
             let user = this.props.state.users[message.user_id];
-            console.log(user)
+            // console.log(user)
 
             return (
                 <li key={message.id}>
-                    {/* <h4>{this.props.state.users[message.user_id].name}</h4> */}
-                    <div>
-
-                    </div>
-                    {message.body}
+                    <b>{this.props.state.users[message.user_id].name}:</b>
+                    <p>{message.body}</p>
                 </li>
             )
         })
