@@ -21,6 +21,7 @@
     list-style-type: none;
     width: 100%;
     justify-content: center;
+    padding: 0;
 }
 
 .nav-link-list li {
@@ -28,11 +29,13 @@
     margin-right: 15%;
     width: 50%;
     font: 1em sans-serif;
+    text-align: center;
+    float: left;
 }
 
 .nav .button {
     position: absolute;
-    right: 5%;
+    right: 10%;
     background-color: hotpink;
     color: white;
 }
