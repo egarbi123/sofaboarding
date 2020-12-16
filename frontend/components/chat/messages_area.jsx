@@ -34,7 +34,7 @@ class MessagesArea extends React.Component {
 
     createSocket() {
         let room_id = this.props.activeRoom;
-        this.cable = ActionCable.createConsumer('ws://' + window.location.host + '/cable');
+        this.cable = ActionCable.createConsumer('wss://' + window.location.host + '/cable');
         this.chats = this.cable.subscriptions.create({
             channel: 'RoomsChannel',
             room_id: room_id
