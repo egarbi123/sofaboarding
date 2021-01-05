@@ -1424,7 +1424,7 @@ var mSTP = function mSTP(state) {
 var mDTP = function mDTP(dispatch) {
   return {
     fetchUsers: function fetchUsers() {
-      return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_2__["default"])());
+      return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_2__["fetchUsers"])());
     }
   };
 };
