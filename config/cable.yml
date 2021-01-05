@@ -7,5 +7,5 @@ test:
 production:
   adapter: redis
   # url: (redis togo URL)
-  url: <%= ENV.fetch("REDIS_URL") { redis://redistogo:c9858b4f89431209d833ba1432964f47@scat.redistogo.com:10858/ } %>
+  url: redis://redistogo:c9858b4f89431209d833ba1432964f47@scat.redistogo.com:10858/
   channel_prefix: SofaBoarding_production
