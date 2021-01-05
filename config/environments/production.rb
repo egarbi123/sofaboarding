@@ -46,6 +46,9 @@ Rails.application.configure do
   config.action_cable.url = 'wss://sofa-boarding.herokuapp.com/cable'
   config.action_cable.allowed_request_origins = [ 'https://sofa-boarding.herokuapp.com', /http:\/\/example.*/ ]
 
+  # Add this line for WebSockets
+  config.web_socket_server_url = "wss://sofa-boarding.herokuapp.com/cable"
+
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   config.force_ssl = true
 

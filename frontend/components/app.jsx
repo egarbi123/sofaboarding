@@ -9,8 +9,8 @@ import UserProfileContainer from './users/user_profile_container';
 import UserIndexContainer from './users/user_index_container';
 import LoginUserContainer from './users/login_user_container';
 import SplashContainer from './splash/splash_container';
-// import MessageFormContainer from './chat/message_form_container';
 import NavBar from './navbar/navbar_container';
+import Footer from './footer/footer_container';
 import ChatBlockContainer from './chat/chat_block_container';
 
 
@@ -24,12 +24,12 @@ const App = () => (
                     <Switch history={customHistory}>
                         <AuthRoute exact path="/login" component={LoginUserContainer} />
                         <AuthRoute exact path="/signup" component={CreateUserContainer} />
-                        {/* <Route exact path="/newmessage" component={MessageFormContainer} /> */}
                         <Route exact path="/users" component={UserIndexContainer} />
                         <ProtectedRoute exact path="/profile" component={UserProfileContainer} />
-                        <ProtectedRoute exact path="/" component={SplashContainer} />
+                        <ProtectedRoute exact path="/" component={UserProfileContainer} />
                         <ProtectedRoute exact path="/chat" component={ChatBlockContainer} />
                     </Switch>
+                    <Footer />
                 </ActionCableProvider>
             </BrowserRouter>
         </Router>

@@ -1,0 +1,22 @@
+.user-profile {
+    display: flex;
+    flex-direction: row;
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    height: 800px;
+    background-color: beige;
+}
+
+.profile-img {}
+
+.profile-main {
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    height: 800px;
+    background-color: azure;
+}

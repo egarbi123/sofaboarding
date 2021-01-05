@@ -19,32 +19,47 @@ class NavBar extends React.Component {
         let name = '"NAME"';
         if (this.props.state.users[this.props.state.session.id] && this.props.state.users[this.props.state.session.id].name) {
             name = this.props.state.users[this.props.state.session.id].name
-            return (<p>Welcome {name}</p>)
+            return (
+                <div className="nav-logo">
+                    <p>Welcome, {name}!</p>
+                </div>
+            )
+        } else {
+            return (
+                <div className="nav-logo">
+                    <p>SOFABOARDING</p>
+                </div>
+            )
         }
     }
 
     display() {
         if (this.props.state.session.id) {
             return (
-                <ul className="nav-link-list">
-                    <li>
-                        <button className="button" onClick={this.props.logout}>Log Out</button>
-                    </li>
-                    <li>
-                        <Link className="nav-link" to="/">Home</Link>
-                    </li>
-                </ul>
+                <div className="nav-session">
+                    <ul className="nav-link-list">
+                        <li>
+                            {/* <button className="button" onClick={this.props.logout}>Log Out</button> */}
+                            <Link className="nav-link" to="/" onClick={this.props.logout}>LOG OUT</Link>
+                        </li>
+                        <li>
+                            <Link className="nav-link" to="/">HOME</Link>
+                        </li>
+                    </ul>
+                </div>
             )
         } else {
             return (
-                <ul className="nav-link-list">
-                    <li>
-                        <Link className="nav-link" to="signup">Sign Up</Link>
-                    </li>
-                    <li>
-                        <Link className="nav-link" to="login">Sign In</Link>
-                    </li>
-                </ul>
+                <div className="nav-session">
+                    <ul className="nav-link-list">
+                        <li>
+                            <Link className="nav-link" to="/signup">SIGN UP</Link>
+                        </li>
+                        <li>
+                            <Link className="nav-link" to="/login">LOG IN</Link>
+                        </li>
+                    </ul>
+                </div>
             )
         }
     }
@@ -53,6 +68,7 @@ class NavBar extends React.Component {
         return (
             <div className="nav">
                 {this.welcome()}
+                <div className="nav-search"></div>
                 {this.display()}
             </div>
         )

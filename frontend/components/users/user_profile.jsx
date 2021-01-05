@@ -1,4 +1,5 @@
 import React from 'react';
+import FindFriends from '../friends/find_friend_container';
 
 class UserProfile extends React.Component {
     constructor(props) {
@@ -14,8 +15,11 @@ class UserProfile extends React.Component {
     render() {
         // console.log('this.props.state', this.props.state)
         return (
-            <div>
-                <h3>Welcome, {this.props.state.users[this.props.state.session.id].name}</h3>
+            <div className="user-profile">
+                <div className="profile-info"></div>
+                <div className="profile-main">
+                    {<FindFriends />}
+                </div>
             </div>
         )
     }
