@@ -9,12 +9,16 @@
 .nav-logo {
     width: 25%;
     height: 100%;
+    text-align: center;
 }
 
 .nav p {
-    text-align: left;
-    padding-left: 7px;
+    text-align: center;
+    // padding-left: 7px;
     font: 1em sans-serif;
+    display: inline-block;
+    font-size: 18px;
+    padding-top: 0;
 }
 
 .nav-search {

@@ -15,23 +15,23 @@ class NavBar extends React.Component {
         this.props.logout();
     }
 
-    welcome() {
-        let name = '"NAME"';
-        if (this.props.state.users[this.props.state.session.id] && this.props.state.users[this.props.state.session.id].name) {
-            name = this.props.state.users[this.props.state.session.id].name
-            return (
-                <div className="nav-logo">
-                    <p>Welcome, {name}!</p>
-                </div>
-            )
-        } else {
-            return (
-                <div className="nav-logo">
-                    <p>SOFABOARDING</p>
-                </div>
-            )
-        }
-    }
+    // welcome() {
+    //     let name = '"NAME"';
+    //     if (this.props.state.users[this.props.state.session.id] && this.props.state.users[this.props.state.session.id].name) {
+    //         name = this.props.state.users[this.props.state.session.id].name
+    //         return (
+    //             <div className="nav-logo">
+    //                 <p>Welcome, {name}!</p>
+    //             </div>
+    //         )
+    //     } else {
+    //         return (
+    //             <div className="nav-logo">
+    //                 <p>SOFABOARDING</p>
+    //             </div>
+    //         )
+    //     }
+    // }
 
     display() {
         if (this.props.state.session.id) {
@@ -65,9 +65,12 @@ class NavBar extends React.Component {
     }
 
     render() {
+        console.log('NAVBAR:', this.props)
         return (
             <div className="nav">
-                {this.welcome()}
+                <div className="nav-logo">
+                    <p>SOFABOARDING</p>
+                </div>
                 <div className="nav-search"></div>
                 {this.display()}
             </div>

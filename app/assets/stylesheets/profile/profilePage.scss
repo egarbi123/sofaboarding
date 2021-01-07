@@ -11,6 +11,21 @@
     background-color: beige;
 }
 
+.user-info {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.user-info p {
+    text-align: center;
+}
+
+.info-pic {
+    width: 100%;
+    height: 300px;
+}
+
 .profile-img {}
 
 .profile-main {
