@@ -7,6 +7,22 @@ class User < ApplicationRecord
         foreign_key: :user_id,
         class_name: :room_membership
 
+    has_many :friend_requests_as_requestor,
+        foreign_key: :requestor_id,
+        class_name: :FriendRequest
+
+    has_many :friend_requests_as_receiver,
+        foreign_key: :receiver_id,
+        class_name: :FriendRequest
+
+    has_many :friendships,
+        foreign_key: :friend_id,
+        class_name: :Friendship
+    
+    has_many :friends,
+        foreign_key: :user_id,
+        class_name: :Friendship
+
     has_many :rooms,
         through: :room_memberships,
         source: :rooms
