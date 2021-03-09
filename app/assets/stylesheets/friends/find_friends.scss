@@ -1,5 +1,73 @@
 .find-friends {
     width: 100%;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+.show-users {
+    display: flex;
+    flex-direction: column;
+}
+
+.friends-section {
+    height: 400px;
+    width: 100%;
+    justify-content: center;
+    // overflow: scroll;
+}
+
+.friends-section h3 {
+    text-align: center;
+}
+
+.friends-section ul {
+    list-style: none;
     height: 300px;
-    background-color: burlywood;
+    padding-left: none;
+    display: flex;
+    flex-direction: row;
+    overflow: scroll;
+}
+
+.friends-section ul li {
+    padding-right: 25px;
+}
+
+.small-user-cont {
+    width: 300px;
+    height: 50px;
+    background-color: rgb(214, 191, 235);
+    display: flex;
+    flex-direction: row;
+}
+
+.small-image-cont {
+    width: 40px;
+    height: 40px;
+    margin: 5px 5px 5px 5px;
+}
+
+.med-user-cont {
+    width: 200px;
+    height: 300px;
+    background-color: rgb(214, 191, 235);
+    display: flex;
+    flex-direction: column;
+}
+
+.med-user-cont p {
+    text-align: center;
+    font-size: larger;
+}
+
+.med-image-cont {
+    width: 150px;
+    height: 150px;
+    margin: 25px 25px 25px 25px;
+    background-color: blanchedalmond;
+}
+
+.med-image-cont img {
+    width: 150px;
+    height: 150px;
+    border-radius: 5px;
 }

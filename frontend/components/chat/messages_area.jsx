@@ -5,11 +5,9 @@ import MessageForm from './message_form_container';
 class MessagesArea extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            activeRoom: null
-        }
+        this.state = this.props.message;
         this.createSocket = this.createSocket.bind(this);
-
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     componentDidMount() {
@@ -32,9 +30,30 @@ class MessagesArea extends React.Component {
         };
     }
 
+    handleSubmit(e) {
+        e.preventDefault();
+        this.chats.create(this.state.room_id, this.state.user_id, this.state.body);
+        this.setState({ body: ""});
+    }
+
+    handleKeyPress(e) {
+        console.log(e);
+        if (e.key === 'Enter' && !e.shiftKey) {
+            this.handleSubmit(e)
+        }
+    }
+
+    update(field) {
+        return e => this.setState({ [field]: e.currentTarget.value })
+    }
+
     createSocket() {
         let room_id = this.props.activeRoom;
-        this.cable = ActionCable.createConsumer('wss://' + window.location.host + '/cable');
+        if (process.env.NODE_ENV === 'development') {
+            this.cable = ActionCable.createConsumer('ws://' + window.location.host + '/cable');
+        } else {
+            this.cable = ActionCable.createConsumer('wss://' + window.location.host + '/cable');
+        }
         this.chats = this.cable.subscriptions.create({
             channel: 'RoomsChannel',
             room_id: room_id
@@ -42,6 +61,14 @@ class MessagesArea extends React.Component {
             connected: () => {},
             received: (data) => {
                 this.props.receiveMessage(data);
+            },
+            create: function (currentRoomId, currentUserId, messageBody) {
+                this.perform('create', {
+                    body: messageBody,
+                    room_id: currentRoomId,
+                    user_id: currentUserId
+                });
+                console.log(this);
             }
         });
     }
@@ -52,19 +79,44 @@ class MessagesArea extends React.Component {
         }
     }
 
+    imageRender(userId) {
+        if (this.props.state.users[userId].profilePicUrl) {
+            return (
+                <img className="chat-pic" src={this.props.state.users[userId].profilePicUrl} />
+            )
+        } else {
+            return (
+                <img className="chat-pic" src={window.profile_pic} />
+            )
+        }
+    }
+
     mapMessages(messages) {
         return messages.map(message => {
             // console.log(message)
             // console.log('messages props', this.props.state.users[message.user_id])
             let user = this.props.state.users[message.user_id];
             // console.log(user)
-
-            return (
-                <li key={message.id}>
-                    <b>{this.props.state.users[message.user_id].name}:</b>
-                    <p>{message.body}</p>
-                </li>
-            )
+            if (user.id !== this.props.state.session.id) {
+                return (
+                    <div className="my-message" key={message.id}>
+                        <div className="chat-pic-container">
+                            {this.imageRender(user.id)}
+                        </div>
+                        <p className="bold-text">{this.props.state.users[message.user_id].name}:</p>
+                        <p>{message.body}</p>
+                    </div>
+                )
+            } else {
+                return (
+                    <div className="message" key={message.id}>
+                        <div className="chat-pic-container">
+                            {this.imageRender(user.id)}
+                        </div>
+                        <p>{message.body}</p>
+                    </div>
+                )
+            }
         })
     }
 
@@ -76,10 +128,21 @@ class MessagesArea extends React.Component {
         // console.log('messages props', this.props.state.rooms)
         return (
             <div className="messageArea">
-                <h3>{this.props.state.rooms[this.props.activeRoom].title}</h3>
-                <ul>
+                <h3>Room: {this.props.state.rooms[this.props.activeRoom].title}</h3>
+                <div className="messageBox">
                     {this.mapMessages(messages)}
-                </ul>
+                </div>
+                <h4>{this.props.formtype}</h4>
+                <form onSubmit={this.handleSubmit}>
+                    <label>Message
+                        <input
+                            type="text"
+                            value={this.state.body}
+                            onChange={this.update('body')}
+                        />
+                    </label>
+                    <button type='submit' className='btn'>SEND</button>
+                </form>
             </div>
         )
     }

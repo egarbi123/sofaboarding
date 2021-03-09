@@ -1,0 +1,1 @@
+json.extract! roomMembership, :id, :user_id, :room_id

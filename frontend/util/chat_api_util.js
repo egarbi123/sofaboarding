@@ -39,3 +39,25 @@ export const subscribeToRoom = room => (
         body: JSON.stringify(room)
     })
 )
+
+export const fetchRoomMemberships = () => (
+    $.ajax({
+        url: `/api/roommemberships`,
+        method: 'GET'
+    })
+)
+
+export const createRoomMembership = membership => (
+    $.ajax({
+        url: `/api/roommemberships`,
+        method: 'POST',
+        data: { membership }
+    })
+)
+
+export const removeRoomMembership = memebershipId => (
+    $.ajax({
+        url: `/api/roommemberships/${memebershipId}`,
+        method: 'DELETE'
+    })
+)

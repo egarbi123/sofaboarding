@@ -12,7 +12,8 @@ import SplashContainer from './splash/splash_container';
 import NavBar from './navbar/navbar_container';
 import Footer from './footer/footer_container';
 import ChatBlockContainer from './chat/chat_block_container';
-
+import ControllerContainer from './controller/controller_container';
+import FriendProfileContainer from './friends/friend_profile_container';
 
 const customHistory = createBrowserHistory();
 const App = () => (
@@ -26,8 +27,9 @@ const App = () => (
                         <AuthRoute exact path="/signup" component={CreateUserContainer} />
                         <Route exact path="/users" component={UserIndexContainer} />
                         <ProtectedRoute exact path="/profile" component={UserProfileContainer} />
-                        <ProtectedRoute exact path="/" component={UserProfileContainer} />
+                        <Route exact path="/" component={ControllerContainer} />
                         <ProtectedRoute exact path="/chat" component={ChatBlockContainer} />
+                        <ProtectedRoute exact path="/:friendId" component={FriendProfileContainer} />
                     </Switch>
                     <Footer />
                 </ActionCableProvider>

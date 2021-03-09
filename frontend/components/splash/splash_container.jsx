@@ -1,5 +1,7 @@
 import { connect } from 'react-redux';
 import Splash from './splash';
+import { fetchUsers } from '../../actions/user_actions';
+
 // import { logout } from '../../actions/session_actions';
 
 const mSTP = state => ({
@@ -8,6 +10,7 @@ const mSTP = state => ({
 
 const mDTP = dispatch => ({
     // logout: () => dispatch(logout())
+    fetchUsers: () => dispatch(fetchUsers())
 });
 
 export default connect(mSTP, mDTP)(Splash);

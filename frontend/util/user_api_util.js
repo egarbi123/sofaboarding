@@ -12,13 +12,16 @@ export const fetchUser = userId => (
     })
 )
 
-export const updateUser = (user) => (
-    $.ajax({
-        url: `api/users/${user.id}`,
+export const updateUser = (data) => {
+    return $.ajax({
+        url: `api/users/${data.user.id}`,
         method: 'PATCH',
-        data: { user }
+        data: data.form,
+        contentType: false,
+        processData: false
     })
-)
+}
+
 
 export const signUp = (user) => (
     $.ajax({

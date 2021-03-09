@@ -29,10 +29,11 @@ export const fetchUser = (userId) => dispatch => (
     .then(user => dispatch(receiveUser(user)))
 )
 
-export const updateUser = (user) => dispatch => (
-    UserApiUtil.updateUser(user)
-    .then(user => dispatch(receiveUser(user)))
-)
+export const updateUser = (data) => dispatch => {
+    console.log(data);
+    return UserApiUtil.updateUser(data)
+        .then(user => dispatch(receiveUser(user)))
+}
 
 export const createUser = user => dispatch => (
     UserApiUtil.signUp(user)

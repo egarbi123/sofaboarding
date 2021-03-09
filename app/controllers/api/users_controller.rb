@@ -1,7 +1,7 @@
 class Api::UsersController < ApplicationController
     def create
         @user = User.new(user_params)
-    
+        @user.profile_picture.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'default_user.jpg')), filename: 'default_user.jpg')
         if @user.save
             sign_in!(@user)
             render :show
@@ -22,6 +22,15 @@ class Api::UsersController < ApplicationController
             render json: ["User not found"], status: 404
         end
     end
+
+    # def show
+    #     @user = User.find(params[:id])
+    #     if (@user)
+    #         render :show
+    #     else
+    #         render json: ["The user was not found."], status: 404
+    #     end
+    # end
     
     def index
         @users = User.all
@@ -31,10 +40,13 @@ class Api::UsersController < ApplicationController
     private
 
     def user_params
+        puts params.inspect
+        params.inspect
         params.require(:user).permit(
             :name, 
             :password, 
-            :email
+            :email,
+            :profile_picture
         )
     end
 

@@ -8,8 +8,16 @@ class Api::RoomsController < ApplicationController
     def create
         @room = Rooms.new(room_params)        
         if @room.save!
-            @rooms = Rooms.all
-            render :index
+            puts 'in room save'
+            user_id = current_user.id
+            room_id = @room.id
+            roomMembership_params = { "user_id" => user_id, "room_id" => room_id }
+            @roomMembership = RoomMembership.new(roomMembership_params)
+            if @roomMembership.save!
+                puts 'in room membership save'
+                @rooms = Rooms.all
+                render :index
+            end
         end
     end
 

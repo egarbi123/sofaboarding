@@ -8,14 +8,21 @@ Rails.application.routes.draw do
   get "/users", to: 'static_pages#root'
   get "/profile", to: 'static_pages#root'
   get "/chat", to: 'static_pages#root'
+  get "/friendrequests", to: 'static_pages#root'
+  get "/friendships", to: 'static_pages#root'
+  get "/roommemberships", to: 'static_pages#root'
+  get "/:friendId", to: 'static_pages#root'
+  root to: 'static_pages#root'
+  # get "/friendrequests", to: 'static_pages#root'
   namespace :api, defaults: { format: :json } do
     resources :users, only: [:create, :update, :index]
     resource :session, only: [:create, :destroy]
-    resources :rooms, only: [:create, :destroy, :index] do
-      # resources :messages, only: [:create, :index]
-    end
-    resources :friendships, only: [:create, :destroy]
+    resources :rooms, only: [:create, :destroy, :index]
+    resources :friendrequests, only: [:create, :index, :destroy]
+    resources :friendships, only: [:create, :destroy, :index]
+    resources :roommemberships, only: [:create, :index, :destroy]
     resources :messages, only: [:create, :index]
   end
-  root to: 'static_pages#root'
+
+  
 end

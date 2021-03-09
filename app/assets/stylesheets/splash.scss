@@ -1,18 +1,25 @@
 .splash {
     display: flex;
     flex-direction: column;
+    min-height: 800px;
 }
 
-.splashLinks {
+.welcome-info {
+    background-color: #ffb3f2;
+    width: 500px;
+    height: 300px;
     margin: auto;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
-
-.splashLinks a {
-    width: 300px;
-    margin: auto;
-    text-align: center;
     margin-top: 50px;
+    text-align: center;
+}
+
+.welcome-info h3 {
+    font-family: Impact, Charcoal, sans-serif;
+    font-size: 28px;
+    letter-spacing: 1.6px;
+    word-spacing: 1.2px;
+}
+
+.welcome-info p {
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
 }

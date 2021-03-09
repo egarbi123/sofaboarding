@@ -65,7 +65,6 @@ class NavBar extends React.Component {
     }
 
     render() {
-        console.log('NAVBAR:', this.props)
         return (
             <div className="nav">
                 <div className="nav-logo">

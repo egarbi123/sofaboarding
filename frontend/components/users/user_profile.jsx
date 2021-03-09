@@ -1,16 +1,16 @@
 import React from 'react';
 import FindFriends from '../friends/find_friend_container';
 import UserInfo from '../users/user_info_container';
+import ChatBlockContainer from '../chat/chat_block_container';
 
 class UserProfile extends React.Component {
     constructor(props) {
         super(props);
-        // console.log("props,", this.props);
-        this.state = this.props.user;
     }
-
+    
     componentDidMount() {
-        this.props.fetchUsers();
+        this.props.fetchAllRequests();
+        this.props.fetchAllFriendships();
     }
 
     render() {
@@ -21,6 +21,7 @@ class UserProfile extends React.Component {
                 </div>
                 <div className="profile-main">
                     {<FindFriends />}
+                    {<ChatBlockContainer />}
                 </div>
             </div>
         )

@@ -4,25 +4,69 @@
 .chatBlock {
     display: flex;
     flex-direction: row;
+    min-width: 750px;
+    width: 100%;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    background-color: blueviolet;
+    height: 500px;
+    overflow: scroll;
 }
 
 .roomBlock {
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 250px;
 }
 
 .roomIndex {
+    justify-content: center;
+    text-align: center;
+    width: 250px;
+    margin: auto;
+}
+
+.roomIndex form {
+    display: flex;
+    flex-direction: column;
+}
+
+.bold-text {
+    font-weight: bold;
+}
+
+.roomBox {
+    border: 1px solid black;
+    width: 200px;
+    height: 300px;
+    overflow: scroll;
+    margin: 0px 25px 25px 25px;
+}
+
+.room-input {
+    width: 150px;
+}
+
+.room {
+    width: 100%;
+    min-height: 35px;
+    text-align: center;
+    background-color: burlywood;
+    border: 1px solid gray;
+}
+
+.single-room {
+    display: flex;
+    flex-direction: row;
+    min-width: 500px;
+}
+
+.room-controls {
+    min-width: 200px;
+    background-color: rgb(59, 51, 168);
+    border: 1px solid gray;
     text-align: center;
 }
 
-.roomIndex ul {
-    list-style: none;
-}
-
-.roomIndex ul li {
-    margin: auto;
-    margin-top: 5px;
-    width: 250px;
-    border: solid black 2px;
+.single-room-block {
+    width: 70%;
 }

@@ -1,13 +1,14 @@
 import { connect } from 'react-redux';
 import UserProfile from './user_profile';
-import { fetchUsers } from '../../actions/user_actions';
+import { fetchAllRequests, fetchAllFriendships } from '../../actions/friendship_actions';
 
 const mSTP = state => ({
     state
 })
 
 const mDTP = dispatch => ({
-    fetchUsers: () => dispatch(fetchUsers())
+    fetchAllRequests: () => dispatch(fetchAllRequests()),
+    fetchAllFriendships: () => dispatch(fetchAllFriendships())
 })
 
 export default connect(mSTP, mDTP)(UserProfile);

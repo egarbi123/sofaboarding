@@ -11,7 +11,6 @@ class LogInForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        console.log('handleSubmit:', this.state)
         this.props.action(this.state);
     }
 
