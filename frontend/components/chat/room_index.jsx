@@ -39,7 +39,7 @@ class RoomIndex extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        console.log(this)
+        // console.log(this)
         this.props.createRoom(this.state);
         this.setState({ title: '' });
     }
@@ -63,7 +63,7 @@ class RoomIndex extends React.Component {
     }
 
     render() {
-        console.log(this);
+        // console.log(this);
         if (this.props.state.rooms) {
             this.rooms = Object.values(this.props.state.rooms);
         } 

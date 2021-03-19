@@ -14,19 +14,19 @@ class FriendProfile extends React.Component {
     }
 
     componentDidMount() {
-        console.log('IN CDM:', this)
+        // console.log('IN CDM:', this)
         if (Object.values(this.props.state.friendRequests).length < 1) {
             // get friend requests
-            console.log('in CDM fetching requests')
+            // console.log('in CDM fetching requests')
             this.props.fetchAllRequests();
         }
         if (Object.values(this.props.state.friendships).length < 1) {
             // get friendships
-            console.log('in CDM fetching friendships')
+            // console.log('in CDM fetching friendships')
             this.props.fetchAllFriendships();
         }
         if (Object.values(this.props.state.users).length < 2) {
-            console.log('in CDM fetching users')
+            // console.log('in CDM fetching users')
             this.props.fetchUsers();
         }
     }
@@ -47,7 +47,7 @@ class FriendProfile extends React.Component {
                 }
             }
         }
-        console.log(lastRequestId);
+        // console.log(lastRequestId);
         // for (let )
 
 
@@ -186,8 +186,8 @@ class FriendProfile extends React.Component {
                     newRequests.push(requests[i]);
                 }
             }
-            console.log('newRequests:', newRequests);
-            console.log('this.state.friendRequests:', this.state.friendRequests)
+            // console.log('newRequests:', newRequests);
+            // console.log('this.state.friendRequests:', this.state.friendRequests)
             this.setState({ 'friendRequests': newRequests })
         }
 
@@ -281,7 +281,7 @@ class FriendProfile extends React.Component {
     }
 
     render() {
-        console.log(this);
+        // console.log(this);
         return (
             <div className="friend-profile">
                 <div className="friend-info">

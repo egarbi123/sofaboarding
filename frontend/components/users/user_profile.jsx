@@ -229,7 +229,7 @@ class UserProfile extends React.Component {
         if (!this.props.state) {
             return (<div> "loading </div>)
         }
-        console.log(this);
+        // console.log(this);
         this.usersToState()
         return (
             <div className="user-profile">

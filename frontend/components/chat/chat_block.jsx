@@ -32,7 +32,7 @@ class ChatBlock extends React.Component {
     }
 
     render() {
-        console.log(this);
+        // console.log(this);
         return (
             <div className="chatBlock">
                 <div className="roomBlock">

@@ -407,8 +407,8 @@ class FindFriends extends React.Component {
         if (!this.props.state) {
             return (<div> "loading </div>)
         }
-        console.log(this);
-        console.log(this.state);
+        // console.log(this);
+        // console.log(this.state);
         return (
             <div className="find-friends">
                 {this.showUsers()}

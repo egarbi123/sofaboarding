@@ -16,10 +16,10 @@ class SignUpForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        console.log('handleSubmit:', this.state)
+        // console.log('handleSubmit:', this.state)
         this.verifyPassword();
         if (this.passwordIsGood) {
-            console.log('password is good')
+            // console.log('password is good')
             this.props.signup(this.state);
         }
     }
@@ -42,7 +42,7 @@ class SignUpForm extends React.Component {
     }
 
     render() {
-        console.log(this)
+        // console.log(this)
         return (
             <div className="sign">
                 <p>Sign Up</p>

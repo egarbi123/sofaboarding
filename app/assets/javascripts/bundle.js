@@ -684,7 +684,7 @@ var ChatBlock = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      console.log(this);
+      // console.log(this);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "chatBlock"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1338,8 +1338,8 @@ var RoomIndex = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
-      e.preventDefault();
-      console.log(this);
+      e.preventDefault(); // console.log(this)
+
       this.props.createRoom(this.state);
       this.setState({
         title: ''
@@ -1372,8 +1372,7 @@ var RoomIndex = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      console.log(this);
-
+      // console.log(this);
       if (this.props.state.rooms) {
         this.rooms = Object.values(this.props.state.rooms);
       }
@@ -1560,11 +1559,10 @@ var SingleRoom = /*#__PURE__*/function (_React$Component) {
         if (myFriendsIDs.includes(user.id)) {
           myFriends.push(user);
         }
-      });
-      console.log('this.props:', this.props);
-      friendships = Object.values(this.props.state.friendships);
-      console.log('friendships', friendships);
-      console.log('myId', this.props.state.session.id);
+      }); // console.log('this.props:', this.props);
+
+      friendships = Object.values(this.props.state.friendships); // console.log('friendships', friendships);
+      // console.log('myId', this.props.state.session.id);
 
       if (this.state.friends.length !== myFriends.length) {
         this.setState({
@@ -1612,9 +1610,9 @@ var SingleRoom = /*#__PURE__*/function (_React$Component) {
         if (member === false) {
           friendsNotInRoom.push(friends[_i]);
         }
-      }
+      } // console.log('friendsNotInRoom', friendsNotInRoom)
 
-      console.log('friendsNotInRoom', friendsNotInRoom);
+
       var friendProfileInRoom = false;
 
       for (var _i2 = 0; _i2 < friendsNotInRoom.length; _i2++) {
@@ -1652,8 +1650,8 @@ var SingleRoom = /*#__PURE__*/function (_React$Component) {
         if (membership.user_id === _this4.props.state.session.id && membership.room_id === _this4.props.state.session.activeRoom) {
           myMembership = membership.id;
         }
-      });
-      console.log(myMembership);
+      }); // console.log(myMembership);
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "chat-btn",
         onClick: function onClick() {
@@ -1664,7 +1662,7 @@ var SingleRoom = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "showControls",
     value: function showControls() {
-      console.log(this.props.state.rooms[this.props.state.session.activeRoom].title);
+      // console.log(this.props.state.rooms[this.props.state.session.activeRoom].title);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "room-controls"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, this.props.state.rooms[this.props.state.session.activeRoom].title, " Controls:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Invite a friend:"), this.showFriends(), this.removeFromRoom());
@@ -1673,7 +1671,7 @@ var SingleRoom = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       // this.determineFriends();
-      console.log(this);
+      // console.log(this);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "single-room"
       }, this.showControls(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_messages_area_container__WEBPACK_IMPORTED_MODULE_1__["default"], null));
@@ -2312,10 +2310,10 @@ var FindFriends = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       if (!this.props.state) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, " \"loading ");
-      }
+      } // console.log(this);
+      // console.log(this.state);
 
-      console.log(this);
-      console.log(this.state);
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "find-friends"
       }, this.showUsers());
@@ -2439,22 +2437,21 @@ var FriendProfile = /*#__PURE__*/function (_React$Component) {
   _createClass(FriendProfile, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      console.log('IN CDM:', this);
-
+      // console.log('IN CDM:', this)
       if (Object.values(this.props.state.friendRequests).length < 1) {
         // get friend requests
-        console.log('in CDM fetching requests');
+        // console.log('in CDM fetching requests')
         this.props.fetchAllRequests();
       }
 
       if (Object.values(this.props.state.friendships).length < 1) {
         // get friendships
-        console.log('in CDM fetching friendships');
+        // console.log('in CDM fetching friendships')
         this.props.fetchAllFriendships();
       }
 
       if (Object.values(this.props.state.users).length < 2) {
-        console.log('in CDM fetching users');
+        // console.log('in CDM fetching users')
         this.props.fetchUsers();
       }
     }
@@ -2476,9 +2473,9 @@ var FriendProfile = /*#__PURE__*/function (_React$Component) {
             lastRequestId = friendRequests[i].id;
           }
         }
-      }
+      } // console.log(lastRequestId);
+      // for (let )
 
-      console.log(lastRequestId); // for (let )
 
       if (friendRequests.length > 0 && this.state.friendRequests.length < friendRequests.length - 1) {
         this.setState({
@@ -2627,10 +2624,10 @@ var FriendProfile = /*#__PURE__*/function (_React$Component) {
           if (requests[_i2].requestor_id !== props_requestor && requests[_i2].receiver_id !== props_receiver) {
             newRequests.push(requests[_i2]);
           }
-        }
+        } // console.log('newRequests:', newRequests);
+        // console.log('this.state.friendRequests:', this.state.friendRequests)
 
-        console.log('newRequests:', newRequests);
-        console.log('this.state.friendRequests:', this.state.friendRequests);
+
         this.setState({
           'friendRequests': newRequests
         });
@@ -2736,7 +2733,7 @@ var FriendProfile = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      console.log(this);
+      // console.log(this);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "friend-profile"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3371,12 +3368,12 @@ var SignUpForm = /*#__PURE__*/function (_React$Component) {
   _createClass(SignUpForm, [{
     key: "handleSubmit",
     value: function handleSubmit(e) {
-      e.preventDefault();
-      console.log('handleSubmit:', this.state);
+      e.preventDefault(); // console.log('handleSubmit:', this.state)
+
       this.verifyPassword();
 
       if (this.passwordIsGood) {
-        console.log('password is good');
+        // console.log('password is good')
         this.props.signup(this.state);
       }
     }
@@ -3414,7 +3411,7 @@ var SignUpForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      console.log(this);
+      // console.log(this)
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "sign"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Sign Up"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
@@ -4065,9 +4062,9 @@ var UserProfile = /*#__PURE__*/function (_React$Component) {
 
       if (!this.props.state) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, " \"loading ");
-      }
+      } // console.log(this);
 
-      console.log(this);
+
       this.usersToState();
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "user-profile"

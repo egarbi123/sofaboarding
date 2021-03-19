@@ -28,10 +28,10 @@ class SingleRoom extends React.Component {
                 myFriends.push(user);
             }
         })
-        console.log('this.props:', this.props);
+        // console.log('this.props:', this.props);
         friendships = Object.values(this.props.state.friendships);
-        console.log('friendships', friendships);
-        console.log('myId', this.props.state.session.id);
+        // console.log('friendships', friendships);
+        // console.log('myId', this.props.state.session.id);
 
         if (this.state.friends.length !== myFriends.length) {
             this.setState({'friends': myFriends});
@@ -69,7 +69,7 @@ class SingleRoom extends React.Component {
                 friendsNotInRoom.push(friends[i]);
             }
         }
-        console.log('friendsNotInRoom', friendsNotInRoom)
+        // console.log('friendsNotInRoom', friendsNotInRoom)
         let friendProfileInRoom = false;
         for (let i = 0; i < friendsNotInRoom.length; i++) {
             if (friendsNotInRoom[i].id === this.props.friendId) {
@@ -96,7 +96,7 @@ class SingleRoom extends React.Component {
                 myMembership = membership.id;
             }
         })
-        console.log(myMembership);
+        // console.log(myMembership);
         return (
             <div className="chat-btn" onClick={() => this.props.deleteRoomMembership(myMembership)}>LEAVE ROOM</div>
         )
@@ -105,7 +105,7 @@ class SingleRoom extends React.Component {
 
     showControls() {
 
-        console.log(this.props.state.rooms[this.props.state.session.activeRoom].title);
+        // console.log(this.props.state.rooms[this.props.state.session.activeRoom].title);
         return (<div className="room-controls">
             <h2>{this.props.state.rooms[this.props.state.session.activeRoom].title} Controls:</h2>
             <p>Invite a friend:</p>
@@ -116,7 +116,7 @@ class SingleRoom extends React.Component {
 
     render() {
         // this.determineFriends();
-        console.log(this);
+        // console.log(this);
         return (
             <div className="single-room">
                 {this.showControls()}
