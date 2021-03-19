@@ -128,21 +128,21 @@ class MessagesArea extends React.Component {
         // console.log('messages props', this.props.state.rooms)
         return (
             <div className="messageArea">
-                <h3>Room: {this.props.state.rooms[this.props.activeRoom].title}</h3>
-                <div className="messageBox">
-                    {this.mapMessages(messages)}
-                </div>
-                <h4>{this.props.formtype}</h4>
-                <form onSubmit={this.handleSubmit}>
-                    <label>Message
+                <h2>Room: {this.props.state.rooms[this.props.activeRoom].title}</h2>
+                <div className="messageRoom">
+                    <div className="messageBox">
+                        {this.mapMessages(messages)}
+                    </div>
+                    <h4>{this.props.formtype}</h4>
+                    <form onSubmit={this.handleSubmit}>
                         <input
                             type="text"
                             value={this.state.body}
                             onChange={this.update('body')}
                         />
-                    </label>
-                    <button type='submit' className='btn'>SEND</button>
-                </form>
+                        <button type='submit' className='chat-btn'>SEND</button>
+                    </form>
+                </div>
             </div>
         )
     }

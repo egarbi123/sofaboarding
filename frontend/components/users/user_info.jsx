@@ -29,7 +29,8 @@ class UserInfo extends React.Component {
     }
 
     imageRender() {
-        if (this.props.state.users[this.props.state.session.id].profilePicUrl) {
+        // console.log(this.props.state.users)
+        if (Object.values(this.props.state.users).length > 0 && this.props.state.users[this.props.state.session.id] && this.props.state.users[this.props.state.session.id].profilePicUrl) {
             return (
                 <img className="profile-pic" src={this.props.state.users[this.props.state.session.id].profilePicUrl}/>
             )
@@ -58,10 +59,10 @@ class UserInfo extends React.Component {
 
     render() {
         let name = "NAME"
-        if (this.props.state.users) {
+        if (Object.values(this.props.state.users).length > 0 && this.props.state.users[this.props.state.session.id] && this.props.state.users[this.props.state.session.id].name) {
             name = this.props.state.users[this.props.state.session.id].name
         }
-        // console.log(this);
+        // console.log( name, this);
         return (
             <div className="user-info">
                 <div className="info-pic">

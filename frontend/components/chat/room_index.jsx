@@ -52,10 +52,10 @@ class RoomIndex extends React.Component {
         return rooms.map(room => {
             if (room && roomIds.includes(room.id)) {
                 return (
-                    <div className="room" key={room.id}>
-                        <div  onClick={() => handleClick(room.id)}>
-                            {room.title}
-                        </div>
+                    <div className="room" onClick={() => handleClick(room.id)} key={room.id}>
+                            <p>
+                                {room.title}
+                            </p> 
                     </div>
                 )
             }
@@ -77,37 +77,34 @@ class RoomIndex extends React.Component {
             }
         }
         // check for friendIds
-        let specificRoomIds = [];
-        if (this.props.friendId) {
-            for (let j = 0; j < roomIds.length; j++) {
-                for (let i = 0; i < this.memberships.length; i++) {
-                    if (this.memberships[i].room_id === roomIds[j] && this.memberships[i].user_id === this.props.friendId) {
-                        specificRoomIds.push(this.memberships[i].room_id);
-                    }
-                }
-            }
-        } else {
-            specificRoomIds = roomIds;
-        }
-        // console.log('roomIds:', roomIds);
-        // console.log('specificRoomIds:', specificRoomIds);
+        // let specificRoomIds = [];
+        // if (this.props.friendId) {
+        //     for (let j = 0; j < roomIds.length; j++) {
+        //         for (let i = 0; i < this.memberships.length; i++) {
+        //             if (this.memberships[i].room_id === roomIds[j] && this.memberships[i].user_id === this.props.friendId) {
+        //                 specificRoomIds.push(this.memberships[i].room_id);
+        //             }
+        //         }
+        //     }
+        // } else {
+        //     specificRoomIds = roomIds;
+        // }
+
         
         return (
             <div className="roomIndex">
-                <h2>My Rooms</h2>
+                <h2>Chat Rooms:</h2>                
                 <div className="roomBox">
-                    {this.mapRooms(this.rooms, this.handleClick, specificRoomIds)}
+                    {this.mapRooms(this.rooms, this.handleClick, roomIds)}
+                    <form onSubmit={this.handleSubmit}>
+                        <input className="room-input"
+                            type="text"
+                            value={this.state.title}
+                            onChange={this.update('title')}
+                        />
+                        <button type='submit' className='chat-btn'>CREATE</button>
+                    </form>
                 </div>
-                <form onSubmit={this.handleSubmit}>
-                    <label>Create Room:
-                    </label>
-                    <input className="room-input"
-                        type="text"
-                        value={this.state.title}
-                        onChange={this.update('title')}
-                    />
-                    <button type='submit' className='btn'>CREATE</button>
-                </form>
             </div>
         )
     }

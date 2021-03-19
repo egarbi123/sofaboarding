@@ -665,7 +665,9 @@ var ChatBlock = /*#__PURE__*/function (_React$Component) {
       if (this.props.state.session.activeRoom) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "messageBlock"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_single_room_container__WEBPACK_IMPORTED_MODULE_2__["default"], null));
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_single_room_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          friendId: this.props.friendId
+        }));
       }
     }
   }, {
@@ -1107,18 +1109,20 @@ var MessagesArea = /*#__PURE__*/function (_React$Component) {
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "messageArea"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Room: ", this.props.state.rooms[this.props.activeRoom].title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Room: ", this.props.state.rooms[this.props.activeRoom].title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "messageRoom"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "messageBox"
       }, this.mapMessages(messages)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, this.props.formtype), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: this.handleSubmit
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Message", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         value: this.state.body,
         onChange: this.update('body')
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "submit",
-        className: "btn"
-      }, "SEND")));
+        className: "chat-btn"
+      }, "SEND"))));
     }
   }]);
 
@@ -1357,12 +1361,11 @@ var RoomIndex = /*#__PURE__*/function (_React$Component) {
         if (room && roomIds.includes(room.id)) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             className: "room",
-            key: room.id
-          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             onClick: function onClick() {
               return handleClick(room.id);
-            }
-          }, room.title));
+            },
+            key: room.id
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, room.title));
         }
       });
     }
@@ -1386,39 +1389,35 @@ var RoomIndex = /*#__PURE__*/function (_React$Component) {
           roomIds.push(this.memberships[i].room_id);
         }
       } // check for friendIds
-
-
-      var specificRoomIds = [];
-
-      if (this.props.friendId) {
-        for (var j = 0; j < roomIds.length; j++) {
-          for (var _i = 0; _i < this.memberships.length; _i++) {
-            if (this.memberships[_i].room_id === roomIds[j] && this.memberships[_i].user_id === this.props.friendId) {
-              specificRoomIds.push(this.memberships[_i].room_id);
-            }
-          }
-        }
-      } else {
-        specificRoomIds = roomIds;
-      } // console.log('roomIds:', roomIds);
-      // console.log('specificRoomIds:', specificRoomIds);
+      // let specificRoomIds = [];
+      // if (this.props.friendId) {
+      //     for (let j = 0; j < roomIds.length; j++) {
+      //         for (let i = 0; i < this.memberships.length; i++) {
+      //             if (this.memberships[i].room_id === roomIds[j] && this.memberships[i].user_id === this.props.friendId) {
+      //                 specificRoomIds.push(this.memberships[i].room_id);
+      //             }
+      //         }
+      //     }
+      // } else {
+      //     specificRoomIds = roomIds;
+      // }
 
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "roomIndex"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "My Rooms"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Chat Rooms:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "roomBox"
-      }, this.mapRooms(this.rooms, this.handleClick, specificRoomIds)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+      }, this.mapRooms(this.rooms, this.handleClick, roomIds), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: this.handleSubmit
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Create Room:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         className: "room-input",
         type: "text",
         value: this.state.title,
         onChange: this.update('title')
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "submit",
-        className: "btn"
-      }, "CREATE")));
+        className: "chat-btn"
+      }, "CREATE"))));
     }
   }]);
 
@@ -1588,7 +1587,51 @@ var SingleRoom = /*#__PURE__*/function (_React$Component) {
       var _this3 = this;
 
       var friends = this.state.friends;
-      return friends.map(function (friend) {
+      var friendsInRoom = [];
+      var roomMemberships = Object.values(this.props.state.roomMemberships);
+
+      for (var i = 0; i < friends.length; i++) {
+        for (var j = 0; j < roomMemberships.length; j++) {
+          if (roomMemberships[j].room_id === this.props.state.session.activeRoom && roomMemberships[j].user_id === friends[i].id) {
+            friendsInRoom.push(friends[i].id);
+          }
+        }
+      }
+
+      var friendsNotInRoom = [];
+
+      for (var _i = 0; _i < friends.length; _i++) {
+        var member = false;
+
+        for (var _j = 0; _j < friendsInRoom.length; _j++) {
+          if (friends[_i].id === friendsInRoom[_j]) {
+            member = true;
+          }
+        }
+
+        if (member === false) {
+          friendsNotInRoom.push(friends[_i]);
+        }
+      }
+
+      console.log('friendsNotInRoom', friendsNotInRoom);
+      var friendProfileInRoom = false;
+
+      for (var _i2 = 0; _i2 < friendsNotInRoom.length; _i2++) {
+        if (friendsNotInRoom[_i2].id === this.props.friendId) {
+          friendProfileInRoom = true;
+        }
+      }
+
+      var users = Object.values(this.props.state.users);
+
+      for (var _i3 = 0; _i3 < users.length; _i3++) {
+        if (!friendProfileInRoom && users[_i3].id === this.props.friendId) {
+          friendsNotInRoom.push(users[_i3]);
+        }
+      }
+
+      return friendsNotInRoom.map(function (friend) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           key: friend.id,
           onClick: function onClick() {
@@ -1612,7 +1655,7 @@ var SingleRoom = /*#__PURE__*/function (_React$Component) {
       });
       console.log(myMembership);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "btn",
+        className: "chat-btn",
         onClick: function onClick() {
           return _this4.props.deleteRoomMembership(myMembership);
         }
@@ -1621,9 +1664,10 @@ var SingleRoom = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "showControls",
     value: function showControls() {
+      console.log(this.props.state.rooms[this.props.state.session.activeRoom].title);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "room-controls"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Room Controls:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Invite a friend:"), this.showFriends(), this.removeFromRoom());
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, this.props.state.rooms[this.props.state.session.activeRoom].title, " Controls:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Invite a friend:"), this.showFriends(), this.removeFromRoom());
     }
   }, {
     key: "render",
@@ -1747,6 +1791,7 @@ var Controller = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      // console.log(this);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "controller"
       }, this.display());
@@ -1940,127 +1985,102 @@ var FindFriends = /*#__PURE__*/function (_React$Component) {
       "alreadyRequestedArray": [],
       "newFriendsArray": []
     };
-    _this.infoToState = _this.infoToState.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(FindFriends, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.props.fetchAllRequests();
-      this.props.fetchAllFriendships();
-    }
-  }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate() {
-      if (this.friendsArray.length > 0 && this.state.friendsArray.length < 1) {
+      if (this.state.friendsArray.length !== this.props.friendsArray.length) {
         this.setState({
-          "friendsArray": this.friendsArray
+          'friendsArray': this.props.friendsArray
         });
       }
 
-      if (this.acceptFriendsArray.length > 0 && this.state.acceptFriendsArray.length < 1) {
+      if (this.state.acceptFriendsArray.length !== this.props.acceptFriendsArray.length) {
         this.setState({
-          "acceptFriendsArray": this.acceptFriendsArray
+          'acceptFriendsArray': this.props.acceptFriendsArray
         });
       }
 
-      if (this.alreadyRequestedArray.length > 0 && this.state.alreadyRequestedArray.length < 1) {
+      if (this.state.alreadyRequestedArray.length !== this.props.alreadyRequestedArray.length) {
         this.setState({
-          "alreadyRequestedArray": this.alreadyRequestedArray
+          'alreadyRequestedArray': this.props.alreadyRequestedArray
         });
       }
 
-      if (this.newFriendsArray.length > 0 && this.state.newFriendsArray.length < 1) {
+      if (this.state.newFriendsArray.length !== this.props.newFriendsArray.length) {
         this.setState({
-          "newFriendsArray": this.newFriendsArray
+          'newFriendsArray': this.props.newFriendsArray
         });
       }
-    }
-  }, {
-    key: "sendRequest",
-    value: function sendRequest(friendId) {
-      var myId = this.props.state.session.id;
-      var friendInteger = parseInt(friendId);
-      var object = {
-        requestor_id: myId,
-        receiver_id: friendInteger
-      };
-      this.props.sendFriendRequest(object);
-      var newNewFriendsArray = [];
+    } // sendRequest(friendId) {
+    //     let myId = this.props.state.session.id;
+    //     let friendInteger = parseInt(friendId);
+    //     let object = {
+    //         requestor_id: myId,
+    //         receiver_id: friendInteger
+    //     }
+    //     this.props.sendFriendRequest(object);
+    //     let newNewFriendsArray = [];
+    //     for (let i = 0; i < this.state.newFriendsArray.length; i++) {
+    //         if (this.state.newFriendsArray[i] !== friendId) {
+    //             newNewFriendsArray.push(this.state.newFriendsArray[i]);
+    //         }
+    //     }
+    //     let newAlreadyRequestedArray = [];
+    //     for (let i = 0; i < this.state.alreadyRequestedArray.length; i++) {
+    //         newAlreadyRequestedArray.push(this.state.alreadyRequestedArray[i]);
+    //     }
+    //     newAlreadyRequestedArray.push(friendId);
+    //     this.setState({
+    //         'alreadyRequestedArray': newAlreadyRequestedArray,
+    //         'newFriendsArray': newNewFriendsArray
+    //     })
+    // }
+    // deleteFriendRequest(id, friendId) {
+    //     this.props.deleteFriendRequest(id);
+    //     let newAlreadyRequestedArray = [];
+    //     for (let i = 0; i < this.state.alreadyRequestedArray.length; i++) {
+    //         if (this.state.alreadyRequestedArray[i] !== friendId) {
+    //             newAlreadyRequestedArray.push(this.state.alreadyRequestedArray[i]);
+    //         }
+    //     }
+    //     let newNewFriendsArray = [];
+    //     for (let i = 0; i < this.state.newFriendsArray.length; i++) {
+    //         newNewFriendsArray.push(this.state.newFriendsArray[i]);
+    //     }
+    //     newNewFriendsArray.push(friendId);
+    //     this.setState({
+    //         'alreadyRequestedArray': newAlreadyRequestedArray,
+    //         'newFriendsArray': newNewFriendsArray
+    //     })
+    // }
+    // addFriend(friendId) {
+    //     let myId = this.props.state.session.id;
+    //     let friendInteger = parseInt(friendId);
+    //     let object = {
+    //         user_id: myId,
+    //         friend_id: friendInteger
+    //     }
+    //     this.props.createFriendship(object);
+    //     let newFriendsList = [];
+    //     for (let i = 0; i < this.state.friendsArray; i++) {
+    //         newFriendsList.push(this.state.friendsArray[i]);
+    //     }
+    //     newFriendsList.push(friendId);
+    //     let newAcceptFriendsList = [];
+    //     for (let i = 0; i < this.state.acceptFriendsArray.length; i++) {
+    //         if (this.state.acceptFriendsArray[i] !== friendId) {
+    //             newAcceptFriendsList.push(this.state.acceptFriendsArray[i])
+    //         }
+    //     }
+    //     this.setState({
+    //         'friendsArray': newFriendsList,
+    //         'acceptFriendsArray': newAcceptFriendsList
+    //     })
+    // }
 
-      for (var i = 0; i < this.state.newFriendsArray.length; i++) {
-        if (this.state.newFriendsArray[i] !== friendId) {
-          newNewFriendsArray.push(this.state.newFriendsArray[i]);
-        }
-      }
-
-      var newAlreadyRequestedArray = [];
-
-      for (var _i = 0; _i < this.state.alreadyRequestedArray.length; _i++) {
-        newAlreadyRequestedArray.push(this.state.alreadyRequestedArray[_i]);
-      }
-
-      newAlreadyRequestedArray.push(friendId);
-      this.setState({
-        'alreadyRequestedArray': newAlreadyRequestedArray,
-        'newFriendsArray': newNewFriendsArray
-      });
-    }
-  }, {
-    key: "deleteFriendRequest",
-    value: function deleteFriendRequest(id, friendId) {
-      this.props.deleteFriendRequest(id);
-      var newAlreadyRequestedArray = [];
-
-      for (var i = 0; i < this.state.alreadyRequestedArray.length; i++) {
-        if (this.state.alreadyRequestedArray[i] !== friendId) {
-          newAlreadyRequestedArray.push(this.state.alreadyRequestedArray[i]);
-        }
-      }
-
-      var newNewFriendsArray = [];
-
-      for (var _i2 = 0; _i2 < this.state.newFriendsArray.length; _i2++) {
-        newNewFriendsArray.push(this.state.newFriendsArray[_i2]);
-      }
-
-      newNewFriendsArray.push(friendId);
-      this.setState({
-        'alreadyRequestedArray': newAlreadyRequestedArray,
-        'newFriendsArray': newNewFriendsArray
-      });
-    }
-  }, {
-    key: "addFriend",
-    value: function addFriend(friendId) {
-      var myId = this.props.state.session.id;
-      var friendInteger = parseInt(friendId);
-      var object = {
-        user_id: myId,
-        friend_id: friendInteger
-      };
-      this.props.createFriendship(object);
-      var newFriendsList = [];
-
-      for (var i = 0; i < this.state.friendsArray; i++) {
-        newFriendsList.push(this.state.friendsArray[i]);
-      }
-
-      newFriendsList.push(friendId);
-      var newAcceptFriendsList = [];
-
-      for (var _i3 = 0; _i3 < this.state.acceptFriendsArray.length; _i3++) {
-        if (this.state.acceptFriendsArray[_i3] !== friendId) {
-          newAcceptFriendsList.push(this.state.acceptFriendsArray[_i3]);
-        }
-      }
-
-      this.setState({
-        'friendsArray': newFriendsList,
-        'acceptFriendsArray': newAcceptFriendsList
-      });
-    }
   }, {
     key: "imageRender",
     value: function imageRender(user) {
@@ -2075,93 +2095,77 @@ var FindFriends = /*#__PURE__*/function (_React$Component) {
           src: window.profile_pic
         });
       }
-    }
-  }, {
-    key: "infoToState",
-    value: function infoToState() {
-      var _this2 = this;
+    } // infoToState() {
+    //     // Gather info to use
+    //     let usersArray = Object.values(this.props.state.users);
+    //     // console.log('usersArray', usersArray);
+    //     let requests = {};
+    //     let friendships = {};
+    //     if (this.props.state.friendRequests) {
+    //         requests = this.props.state.friendRequests;
+    //     }
+    //     if (this.props.state.friendships) {
+    //         friendships = this.props.state.friendships;
+    //     }
+    //     // Turn objects into arrays
+    //     let requestsArray = Object.values(requests);
+    //     let friendshipsArray = Object.values(friendships);
+    //     // Set up  different categories
+    //     let requested = [];
+    //     let receivedRequests = [];
+    //     let alreadyFriends = [];
+    //     // Distinguish categories
+    //     if (requestsArray.length > 1) {
+    //         requestsArray.map(request => {
+    //             if (request.requestor_id === this.props.state.session.id) {
+    //                 requested.push(request.receiver_id);
+    //             }
+    //             if (request.receiver_id === this.props.state.session.id) {
+    //                 receivedRequests.push(request.requestor_id);
+    //             }
+    //         })
+    //     }
+    //     if (friendshipsArray.length > 1) {
+    //         friendshipsArray.map(friend => {
+    //             if (friend) {
+    //                 if (friend.user_id === this.props.state.session.id) {
+    //                     alreadyFriends.push(friend.friend_id);
+    //                 }
+    //                 if (friend.friend_id === this.props.state.session.id) {
+    //                     alreadyFriends.push(friend.user_id);
+    //                 }
+    //             }
+    //         })
+    //     }
+    //     // Info into objects/ arrays
+    //     let newFriendsObject = {};
+    //     let acceptFriendsObject = {};
+    //     let alreadyRequestedObject = {};
+    //     let friendsObject = {};
+    //     this.friendsArray = [];
+    //     this.acceptFriendsArray = [];
+    //     this.alreadyRequestedArray = [];
+    //     this.newFriendsArray = [];
+    //     usersArray.map((user) => {
+    //         let id = parseInt(user.id);
+    //         if (id === this.props.state.session.id) {
+    //             return;
+    //         } else if (alreadyFriends.includes(id)) {
+    //             friendsObject[user.id] = user;
+    //             this.friendsArray.push(user.id);
+    //         } else if (receivedRequests.includes(id)) {
+    //             acceptFriendsObject[user.id] = user;
+    //             this.acceptFriendsArray.push(user.id)
+    //         } else if (requested.includes(id)) {
+    //             alreadyRequestedObject[user.id] = user;
+    //             this.alreadyRequestedArray.push(user.id);
+    //         } else {
+    //             newFriendsObject[user.id] = user;
+    //             this.newFriendsArray.push(user.id);
+    //         }
+    //     })
+    // }
 
-      // Gather info to use
-      var usersArray = Object.values(this.props.state.users); // console.log('usersArray', usersArray);
-
-      var requests = {};
-      var friendships = {};
-
-      if (this.props.state.friendRequests) {
-        requests = this.props.state.friendRequests;
-      }
-
-      if (this.props.state.friendships) {
-        friendships = this.props.state.friendships;
-      } // Turn objects into arrays
-
-
-      var requestsArray = Object.values(requests);
-      var friendshipsArray = Object.values(friendships); // Set up  different categories
-
-      var requested = [];
-      var receivedRequests = [];
-      var alreadyFriends = []; // Distinguish categories
-
-      if (requestsArray.length > 1) {
-        requestsArray.map(function (request) {
-          if (request.requestor_id === _this2.props.state.session.id) {
-            requested.push(request.receiver_id);
-          }
-
-          if (request.receiver_id === _this2.props.state.session.id) {
-            receivedRequests.push(request.requestor_id);
-          }
-        });
-      }
-
-      if (friendshipsArray.length > 1) {
-        friendshipsArray.map(function (friend) {
-          if (friend) {
-            if (friend.user_id === _this2.props.state.session.id) {
-              alreadyFriends.push(friend.friend_id);
-            }
-
-            if (friend.friend_id === _this2.props.state.session.id) {
-              alreadyFriends.push(friend.user_id);
-            }
-          }
-        });
-      } // Info into objects/ arrays
-
-
-      var newFriendsObject = {};
-      var acceptFriendsObject = {};
-      var alreadyRequestedObject = {};
-      var friendsObject = {};
-      this.friendsArray = [];
-      this.acceptFriendsArray = [];
-      this.alreadyRequestedArray = [];
-      this.newFriendsArray = [];
-      usersArray.map(function (user) {
-        var id = parseInt(user.id);
-
-        if (id === _this2.props.state.session.id) {
-          return;
-        } else if (alreadyFriends.includes(id)) {
-          friendsObject[user.id] = user;
-
-          _this2.friendsArray.push(user.id);
-        } else if (receivedRequests.includes(id)) {
-          acceptFriendsObject[user.id] = user;
-
-          _this2.acceptFriendsArray.push(user.id);
-        } else if (requested.includes(id)) {
-          alreadyRequestedObject[user.id] = user;
-
-          _this2.alreadyRequestedArray.push(user.id);
-        } else {
-          newFriendsObject[user.id] = user;
-
-          _this2.newFriendsArray.push(user.id);
-        }
-      });
-    }
   }, {
     key: "setActiveFriend",
     value: function setActiveFriend(friendId) {
@@ -2170,106 +2174,88 @@ var FindFriends = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "showUsers",
     value: function showUsers() {
-      var _this3 = this;
+      var _this2 = this;
 
-      // Gather info to use
-      var usersArray = Object.values(this.props.state.users); // console.log('usersArray', usersArray);
-      // console.log(this.props.state.users)
-
-      var requests = {};
-      var friendships = {};
-
-      if (this.props.state.friendRequests) {
-        requests = this.props.state.friendRequests;
-      }
-
-      if (this.props.state.friendships) {
-        friendships = this.props.state.friendships;
-      } // Turn objects into arrays
-
-
-      var requestsArray = Object.values(requests);
-      var friendshipsArray = Object.values(friendships); // Set up  different categories
-
-      var requested = [];
-      var receivedRequests = [];
-      var alreadyFriends = []; // Distinguish categories
-
-      if (requestsArray.length > 1) {
-        requestsArray.map(function (request) {
-          if (request.requestor_id === _this3.props.state.session.id) {
-            requested.push(request.receiver_id);
-          }
-
-          if (request.receiver_id === _this3.props.state.session.id) {
-            receivedRequests.push(request.requestor_id);
-          }
-        });
-      }
-
-      if (friendshipsArray.length > 1) {
-        friendshipsArray.map(function (friend) {
-          if (friend) {
-            if (friend.user_id === _this3.props.state.session.id) {
-              alreadyFriends.push(friend.friend_id);
-            }
-
-            if (friend.friend_id === _this3.props.state.session.id) {
-              alreadyFriends.push(friend.user_id);
-            }
-          }
-        });
-      } // Info into objects/ arrays
-
-
-      var newFriendsObject = {};
-      var acceptFriendsObject = {};
-      var alreadyRequestedObject = {};
-      var friendsObject = {};
-      var friendsArray = [];
-      var acceptFriendsArray = [];
-      var alreadyRequestedArray = [];
-      var newFriendsArray = [];
-      usersArray.map(function (user) {
-        var id = parseInt(user.id);
-
-        if (id === _this3.props.state.session.id) {
-          return;
-        } else if (alreadyFriends.includes(id)) {
-          friendsObject[user.id] = user;
-          friendsArray.push(user.id);
-        } else if (receivedRequests.includes(id)) {
-          acceptFriendsObject[user.id] = user;
-          acceptFriendsArray.push(user.id);
-        } else if (requested.includes(id)) {
-          alreadyRequestedObject[user.id] = user;
-          alreadyRequestedArray.push(user.id);
-        } else {
-          newFriendsObject[user.id] = user;
-          newFriendsArray.push(user.id);
-        }
-      });
-
-      if (this.friendsArray !== friendsArray) {
-        this.infoToState();
-      } else if (this.acceptFriendsArray !== acceptFriendsArray) {
-        this.infoToState();
-      } else if (this.alreadyRequestedArray !== alreadyRequestedArray) {
-        this.infoToState();
-      } else if (this.newFriendsArray !== newFriendsArray) {
-        this.infoToState();
-      } else {}
+      // // Gather info to use
+      var usersArray = Object.values(this.props.state.users); // let requests = {};
+      // let friendships = {};
+      // if (this.props.state.friendRequests) {
+      //     requests = this.props.state.friendRequests;
+      // }
+      // if (this.props.state.friendships) {
+      //     friendships = this.props.state.friendships;
+      // }
+      // // Turn objects into arrays
+      // let requestsArray = Object.values(requests);
+      // let friendshipsArray = Object.values(friendships);
+      // // Set up  different categories
+      // let requested = [];
+      // let receivedRequests = [];
+      // let alreadyFriends = [];
+      // // Distinguish categories
+      // if (requestsArray.length > 1) {
+      //     requestsArray.map(request => {
+      //         if (request.requestor_id === this.props.state.session.id) {
+      //             requested.push(request.receiver_id);
+      //         }
+      //         if (request.receiver_id === this.props.state.session.id) {
+      //             receivedRequests.push(request.requestor_id);
+      //         }
+      //     })
+      // }
+      // if (friendshipsArray.length > 1) {
+      //     friendshipsArray.map(friend => {
+      //         if (friend) {
+      //             if (friend.user_id === this.props.state.session.id) {
+      //                 alreadyFriends.push(friend.friend_id);
+      //             }
+      //             if (friend.friend_id === this.props.state.session.id) {
+      //                 alreadyFriends.push(friend.user_id);
+      //             }
+      //         }
+      //     })
+      // }
+      // // Info into objects/ arrays
+      // let friendsArray = [];
+      // let acceptFriendsArray = [];
+      // let alreadyRequestedArray = [];
+      // let newFriendsArray = [];
+      // usersArray.map((user) => {
+      //     let id = parseInt(user.id);
+      //     if (id === this.props.state.session.id) {
+      //         return;
+      //     } else if (alreadyFriends.includes(id)) {
+      //         friendsArray.push(user.id);
+      //     } else if (receivedRequests.includes(id)) {
+      //         acceptFriendsArray.push(user.id)
+      //     } else if (requested.includes(id)) {
+      //         alreadyRequestedArray.push(user.id);
+      //     } else {
+      //         newFriendsArray.push(user.id);
+      //     }
+      // })
+      // if (this.friendsArray !== friendsArray) {
+      //     this.infoToState();
+      // } else if (this.acceptFriendsArray !== acceptFriendsArray) {
+      //     this.infoToState();
+      // } else if (this.alreadyRequestedArray !== alreadyRequestedArray) {
+      //     this.infoToState();
+      // } else if (this.newFriendsArray !== newFriendsArray) {
+      //     this.infoToState();
+      // } else {
+      // }
+      // console.log(this.state.newFriendsArray)
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "show-users"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "friends-section"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Find New Friends:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, usersArray.map(function (user) {
-        if (_this3.state.newFriendsArray.includes(user.id)) {
+        if (_this2.state.newFriendsArray.includes(user.id)) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
             key: user.id,
             onClick: function onClick() {
-              return _this3.setActiveFriend(user.id);
+              return _this2.setActiveFriend(user.id);
             }
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
             className: "nav-link",
@@ -2279,16 +2265,16 @@ var FindFriends = /*#__PURE__*/function (_React$Component) {
             className: "med-user-cont"
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             className: "med-image-cont"
-          }, _this3.imageRender(user)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, user.name))));
+          }, _this2.imageRender(user)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, user.name))));
         }
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "friends-section"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Friend Requests Sent To:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, usersArray.map(function (user) {
-        if (_this3.state.alreadyRequestedArray.includes(user.id)) {
+        if (_this2.state.alreadyRequestedArray.includes(user.id)) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
             key: user.id,
             onClick: function onClick() {
-              return _this3.setActiveFriend(user.id);
+              return _this2.setActiveFriend(user.id);
             }
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
             className: "nav-link",
@@ -2298,20 +2284,26 @@ var FindFriends = /*#__PURE__*/function (_React$Component) {
             className: "med-user-cont"
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             className: "med-image-cont"
-          }, _this3.imageRender(user)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, user.name))));
+          }, _this2.imageRender(user)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, user.name))));
         }
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "friends-section"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Your Friends:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, usersArray.map(function (user) {
-        if (_this3.state.friendsArray.includes(user.id)) {
+        if (_this2.state.friendsArray.includes(user.id)) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-            key: user.id
+            key: user.id,
+            onClick: function onClick() {
+              return _this2.setActiveFriend(user.id);
+            }
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+            className: "nav-link",
+            to: "/".concat(user.id)
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             key: user.id,
             className: "med-user-cont"
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             className: "med-image-cont"
-          }, _this3.imageRender(user)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, user.name)));
+          }, _this2.imageRender(user)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, user.name))));
         }
       }))));
     }
@@ -2323,6 +2315,7 @@ var FindFriends = /*#__PURE__*/function (_React$Component) {
       }
 
       console.log(this);
+      console.log(this.state);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "find-friends"
       }, this.showUsers());
@@ -2558,12 +2551,11 @@ var FriendProfile = /*#__PURE__*/function (_React$Component) {
       // console.log(this.friendId)
       // console.log("++++++", this.props.state.users);
       // console.log(this.props.state.users[8])
-      // if (this.friendId && this.props.state.user[this.friendId] && this.props.state.users[this.friendId].name) {
-      //     return (
-      //         <h5>{this.props.state.users[this.friendId].name}</h5>
-      //     )
-      // } else {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "USER NAME"); // }
+      if (this.friendId && this.props.state.users[this.friendId] && this.props.state.users[this.friendId].name) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, this.props.state.users[this.friendId].name);
+      } else {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "USER NAME");
+      }
     }
   }, {
     key: "sendFriendRequest",
@@ -2583,45 +2575,98 @@ var FriendProfile = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "deleteFriendRequest",
     value: function deleteFriendRequest() {
-      console.log('this:', this);
-      var propstateRequests = this.state.friendRequests;
-      var requestId = 0;
+      // identify if my current state has any matching request, by comparing requestor_id && receiver_id
+      // if match exists, find it in props.state.friendRequests for request_id
+      // if request_id is found, recreate a new state to set. And make API call to remove request.
+      var stateRequests = this.state.friendRequests;
       var requestor_id = 0;
       var receiver_id = 0;
-      var request_id = 0;
+      var exists = false;
 
-      for (var i = 0; i < propstateRequests.length; i++) {
-        requestor_id = propstateRequests[i].requestor_id;
-        receiver_id = propstateRequests[i].receiver_id;
-        request_id = propstateRequests[i].id;
-        console.log('CDC', requestor_id, receiver_id);
+      for (var i = 0; i < stateRequests.length; i++) {
+        requestor_id = stateRequests[i].requestor_id;
+        receiver_id = stateRequests[i].receiver_id;
 
         if (requestor_id === this.props.state.session.id && receiver_id === this.friendId) {
-          console.log('made it');
-          requestId = request_id;
+          exists = true;
         }
       }
 
-      console.log(requestId);
+      var propsRequests = Object.values(this.props.state.friendRequests);
+      var object = {};
+      var props_requestor = 0;
+      var props_receiver = 0;
+      var props_id = 0;
 
-      if (requestId !== 0 && requestId !== undefined) {
-        console.log('REQUEST SENT');
-        this.props.deleteFriendRequest(requestId);
-        var newRequests = [];
-        var requests = this.state.friendRequests;
+      if (exists === true) {
+        for (var _i = 0; _i < propsRequests.length; _i++) {
+          props_requestor = propsRequests[_i].requestor_id;
+          props_receiver = propsRequests[_i].receiver_id;
 
-        for (var _i = 0; _i < requests.length; _i++) {
-          if (requests[_i].id !== requestId) {
-            newRequests.push(requests[_i]);
+          if (props_requestor === this.props.state.session.id && props_receiver === this.friendId) {
+            props_id = propsRequests[_i].id;
+            break;
           }
         }
 
-        console.log('NEWREQUESTS:', newRequests);
-        console.log('OLDREQUESTS:', requests);
+        if (props_id !== 0) {
+          object = {
+            "requestor_id": props_requestor,
+            "receiver_id": props_receiver,
+            "id": props_id
+          };
+        }
+      }
+
+      if (Object.values(object).length > 0) {
+        this.props.deleteFriendRequest(props_id);
+        var newRequests = [];
+        var requests = this.state.friendRequests;
+
+        for (var _i2 = 0; _i2 < requests.length; _i2++) {
+          if (requests[_i2].requestor_id !== props_requestor && requests[_i2].receiver_id !== props_receiver) {
+            newRequests.push(requests[_i2]);
+          }
+        }
+
+        console.log('newRequests:', newRequests);
+        console.log('this.state.friendRequests:', this.state.friendRequests);
         this.setState({
           'friendRequests': newRequests
         });
-      }
+      } // console.log('this:', this);
+      // let propstateRequests = this.state.friendRequests;
+      // console.log(propstateRequests);
+      // let requestId = 0;
+      // let requestor_id = 0;
+      // let receiver_id = 0;
+      // let request_id = 0;
+      // for (let i = 0; i < propstateRequests.length; i++) {
+      //     requestor_id = propstateRequests[i].requestor_id;
+      //     receiver_id = propstateRequests[i].receiver_id
+      //     request_id = propstateRequests[i].id
+      //     console.log('CDC', requestor_id, receiver_id)
+      //     if (requestor_id === this.props.state.session.id && receiver_id === this.friendId) {
+      //         console.log('made it')
+      //         requestId = request_id;
+      //     }
+      // }
+      // console.log(requestId);
+      // if (requestId !== 0 && requestId !== undefined) {
+      //     console.log('REQUEST SENT')
+      //     this.props.deleteFriendRequest(requestId);
+      //     let newRequests = [];
+      // let requests = this.state.friendRequests
+      // for (let i = 0; i < requests.length; i++) {
+      //     if (requests[i].id !== requestId) {
+      //         newRequests.push(requests[i]);
+      //     }
+      // }
+      //     console.log('NEWREQUESTS:', newRequests);
+      //     console.log('OLDREQUESTS:', requests);
+      //     this.setState({'friendRequests': newRequests})
+      // }
+
     }
   }, {
     key: "requestButton",
@@ -2642,34 +2687,29 @@ var FriendProfile = /*#__PURE__*/function (_React$Component) {
         }
       }
 
-      for (var _i2 = 0; _i2 < friendships.length; _i2++) {
-        if (friendships[_i2].friend_id === myId) {
-          if (friendships[_i2].user_id === friendId) {
+      for (var _i3 = 0; _i3 < friendships.length; _i3++) {
+        if (friendships[_i3].friend_id === myId) {
+          if (friendships[_i3].user_id === friendId) {
             status = "friends";
           }
         }
       }
 
-      for (var _i3 = 0; _i3 < friendRequests.length; _i3++) {
-        if (friendRequests[_i3].requestor_id === myId) {
-          if (friendRequests[_i3].receiver_id === friendId) {
+      for (var _i4 = 0; _i4 < friendRequests.length; _i4++) {
+        if (friendRequests[_i4].requestor_id === myId) {
+          if (friendRequests[_i4].receiver_id === friendId) {
             status = "iAlreadyRequested";
           }
         }
       }
 
-      for (var _i4 = 0; _i4 < friendRequests.length; _i4++) {
-        if (friendRequests[_i4].receiver_id === myId) {
-          if (friendRequests[_i4].requestor_id === friendId) {
+      for (var _i5 = 0; _i5 < friendRequests.length; _i5++) {
+        if (friendRequests[_i5].receiver_id === myId) {
+          if (friendRequests[_i5].requestor_id === friendId) {
             status = "iAmRequested";
           }
         }
-      } // if (this.state.status !== status) {
-      //     this.setState({"status": status});
-      // }
-
-
-      console.log('STATUS', status);
+      }
 
       switch (status) {
         case "friends":
@@ -3095,19 +3135,13 @@ __webpack_require__.r(__webpack_exports__);
 
 var mSTP = function mSTP(state) {
   return {
-    user: {
-      name: '',
-      email: '',
-      password: '',
-      password2: ''
-    },
-    formtype: 'Create User'
+    state: state
   };
 };
 
 var mDTP = function mDTP(dispatch) {
   return {
-    action: function action(user) {
+    signup: function signup(user) {
       return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__["signup"])(user));
     }
   };
@@ -3323,7 +3357,12 @@ var SignUpForm = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, SignUpForm);
 
     _this = _super.call(this, props);
-    _this.state = _this.props.user;
+    _this.state = {
+      name: '',
+      email: '',
+      password: '',
+      password2: ''
+    };
     _this.passwordIsGood = false;
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
@@ -3336,9 +3375,9 @@ var SignUpForm = /*#__PURE__*/function (_React$Component) {
       console.log('handleSubmit:', this.state);
       this.verifyPassword();
 
-      if (this.passwordIsGood || this.props.formtype === 'Login User') {
+      if (this.passwordIsGood) {
         console.log('password is good');
-        this.props.action(this.state);
+        this.props.signup(this.state);
       }
     }
   }, {
@@ -3373,21 +3412,9 @@ var SignUpForm = /*#__PURE__*/function (_React$Component) {
       this.samePassword();
     }
   }, {
-    key: "ifSignUp",
-    value: function ifSignUp() {
-      if (this.props.formtype === 'Create User') {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "row"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Repeat Password:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          type: "password",
-          value: this.state.password2,
-          onChange: this.verifyPassword()
-        }));
-      }
-    }
-  }, {
     key: "render",
     value: function render() {
+      console.log(this);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "sign"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Sign Up"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
@@ -3420,7 +3447,7 @@ var SignUpForm = /*#__PURE__*/function (_React$Component) {
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "submit",
         className: "button"
-      }, this.props.formtype)));
+      }, "Create User")));
     }
   }]);
 
@@ -3625,7 +3652,8 @@ var UserInfo = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "imageRender",
     value: function imageRender() {
-      if (this.props.state.users[this.props.state.session.id].profilePicUrl) {
+      // console.log(this.props.state.users)
+      if (Object.values(this.props.state.users).length > 0 && this.props.state.users[this.props.state.session.id] && this.props.state.users[this.props.state.session.id].profilePicUrl) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
           className: "profile-pic",
           src: this.props.state.users[this.props.state.session.id].profilePicUrl
@@ -3657,9 +3685,9 @@ var UserInfo = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var name = "NAME";
 
-      if (this.props.state.users) {
+      if (Object.values(this.props.state.users).length > 0 && this.props.state.users[this.props.state.session.id] && this.props.state.users[this.props.state.session.id].name) {
         name = this.props.state.users[this.props.state.session.id].name;
-      } // console.log(this);
+      } // console.log( name, this);
 
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3732,6 +3760,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _friends_find_friend_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../friends/find_friend_container */ "./frontend/components/friends/find_friend_container.jsx");
 /* harmony import */ var _users_user_info_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../users/user_info_container */ "./frontend/components/users/user_info_container.jsx");
 /* harmony import */ var _chat_chat_block_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../chat/chat_block_container */ "./frontend/components/chat/chat_block_container.jsx");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -3759,15 +3788,30 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var UserProfile = /*#__PURE__*/function (_React$Component) {
   _inherits(UserProfile, _React$Component);
 
   var _super = _createSuper(UserProfile);
 
   function UserProfile(props) {
+    var _this;
+
     _classCallCheck(this, UserProfile);
 
-    return _super.call(this, props);
+    _this = _super.call(this, props);
+    _this.state = {
+      "friendsArray": [],
+      "acceptFriendsArray": [],
+      "alreadyRequestedArray": [],
+      "newFriendsArray": []
+    };
+    _this.infoToState = _this.infoToState.bind(_assertThisInitialized(_this));
+    _this.imageRender = _this.imageRender.bind(_assertThisInitialized(_this)); // this.sendRequest = this.sendRequest.bind(this);
+    // this.deleteFriendRequest = this.deleteFriendRequest.bind(this);
+    // this.addFriend = this.addFriend.bind(this);
+
+    return _this;
   }
 
   _createClass(UserProfile, [{
@@ -3777,22 +3821,490 @@ var UserProfile = /*#__PURE__*/function (_React$Component) {
       this.props.fetchAllFriendships();
     }
   }, {
+    key: "componentDidupdate",
+    value: function componentDidupdate() {
+      if (this.friendsArray.length > 0 && this.state.friendsArray.length < 1) {
+        this.setState({
+          "friendsArray": this.friendsArray
+        });
+      }
+
+      if (this.acceptFriendsArray.length > 0 && this.state.acceptFriendsArray.length < 1) {
+        this.setState({
+          "acceptFriendsArray": this.acceptFriendsArray
+        });
+      }
+
+      if (this.alreadyRequestedArray.length > 0 && this.state.alreadyRequestedArray.length < 1) {
+        this.setState({
+          "alreadyRequestedArray": this.alreadyRequestedArray
+        });
+      }
+
+      if (this.newFriendsArray.length > 0 && this.state.newFriendsArray.length < 1) {
+        this.setState({
+          "newFriendsArray": this.newFriendsArray
+        });
+      }
+    }
+  }, {
+    key: "imageRender",
+    value: function imageRender(user) {
+      if (user.profilePicUrl) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          className: "profile-pic-mid",
+          src: user.profilePicUrl
+        });
+      } else {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          className: "profile-pic-mid",
+          src: window.profile_pic
+        });
+      }
+    }
+  }, {
+    key: "infoToState",
+    value: function infoToState() {
+      var _this2 = this;
+
+      // Gather info to use
+      var usersArray = Object.values(this.props.state.users);
+      var requests = {};
+      var friendships = {};
+
+      if (this.props.state.friendRequests) {
+        requests = this.props.state.friendRequests;
+      }
+
+      if (this.props.state.friendships) {
+        friendships = this.props.state.friendships;
+      } // Turn objects into arrays
+
+
+      var requestsArray = Object.values(requests);
+      var friendshipsArray = Object.values(friendships); // Set up  different categories
+
+      var requested = [];
+      var receivedRequests = [];
+      var alreadyFriends = []; // Distinguish categories
+
+      if (requestsArray.length > 1) {
+        requestsArray.map(function (request) {
+          if (request.requestor_id === _this2.props.state.session.id) {
+            requested.push(request.receiver_id);
+          }
+
+          if (request.receiver_id === _this2.props.state.session.id) {
+            receivedRequests.push(request.requestor_id);
+          }
+        });
+      }
+
+      if (friendshipsArray.length > 1) {
+        friendshipsArray.map(function (friend) {
+          if (friend) {
+            if (friend.user_id === _this2.props.state.session.id) {
+              alreadyFriends.push(friend.friend_id);
+            }
+
+            if (friend.friend_id === _this2.props.state.session.id) {
+              alreadyFriends.push(friend.user_id);
+            }
+          }
+        });
+      } // Info into objects/ arrays
+
+
+      this.friendsArray = [];
+      this.acceptFriendsArray = [];
+      this.alreadyRequestedArray = [];
+      this.newFriendsArray = [];
+      usersArray.map(function (user) {
+        var id = parseInt(user.id);
+
+        if (id === _this2.props.state.session.id) {
+          return;
+        } else if (alreadyFriends.includes(id)) {
+          _this2.friendsArray.push(user.id);
+        } else if (receivedRequests.includes(id)) {
+          _this2.acceptFriendsArray.push(user.id);
+        } else if (requested.includes(id)) {
+          _this2.alreadyRequestedArray.push(user.id);
+        } else {
+          // console.log(user.id)
+          _this2.newFriendsArray.push(user.id);
+        }
+      });
+
+      if (this.friendsArray.length !== this.state.friendsArray.length) {
+        this.setState({
+          'friendsArray': this.friendsArray
+        });
+      }
+
+      if (this.acceptFriendsArray.length !== this.state.acceptFriendsArray.length) {
+        this.setState({
+          'acceptFriendsArray': this.acceptFriendsArray
+        });
+      }
+
+      if (this.alreadyRequestedArray.length !== this.state.alreadyRequestedArray.length) {
+        this.setState({
+          'alreadyRequestedArray': this.alreadyRequestedArray
+        });
+      }
+
+      if (this.newFriendsArray.length !== this.state.newFriendsArray.length) {
+        this.setState({
+          'newFriendsArray': this.newFriendsArray
+        });
+      }
+    }
+  }, {
+    key: "setActiveFriend",
+    value: function setActiveFriend(friendId) {
+      this.props.makeActiveFriend(friendId);
+    }
+  }, {
+    key: "usersToState",
+    value: function usersToState() {
+      var _this3 = this;
+
+      // Gather info to use
+      var usersArray = Object.values(this.props.state.users); // console.log('usersArray', usersArray);
+      // console.log(this.props.state.users)
+
+      var requests = {};
+      var friendships = {};
+
+      if (this.props.state.friendRequests) {
+        requests = this.props.state.friendRequests;
+      }
+
+      if (this.props.state.friendships) {
+        friendships = this.props.state.friendships;
+      } // Turn objects into arrays
+
+
+      var requestsArray = Object.values(requests);
+      var friendshipsArray = Object.values(friendships); // Set up  different categories
+
+      var requested = [];
+      var receivedRequests = [];
+      var alreadyFriends = []; // Distinguish categories
+
+      if (requestsArray.length > 1) {
+        requestsArray.map(function (request) {
+          if (request.requestor_id === _this3.props.state.session.id) {
+            requested.push(request.receiver_id);
+          }
+
+          if (request.receiver_id === _this3.props.state.session.id) {
+            receivedRequests.push(request.requestor_id);
+          }
+        });
+      }
+
+      if (friendshipsArray.length > 1) {
+        friendshipsArray.map(function (friend) {
+          if (friend) {
+            if (friend.user_id === _this3.props.state.session.id) {
+              alreadyFriends.push(friend.friend_id);
+            }
+
+            if (friend.friend_id === _this3.props.state.session.id) {
+              alreadyFriends.push(friend.user_id);
+            }
+          }
+        });
+      } // Info into objects/ arrays
+
+
+      var friendsArray = [];
+      var acceptFriendsArray = [];
+      var alreadyRequestedArray = [];
+      var newFriendsArray = [];
+      usersArray.map(function (user) {
+        var id = parseInt(user.id);
+
+        if (id === _this3.props.state.session.id) {
+          return;
+        } else if (alreadyFriends.includes(id)) {
+          // friendsObject[user.id] = user;
+          friendsArray.push(user.id);
+        } else if (receivedRequests.includes(id)) {
+          // acceptFriendsObject[user.id] = user;
+          acceptFriendsArray.push(user.id);
+        } else if (requested.includes(id)) {
+          // alreadyRequestedObject[user.id] = user;
+          alreadyRequestedArray.push(user.id);
+        } else {
+          // newFriendsObject[user.id] = user;
+          newFriendsArray.push(user.id);
+        }
+      });
+
+      if (this.friendsArray !== friendsArray) {
+        this.infoToState();
+      } else if (this.acceptFriendsArray !== acceptFriendsArray) {
+        this.infoToState();
+      } else if (this.alreadyRequestedArray !== alreadyRequestedArray) {
+        this.infoToState();
+      } else if (this.newFriendsArray !== newFriendsArray) {
+        this.infoToState();
+      } else {}
+    }
+  }, {
     key: "render",
     value: function render() {
+      var _this$state = this.state,
+          friendsArray = _this$state.friendsArray,
+          acceptFriendsArray = _this$state.acceptFriendsArray,
+          alreadyRequestedArray = _this$state.alreadyRequestedArray,
+          newFriendsArray = _this$state.newFriendsArray;
+
+      if (!this.props.state) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, " \"loading ");
+      }
+
+      console.log(this);
+      this.usersToState();
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "user-profile"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-info"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_users_user_info_container__WEBPACK_IMPORTED_MODULE_2__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-main"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_friends_find_friend_container__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_chat_chat_block_container__WEBPACK_IMPORTED_MODULE_3__["default"], null)));
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_friends_find_friend_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        friendsArray: friendsArray,
+        acceptFriendsArray: acceptFriendsArray,
+        alreadyRequestedArray: alreadyRequestedArray,
+        newFriendsArray: newFriendsArray
+      })));
     }
   }]);
 
   return UserProfile;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (UserProfile);
+/* harmony default export */ __webpack_exports__["default"] = (UserProfile); // sendRequest(friendId) {
+//     let myId = this.props.state.session.id;
+//     let friendInteger = parseInt(friendId);
+//     let object = {
+//         requestor_id: myId,
+//         receiver_id: friendInteger
+//     }
+//     this.props.sendFriendRequest(object);
+//     let newNewFriendsArray = [];
+//     for (let i = 0; i < this.state.newFriendsArray.length; i++) {
+//         if (this.state.newFriendsArray[i] !== friendId) {
+//             newNewFriendsArray.push(this.state.newFriendsArray[i]);
+//         }
+//     }
+//     let newAlreadyRequestedArray = [];
+//     for (let i = 0; i < this.state.alreadyRequestedArray.length; i++) {
+//         newAlreadyRequestedArray.push(this.state.alreadyRequestedArray[i]);
+//     }
+//     newAlreadyRequestedArray.push(friendId);
+//     this.setState({
+//         'alreadyRequestedArray': newAlreadyRequestedArray,
+//         'newFriendsArray': newNewFriendsArray
+//     })
+// }
+// deleteFriendRequest(id, friendId) {
+//     this.props.deleteFriendRequest(id);
+//     let newAlreadyRequestedArray = [];
+//     for (let i = 0; i < this.state.alreadyRequestedArray.length; i++) {
+//         if (this.state.alreadyRequestedArray[i] !== friendId) {
+//             newAlreadyRequestedArray.push(this.state.alreadyRequestedArray[i]);
+//         }
+//     }
+//     let newNewFriendsArray = [];
+//     for (let i = 0; i < this.state.newFriendsArray.length; i++) {
+//         newNewFriendsArray.push(this.state.newFriendsArray[i]);
+//     }
+//     newNewFriendsArray.push(friendId);
+//     this.setState({
+//         'alreadyRequestedArray': newAlreadyRequestedArray,
+//         'newFriendsArray': newNewFriendsArray
+//     })
+// }
+// addFriend(friendId) {
+//     let myId = this.props.state.session.id;
+//     let friendInteger = parseInt(friendId);
+//     let object = {
+//         user_id: myId,
+//         friend_id: friendInteger
+//     }
+//     this.props.createFriendship(object);
+//     let newFriendsList = [];
+//     for (let i = 0; i < this.state.friendsArray; i++) {
+//         newFriendsList.push(this.state.friendsArray[i]);
+//     }
+//     newFriendsList.push(friendId);
+//     let newAcceptFriendsList = [];
+//     for (let i = 0; i < this.state.acceptFriendsArray.length; i++) {
+//         if (this.state.acceptFriendsArray[i] !== friendId) {
+//             newAcceptFriendsList.push(this.state.acceptFriendsArray[i])
+//         }
+//     }
+//     this.setState({
+//         'friendsArray': newFriendsList,
+//         'acceptFriendsArray': newAcceptFriendsList
+//     })
+// }
+// showUsers() {
+//     // Gather info to use
+//     let usersArray = Object.values(this.props.state.users);
+//     // console.log('usersArray', usersArray);
+//     // console.log(this.props.state.users)
+//     let requests = {};
+//     let friendships = {};
+//     if (this.props.state.friendRequests) {
+//         requests = this.props.state.friendRequests;
+//     }
+//     if (this.props.state.friendships) {
+//         friendships = this.props.state.friendships;
+//     }
+//     // Turn objects into arrays
+//     let requestsArray = Object.values(requests);
+//     let friendshipsArray = Object.values(friendships);
+//     // Set up  different categories
+//     let requested = [];
+//     let receivedRequests = [];
+//     let alreadyFriends = [];
+//     // Distinguish categories
+//     if (requestsArray.length > 1) {
+//         requestsArray.map(request => {
+//             if (request.requestor_id === this.props.state.session.id) {
+//                 requested.push(request.receiver_id);
+//             }
+//             if (request.receiver_id === this.props.state.session.id) {
+//                 receivedRequests.push(request.requestor_id);
+//             }
+//         })
+//     }
+//     if (friendshipsArray.length > 1) {
+//         friendshipsArray.map(friend => {
+//             if (friend) {
+//                 if (friend.user_id === this.props.state.session.id) {
+//                     alreadyFriends.push(friend.friend_id);
+//                 }
+//                 if (friend.friend_id === this.props.state.session.id) {
+//                     alreadyFriends.push(friend.user_id);
+//                 }
+//             }
+//         })
+//     }
+//     // Info into objects/ arrays
+//     let friendsArray = [];
+//     let acceptFriendsArray = [];
+//     let alreadyRequestedArray = [];
+//     let newFriendsArray = [];
+//     usersArray.map((user) => {
+//         let id = parseInt(user.id);
+//         if (id === this.props.state.session.id) {
+//             return;
+//         } else if (alreadyFriends.includes(id)) {
+//             // friendsObject[user.id] = user;
+//             friendsArray.push(user.id);
+//         } else if (receivedRequests.includes(id)) {
+//             // acceptFriendsObject[user.id] = user;
+//             acceptFriendsArray.push(user.id)
+//         } else if (requested.includes(id)) {
+//             // alreadyRequestedObject[user.id] = user;
+//             alreadyRequestedArray.push(user.id);
+//         } else {
+//             // newFriendsObject[user.id] = user;
+//             newFriendsArray.push(user.id);
+//         }
+//     })
+//     if (this.friendsArray !== friendsArray) {
+//         this.infoToState();
+//     } else if (this.acceptFriendsArray !== acceptFriendsArray) {
+//         this.infoToState();
+//     } else if (this.alreadyRequestedArray !== alreadyRequestedArray) {
+//         this.infoToState();
+//     } else if (this.newFriendsArray !== newFriendsArray) {
+//         this.infoToState();
+//     } else {
+//     }
+//     // console.log('newFriends', this.state.newFriendsArray);
+//     return (
+//         <div className="show-users">
+//             <div className="friends-section">
+//                 <h3>Find New Friends:</h3>
+//                 <ul>
+//                     {usersArray.map((user) => {
+//                         if (this.state.newFriendsArray.includes(user.id)) {
+//                             return (
+//                                 <li key={user.id} onClick={() => this.setActiveFriend(user.id)}>
+//                                     <Link className="nav-link" to={`/${user.id}`}>
+//                                         <div key={user.id} className="med-user-cont">
+//                                             <div className="med-image-cont">
+//                                                 {this.imageRender(user)}
+//                                             </div>
+//                                             <p>
+//                                                 {user.name}
+//                                             </p>
+//                                         </div>
+//                                     </Link>
+//                                 </li>
+//                             )
+//                         }
+//                     }
+//                     )}
+//                 </ul>
+//             </div>
+//             <div className="friends-section">
+//                 <h3>Friend Requests Sent To:</h3>
+//                 <ul>
+//                     {usersArray.map((user) => {
+//                         if (this.state.alreadyRequestedArray.includes(user.id)) {
+//                             return (
+//                                 <li key={user.id} onClick={() => this.setActiveFriend(user.id)}>
+//                                     <Link className="nav-link" to={`/${user.id}`}>
+//                                         <div key={user.id} className="med-user-cont">
+//                                             <div className="med-image-cont">
+//                                                 {this.imageRender(user)}
+//                                             </div>
+//                                             <p>
+//                                                 {user.name}
+//                                             </p>
+//                                         </div>
+//                                     </Link>
+//                                 </li>
+//                             )
+//                         }
+//                     }
+//                     )}
+//                 </ul>
+//             </div>
+//             <div className="friends-section">
+//                 <h3>Your Friends:</h3>
+//                 <ul>
+//                     {usersArray.map((user) => {
+//                         if (this.state.friendsArray.includes(user.id)) {
+//                             return (
+//                                 <li key={(user.id)}>
+//                                     <div key={user.id} className="med-user-cont">
+//                                         <div className="med-image-cont">
+//                                             {this.imageRender(user)}
+//                                         </div>
+//                                         <p>
+//                                             {user.name}
+//                                         </p>
+//                                     </div>
+//                                 </li>
+//                             )
+//                         }
+//                     }
+//                     )}
+//                 </ul>
+//             </div>
+//         </div>
+//     )
+// }
 
 /***/ }),
 
@@ -3820,11 +4332,23 @@ var mSTP = function mSTP(state) {
 
 var mDTP = function mDTP(dispatch) {
   return {
+    sendFriendRequest: function sendFriendRequest(friendRequest) {
+      return dispatch(Object(_actions_friendship_actions__WEBPACK_IMPORTED_MODULE_2__["sendFriendRequest"])(friendRequest));
+    },
+    createFriendship: function createFriendship(friendship) {
+      return dispatch(Object(_actions_friendship_actions__WEBPACK_IMPORTED_MODULE_2__["createFriendship"])(friendship));
+    },
+    deleteFriendRequest: function deleteFriendRequest(requestId) {
+      return dispatch(Object(_actions_friendship_actions__WEBPACK_IMPORTED_MODULE_2__["deleteFriendRequest"])(requestId));
+    },
     fetchAllRequests: function fetchAllRequests() {
       return dispatch(Object(_actions_friendship_actions__WEBPACK_IMPORTED_MODULE_2__["fetchAllRequests"])());
     },
     fetchAllFriendships: function fetchAllFriendships() {
       return dispatch(Object(_actions_friendship_actions__WEBPACK_IMPORTED_MODULE_2__["fetchAllFriendships"])());
+    },
+    makeActiveFriend: function makeActiveFriend(friendId) {
+      return dispatch(Object(_actions_friendship_actions__WEBPACK_IMPORTED_MODULE_2__["makeActiveFriend"])(friendId));
     }
   };
 };
@@ -3873,11 +4397,11 @@ var friendRequestReducer = function friendRequestReducer() {
 
   switch (action.type) {
     case _actions_friendship_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_FRIEND_REQUEST"]:
-      console.log(action);
+      // console.log(action);
       return Object.assign({}, oldState, action.requests);
 
     case _actions_friendship_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ALL_FRIEND_REQUESTS"]:
-      console.log(action);
+      // console.log(action);
       return Object.assign({}, oldState, action.requests);
 
     case _actions_friendship_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_FRIEND_REQUEST"]:

@@ -9,10 +9,10 @@ const friendRequestReducer = (oldState = {}, action) => {
 
     switch (action.type) {
         case RECEIVE_FRIEND_REQUEST:
-            console.log(action);
+            // console.log(action);
             return Object.assign({}, oldState, action.requests);
         case RECEIVE_ALL_FRIEND_REQUESTS:
-            console.log(action);
+            // console.log(action);
             return Object.assign({}, oldState, action.requests);
         case REMOVE_FRIEND_REQUEST:
             return Object.assign({}, oldState, action.request)

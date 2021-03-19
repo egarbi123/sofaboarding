@@ -14,9 +14,27 @@
     margin: auto;
 }
 
+.messageRoom form {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    bottom: 25px;
+}
+
+.messageRoom form input {
+    width: 152px;
+}
+
+.messageRoom {
+    width: 250px;
+    min-height: 300px;
+    margin: auto;
+}
+
 .messageBox {
     max-height: 300px;
     overflow: scroll;
+    border: 1px solid black;
 }
 
 .message {
@@ -25,7 +43,8 @@
     height: 50px;
     display: flex;
     flex-direction: row-reverse;
-    background-color: burlywood;
+    background-color: aliceblue;
+    border-bottom: 1px solid black;
 }
 
 .my-message {
@@ -34,8 +53,9 @@
     height: 50px;
     display: flex;
     flex-direction: row;
-    background-color: burlywood;
+    background-color: aliceblue;
     justify-content: right;
+    border-bottom: 1px solid black;
 }
 
 .chat-pic {

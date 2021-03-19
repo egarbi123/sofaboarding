@@ -116,15 +116,15 @@ class FriendProfile extends React.Component {
         // console.log(this.friendId)
         // console.log("++++++", this.props.state.users);
         // console.log(this.props.state.users[8])
-        // if (this.friendId && this.props.state.user[this.friendId] && this.props.state.users[this.friendId].name) {
-        //     return (
-        //         <h5>{this.props.state.users[this.friendId].name}</h5>
-        //     )
-        // } else {
+        if (this.friendId && this.props.state.users[this.friendId] && this.props.state.users[this.friendId].name) {
+            return (
+                <h5>{this.props.state.users[this.friendId].name}</h5>
+            )
+        } else {
             return (
                 <h5>USER NAME</h5>
             )
-        // }
+        }
     }
 
     sendFriendRequest() {
@@ -140,37 +140,96 @@ class FriendProfile extends React.Component {
     }
 
     deleteFriendRequest() {
-        console.log('this:', this);
-        let propstateRequests = this.state.friendRequests;
-        let requestId = 0;
+        // identify if my current state has any matching request, by comparing requestor_id && receiver_id
+        // if match exists, find it in props.state.friendRequests for request_id
+        // if request_id is found, recreate a new state to set. And make API call to remove request.
+
+        let stateRequests = this.state.friendRequests;
         let requestor_id = 0;
         let receiver_id = 0;
-        let request_id = 0;
-        for (let i = 0; i < propstateRequests.length; i++) {
-            requestor_id = propstateRequests[i].requestor_id;
-            receiver_id = propstateRequests[i].receiver_id
-            request_id = propstateRequests[i].id
-            console.log('CDC', requestor_id, receiver_id)
+        let exists = false;
+        for (let i = 0; i < stateRequests.length; i++) {
+            requestor_id = stateRequests[i].requestor_id;
+            receiver_id = stateRequests[i].receiver_id;
             if (requestor_id === this.props.state.session.id && receiver_id === this.friendId) {
-                console.log('made it')
-                requestId = request_id;
+                exists = true;
             }
         }
-        console.log(requestId);
-        if (requestId !== 0 && requestId !== undefined) {
-            console.log('REQUEST SENT')
-            this.props.deleteFriendRequest(requestId);
+        let propsRequests = Object.values(this.props.state.friendRequests);
+        let object = {};
+        let props_requestor = 0;
+        let props_receiver = 0;
+        let props_id = 0;
+        if (exists === true) {
+            for (let i = 0; i < propsRequests.length; i++) {
+                props_requestor = propsRequests[i].requestor_id;
+                props_receiver = propsRequests[i].receiver_id
+                if (props_requestor === this.props.state.session.id && props_receiver === this.friendId) {
+                    props_id = propsRequests[i].id;
+                    break;
+                }
+            }
+            if (props_id !== 0) {
+                object = {
+                    "requestor_id": props_requestor,
+                    "receiver_id": props_receiver,
+                    "id": props_id
+                }
+            }
+        }
+        if (Object.values(object).length > 0) {
+            this.props.deleteFriendRequest(props_id);
             let newRequests = [];
             let requests = this.state.friendRequests
             for (let i = 0; i < requests.length; i++) {
-                if (requests[i].id !== requestId) {
+                if (requests[i].requestor_id !== props_requestor && requests[i].receiver_id !== props_receiver) {
                     newRequests.push(requests[i]);
                 }
             }
-            console.log('NEWREQUESTS:', newRequests);
-            console.log('OLDREQUESTS:', requests);
-            this.setState({'friendRequests': newRequests})
+            console.log('newRequests:', newRequests);
+            console.log('this.state.friendRequests:', this.state.friendRequests)
+            this.setState({ 'friendRequests': newRequests })
         }
+
+
+
+
+
+
+
+
+        // console.log('this:', this);
+        // let propstateRequests = this.state.friendRequests;
+        // console.log(propstateRequests);
+        // let requestId = 0;
+        // let requestor_id = 0;
+        // let receiver_id = 0;
+        // let request_id = 0;
+        // for (let i = 0; i < propstateRequests.length; i++) {
+        //     requestor_id = propstateRequests[i].requestor_id;
+        //     receiver_id = propstateRequests[i].receiver_id
+        //     request_id = propstateRequests[i].id
+        //     console.log('CDC', requestor_id, receiver_id)
+        //     if (requestor_id === this.props.state.session.id && receiver_id === this.friendId) {
+        //         console.log('made it')
+        //         requestId = request_id;
+        //     }
+        // }
+        // console.log(requestId);
+        // if (requestId !== 0 && requestId !== undefined) {
+        //     console.log('REQUEST SENT')
+        //     this.props.deleteFriendRequest(requestId);
+        //     let newRequests = [];
+        // let requests = this.state.friendRequests
+        // for (let i = 0; i < requests.length; i++) {
+        //     if (requests[i].id !== requestId) {
+        //         newRequests.push(requests[i]);
+        //     }
+        // }
+        //     console.log('NEWREQUESTS:', newRequests);
+        //     console.log('OLDREQUESTS:', requests);
+        //     this.setState({'friendRequests': newRequests})
+        // }
     }
     
 
@@ -208,10 +267,7 @@ class FriendProfile extends React.Component {
                 }
             }
         }
-        // if (this.state.status !== status) {
-        //     this.setState({"status": status});
-        // }
-        console.log('STATUS', status)
+
         switch (status) {
             case "friends":
                 return <div>Already Friends: Unfriend</div>;

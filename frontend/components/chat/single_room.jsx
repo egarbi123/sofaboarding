@@ -48,8 +48,41 @@ class SingleRoom extends React.Component {
 
     showFriends() {
         let friends = this.state.friends;
-        return friends.map(friend => {
-
+        let friendsInRoom = [];
+        let roomMemberships = Object.values(this.props.state.roomMemberships);
+        for (let i = 0; i < friends.length; i++) {
+            for (let j = 0; j < roomMemberships.length; j++) {
+                if (roomMemberships[j].room_id === this.props.state.session.activeRoom && roomMemberships[j].user_id === friends[i].id) {
+                    friendsInRoom.push(friends[i].id);
+                }
+            }
+        }
+        let friendsNotInRoom = [];
+        for (let i = 0; i < friends.length; i++) {
+            let member = false;
+            for (let j = 0; j < friendsInRoom.length; j++) {
+                if (friends[i].id === friendsInRoom[j]) {
+                    member = true
+                }
+            }
+            if (member === false) {
+                friendsNotInRoom.push(friends[i]);
+            }
+        }
+        console.log('friendsNotInRoom', friendsNotInRoom)
+        let friendProfileInRoom = false;
+        for (let i = 0; i < friendsNotInRoom.length; i++) {
+            if (friendsNotInRoom[i].id === this.props.friendId) {
+                friendProfileInRoom = true;
+            }
+        }
+        let users = Object.values(this.props.state.users);
+        for (let i = 0; i < users.length; i++) {
+            if (!friendProfileInRoom && users[i].id === this.props.friendId) {
+                friendsNotInRoom.push(users[i]);
+            }
+        }
+        return friendsNotInRoom.map(friend => {
             return (<div key={friend.id} onClick={() => this.addFriendToRoom(friend.id)} >{friend.name}</div>)
         })
     }
@@ -65,14 +98,16 @@ class SingleRoom extends React.Component {
         })
         console.log(myMembership);
         return (
-            <div className="btn" onClick={() => this.props.deleteRoomMembership(myMembership)}>LEAVE ROOM</div>
+            <div className="chat-btn" onClick={() => this.props.deleteRoomMembership(myMembership)}>LEAVE ROOM</div>
         )
         // this.props.deleteRoomMembership(myMembership);
     }
 
     showControls() {
+
+        console.log(this.props.state.rooms[this.props.state.session.activeRoom].title);
         return (<div className="room-controls">
-            <h2>Room Controls:</h2>
+            <h2>{this.props.state.rooms[this.props.state.session.activeRoom].title} Controls:</h2>
             <p>Invite a friend:</p>
             {this.showFriends()}
             {this.removeFromRoom()}

@@ -2,6 +2,7 @@ class Api::UsersController < ApplicationController
     def create
         @user = User.new(user_params)
         @user.profile_picture.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'default_user.jpg')), filename: 'default_user.jpg')
+        # debugger
         if @user.save
             sign_in!(@user)
             render :show

@@ -4,7 +4,12 @@ import { Redirect, Link } from 'react-router-dom';
 class SignUpForm extends React.Component {
     constructor(props) {
         super(props);
-        this.state = this.props.user;
+        this.state = {
+            name: '',
+            email: '',
+            password: '',
+            password2: ''
+        };
         this.passwordIsGood = false;
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -13,9 +18,9 @@ class SignUpForm extends React.Component {
         e.preventDefault();
         console.log('handleSubmit:', this.state)
         this.verifyPassword();
-        if (this.passwordIsGood || this.props.formtype === 'Login User') {
+        if (this.passwordIsGood) {
             console.log('password is good')
-            this.props.action(this.state);
+            this.props.signup(this.state);
         }
     }
 
@@ -36,24 +41,8 @@ class SignUpForm extends React.Component {
         this.samePassword();
     }
 
-    ifSignUp() {
-        if (this.props.formtype === 'Create User') {
-            return (
-                <div className="row">
-                    <p>Repeat Password:</p>
-                    <input 
-                        type="password"
-                        value={this.state.password2}
-                        onChange={
-                                    this.verifyPassword()
-                                }
-                    />
-                </div>
-            )
-        }
-    }
-
     render() {
+        console.log(this)
         return (
             <div className="sign">
                 <p>Sign Up</p>
@@ -90,7 +79,7 @@ class SignUpForm extends React.Component {
                             onChange={this.update('password2')}
                         />
                     </div>
-                    <button type="submit" className="button">{this.props.formtype}</button>
+                    <button type="submit" className="button">Create User</button>
                 </form>
             </div>
         )

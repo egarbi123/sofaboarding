@@ -15,7 +15,7 @@ class ChatBlock extends React.Component {
         if (this.props.state.session.activeRoom) {
             return (
                 <div className="messageBlock">
-                    <SingleRoomContainer />
+                    <SingleRoomContainer friendId={this.props.friendId}/>
                 </div>
             )
         }
