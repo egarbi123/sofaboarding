@@ -8,17 +8,13 @@ class UserProfile extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            "friendsArray": [],
-            "acceptFriendsArray": [],
-            "alreadyRequestedArray": [],
-            "newFriendsArray": []
-
+            "friends": [],
+            "acceptFriends": [],
+            "requestedFriends": [],
+            "newFriends": []
         }
         this.infoToState = this.infoToState.bind(this);
         this.imageRender = this.imageRender.bind(this);
-        // this.sendRequest = this.sendRequest.bind(this);
-        // this.deleteFriendRequest = this.deleteFriendRequest.bind(this);
-        // this.addFriend = this.addFriend.bind(this);
     }
     
     componentDidMount() {
@@ -27,17 +23,17 @@ class UserProfile extends React.Component {
     }
 
     componentDidupdate() {
-        if (this.friendsArray.length > 0 && this.state.friendsArray.length < 1) {
-            this.setState({ "friendsArray": this.friendsArray })
+        if (this.friends.length > 0 && this.state.friends.length < 1) {
+            this.setState({ "friends": this.friends })
         }
-        if (this.acceptFriendsArray.length > 0 && this.state.acceptFriendsArray.length < 1) {
-            this.setState({ "acceptFriendsArray": this.acceptFriendsArray })
+        if (this.acceptFriends.length > 0 && this.state.acceptFriends.length < 1) {
+            this.setState({ "acceptFriends": this.acceptFriends })
         }
-        if (this.alreadyRequestedArray.length > 0 && this.state.alreadyRequestedArray.length < 1) {
-            this.setState({ "alreadyRequestedArray": this.alreadyRequestedArray })
+        if (this.requestedFriends.length > 0 && this.state.requestedFriends.length < 1) {
+            this.setState({ "requestedFriends": this.requestedFriends })
         }
-        if (this.newFriendsArray.length > 0 && this.state.newFriendsArray.length < 1) {
-            this.setState({ "newFriendsArray": this.newFriendsArray })
+        if (this.newFriends.length > 0 && this.state.newFriends.length < 1) {
+            this.setState({ "newFriends": this.newFriends })
         }
     }
 
@@ -56,6 +52,7 @@ class UserProfile extends React.Component {
     
     infoToState() {
         // Gather info to use
+        // console.log('++++',this);
         let usersArray = Object.values(this.props.state.users);
         let requests = {};
         let friendships = {};
@@ -120,17 +117,17 @@ class UserProfile extends React.Component {
                 this.newFriendsArray.push(user.id);
             }
         })
-        if (this.friendsArray.length !== this.state.friendsArray.length) {
-            this.setState({'friendsArray': this.friendsArray})
+        if (this.friendsArray.length !== this.state.friends.length) {
+            this.setState({'friends': this.friendsArray})
         }
-        if (this.acceptFriendsArray.length !== this.state.acceptFriendsArray.length) {
-            this.setState({'acceptFriendsArray': this.acceptFriendsArray})
+        if (this.acceptFriendsArray.length !== this.state.acceptFriends.length) {
+            this.setState({'acceptFriends': this.acceptFriendsArray})
         }
-        if (this.alreadyRequestedArray.length !== this.state.alreadyRequestedArray.length) {
-            this.setState({'alreadyRequestedArray': this.alreadyRequestedArray})
+        if (this.alreadyRequestedArray.length !== this.state.requestedFriends.length) {
+            this.setState({'requestedFriends': this.alreadyRequestedArray})
         }
-        if (this.newFriendsArray.length !== this.state.newFriendsArray.length) {
-            this.setState({'newFriendsArray': this.newFriendsArray})
+        if (this.newFriendsArray.length !== this.state.newFriends.length) {
+            this.setState({'newFriends': this.newFriendsArray})
         }
 
     }
@@ -209,22 +206,24 @@ class UserProfile extends React.Component {
                 newFriendsArray.push(user.id);
             }
         })
-        
-        if (this.friendsArray !== friendsArray) {
+        // console.log('this.newFriendsArray:', this.alreadyRequestedArray);
+        // console.log('newFriendsArray:', alreadyRequestedArray);
+        // console.log(this.alreadyRequestedArray === alreadyRequestedArray)
+        if (this.state.friends.length !== friendsArray) {
             this.infoToState();
-        } else if (this.acceptFriendsArray !== acceptFriendsArray) {
+        } else if (this.state.acceptFriends.length !== acceptFriendsArray) {
             this.infoToState();
-        } else if (this.alreadyRequestedArray !== alreadyRequestedArray) {
+        } else if (this.state.requestedFriends.length !== alreadyRequestedArray.length) {
             this.infoToState();
-        } else if (this.newFriendsArray !== newFriendsArray) {
+        } else if (this.state.newFriends.length !== newFriendsArray.length) {
             this.infoToState();
         } else {
-            
+            return
         }
     }
     
     render() {
-        let {friendsArray, acceptFriendsArray, alreadyRequestedArray, newFriendsArray} = this.state;
+        let {friends, acceptFriends, requestedFriends, newFriends} = this.state;
         
         if (!this.props.state) {
             return (<div> "loading </div>)
@@ -241,12 +240,12 @@ class UserProfile extends React.Component {
                         {this.showUsers()}
                     </div>                  */}
                     {<FindFriends 
-                        friendsArray={friendsArray} 
-                        acceptFriendsArray={acceptFriendsArray} 
-                        alreadyRequestedArray={alreadyRequestedArray} 
-                        newFriendsArray={newFriendsArray} 
+                        friendsArray={friends} 
+                        acceptFriendsArray={acceptFriends} 
+                        alreadyRequestedArray={requestedFriends} 
+                        newFriendsArray={newFriends} 
                     />}
-                    {/* {<ChatBlockContainer />} */}
+                    {<ChatBlockContainer />}
                 </div>
             </div>
         )

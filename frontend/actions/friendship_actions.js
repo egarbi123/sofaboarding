@@ -6,6 +6,7 @@ export const RECEIVE_FRIENDSHIP = 'RECEIVE_FRIENDSHIP';
 export const RECEIVE_ALL_FRIENDSHIPS = 'RECEIVE_ALL_FRIENDSHIPS';
 export const REMOVE_FRIEND_REQUEST = 'REMOVE_FRIEND_REQUEST';
 export const SET_ACTIVE_FRIEND = 'SET_ACTIVE_FRIEND';
+export const REMOVE_FRIENDSHIP = 'REMOVE_FRIENDSHIP';
 
 const receiveFriendRequest = (friendRequest) => ({
     type: RECEIVE_FRIEND_REQUEST,
@@ -20,6 +21,11 @@ const receiveAllFriendRequests = (requests) => ({
 const removeFriendRequest = (request) => ({
     type: REMOVE_FRIEND_REQUEST,
     request
+})
+
+const removeFriendship = (friendship) => ({
+    type: REMOVE_FRIENDSHIP,
+    friendship
 })
 
 const receiveFriendship = (friendship) => ({
@@ -54,6 +60,11 @@ export const fetchAllRequests = () => dispatch => (
 export const deleteFriendRequest = (request) => dispatch => (
     FriendshipApiUtil.deleteFriendRequest(request)
     .then(request => dispatch(removeFriendRequest(request)))
+)
+
+export const deleteFriendship = (friendshipId) => dispatch => (
+    FriendshipApiUtil.deleteFriendship(friendshipId)
+    .then(friendships => dispatch(receiveAllFriendships(friendships)))
 )
 
 export const createFriendship = (friendship) => dispatch => (

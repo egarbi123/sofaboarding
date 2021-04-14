@@ -45,13 +45,16 @@ class UserInfo extends React.Component {
         return (
             <form onSubmit={this.handleSubmit}>
                 <div className="pic-form">
-                    <p>Want a new profile picture?</p>
-                    <input
-                        type="file"
-                        // style={{ display: 'none' }}
-                        onChange={this.handleFile}
-                    />
-                    <button className="pic-button">Add Image!</button>
+                    <div className="add-image">
+                        Want a new profile picture?
+                        <input
+                            type="file"
+                            className="pic-button"
+                            // style={{ display: 'none' }}
+                            onChange={this.handleFile}
+                        />
+                        <button className="pic-button">Save Picture</button>
+                    </div>
                 </div>
             </form>
         )
@@ -68,12 +71,12 @@ class UserInfo extends React.Component {
                 <div className="info-pic">
                     <div className="photo-container">
                         {this.imageRender()}
+                        {this.addProfilePic()}
                     </div>
                 </div>
                 <div className="info-name">
                     <p>Welcome, {name}!</p>
                     <div>
-                        {this.addProfilePic()}
                     </div>
                 </div>
             </div>

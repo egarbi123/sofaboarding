@@ -14,28 +14,55 @@ class SingleRoom extends React.Component {
     }
 
     determineFriends() {
+        console.log('DETERMINE:', this)
         let friendships = Object.values(this.props.state.friendships);
-        let myFriendsIDs = [];
+        let friendIds = [];
         friendships.map((friendship) => {
             if (friendship.user_id === this.props.state.session.id) {
-                myFriendsIDs.push(friendship.friend_id);
+                friendIds.push(friendship.friend_id);
+            }
+            if (friendship.friend_id === this.props.state.session.id) {
+                friendIds.push(friendship.user_id);
             }
         })
-        let users = Object.values(this.props.state.users);
-        let myFriends = [];
-        users.map((user) => {
-            if (myFriendsIDs.includes(user.id)) {
-                myFriends.push(user);
-            }
-        })
-        // console.log('this.props:', this.props);
-        friendships = Object.values(this.props.state.friendships);
-        // console.log('friendships', friendships);
-        // console.log('myId', this.props.state.session.id);
-
-        if (this.state.friends.length !== myFriends.length) {
-            this.setState({'friends': myFriends});
+        if (!friendIds.includes(this.props.friendId)) {
+            friendIds.push(this.props.friendId);
         }
+        let memberships = Object.values(this.props.state.roomMemberships)
+        console.log('memberships', memberships);
+        console.log('friendIds:', friendIds);
+        console.log('roomId', this.props.state.session.activeRoom);
+
+        let alreadyInRoom = [];
+        let inviteFriends = [];
+        memberships.map((membership) => {
+            if (membership.room_id === this.props.state.session.activeRoom) {
+                alreadyInRoom.push(membership.user_id);
+            }
+        })
+        console.log(alreadyInRoom);
+        for (let i = 0; i < friendIds.length; i++) {
+            if (!alreadyInRoom.includes(friendIds[i])) {
+                inviteFriends.push(friendIds[i])
+            }
+        }
+        console.log('inviteFriends:', inviteFriends);
+        if (this.state.friends.length !== inviteFriends.length) {
+            this.setState({ 'friends': inviteFriends });
+        }
+        // let users = Object.values(this.props.state.users);
+        // let myFriends = [];
+        // users.map((user) => {
+        //     if (friendIds.includes(user.id)) {
+        //         myFriends.push(user);
+        //     }
+        // })
+
+        // console.log('IN DETERMINE:', myFriends);
+
+        // if (this.state.friends.length !== myFriends.length) {
+        //     this.setState({'friends': myFriends});
+        // }
     }
 
     addFriendToRoom(friendId) {
@@ -47,42 +74,14 @@ class SingleRoom extends React.Component {
     }
 
     showFriends() {
-        let friends = this.state.friends;
-        let friendsInRoom = [];
-        let roomMemberships = Object.values(this.props.state.roomMemberships);
-        for (let i = 0; i < friends.length; i++) {
-            for (let j = 0; j < roomMemberships.length; j++) {
-                if (roomMemberships[j].room_id === this.props.state.session.activeRoom && roomMemberships[j].user_id === friends[i].id) {
-                    friendsInRoom.push(friends[i].id);
-                }
-            }
-        }
-        let friendsNotInRoom = [];
-        for (let i = 0; i < friends.length; i++) {
-            let member = false;
-            for (let j = 0; j < friendsInRoom.length; j++) {
-                if (friends[i].id === friendsInRoom[j]) {
-                    member = true
-                }
-            }
-            if (member === false) {
-                friendsNotInRoom.push(friends[i]);
-            }
-        }
-        // console.log('friendsNotInRoom', friendsNotInRoom)
-        let friendProfileInRoom = false;
-        for (let i = 0; i < friendsNotInRoom.length; i++) {
-            if (friendsNotInRoom[i].id === this.props.friendId) {
-                friendProfileInRoom = true;
-            }
-        }
         let users = Object.values(this.props.state.users);
+        let friendsInRoom = [];
         for (let i = 0; i < users.length; i++) {
-            if (!friendProfileInRoom && users[i].id === this.props.friendId) {
-                friendsNotInRoom.push(users[i]);
+            if (this.state.friends.includes(users[i].id)) {
+                friendsInRoom.push(users[i]);
             }
         }
-        return friendsNotInRoom.map(friend => {
+        return friendsInRoom.map(friend => {
             return (<div key={friend.id} onClick={() => this.addFriendToRoom(friend.id)} >{friend.name}</div>)
         })
     }

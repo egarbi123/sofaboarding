@@ -5,39 +5,31 @@ class FriendProfile extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            "status": "",
+            "status": "notFriends",
             "friendships": [],
             "friendRequests": []
         }
-        // console.log(parseInt(this.props.location.pathname.substr(1)));
         this.friendId = parseInt(this.props.location.pathname.substr(1));
     }
 
     componentDidMount() {
-        // console.log('IN CDM:', this)
+        console.log('IN CDM:', this)
         if (Object.values(this.props.state.friendRequests).length < 1) {
-            // get friend requests
-            // console.log('in CDM fetching requests')
             this.props.fetchAllRequests();
         }
         if (Object.values(this.props.state.friendships).length < 1) {
-            // get friendships
-            // console.log('in CDM fetching friendships')
             this.props.fetchAllFriendships();
         }
         if (Object.values(this.props.state.users).length < 2) {
-            // console.log('in CDM fetching users')
             this.props.fetchUsers();
         }
     }
 
     componentDidUpdate() {
-        // console.log('IN CDU:', this)
         let friendRequests = Object.values(this.props.state.friendRequests);
         let friendships = Object.values(this.props.state.friendships);
 
         // find last request to compare if id exists
-        // console.log(friendRequests[0])
         let lastRequestId = null;
         if (friendRequests[0]) {
             lastRequestId = friendRequests[0].id
@@ -47,9 +39,6 @@ class FriendProfile extends React.Component {
                 }
             }
         }
-        // console.log(lastRequestId);
-        // for (let )
-
 
         if (friendRequests.length > 0 && this.state.friendRequests.length < friendRequests.length - 1) {
             this.setState({
@@ -113,9 +102,6 @@ class FriendProfile extends React.Component {
     }
 
     nameRender() {
-        // console.log(this.friendId)
-        // console.log("++++++", this.props.state.users);
-        // console.log(this.props.state.users[8])
         if (this.friendId && this.props.state.users[this.friendId] && this.props.state.users[this.friendId].name) {
             return (
                 <h5>{this.props.state.users[this.friendId].name}</h5>
@@ -132,11 +118,14 @@ class FriendProfile extends React.Component {
             requestor_id: this.props.state.session.id,
             receiver_id: this.friendId
         };
-        // console.log(object);
         this.props.sendFriendRequest(object);
         let newRequests = this.state.friendRequests;
         newRequests.push(object)
-        this.setState({'friendRequests': newRequests})
+        this.setState({
+            'friendRequests': newRequests,
+            'status': "iAlreadyRequested"
+        })
+        this.props.fetchAllRequests();
     }
 
     deleteFriendRequest() {
@@ -161,7 +150,7 @@ class FriendProfile extends React.Component {
         let props_receiver = 0;
         let props_id = 0;
         if (exists === true) {
-            for (let i = 0; i < propsRequests.length; i++) {
+            for (let i = propsRequests.length - 1; i >= 0; i--) {
                 props_requestor = propsRequests[i].requestor_id;
                 props_receiver = propsRequests[i].receiver_id
                 if (props_requestor === this.props.state.session.id && props_receiver === this.friendId) {
@@ -177,7 +166,9 @@ class FriendProfile extends React.Component {
                 }
             }
         }
-        if (Object.values(object).length > 0) {
+        console.log(object)
+        if (object.id) {
+            console.log('IN IF STATEMENT')
             this.props.deleteFriendRequest(props_id);
             let newRequests = [];
             let requests = this.state.friendRequests
@@ -186,18 +177,14 @@ class FriendProfile extends React.Component {
                     newRequests.push(requests[i]);
                 }
             }
-            // console.log('newRequests:', newRequests);
-            // console.log('this.state.friendRequests:', this.state.friendRequests)
-            this.setState({ 'friendRequests': newRequests })
+            this.setState({
+                'status': 'notFriends' 
+            })
+            this.setState({ 
+                'friendRequests': newRequests,
+            })
         }
-
-
-
-
-
-
-
-
+        this.props.fetchAllRequests();
         // console.log('this:', this);
         // let propstateRequests = this.state.friendRequests;
         // console.log(propstateRequests);
@@ -231,19 +218,82 @@ class FriendProfile extends React.Component {
         //     this.setState({'friendRequests': newRequests})
         // }
     }
-    
+
+
+
+    removeFriend() {
+        console.log(this);
+        let myId = this.props.state.session.id;
+        let friendId = this.friendId; 
+        let friendships = Object.values(this.state.friendships)
+        console.log(friendships);
+        let friendshipId = '';
+        for (let i = 0; i < friendships.length; i++) {
+            if (friendships[i].user_id === myId) {
+                if (friendships[i].friend_id === friendId) {
+                    friendshipId = friendships[i].id
+                }
+            }
+            if (friendships[i].friend_id === myId) {
+                if (friendships[i].user_id === friendId) {
+                    friendshipId = friendships[i].id
+                }
+            }
+            
+        }
+        console.log(friendshipId);
+        if (typeof(friendshipId) === 'number') {
+            console.log(true);
+        }
+        this.props.deleteFriendship(friendshipId);
+        this.setState({
+            'status': 'notFriends'
+        })
+        this.props.fetchAllFriendships();
+    }
+
+    addFriend() {
+        // find friendRequest.id => delete,
+        let requestId = '';
+        let myId = this.props.state.session.id;
+        let friendId = this.friendId; 
+        let friendRequests = Object.values(this.props.state.friendRequests);
+        for (let i = 0; i < friendRequests.length; i++) {
+            if (friendRequests[i].receiver_id === myId) {
+                if (friendRequests[i].requestor_id === friendId) {
+                    requestId = friendRequests[i].id;
+                }
+            }
+        }
+        console.log(requestId);
+        // this.props.deleteFriendRequest(requestId);
+
+        // grap myId and FriendId, addFriendship
+        let object = {
+            'user_id': myId,
+            'friend_id': friendId
+        }
+        this.props.createFriendship(object)
+
+        // update status for button change
+        this.setState({'status': 'friends'})
+        this.props.fetchAllFriendships();
+        this.props.fetchAllRequests();
+    }
 
     requestButton() {
-        let status = "unknown";
-        let friendships = this.state.friendships;
-        let friendRequests = this.state.friendRequests;
+        let status = "notFriends";
+        let friendships = Object.values(this.props.state.friendships);
+        let friendRequests = Object.values(this.props.state.friendRequests);
+        // console.log('friendships:', friendships);
+        // console.log('friendRequests:', friendRequests);
         let myId = this.props.state.session.id;
         let friendId = this.friendId;
         for (let i = 0; i < friendships.length; i++) {
             if (friendships[i].user_id === myId) {
                 if (friendships[i].friend_id === friendId) {
                     status = "friends";
-                }
+                }   
             }
         }
         for (let i = 0; i < friendships.length; i++) {
@@ -267,21 +317,29 @@ class FriendProfile extends React.Component {
                 }
             }
         }
+        console.log(this.state.status)
+        console.log(status)
+        if (this.state.status !== status) {
+            this.setState({'status': status})
+        }
 
-        switch (status) {
+        switch (this.state.status) {
             case "friends":
-                return <div>Already Friends: Unfriend</div>;
+                return <div onClick={() => this.removeFriend()}>Already Friends: Unfriend</div>;
             case "iAlreadyRequested":
                 return <div onClick={() => this.deleteFriendRequest()}>Unsend Friend Request</div>;
             case "iAmRequested":
-                return <div>They want to be your friend! Accept Friend Request!</div>;
+                return <div onClick={() => this.addFriend()}>Accept Friendship!</div>;
+            case "notFriends":
+                return <div onClick={() => this.sendFriendRequest()}>Send Friend Request!</div>;
             default:
                 return <div onClick={() => this.sendFriendRequest()}>Send Friend Request!</div>;
+            
         }
     }
 
     render() {
-        // console.log(this);
+        console.log(this);
         return (
             <div className="friend-profile">
                 <div className="friend-info">

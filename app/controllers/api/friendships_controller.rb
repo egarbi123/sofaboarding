@@ -1,41 +1,37 @@
 class Api::FriendshipsController < ApplicationController
     def create
-        # puts friendship_params
-        # puts friendRequest_params
         @friend_request = FriendRequest.find_by(friendRequest_params)
         if @friend_request.destroy
-            # @friendship = Friendship.new(friendship_params)
-            # if @frienship.save
-            #     render json: ['Friendship successful'], status: 200
-            # else
-            #     render json: ['Friendship unsuccessful'], status: 422
-            # end
             @previousFriendship = Friendship.find_by(friendship_params);
-            @reversePreviousFriendship = Friendship.find_by(backwardsFriends_params);
             if @previousFriendship
-                render json: ['Friendship already exists'], status: 409
+                @friend = @previousFriendship
+            end
+            @reversePreviousFriendship = Friendship.find_by(backwardsFriends_params);
+            if @reversePreviousFriendship
+                @friend = @reversePreviousFriendship
+            end
+            if @friend
+                render :friend, status: 409
             else
-                if @reversePreviousFriendship
-                    render json: ['Friendship already exists'], status: 409
+                @friend = Friendship.new(friendship_params)
+                if @friend.save
+                    render :friend, status: 200
                 else
-                    @friendship = Friendship.new(friendship_params)
-                    if @friendship.save
-                        render json: ['Friendship successful'], status: 200
-                    else
-                        render json: ['Friendship unsuccessful'], status: 422
-                    end
+                    @friendships = Friendship.all
+                    render :index, status: 422
                 end
             end
+            return
         end
-        # render json: ['Friend request not found or destroyed'], status: 422
     end
 
     def destroy
-        @friendship = Friendship.find_by(friendship_params)
+        @friendship = Friendship.find(params[:id])
         if @friendship.destroy
-            render json: ['Unfriend successful'], status: 200
+            @friendships = Friendship.all
+            render :index, status: 200
         else
-            render json: ['Sorry, but unfriending was unsuccessful'], status: 422
+            render :friend, status: 422
         end
     end
 

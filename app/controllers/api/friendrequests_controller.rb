@@ -2,7 +2,8 @@ class Api::FriendrequestsController < ApplicationController
     def create
         previousRequest = FriendRequest.find_by(friendRequest_params)
         if previousRequest
-            render json: ['Friend request already sent.'], status: 409
+            @friendRequest = previousRequest
+            render :show, status: 409
         else
             @friendRequest = FriendRequest.new(friendRequest_params)
             if @friendRequest.save
@@ -14,7 +15,6 @@ class Api::FriendrequestsController < ApplicationController
     end
 
     def destroy
-        puts 'in destroy'
         @friendRequest = FriendRequest.find(params[:id])
         if @friendRequest.destroy
             @allFriendRequests = FriendRequest.all

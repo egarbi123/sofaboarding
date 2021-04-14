@@ -9,6 +9,7 @@ const roomMembershipReducer = (oldState = {}, action) => {
 
     switch (action.type) {
         case RECEIVE_ALL_ROOM_MEMBERSHIPS:
+            console.log(action.memberships)
             return Object.assign({}, oldState, action.memberships);
         case RECEIVE_ROOM_MEMBERSHIP:
             return Object.assign({}, oldState, action.membership);

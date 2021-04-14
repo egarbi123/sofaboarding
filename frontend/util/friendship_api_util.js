@@ -34,3 +34,10 @@ export const createFriendship = (friendship) => (
         data: { friendship }
     })
 )
+
+export const deleteFriendship = (id) => (
+    $.ajax({
+        url: `/api/friendships/${id}`,
+        method: 'DELETE'
+    })
+)

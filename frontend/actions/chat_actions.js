@@ -76,12 +76,12 @@ export const createRoom = room => dispatch => (
 
 export const createRoomMembership = membership => dispatch => (
     ChatApiUtil.createRoomMembership(membership)
-    .then(membership => dispatch(addRoomMembership(membership)))
+    .then(membership => dispatch(receiveRoomMemberships(membership)))
 )
 
 export const deleteRoomMembership = membershipId => dispatch => (
     ChatApiUtil.removeRoomMembership(membershipId)
-    .then(membershipId => dispatch(removeRoomMembership(membershipId)))
+    .then(membershipId => dispatch(receiveRoomMemberships(membershipId)))
 )
 
 export const fetchMessages = (roomId) => dispatch => {
