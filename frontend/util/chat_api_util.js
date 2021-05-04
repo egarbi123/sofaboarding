@@ -24,7 +24,6 @@ export const fetchMessages = roomId => (
 )
 
 export const postMessage = message => {
-    // console.log('CHAT UTILLLLLLLLL');
     return $.ajax({
         method: 'POST',
         url: `/api/messages`,

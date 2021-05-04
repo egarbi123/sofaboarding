@@ -16,7 +16,8 @@ class Api::RoomsController < ApplicationController
             if @roomMembership.save!
                 puts 'in room membership save'
                 @rooms = Rooms.all
-                render :index
+                @allRoomMemberships = RoomMembership.all
+                render :everything
             end
         end
     end

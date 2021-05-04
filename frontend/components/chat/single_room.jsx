@@ -14,7 +14,6 @@ class SingleRoom extends React.Component {
     }
 
     determineFriends() {
-        console.log('DETERMINE:', this)
         let friendships = Object.values(this.props.state.friendships);
         let friendIds = [];
         friendships.map((friendship) => {
@@ -29,10 +28,6 @@ class SingleRoom extends React.Component {
             friendIds.push(this.props.friendId);
         }
         let memberships = Object.values(this.props.state.roomMemberships)
-        console.log('memberships', memberships);
-        console.log('friendIds:', friendIds);
-        console.log('roomId', this.props.state.session.activeRoom);
-
         let alreadyInRoom = [];
         let inviteFriends = [];
         memberships.map((membership) => {
@@ -40,29 +35,15 @@ class SingleRoom extends React.Component {
                 alreadyInRoom.push(membership.user_id);
             }
         })
-        console.log(alreadyInRoom);
         for (let i = 0; i < friendIds.length; i++) {
             if (!alreadyInRoom.includes(friendIds[i])) {
                 inviteFriends.push(friendIds[i])
             }
         }
-        console.log('inviteFriends:', inviteFriends);
         if (this.state.friends.length !== inviteFriends.length) {
             this.setState({ 'friends': inviteFriends });
         }
-        // let users = Object.values(this.props.state.users);
-        // let myFriends = [];
-        // users.map((user) => {
-        //     if (friendIds.includes(user.id)) {
-        //         myFriends.push(user);
-        //     }
-        // })
 
-        // console.log('IN DETERMINE:', myFriends);
-
-        // if (this.state.friends.length !== myFriends.length) {
-        //     this.setState({'friends': myFriends});
-        // }
     }
 
     addFriendToRoom(friendId) {
@@ -87,7 +68,6 @@ class SingleRoom extends React.Component {
     }
 
     removeFromRoom() {
-        // console.log(this);
         let memberships = Object.values(this.props.state.roomMemberships);
         let myMembership = 0;
         memberships.map((membership) => {
@@ -95,27 +75,21 @@ class SingleRoom extends React.Component {
                 myMembership = membership.id;
             }
         })
-        // console.log(myMembership);
         return (
             <div className="chat-btn" onClick={() => this.props.deleteRoomMembership(myMembership)}>LEAVE ROOM</div>
         )
-        // this.props.deleteRoomMembership(myMembership);
     }
 
     showControls() {
-
-        // console.log(this.props.state.rooms[this.props.state.session.activeRoom].title);
         return (<div className="room-controls">
-            <h2>{this.props.state.rooms[this.props.state.session.activeRoom].title} Controls:</h2>
+            <h2>{this.props.state.rooms[this.props.state.session.activeRoom].title}</h2>
+            {this.removeFromRoom()}
             <p>Invite a friend:</p>
             {this.showFriends()}
-            {this.removeFromRoom()}
         </div>)
     }
 
     render() {
-        // this.determineFriends();
-        // console.log(this);
         return (
             <div className="single-room">
                 {this.showControls()}

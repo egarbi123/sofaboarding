@@ -7,7 +7,7 @@
     min-width: 750px;
     width: 100%;
     font-family: "Trebuchet MS", Helvetica, sans-serif;
-    height: 500px;
+    height: 450px;
     overflow: scroll;
 }
 
@@ -21,6 +21,7 @@
     justify-content: center;
     text-align: center;
     width: 250px;
+    position: relative;
 }
 
 .roomIndex form {
@@ -37,7 +38,7 @@
 .roomBox {
     border: 1px solid black;
     width: 200px;
-    height: 300px;
+    height: 270px;
     overflow: scroll;
     margin: 0px 25px 25px 25px;
 }
@@ -69,14 +70,22 @@
 }
 
 .room-controls {
-    min-width: 200px;
+    top: 25px;
+    width: 200px;
+    height: 270px;
     // background-color: rgb(59, 51, 168);
-    border: 1px solid gray;
+    // border: 1px solid gray;
     text-align: center;
 }
 
 .single-room-block {
     width: 70%;
+    position: absolute;
+}
+
+.room-controls .chat-btn {
+    position: relative;
+    left: 20px;
 }
 
 .chat-btn {

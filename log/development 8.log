@@ -1,0 +1,13 @@
+Started POST "/api/rooms" for ::1 at 2021-04-15 11:33:20 -0700
+  [1m[35m (2.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/Eyal/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.4.2/lib/active_record/log_subscriber.rb:98
+Processing by Api::RoomsController#create as JSON
+  Parameters: {"room"=>"A test Room"}
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.0ms)
+
+
+  
+NoMethodError (undefined method `permit' for "A test Room":String):
+  
+app/controllers/api/rooms_controller.rb:32:in `room_params'
+app/controllers/api/rooms_controller.rb:9:in `create'

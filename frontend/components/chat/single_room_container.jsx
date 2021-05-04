@@ -8,7 +8,7 @@ const mSTP = state => ({
 
 const mDTP = dispatch => ({
     createRoomMembership: (membership) => dispatch(createRoomMembership(membership)),
-    deleteRoomMembership: (membershipId) => dispatch(deleteRoomMembership(membershipId))
+    deleteRoomMembership: (membershipId) => dispatch(deleteRoomMembership(membershipId)),
 });
 
 export default connect(mSTP, mDTP)(SingleRoom);
