@@ -22,11 +22,26 @@ export const updateUser = (data) => {
     })
 }
 
-
 export const signUp = (user) => (
     $.ajax({
         url: `api/users`,
         method: 'POST',
         data: { user }
+    })
+)
+
+export const createBio = (bio) => (
+    $.ajax({
+        url: `api/profilebio`,
+        method: 'POST',
+        data: { bio }
+    })
+)
+
+export const updateBio = (data) => (
+    $.ajax({
+        url: `api/profilebio/${data.bio.id}`,
+        method: 'PATCH',
+        data: { data }
     })
 )

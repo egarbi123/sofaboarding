@@ -6,6 +6,7 @@ import messageReducer from './message_reducer';
 import friendRequestReducer from './friend_request_reducer';
 import friendshipReducer from './friendship_reducer';
 import roomMembershipReducer from './room_membership_reducer';
+import bioReducer from './profile_bio_reducer';
 
 const RootReducer = combineReducers({
     users: usersReducer,
@@ -14,7 +15,8 @@ const RootReducer = combineReducers({
     messages: messageReducer,
     friendRequests: friendRequestReducer,
     friendships: friendshipReducer,
-    roomMemberships: roomMembershipReducer
+    roomMemberships: roomMembershipReducer,
+    bio: bioReducer
 });
 
 export default RootReducer;

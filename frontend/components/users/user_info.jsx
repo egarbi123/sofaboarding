@@ -4,7 +4,8 @@ class UserInfo extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            profile_picture: null
+            profile_picture: null,
+            user_bio: ""
         };
         this.handleFile = this.handleFile.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -60,6 +61,12 @@ class UserInfo extends React.Component {
         )
     }
 
+    showBio() {
+        return (
+            <p>{this.state.user_bio}</p>
+        )
+    }
+
     render() {
         let name = "NAME"
         if (Object.values(this.props.state.users).length > 0 && this.props.state.users[this.props.state.session.id] && this.props.state.users[this.props.state.session.id].name) {
@@ -77,6 +84,7 @@ class UserInfo extends React.Component {
                 <div className="info-name">
                     <p>Welcome, {name}!</p>
                     <div>
+                        {this.showBio()}
                     </div>
                 </div>
             </div>

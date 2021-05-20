@@ -22,7 +22,6 @@ Rails.application.routes.draw do
     resources :friendships, only: [:create, :destroy, :index]
     resources :roommemberships, only: [:create, :index, :destroy]
     resources :messages, only: [:create, :index]
-  end
-
-  
+    resources :profilebio, only: [:create, :update, :index]
+  end 
 end

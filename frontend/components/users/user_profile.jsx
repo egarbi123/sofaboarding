@@ -11,7 +11,7 @@ class UserProfile extends React.Component {
             "friends": [],
             "acceptFriends": [],
             "requestedFriends": [],
-            "newFriends": []
+            "newFriends": [],
         }
         this.infoToState = this.infoToState.bind(this);
         this.imageRender = this.imageRender.bind(this);

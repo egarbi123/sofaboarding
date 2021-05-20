@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 class Splash extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {}
     }
 
     componentDidMount() {
@@ -12,6 +13,7 @@ class Splash extends React.Component {
     }
 
     render() {
+        console.log(this);
         return (
             <div className="splash">
                 <div className="welcome-info">

@@ -27,6 +27,10 @@ class User < ApplicationRecord
         through: :room_memberships,
         source: :rooms
 
+    has_one :user_profile,
+        foreign_key: :user_id,
+        class_name: :ProfileBio
+
     has_many :messages, dependent: :destroy
 
     has_one_attached :profile_picture

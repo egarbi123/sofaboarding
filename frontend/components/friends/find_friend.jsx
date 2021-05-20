@@ -10,7 +10,6 @@ class FindFriends extends React.Component {
             "acceptFriendsArray": [],
             "alreadyRequestedArray": [],
             "newFriendsArray": []
-
         }
     }
     

@@ -462,7 +462,7 @@ var logout = function logout() {
 /*!******************************************!*\
   !*** ./frontend/actions/user_actions.js ***!
   \******************************************/
-/*! exports provided: RECEIVE_USER, RECEIVE_ALL_USERS, CREATE_USER, fetchUsers, fetchUser, updateUser, createUser */
+/*! exports provided: RECEIVE_USER, RECEIVE_ALL_USERS, CREATE_USER, RECEIVE_BIO, createBio, updateBio, fetchUsers, fetchUser, updateUser, createUser */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -470,6 +470,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_USER", function() { return RECEIVE_USER; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ALL_USERS", function() { return RECEIVE_ALL_USERS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CREATE_USER", function() { return CREATE_USER; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_BIO", function() { return RECEIVE_BIO; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createBio", function() { return createBio; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateBio", function() { return updateBio; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUsers", function() { return fetchUsers; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUser", function() { return fetchUser; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateUser", function() { return updateUser; });
@@ -479,6 +482,7 @@ __webpack_require__.r(__webpack_exports__);
 var RECEIVE_USER = 'RECEIVE_USER';
 var RECEIVE_ALL_USERS = 'RECEIVE_ALL_USERS';
 var CREATE_USER = 'CREATE_USER';
+var RECEIVE_BIO = 'RECEIVE_BIO';
 
 var receiveUser = function receiveUser(user) {
   return {
@@ -501,6 +505,28 @@ var sendUser = function sendUser(user) {
   };
 };
 
+var receiveBio = function receiveBio(bio) {
+  return {
+    type: RECEIVE_BIO,
+    bio: bio
+  };
+};
+
+var createBio = function createBio(bio) {
+  return function (dispatch) {
+    return _util_user_api_util__WEBPACK_IMPORTED_MODULE_0__["createBio"](bio).then(function (bio) {
+      return dispatch(receiveBio(bio));
+    });
+  };
+};
+var updateBio = function updateBio(data) {
+  return function (dispatch) {
+    console.log(data);
+    return _util_user_api_util__WEBPACK_IMPORTED_MODULE_0__["updateBio"](data).then(function (bio) {
+      return dispatch(receiveBio(bio));
+    });
+  };
+};
 var fetchUsers = function fetchUsers() {
   return function (dispatch) {
     return _util_user_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchUsers"]().then(function (users) {
@@ -3188,9 +3214,13 @@ var Splash = /*#__PURE__*/function (_React$Component) {
   var _super = _createSuper(Splash);
 
   function Splash(props) {
+    var _this;
+
     _classCallCheck(this, Splash);
 
-    return _super.call(this, props);
+    _this = _super.call(this, props);
+    _this.state = {};
+    return _this;
   }
 
   _createClass(Splash, [{
@@ -3201,6 +3231,7 @@ var Splash = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      console.log(this);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "splash"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3757,7 +3788,8 @@ var UserInfo = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      profile_picture: null
+      profile_picture: null,
+      user_bio: ""
     };
     _this.handleFile = _this.handleFile.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
@@ -3824,6 +3856,11 @@ var UserInfo = /*#__PURE__*/function (_React$Component) {
       }, "Save Picture"))));
     }
   }, {
+    key: "showBio",
+    value: function showBio() {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, this.state.user_bio);
+    }
+  }, {
     key: "render",
     value: function render() {
       var name = "NAME";
@@ -3841,7 +3878,7 @@ var UserInfo = /*#__PURE__*/function (_React$Component) {
         className: "photo-container"
       }, this.imageRender(), this.addProfilePic())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "info-name"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Welcome, ", name, "!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null)));
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Welcome, ", name, "!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.showBio())));
     }
   }]);
 
@@ -4418,6 +4455,36 @@ var messageReducer = function messageReducer() {
 
 /***/ }),
 
+/***/ "./frontend/reducers/profile_bio_reducer.js":
+/*!**************************************************!*\
+  !*** ./frontend/reducers/profile_bio_reducer.js ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/user_actions */ "./frontend/actions/user_actions.js");
+
+
+var bioReducer = function bioReducer() {
+  var oldState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(oldState);
+
+  switch (action.type) {
+    case _actions_user_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_BIO"]:
+      return Object.assign({}, oldState, action.bio);
+
+    default:
+      return oldState;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (bioReducer);
+
+/***/ }),
+
 /***/ "./frontend/reducers/room_membership_reducer.js":
 /*!******************************************************!*\
   !*** ./frontend/reducers/room_membership_reducer.js ***!
@@ -4510,6 +4577,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _friend_request_reducer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./friend_request_reducer */ "./frontend/reducers/friend_request_reducer.js");
 /* harmony import */ var _friendship_reducer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./friendship_reducer */ "./frontend/reducers/friendship_reducer.js");
 /* harmony import */ var _room_membership_reducer__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./room_membership_reducer */ "./frontend/reducers/room_membership_reducer.js");
+/* harmony import */ var _profile_bio_reducer__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./profile_bio_reducer */ "./frontend/reducers/profile_bio_reducer.js");
+
 
 
 
@@ -4525,7 +4594,8 @@ var RootReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])(
   messages: _message_reducer__WEBPACK_IMPORTED_MODULE_4__["default"],
   friendRequests: _friend_request_reducer__WEBPACK_IMPORTED_MODULE_5__["default"],
   friendships: _friendship_reducer__WEBPACK_IMPORTED_MODULE_6__["default"],
-  roomMemberships: _room_membership_reducer__WEBPACK_IMPORTED_MODULE_7__["default"]
+  roomMemberships: _room_membership_reducer__WEBPACK_IMPORTED_MODULE_7__["default"],
+  bio: _profile_bio_reducer__WEBPACK_IMPORTED_MODULE_8__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (RootReducer);
 
@@ -4956,7 +5026,7 @@ var logOut = function logOut() {
 /*!****************************************!*\
   !*** ./frontend/util/user_api_util.js ***!
   \****************************************/
-/*! exports provided: fetchUsers, fetchUser, updateUser, signUp */
+/*! exports provided: fetchUsers, fetchUser, updateUser, signUp, createBio, updateBio */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4965,6 +5035,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUser", function() { return fetchUser; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateUser", function() { return updateUser; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "signUp", function() { return signUp; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createBio", function() { return createBio; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateBio", function() { return updateBio; });
 var fetchUsers = function fetchUsers() {
   return $.ajax({
     url: "api/users",
@@ -4992,6 +5064,24 @@ var signUp = function signUp(user) {
     method: 'POST',
     data: {
       user: user
+    }
+  });
+};
+var createBio = function createBio(bio) {
+  return $.ajax({
+    url: "api/profilebio",
+    method: 'POST',
+    data: {
+      bio: bio
+    }
+  });
+};
+var updateBio = function updateBio(data) {
+  return $.ajax({
+    url: "api/profilebio/".concat(data.bio.id),
+    method: 'PATCH',
+    data: {
+      data: data
     }
   });
 };
