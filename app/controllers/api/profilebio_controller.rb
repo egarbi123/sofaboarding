@@ -2,7 +2,8 @@ class Api::ProfilebioController < ApplicationController
     def create
         @profilebio = ProfileBio.new(bio_params)
         if @profilebio.save
-            render :show
+            @profilebios = ProfileBio.all
+            render :index
         else
             render json: @profilebio.errors.full_messages, status: 422
         end
@@ -12,7 +13,8 @@ class Api::ProfilebioController < ApplicationController
         @profilebio = ProfileBio.find(params[:id])
         if (@profilebio)
             if @profilebio.update(bio_params)
-                render :show
+                @profilebios = ProfileBio.all
+                render :index
             else
                 render json: @profilebio.errors.full_messages, status: 422
             end
@@ -21,10 +23,10 @@ class Api::ProfilebioController < ApplicationController
         end
     end
 
-    def show
-        @profilebio = ProfileBio.find_by(user_id: params.require(:profilebio).permit(:user_id))
-        if (@profilebio)
-            render :show
+    def index
+        @profilebios = ProfileBio.all
+        if (@profilebios)
+            render :index
         else
             render json: ["PROFILE BIO WAS NOT FOUND!"], status: 404
         end

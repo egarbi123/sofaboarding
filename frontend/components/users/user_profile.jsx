@@ -244,7 +244,7 @@ class UserProfile extends React.Component {
                         alreadyRequestedArray={requestedFriends} 
                         newFriendsArray={newFriends} 
                     />}
-                    {<ChatBlockContainer />}
+                    {/* {<ChatBlockContainer />} */}
                 </div>
             </div>
         )

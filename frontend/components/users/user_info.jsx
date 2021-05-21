@@ -5,12 +5,34 @@ class UserInfo extends React.Component {
         super(props);
         this.state = {
             profile_picture: null,
-            user_bio: ""
+            userBio: "",
+            currentBio: ""
         };
         this.handleFile = this.handleFile.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.imageRender = this.imageRender.bind(this);
         this.addProfilePic = this.addProfilePic.bind(this);
+        this.handleBio = this.handleBio.bind(this);
+    }
+
+    componentDidMount() {
+        this.props.fetchBio();
+    }
+
+    componentDidUpdate() {
+        this.determineBio();
+    }
+
+    determineBio() {
+        if (this.props.state.bio) {
+            let bios = this.props.state.bio;
+            let myId = this.props.state.session.id;
+            console.log(bios);
+            console.log(bios[myId].user_bio);
+            if (this.state.currentBio !== bios[myId].user_bio) {
+                this.setState({"currentBio": bios[myId].user_bio});
+            }
+        }
     }
 
     handleFile(e) {
@@ -63,11 +85,33 @@ class UserInfo extends React.Component {
 
     showBio() {
         return (
-            <p>{this.state.user_bio}</p>
+            <p>BIO: {this.state.currentBio}</p>
         )
     }
 
+    update(field) {
+        return e => this.setState({[field]: e.currentTarget.value })
+    }
+
+    handleBio(e) {
+        e.preventDefault();
+        console.log('SUBMIT')
+        let object = {}
+        object['user_id'] = this.props.state.session.id;
+        object['user_bio'] = this.state.userBio;
+        if (this.props.state.bio[this.props.state.session.id]) {
+            object['id'] = this.props.state.bio[this.props.state.session.id].id
+        }
+        console.log(object);
+        if (this.state.currentBio) {
+            this.props.updateBio(object);
+        }
+        this.props.createBio(object);
+        this.props.fetchBio();
+    }
+
     render() {
+        console.log(this);
         let name = "NAME"
         if (Object.values(this.props.state.users).length > 0 && this.props.state.users[this.props.state.session.id] && this.props.state.users[this.props.state.session.id].name) {
             name = this.props.state.users[this.props.state.session.id].name
@@ -86,6 +130,15 @@ class UserInfo extends React.Component {
                     <div>
                         {this.showBio()}
                     </div>
+                    <form className="bio-form" onSubmit={this.handleBio}>
+                        <p>Your Bio:</p>
+                        <input
+                            type="text"
+                            value={this.state.userBio}
+                            onChange={this.update("userBio")}
+                        />
+                        <button className="button">Submit changes</button>
+                    </form>
                 </div>
             </div>
         )

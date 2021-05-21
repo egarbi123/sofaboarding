@@ -1,1 +1,0 @@
-json.extract! @profilebio, :id, :user_id, :user_bio

@@ -462,7 +462,7 @@ var logout = function logout() {
 /*!******************************************!*\
   !*** ./frontend/actions/user_actions.js ***!
   \******************************************/
-/*! exports provided: RECEIVE_USER, RECEIVE_ALL_USERS, CREATE_USER, RECEIVE_BIO, createBio, updateBio, fetchUsers, fetchUser, updateUser, createUser */
+/*! exports provided: RECEIVE_USER, RECEIVE_ALL_USERS, CREATE_USER, RECEIVE_BIO, createBio, fetchBio, updateBio, fetchUsers, fetchUser, updateUser, createUser */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -472,6 +472,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CREATE_USER", function() { return CREATE_USER; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_BIO", function() { return RECEIVE_BIO; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createBio", function() { return createBio; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchBio", function() { return fetchBio; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateBio", function() { return updateBio; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUsers", function() { return fetchUsers; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUser", function() { return fetchUser; });
@@ -514,7 +515,16 @@ var receiveBio = function receiveBio(bio) {
 
 var createBio = function createBio(bio) {
   return function (dispatch) {
+    console.log(bio);
     return _util_user_api_util__WEBPACK_IMPORTED_MODULE_0__["createBio"](bio).then(function (bio) {
+      return dispatch(receiveBio(bio));
+    });
+  };
+};
+var fetchBio = function fetchBio(bio) {
+  return function (dispatch) {
+    console.log(bio);
+    return _util_user_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchBio"](bio).then(function (bio) {
       return dispatch(receiveBio(bio));
     });
   };
@@ -3754,6 +3764,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -3789,16 +3801,44 @@ var UserInfo = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.state = {
       profile_picture: null,
-      user_bio: ""
+      userBio: "",
+      currentBio: ""
     };
     _this.handleFile = _this.handleFile.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.imageRender = _this.imageRender.bind(_assertThisInitialized(_this));
     _this.addProfilePic = _this.addProfilePic.bind(_assertThisInitialized(_this));
+    _this.handleBio = _this.handleBio.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(UserInfo, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.fetchBio();
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {
+      this.determineBio();
+    }
+  }, {
+    key: "determineBio",
+    value: function determineBio() {
+      if (this.props.state.bio) {
+        var bios = this.props.state.bio;
+        var myId = this.props.state.session.id;
+        console.log(bios);
+        console.log(bios[myId].user_bio);
+
+        if (this.state.currentBio !== bios[myId].user_bio) {
+          this.setState({
+            "currentBio": bios[myId].user_bio
+          });
+        }
+      }
+    }
+  }, {
     key: "handleFile",
     value: function handleFile(e) {
       e.preventDefault();
@@ -3858,11 +3898,43 @@ var UserInfo = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "showBio",
     value: function showBio() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, this.state.user_bio);
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "BIO: ", this.state.currentBio);
+    }
+  }, {
+    key: "update",
+    value: function update(field) {
+      var _this2 = this;
+
+      return function (e) {
+        return _this2.setState(_defineProperty({}, field, e.currentTarget.value));
+      };
+    }
+  }, {
+    key: "handleBio",
+    value: function handleBio(e) {
+      e.preventDefault();
+      console.log('SUBMIT');
+      var object = {};
+      object['user_id'] = this.props.state.session.id;
+      object['user_bio'] = this.state.userBio;
+
+      if (this.props.state.bio[this.props.state.session.id]) {
+        object['id'] = this.props.state.bio[this.props.state.session.id].id;
+      }
+
+      console.log(object);
+
+      if (this.state.currentBio) {
+        this.props.updateBio(object);
+      }
+
+      this.props.createBio(object);
+      this.props.fetchBio();
     }
   }, {
     key: "render",
     value: function render() {
+      console.log(this);
       var name = "NAME";
 
       if (Object.values(this.props.state.users).length > 0 && this.props.state.users[this.props.state.session.id] && this.props.state.users[this.props.state.session.id].name) {
@@ -3878,7 +3950,16 @@ var UserInfo = /*#__PURE__*/function (_React$Component) {
         className: "photo-container"
       }, this.imageRender(), this.addProfilePic())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "info-name"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Welcome, ", name, "!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.showBio())));
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Welcome, ", name, "!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.showBio()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        className: "bio-form",
+        onSubmit: this.handleBio
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Your Bio:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        value: this.state.userBio,
+        onChange: this.update("userBio")
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "button"
+      }, "Submit changes"))));
     }
   }]);
 
@@ -3918,6 +3999,15 @@ var mDTP = function mDTP(dispatch) {
     },
     updateUser: function updateUser(user) {
       return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_2__["updateUser"])(user));
+    },
+    createBio: function createBio(profileBio) {
+      return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_2__["createBio"])(profileBio));
+    },
+    updateBio: function updateBio(profileBio) {
+      return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_2__["updateBio"])(profileBio));
+    },
+    fetchBio: function fetchBio(profileBio) {
+      return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_2__["fetchBio"])(profileBio));
     }
   };
 };
@@ -4261,7 +4351,7 @@ var UserProfile = /*#__PURE__*/function (_React$Component) {
         acceptFriendsArray: acceptFriends,
         alreadyRequestedArray: requestedFriends,
         newFriendsArray: newFriends
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_chat_chat_block_container__WEBPACK_IMPORTED_MODULE_3__["default"], null)));
+      })));
     }
   }]);
 
@@ -5026,7 +5116,7 @@ var logOut = function logOut() {
 /*!****************************************!*\
   !*** ./frontend/util/user_api_util.js ***!
   \****************************************/
-/*! exports provided: fetchUsers, fetchUser, updateUser, signUp, createBio, updateBio */
+/*! exports provided: fetchUsers, fetchUser, updateUser, signUp, createBio, updateBio, fetchBio */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5037,6 +5127,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "signUp", function() { return signUp; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createBio", function() { return createBio; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateBio", function() { return updateBio; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchBio", function() { return fetchBio; });
 var fetchUsers = function fetchUsers() {
   return $.ajax({
     url: "api/users",
@@ -5067,21 +5158,31 @@ var signUp = function signUp(user) {
     }
   });
 };
-var createBio = function createBio(bio) {
+var createBio = function createBio(profilebio) {
+  console.log(profilebio);
   return $.ajax({
     url: "api/profilebio",
     method: 'POST',
     data: {
-      bio: bio
+      profilebio: profilebio
     }
   });
 };
 var updateBio = function updateBio(data) {
   return $.ajax({
-    url: "api/profilebio/".concat(data.bio.id),
+    url: "api/profilebio/".concat(data.id),
     method: 'PATCH',
     data: {
       data: data
+    }
+  });
+};
+var fetchBio = function fetchBio(profilebio) {
+  return $.ajax({
+    url: "api/profilebio",
+    method: 'GET',
+    data: {
+      profilebio: profilebio
     }
   });
 };

@@ -30,18 +30,28 @@ export const signUp = (user) => (
     })
 )
 
-export const createBio = (bio) => (
-    $.ajax({
+export const createBio = (profilebio) => {
+    console.log(profilebio);
+    return $.ajax({
         url: `api/profilebio`,
         method: 'POST',
-        data: { bio }
+        data: { profilebio }
     })
-)
+}
+
 
 export const updateBio = (data) => (
     $.ajax({
-        url: `api/profilebio/${data.bio.id}`,
+        url: `api/profilebio/${data.id}`,
         method: 'PATCH',
         data: { data }
+    })
+)
+
+export const fetchBio = (profilebio) => (
+    $.ajax({
+        url: `api/profilebio`,
+        method: 'GET',
+        data: { profilebio }
     })
 )
