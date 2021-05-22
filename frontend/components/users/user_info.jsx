@@ -102,12 +102,13 @@ class UserInfo extends React.Component {
         if (this.props.state.bio[this.props.state.session.id]) {
             object['id'] = this.props.state.bio[this.props.state.session.id].id
         }
-        console.log(object);
+        // console.log(object);
         if (this.state.currentBio) {
+            console.log('IN IF STATEMENT')
             this.props.updateBio(object);
         }
         this.props.createBio(object);
-        this.props.fetchBio();
+        
     }
 
     render() {
