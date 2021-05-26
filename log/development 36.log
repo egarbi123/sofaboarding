@@ -1,0 +1,1339 @@
+Started GET "/" for ::1 at 2021-05-25 16:03:34 -0700
+  [1m[35m (2.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/Eyal/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.4.2/lib/active_record/log_subscriber.rb:98
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (1.3ms)
+  [1m[36mUser Load (30.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "KfzP52LWQu2ZcCgbI_BCLA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:11
+  Rendered api/users/_user.json.jbuilder (1.7ms)
+Completed 200 OK in 3174ms (Views: 3099.8ms | ActiveRecord: 74.2ms)
+
+
+Started GET "/api/profilebio" for ::1 at 2021-05-25 16:03:39 -0700
+Processing by Api::ProfilebioController#index as JSON
+Started GET "/api/friendships" for ::1 at 2021-05-25 16:03:39 -0700
+Started GET "/api/users" for ::1 at 2021-05-25 16:03:39 -0700
+Started GET "/api/friendrequests" for ::1 at 2021-05-25 16:03:39 -0700
+  Rendering api/profilebio/index.json.jbuilder
+Processing by Api::FriendrequestsController#index as JSON
+Processing by Api::UsersController#index as JSON
+  Rendering api/users/index.json.jbuilder
+Processing by Api::FriendshipsController#index as JSON
+  [1m[36mUser Load (29.0ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/api/users/index.json.jbuilder:1
+  [1m[36mProfileBio Load (70.8ms)[0m  [1m[34mSELECT "profile_bios".* FROM "profile_bios"[0m
+  ↳ app/views/api/profilebio/index.json.jbuilder:1
+  Rendering api/friendrequests/index.json.jbuilder
+  Rendering api/friendships/index.json.jbuilder
+  Rendered api/profilebio/index.json.jbuilder (176.6ms)
+Completed 200 OK in 199ms (Views: 36.2ms | ActiveRecord: 155.1ms)
+
+
+  [1m[36mFriendRequest Load (81.2ms)[0m  [1m[34mSELECT "friend_requests".* FROM "friend_requests"[0m
+  ↳ app/views/api/friendrequests/index.json.jbuilder:1
+  Rendered api/friendrequests/index.json.jbuilder (117.8ms)
+Completed 200 OK in 185ms (Views: 54.1ms | ActiveRecord: 98.5ms)
+
+
+  [1m[36mFriendship Load (48.8ms)[0m  [1m[34mSELECT "friendships".* FROM "friendships"[0m
+  ↳ app/views/api/friendships/index.json.jbuilder:1
+  [1m[36mActiveStorage::Attachment Load (2.6ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 18], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  Rendered api/friendships/index.json.jbuilder (92.3ms)
+Completed 200 OK in 197ms (Views: 58.8ms | ActiveRecord: 85.6ms)
+
+
+  [1m[36mActiveStorage::Blob Load (2.5ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.6ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.5ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.7ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 3], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.7ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.6ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 2], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.7ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.6ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 5], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 20], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.5ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 17], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 6], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 8], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (1.9ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 7], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 21], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.6ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 18], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 22], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.5ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 19], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.9ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 26], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.4ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 25], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.6ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 25], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 23], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 14], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (2.8ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 15], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.5ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 17], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.4ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 16], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 19], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 16], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 24], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 21], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.6ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 23], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (1.1ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 9], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 13], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 11], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (2.9ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 12], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 10], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  Rendered api/users/index.json.jbuilder (515.5ms)
+Completed 200 OK in 526ms (Views: 409.6ms | ActiveRecord: 115.4ms)
+
+
+Started GET "/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--07291faff38798668d306c8bd004f59da2888bdb/image0.jpg" for ::1 at 2021-05-25 16:03:40 -0700
+Started GET "/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBDdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--0273dc55521e56d398aef7c3aee2932301a2f7a9/default_user.jpg" for ::1 at 2021-05-25 16:03:40 -0700
+Started GET "/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBEUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--fca081367be7a01e27f2c53d61eed514690ebb36/default_user.jpg" for ::1 at 2021-05-25 16:03:40 -0700
+Started GET "/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBFdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--ef98d351fb0e4d62be2f481a587456543e45cc96/default_user.jpg" for ::1 at 2021-05-25 16:03:40 -0700
+Processing by ActiveStorage::BlobsController#show as JPEG
+  Parameters: {"signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--07291faff38798668d306c8bd004f59da2888bdb", "filename"=>"image0"}
+Processing by ActiveStorage::BlobsController#show as JPEG
+Processing by ActiveStorage::BlobsController#show as JPEG
+  Parameters: {"signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBEUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--fca081367be7a01e27f2c53d61eed514690ebb36", "filename"=>"default_user"}
+Processing by ActiveStorage::BlobsController#show as JPEG
+  Parameters: {"signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBFdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--ef98d351fb0e4d62be2f481a587456543e45cc96", "filename"=>"default_user"}
+  Parameters: {"signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBDdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--0273dc55521e56d398aef7c3aee2932301a2f7a9", "filename"=>"default_user"}
+Started GET "/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBGdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--e5de393ca8824e6b30ea11a35c89c7ec3799e2fb/default_user.jpg" for ::1 at 2021-05-25 16:03:40 -0700
+  [1m[36mActiveStorage::Blob Load (1.0ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ /Users/Eyal/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.4.2/lib/active_record/log_subscriber.rb:98
+[36m  S3 Storage (6.8ms) [0m[34mGenerated URL for file at key: Ecp8yKB2Nne87okfpvUbPDL7 (https://sofaboarding-dev.s3.us-west-1.amazonaws.com/Ecp8yKB2Nne87okfpvUbPDL7?response-content-disposition=inline%3B%20filename%3D%22default_user.jpg%22%3B%20filename%2A%3DUTF-8%27%27default_user.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIATR56K5PO3QXEEEGI%2F20210525%2Fus-west-1%2Fs3%2Faws4_request&X-Amz-Date=20210525T230340Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=8b48a16d83ae0d3fadec330a6f3ce550ab69e93d5443e9847e9a3ca3a6af43f7)[0m
+Redirected to https://sofaboarding-dev.s3.us-west-1.amazonaws.com/Ecp8yKB2Nne87okfpvUbPDL7?response-content-disposition=inline%3B%20filename%3D%22default_user.jpg%22%3B%20filename%2A%3DUTF-8%27%27default_user.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIATR56K5PO3QXEEEGI%2F20210525%2Fus-west-1%2Fs3%2Faws4_request&X-Amz-Date=20210525T230340Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=8b48a16d83ae0d3fadec330a6f3ce550ab69e93d5443e9847e9a3ca3a6af43f7
+Completed 302 Found in 19ms (ActiveRecord: 5.3ms)
+
+
+  [1m[36mActiveStorage::Blob Load (13.7ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/Eyal/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.4.2/lib/active_record/log_subscriber.rb:98
+[36m  S3 Storage (1.9ms) [0m[34mGenerated URL for file at key: rCoptZFYKQfd8s1Ycrdvqose (https://sofaboarding-dev.s3.us-west-1.amazonaws.com/rCoptZFYKQfd8s1Ycrdvqose?response-content-disposition=inline%3B%20filename%3D%22image0.jpg%22%3B%20filename%2A%3DUTF-8%27%27image0.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIATR56K5PO3QXEEEGI%2F20210525%2Fus-west-1%2Fs3%2Faws4_request&X-Amz-Date=20210525T230340Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=6b2109138309347d175cb70f2ec792fbaed25e8274e336da2890cde7f12e89b0)[0m
+Redirected to https://sofaboarding-dev.s3.us-west-1.amazonaws.com/rCoptZFYKQfd8s1Ycrdvqose?response-content-disposition=inline%3B%20filename%3D%22image0.jpg%22%3B%20filename%2A%3DUTF-8%27%27image0.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIATR56K5PO3QXEEEGI%2F20210525%2Fus-west-1%2Fs3%2Faws4_request&X-Amz-Date=20210525T230340Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=6b2109138309347d175cb70f2ec792fbaed25e8274e336da2890cde7f12e89b0
+Completed 302 Found in 28ms (ActiveRecord: 13.7ms)
+
+
+Processing by ActiveStorage::BlobsController#show as JPEG
+  Parameters: {"signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBGdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--e5de393ca8824e6b30ea11a35c89c7ec3799e2fb", "filename"=>"default_user"}
+  [1m[36mActiveStorage::Blob Load (24.7ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ /Users/Eyal/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.4.2/lib/active_record/log_subscriber.rb:98
+[36m  S3 Storage (1.8ms) [0m[34mGenerated URL for file at key: 4LztbWd5A43LsfWQ5jJEdMZi (https://sofaboarding-dev.s3.us-west-1.amazonaws.com/4LztbWd5A43LsfWQ5jJEdMZi?response-content-disposition=inline%3B%20filename%3D%22default_user.jpg%22%3B%20filename%2A%3DUTF-8%27%27default_user.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIATR56K5PO3QXEEEGI%2F20210525%2Fus-west-1%2Fs3%2Faws4_request&X-Amz-Date=20210525T230340Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=91026a60af8117d5da037f539eb7d9dc7c1bc12708aa0a5159eb1688182e5459)[0m
+Started GET "/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--50c94a5f5d1a40bd838deb96165aca3eca0c1da4/image0.jpg" for ::1 at 2021-05-25 16:03:40 -0700
+Started GET "/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBHZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--c8a1cce05fd7ad21d187a31f1eb2babbe88bc3d2/default_user.jpg" for ::1 at 2021-05-25 16:03:40 -0700
+Redirected to https://sofaboarding-dev.s3.us-west-1.amazonaws.com/4LztbWd5A43LsfWQ5jJEdMZi?response-content-disposition=inline%3B%20filename%3D%22default_user.jpg%22%3B%20filename%2A%3DUTF-8%27%27default_user.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIATR56K5PO3QXEEEGI%2F20210525%2Fus-west-1%2Fs3%2Faws4_request&X-Amz-Date=20210525T230340Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=91026a60af8117d5da037f539eb7d9dc7c1bc12708aa0a5159eb1688182e5459
+Completed 302 Found in 46ms (ActiveRecord: 28.0ms)
+
+
+Started GET "/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBHUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--a0c41fffb5e5c8b3bbce908d9460056f425d90ba/default_user.jpg" for ::1 at 2021-05-25 16:03:40 -0700
+  [1m[36mActiveStorage::Blob Load (20.8ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ /Users/Eyal/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.4.2/lib/active_record/log_subscriber.rb:98
+[36m  S3 Storage (1.9ms) [0m[34mGenerated URL for file at key: PLzAu6KD8x9odhELZ7TamRkg (https://sofaboarding-dev.s3.us-west-1.amazonaws.com/PLzAu6KD8x9odhELZ7TamRkg?response-content-disposition=inline%3B%20filename%3D%22default_user.jpg%22%3B%20filename%2A%3DUTF-8%27%27default_user.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIATR56K5PO3QXEEEGI%2F20210525%2Fus-west-1%2Fs3%2Faws4_request&X-Amz-Date=20210525T230340Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=6ec7c6d5b230dbf3fe4cf5db8ac9bb5cdcc3451319dbc7474a04a92728c75e16)[0m
+Redirected to https://sofaboarding-dev.s3.us-west-1.amazonaws.com/PLzAu6KD8x9odhELZ7TamRkg?response-content-disposition=inline%3B%20filename%3D%22default_user.jpg%22%3B%20filename%2A%3DUTF-8%27%27default_user.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIATR56K5PO3QXEEEGI%2F20210525%2Fus-west-1%2Fs3%2Faws4_request&X-Amz-Date=20210525T230340Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=6ec7c6d5b230dbf3fe4cf5db8ac9bb5cdcc3451319dbc7474a04a92728c75e16
+Completed 302 Found in 62ms (ActiveRecord: 34.1ms)
+
+
+Processing by ActiveStorage::BlobsController#show as JPEG
+  Parameters: {"signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--50c94a5f5d1a40bd838deb96165aca3eca0c1da4", "filename"=>"image0"}
+Processing by ActiveStorage::BlobsController#show as JPEG
+  [1m[36mActiveStorage::Blob Load (7.0ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /Users/Eyal/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.4.2/lib/active_record/log_subscriber.rb:98
+[36m  S3 Storage (8.6ms) [0m[34mGenerated URL for file at key: 7Gqh5vrqi7EFo2zF1wHiLjLv (https://sofaboarding-dev.s3.us-west-1.amazonaws.com/7Gqh5vrqi7EFo2zF1wHiLjLv?response-content-disposition=inline%3B%20filename%3D%22image0.jpg%22%3B%20filename%2A%3DUTF-8%27%27image0.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIATR56K5PO3QXEEEGI%2F20210525%2Fus-west-1%2Fs3%2Faws4_request&X-Amz-Date=20210525T230340Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=c93926a9f8c63571e18d261e570c5d3613c27c95f9b4226b205a9202cf2babc7)[0m
+Redirected to https://sofaboarding-dev.s3.us-west-1.amazonaws.com/7Gqh5vrqi7EFo2zF1wHiLjLv?response-content-disposition=inline%3B%20filename%3D%22image0.jpg%22%3B%20filename%2A%3DUTF-8%27%27image0.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIATR56K5PO3QXEEEGI%2F20210525%2Fus-west-1%2Fs3%2Faws4_request&X-Amz-Date=20210525T230340Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=c93926a9f8c63571e18d261e570c5d3613c27c95f9b4226b205a9202cf2babc7
+Completed 302 Found in 22ms (ActiveRecord: 7.0ms)
+
+
+  [1m[36mActiveStorage::Blob Load (2.8ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 18], ["LIMIT", 1]]
+  Parameters: {"signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBHUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--a0c41fffb5e5c8b3bbce908d9460056f425d90ba", "filename"=>"default_user"}
+  ↳ /Users/Eyal/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.4.2/lib/active_record/log_subscriber.rb:98
+[36m  S3 Storage (2.5ms) [0m[34mGenerated URL for file at key: ZoKaZUDA8Bva9S6kNKqDJNH8 (https://sofaboarding-dev.s3.us-west-1.amazonaws.com/ZoKaZUDA8Bva9S6kNKqDJNH8?response-content-disposition=inline%3B%20filename%3D%22default_user.jpg%22%3B%20filename%2A%3DUTF-8%27%27default_user.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIATR56K5PO3QXEEEGI%2F20210525%2Fus-west-1%2Fs3%2Faws4_request&X-Amz-Date=20210525T230340Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=44c2aa50b97291716f126e030f3a41f28995c657e261195e519bf6eea41c50c7)[0m
+Redirected to https://sofaboarding-dev.s3.us-west-1.amazonaws.com/ZoKaZUDA8Bva9S6kNKqDJNH8?response-content-disposition=inline%3B%20filename%3D%22default_user.jpg%22%3B%20filename%2A%3DUTF-8%27%27default_user.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIATR56K5PO3QXEEEGI%2F20210525%2Fus-west-1%2Fs3%2Faws4_request&X-Amz-Date=20210525T230340Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=44c2aa50b97291716f126e030f3a41f28995c657e261195e519bf6eea41c50c7
+Completed 302 Found in 80ms (ActiveRecord: 43.1ms)
+
+
+Processing by ActiveStorage::BlobsController#show as JPEG
+  Parameters: {"signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBHZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--c8a1cce05fd7ad21d187a31f1eb2babbe88bc3d2", "filename"=>"default_user"}
+  [1m[36mActiveStorage::Blob Load (6.7ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ /Users/Eyal/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.4.2/lib/active_record/log_subscriber.rb:98
+[36m  S3 Storage (2.3ms) [0m[34mGenerated URL for file at key: bdsLEvNw2x8Nomg75ZjJZyA2 (https://sofaboarding-dev.s3.us-west-1.amazonaws.com/bdsLEvNw2x8Nomg75ZjJZyA2?response-content-disposition=inline%3B%20filename%3D%22default_user.jpg%22%3B%20filename%2A%3DUTF-8%27%27default_user.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIATR56K5PO3QXEEEGI%2F20210525%2Fus-west-1%2Fs3%2Faws4_request&X-Amz-Date=20210525T230340Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=a358bbe8da004b21db8e41700bf7ed83a78d0db85f8199f0c5eee0ac6c5ec6d5)[0m
+Redirected to https://sofaboarding-dev.s3.us-west-1.amazonaws.com/bdsLEvNw2x8Nomg75ZjJZyA2?response-content-disposition=inline%3B%20filename%3D%22default_user.jpg%22%3B%20filename%2A%3DUTF-8%27%27default_user.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIATR56K5PO3QXEEEGI%2F20210525%2Fus-west-1%2Fs3%2Faws4_request&X-Amz-Date=20210525T230340Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=a358bbe8da004b21db8e41700bf7ed83a78d0db85f8199f0c5eee0ac6c5ec6d5
+Completed 302 Found in 12ms (ActiveRecord: 6.7ms)
+
+
+  [1m[36mActiveStorage::Blob Load (6.0ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 21], ["LIMIT", 1]]
+  ↳ /Users/Eyal/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.4.2/lib/active_record/log_subscriber.rb:98
+[36m  S3 Storage (2.0ms) [0m[34mGenerated URL for file at key: vtgT5BxA1FLG4bkxHirZeaLf (https://sofaboarding-dev.s3.us-west-1.amazonaws.com/vtgT5BxA1FLG4bkxHirZeaLf?response-content-disposition=inline%3B%20filename%3D%22default_user.jpg%22%3B%20filename%2A%3DUTF-8%27%27default_user.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIATR56K5PO3QXEEEGI%2F20210525%2Fus-west-1%2Fs3%2Faws4_request&X-Amz-Date=20210525T230340Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=a07a37136ca130a5071eed76a8158f11644b24538f6db55c8990fee299858dbd)[0m
+Redirected to https://sofaboarding-dev.s3.us-west-1.amazonaws.com/vtgT5BxA1FLG4bkxHirZeaLf?response-content-disposition=inline%3B%20filename%3D%22default_user.jpg%22%3B%20filename%2A%3DUTF-8%27%27default_user.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIATR56K5PO3QXEEEGI%2F20210525%2Fus-west-1%2Fs3%2Faws4_request&X-Amz-Date=20210525T230340Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=a07a37136ca130a5071eed76a8158f11644b24538f6db55c8990fee299858dbd
+Completed 302 Found in 11ms (ActiveRecord: 6.0ms)
+
+
+Started GET "/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBHQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--b8731c142d28f58b06b315226fbaea794e341003/default_user.jpg" for ::1 at 2021-05-25 16:03:40 -0700
+Processing by ActiveStorage::BlobsController#show as JPEG
+  Parameters: {"signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBHQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--b8731c142d28f58b06b315226fbaea794e341003", "filename"=>"default_user"}
+  [1m[36mActiveStorage::Blob Load (0.5ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 19], ["LIMIT", 1]]
+  ↳ /Users/Eyal/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.4.2/lib/active_record/log_subscriber.rb:98
+[36m  S3 Storage (1.2ms) [0m[34mGenerated URL for file at key: Uv91UZyoQ9ZSJpGkrH8dnTDv (https://sofaboarding-dev.s3.us-west-1.amazonaws.com/Uv91UZyoQ9ZSJpGkrH8dnTDv?response-content-disposition=inline%3B%20filename%3D%22default_user.jpg%22%3B%20filename%2A%3DUTF-8%27%27default_user.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIATR56K5PO3QXEEEGI%2F20210525%2Fus-west-1%2Fs3%2Faws4_request&X-Amz-Date=20210525T230340Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=ab89cd598f8a9771c6e8c7942b9e1480e17a9ba1fb19a842f583e7ccdd1c253c)[0m
+Redirected to https://sofaboarding-dev.s3.us-west-1.amazonaws.com/Uv91UZyoQ9ZSJpGkrH8dnTDv?response-content-disposition=inline%3B%20filename%3D%22default_user.jpg%22%3B%20filename%2A%3DUTF-8%27%27default_user.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIATR56K5PO3QXEEEGI%2F20210525%2Fus-west-1%2Fs3%2Faws4_request&X-Amz-Date=20210525T230340Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=ab89cd598f8a9771c6e8c7942b9e1480e17a9ba1fb19a842f583e7ccdd1c253c
+Completed 302 Found in 4ms (ActiveRecord: 0.5ms)
+
+
+Started GET "/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBIQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--9ff8e5559ddffeaa24ed725dd8beb15946ce5806/PHOTO-2019-01-20-09-15-18.jpg" for ::1 at 2021-05-25 16:03:40 -0700
+Processing by ActiveStorage::BlobsController#show as JPEG
+  Parameters: {"signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBIQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--9ff8e5559ddffeaa24ed725dd8beb15946ce5806", "filename"=>"PHOTO-2019-01-20-09-15-18"}
+  [1m[36mActiveStorage::Blob Load (0.6ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 23], ["LIMIT", 1]]
+  ↳ /Users/Eyal/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.4.2/lib/active_record/log_subscriber.rb:98
+[36m  S3 Storage (3.8ms) [0m[34mGenerated URL for file at key: hCT6v5nPJbETjjy2So41V6sM (https://sofaboarding-dev.s3.us-west-1.amazonaws.com/hCT6v5nPJbETjjy2So41V6sM?response-content-disposition=inline%3B%20filename%3D%22PHOTO-2019-01-20-09-15-18.jpg%22%3B%20filename%2A%3DUTF-8%27%27PHOTO-2019-01-20-09-15-18.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIATR56K5PO3QXEEEGI%2F20210525%2Fus-west-1%2Fs3%2Faws4_request&X-Amz-Date=20210525T230340Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=34372638392ac23f3234fad1a45145d64cc55b789b797b3536f781ef20522911)[0m
+Redirected to https://sofaboarding-dev.s3.us-west-1.amazonaws.com/hCT6v5nPJbETjjy2So41V6sM?response-content-disposition=inline%3B%20filename%3D%22PHOTO-2019-01-20-09-15-18.jpg%22%3B%20filename%2A%3DUTF-8%27%27PHOTO-2019-01-20-09-15-18.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIATR56K5PO3QXEEEGI%2F20210525%2Fus-west-1%2Fs3%2Faws4_request&X-Amz-Date=20210525T230340Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=34372638392ac23f3234fad1a45145d64cc55b789b797b3536f781ef20522911
+Completed 302 Found in 8ms (ActiveRecord: 0.6ms)
+
+
+Started GET "/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBIZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--79f34e26637d6a7486b4b79c4f4f71bac2aaa849/default_user.jpg" for ::1 at 2021-05-25 16:03:40 -0700
+Started GET "/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBEQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--9256198b641ee2dcfcad5cf86884acb451e02640/default_user.jpg" for ::1 at 2021-05-25 16:03:40 -0700
+Started GET "/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBFZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--1f26e195c6d638e4af2df5aae500716bc3ef8022/default_user.jpg" for ::1 at 2021-05-25 16:03:40 -0700
+Processing by ActiveStorage::BlobsController#show as JPEG
+Processing by ActiveStorage::BlobsController#show as JPEG
+  Parameters: {"signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBIZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--79f34e26637d6a7486b4b79c4f4f71bac2aaa849", "filename"=>"default_user"}
+Processing by ActiveStorage::BlobsController#show as JPEG
+  Parameters: {"signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBFZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--1f26e195c6d638e4af2df5aae500716bc3ef8022", "filename"=>"default_user"}
+  Parameters: {"signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBEQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--9256198b641ee2dcfcad5cf86884acb451e02640", "filename"=>"default_user"}
+  [1m[36mActiveStorage::Blob Load (3.0ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 25], ["LIMIT", 1]]
+  ↳ /Users/Eyal/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.4.2/lib/active_record/log_subscriber.rb:98
+[36m  S3 Storage (3.1ms) [0m[34mGenerated URL for file at key: QyQdK23usq2UxbFhZn7hXS8X (https://sofaboarding-dev.s3.us-west-1.amazonaws.com/QyQdK23usq2UxbFhZn7hXS8X?response-content-disposition=inline%3B%20filename%3D%22default_user.jpg%22%3B%20filename%2A%3DUTF-8%27%27default_user.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIATR56K5PO3QXEEEGI%2F20210525%2Fus-west-1%2Fs3%2Faws4_request&X-Amz-Date=20210525T230340Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=fec98ce702a49e941d4ab6c45ac0169b3a421badbab5bb60cf1255d1d47193f0)[0m
+Redirected to https://sofaboarding-dev.s3.us-west-1.amazonaws.com/QyQdK23usq2UxbFhZn7hXS8X?response-content-disposition=inline%3B%20filename%3D%22default_user.jpg%22%3B%20filename%2A%3DUTF-8%27%27default_user.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIATR56K5PO3QXEEEGI%2F20210525%2Fus-west-1%2Fs3%2Faws4_request&X-Amz-Date=20210525T230340Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=fec98ce702a49e941d4ab6c45ac0169b3a421badbab5bb60cf1255d1d47193f0
+Completed 302 Found in 10ms (ActiveRecord: 3.0ms)
+
+
+  [1m[36mActiveStorage::Blob Load (16.3ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ /Users/Eyal/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.4.2/lib/active_record/log_subscriber.rb:98
+[36m  S3 Storage (3.6ms) [0m[34mGenerated URL for file at key: 9iJjAdL4oB5nVEGVzzogZ8pH (https://sofaboarding-dev.s3.us-west-1.amazonaws.com/9iJjAdL4oB5nVEGVzzogZ8pH?response-content-disposition=inline%3B%20filename%3D%22default_user.jpg%22%3B%20filename%2A%3DUTF-8%27%27default_user.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIATR56K5PO3QXEEEGI%2F20210525%2Fus-west-1%2Fs3%2Faws4_request&X-Amz-Date=20210525T230340Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=22c043a19622274e639298a23f4358445d68a28540886f4c6f0e1bdc7de14558)[0m
+Redirected to https://sofaboarding-dev.s3.us-west-1.amazonaws.com/9iJjAdL4oB5nVEGVzzogZ8pH?response-content-disposition=inline%3B%20filename%3D%22default_user.jpg%22%3B%20filename%2A%3DUTF-8%27%27default_user.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIATR56K5PO3QXEEEGI%2F20210525%2Fus-west-1%2Fs3%2Faws4_request&X-Amz-Date=20210525T230340Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=22c043a19622274e639298a23f4358445d68a28540886f4c6f0e1bdc7de14558
+Completed 302 Found in 22ms (ActiveRecord: 16.3ms)
+
+
+  [1m[36mActiveStorage::Blob Load (32.1ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ /Users/Eyal/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.4.2/lib/active_record/log_subscriber.rb:98
+[36m  S3 Storage (4.7ms) [0m[34mGenerated URL for file at key: tou4iki5nhEChhSboi7dPMDW (https://sofaboarding-dev.s3.us-west-1.amazonaws.com/tou4iki5nhEChhSboi7dPMDW?response-content-disposition=inline%3B%20filename%3D%22default_user.jpg%22%3B%20filename%2A%3DUTF-8%27%27default_user.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIATR56K5PO3QXEEEGI%2F20210525%2Fus-west-1%2Fs3%2Faws4_request&X-Amz-Date=20210525T230340Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=048c75693cc0a3c6497f0c5a60e54fc085817d021aa338b5137829134127a825)[0m
+Redirected to https://sofaboarding-dev.s3.us-west-1.amazonaws.com/tou4iki5nhEChhSboi7dPMDW?response-content-disposition=inline%3B%20filename%3D%22default_user.jpg%22%3B%20filename%2A%3DUTF-8%27%27default_user.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIATR56K5PO3QXEEEGI%2F20210525%2Fus-west-1%2Fs3%2Faws4_request&X-Amz-Date=20210525T230340Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=048c75693cc0a3c6497f0c5a60e54fc085817d021aa338b5137829134127a825
+Completed 302 Found in 41ms (ActiveRecord: 32.1ms)
+
+
+Started GET "/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBGUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--bd28fecceae74c20677939e1f8559868452495b3/image0.jpg" for ::1 at 2021-05-25 16:03:40 -0700
+Processing by ActiveStorage::BlobsController#show as JPEG
+  Parameters: {"signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBGUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--bd28fecceae74c20677939e1f8559868452495b3", "filename"=>"image0"}
+  [1m[36mActiveStorage::Blob Load (0.6ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 16], ["LIMIT", 1]]
+  ↳ /Users/Eyal/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.4.2/lib/active_record/log_subscriber.rb:98
+[36m  S3 Storage (3.5ms) [0m[34mGenerated URL for file at key: iHBkPDhCSx3koTvw5j2amoMJ (https://sofaboarding-dev.s3.us-west-1.amazonaws.com/iHBkPDhCSx3koTvw5j2amoMJ?response-content-disposition=inline%3B%20filename%3D%22image0.jpg%22%3B%20filename%2A%3DUTF-8%27%27image0.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIATR56K5PO3QXEEEGI%2F20210525%2Fus-west-1%2Fs3%2Faws4_request&X-Amz-Date=20210525T230340Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=4b8f2e852bd427586eb940482d96840e5477c07de9193fe2d0d287251e6cbb3c)[0m
+Redirected to https://sofaboarding-dev.s3.us-west-1.amazonaws.com/iHBkPDhCSx3koTvw5j2amoMJ?response-content-disposition=inline%3B%20filename%3D%22image0.jpg%22%3B%20filename%2A%3DUTF-8%27%27image0.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIATR56K5PO3QXEEEGI%2F20210525%2Fus-west-1%2Fs3%2Faws4_request&X-Amz-Date=20210525T230340Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=4b8f2e852bd427586eb940482d96840e5477c07de9193fe2d0d287251e6cbb3c
+Completed 302 Found in 6ms (ActiveRecord: 0.6ms)
+
+
+Started GET "/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBGZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--e58dc80e9f46050f66e4bf75616431ad2941b979/default_user.jpg" for ::1 at 2021-05-25 16:03:40 -0700
+Processing by ActiveStorage::BlobsController#show as JPEG
+  Parameters: {"signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBGZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--e58dc80e9f46050f66e4bf75616431ad2941b979", "filename"=>"default_user"}
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 17], ["LIMIT", 1]]
+  ↳ /Users/Eyal/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.4.2/lib/active_record/log_subscriber.rb:98
+[36m  S3 Storage (1.1ms) [0m[34mGenerated URL for file at key: MbjYVsbtDunEYKZYcxXveUyJ (https://sofaboarding-dev.s3.us-west-1.amazonaws.com/MbjYVsbtDunEYKZYcxXveUyJ?response-content-disposition=inline%3B%20filename%3D%22default_user.jpg%22%3B%20filename%2A%3DUTF-8%27%27default_user.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIATR56K5PO3QXEEEGI%2F20210525%2Fus-west-1%2Fs3%2Faws4_request&X-Amz-Date=20210525T230340Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=96f6faf025feae1ee8eecb335bee5bab9c895ff0d1a23e93786c0fc4d358aa96)[0m
+Redirected to https://sofaboarding-dev.s3.us-west-1.amazonaws.com/MbjYVsbtDunEYKZYcxXveUyJ?response-content-disposition=inline%3B%20filename%3D%22default_user.jpg%22%3B%20filename%2A%3DUTF-8%27%27default_user.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIATR56K5PO3QXEEEGI%2F20210525%2Fus-west-1%2Fs3%2Faws4_request&X-Amz-Date=20210525T230340Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=96f6faf025feae1ee8eecb335bee5bab9c895ff0d1a23e93786c0fc4d358aa96
+Completed 302 Found in 3ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBDZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--34926795c3babba12ca9d659be0d5ae4f75ee101/image0.jpg" for ::1 at 2021-05-25 16:03:40 -0700
+Processing by ActiveStorage::BlobsController#show as JPEG
+Started GET "/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBDQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--92b42a27a152c4ca81e104dd8c590a1e30d1f884/PHOTO-2019-01-20-09-13-22%204.jpg" for ::1 at 2021-05-25 16:03:40 -0700
+  Parameters: {"signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBDZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--34926795c3babba12ca9d659be0d5ae4f75ee101", "filename"=>"image0"}
+Processing by ActiveStorage::BlobsController#show as JPEG
+  [1m[36mActiveStorage::Blob Load (2.0ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Parameters: {"signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBDQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--92b42a27a152c4ca81e104dd8c590a1e30d1f884", "filename"=>"PHOTO-2019-01-20-09-13-22 4"}
+  ↳ /Users/Eyal/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.4.2/lib/active_record/log_subscriber.rb:98
+[36m  S3 Storage (1.8ms) [0m[34mGenerated URL for file at key: 6GBdY3BWA9Gi9nNnuzBWVbcL (https://sofaboarding-dev.s3.us-west-1.amazonaws.com/6GBdY3BWA9Gi9nNnuzBWVbcL?response-content-disposition=inline%3B%20filename%3D%22image0.jpg%22%3B%20filename%2A%3DUTF-8%27%27image0.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIATR56K5PO3QXEEEGI%2F20210525%2Fus-west-1%2Fs3%2Faws4_request&X-Amz-Date=20210525T230340Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=d1d846a12f82a59382333d5c7428a9b3f2f60eba295f9528701f16f5471a7248)[0m
+Redirected to https://sofaboarding-dev.s3.us-west-1.amazonaws.com/6GBdY3BWA9Gi9nNnuzBWVbcL?response-content-disposition=inline%3B%20filename%3D%22image0.jpg%22%3B%20filename%2A%3DUTF-8%27%27image0.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIATR56K5PO3QXEEEGI%2F20210525%2Fus-west-1%2Fs3%2Faws4_request&X-Amz-Date=20210525T230340Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=d1d846a12f82a59382333d5c7428a9b3f2f60eba295f9528701f16f5471a7248
+Completed 302 Found in 14ms (ActiveRecord: 2.0ms)
+
+
+  [1m[36mActiveStorage::Blob Load (41.4ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ /Users/Eyal/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.4.2/lib/active_record/log_subscriber.rb:98
+[36m  S3 Storage (2.3ms) [0m[34mGenerated URL for file at key: UerYxeppzqCv6oV1EgQh3crB (https://sofaboarding-dev.s3.us-west-1.amazonaws.com/UerYxeppzqCv6oV1EgQh3crB?response-content-disposition=inline%3B%20filename%3D%22PHOTO-2019-01-20-09-13-22%204.jpg%22%3B%20filename%2A%3DUTF-8%27%27PHOTO-2019-01-20-09-13-22%25204.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIATR56K5PO3QXEEEGI%2F20210525%2Fus-west-1%2Fs3%2Faws4_request&X-Amz-Date=20210525T230340Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=7fcd70c5d7cea47b48a117491d62419bd85d815ab2ce2e9275bf32b3daa09527)[0m
+Redirected to https://sofaboarding-dev.s3.us-west-1.amazonaws.com/UerYxeppzqCv6oV1EgQh3crB?response-content-disposition=inline%3B%20filename%3D%22PHOTO-2019-01-20-09-13-22%204.jpg%22%3B%20filename%2A%3DUTF-8%27%27PHOTO-2019-01-20-09-13-22%25204.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIATR56K5PO3QXEEEGI%2F20210525%2Fus-west-1%2Fs3%2Faws4_request&X-Amz-Date=20210525T230340Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=7fcd70c5d7cea47b48a117491d62419bd85d815ab2ce2e9275bf32b3daa09527
+Completed 302 Found in 48ms (ActiveRecord: 41.4ms)
+
+
+Started GET "/api/rooms" for ::1 at 2021-05-25 16:03:53 -0700
+Started GET "/api/roommemberships" for ::1 at 2021-05-25 16:03:53 -0700
+Processing by Api::RoommembershipsController#index as JSON
+Processing by Api::RoomsController#index as JSON
+  Rendering api/roommemberships/index.json.jbuilder
+  Rendering api/rooms/index.json.jbuilder
+  [1m[36mRooms Load (16.0ms)[0m  [1m[34mSELECT "rooms".* FROM "rooms"[0m
+  ↳ app/views/api/rooms/index.json.jbuilder:1
+  [1m[36mRoomMembership Load (17.4ms)[0m  [1m[34mSELECT "room_memberships".* FROM "room_memberships"[0m
+  ↳ app/views/api/roommemberships/index.json.jbuilder:1
+  Rendered api/rooms/index.json.jbuilder (33.7ms)
+Completed 200 OK in 57ms (Views: 22.3ms | ActiveRecord: 25.2ms)
+
+
+  Rendered api/roommemberships/index.json.jbuilder (46.8ms)
+Completed 200 OK in 69ms (Views: 25.0ms | ActiveRecord: 37.0ms)
+
+
+Started GET "/api/profilebio" for ::1 at 2021-05-25 16:04:10 -0700
+Started GET "/api/users" for ::1 at 2021-05-25 16:04:10 -0700
+Processing by Api::ProfilebioController#index as JSON
+  Rendering api/profilebio/index.json.jbuilder
+Started GET "/api/friendrequests" for ::1 at 2021-05-25 16:04:10 -0700
+Started GET "/api/friendships" for ::1 at 2021-05-25 16:04:10 -0700
+Processing by Api::UsersController#index as JSON
+  Rendering api/users/index.json.jbuilder
+Processing by Api::FriendshipsController#index as JSON
+Processing by Api::FriendrequestsController#index as JSON
+  Rendering api/friendrequests/index.json.jbuilder
+  [1m[36mUser Load (16.6ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/api/users/index.json.jbuilder:1
+  [1m[36mProfileBio Load (63.4ms)[0m  [1m[34mSELECT "profile_bios".* FROM "profile_bios"[0m
+  Rendering api/friendships/index.json.jbuilder
+  [1m[36mFriendRequest Load (3.8ms)[0m  [1m[34mSELECT "friend_requests".* FROM "friend_requests"[0m
+  ↳ app/views/api/profilebio/index.json.jbuilder:1
+  Rendered api/profilebio/index.json.jbuilder (105.8ms)
+Completed 200 OK in 127ms (Views: 63.5ms | ActiveRecord: 63.4ms)
+
+
+  ↳ app/views/api/friendrequests/index.json.jbuilder:1
+  [1m[36mFriendship Load (2.3ms)[0m  [1m[34mSELECT "friendships".* FROM "friendships"[0m
+  ↳ app/views/api/friendships/index.json.jbuilder:1
+  [1m[36mActiveStorage::Attachment Load (1.0ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 18], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  Rendered api/friendrequests/index.json.jbuilder (32.1ms)
+Completed 200 OK in 47ms (Views: 42.2ms | ActiveRecord: 3.8ms)
+
+
+  Rendered api/friendships/index.json.jbuilder (9.0ms)
+Completed 200 OK in 52ms (Views: 49.8ms | ActiveRecord: 2.3ms)
+
+
+  [1m[36mActiveStorage::Blob Load (2.2ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (12.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.6ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (1.2ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 3], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 2], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.4ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 5], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 20], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (1.4ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 17], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 6], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 8], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 7], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 21], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (4.8ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 18], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (13.0ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 22], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (1.5ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 19], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 26], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (1.6ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 25], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 25], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 23], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 14], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.4ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 15], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 17], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 16], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (2.8ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 19], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 16], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 24], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 21], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 23], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.6ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 9], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 13], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.4ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 11], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 12], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 10], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  Rendered api/users/index.json.jbuilder (217.3ms)
+Completed 200 OK in 256ms (Views: 185.6ms | ActiveRecord: 70.5ms)
+
+
+Started POST "/api/rooms" for ::1 at 2021-05-25 16:04:34 -0700
+Processing by Api::RoomsController#create as JSON
+  Parameters: {"room"=>{"title"=>"Weekend plans"}}
+  [1m[35m (11.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/rooms_controller.rb:10
+  [1m[36mRooms Create (20.6ms)[0m  [1m[32mINSERT INTO "rooms" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "Weekend plans"], ["created_at", "2021-05-25 23:04:34.935263"], ["updated_at", "2021-05-25 23:04:34.935263"]]
+  ↳ app/controllers/api/rooms_controller.rb:10
+  [1m[35m (1.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/rooms_controller.rb:10
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "KfzP52LWQu2ZcCgbI_BCLA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:11
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/rooms_controller.rb:16
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/api/rooms_controller.rb:16
+  [1m[36mRooms Load (0.4ms)[0m  [1m[34mSELECT  "rooms".* FROM "rooms" WHERE "rooms"."id" = $1 LIMIT $2[0m  [["id", 51], ["LIMIT", 1]]
+  ↳ app/controllers/api/rooms_controller.rb:16
+  [1m[36mRoomMembership Create (1.6ms)[0m  [1m[32mINSERT INTO "room_memberships" ("user_id", "room_id") VALUES ($1, $2) RETURNING "id"[0m  [["user_id", 8], ["room_id", 51]]
+  ↳ app/controllers/api/rooms_controller.rb:16
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/rooms_controller.rb:16
+  Rendering api/rooms/everything.json.jbuilder
+  [1m[36mRooms Load (0.4ms)[0m  [1m[34mSELECT "rooms".* FROM "rooms"[0m
+  ↳ app/views/api/rooms/everything.json.jbuilder:2
+  [1m[36mRoomMembership Load (0.7ms)[0m  [1m[34mSELECT "room_memberships".* FROM "room_memberships"[0m
+  ↳ app/views/api/rooms/everything.json.jbuilder:10
+  Rendered api/rooms/everything.json.jbuilder (8.2ms)
+Completed 200 OK in 84ms (Views: 18.4ms | ActiveRecord: 38.3ms)
+
+
+Started GET "/api/messages?roomId=51" for ::1 at 2021-05-25 16:04:36 -0700
+Started GET "/cable" for ::1 at 2021-05-25 16:04:36 -0700
+Processing by Api::MessagesController#index as JSON
+  Parameters: {"roomId"=>"51"}
+  [1m[36mRooms Load (0.4ms)[0m  [1m[34mSELECT  "rooms".* FROM "rooms" WHERE "rooms"."id" = $1 LIMIT $2[0m  [["id", 51], ["LIMIT", 1]]
+  ↳ app/controllers/api/messages_controller.rb:3
+Started GET "/cable/" [WebSocket] for ::1 at 2021-05-25 16:04:36 -0700
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+  Rendering api/messages/index.json.jbuilder
+  [1m[36mRooms Load (0.9ms)[0m  [1m[34mSELECT  "rooms".* FROM "rooms" WHERE "rooms"."id" = $1 LIMIT $2[0m  [["id", 51], ["LIMIT", 1]]
+  ↳ app/channels/rooms_channel.rb:6
+RoomsChannel is transmitting the subscription confirmation
+RoomsChannel is streaming from rooms:Z2lkOi8vc29mYS1ib2FyZGluZy9Sb29tcy81MQ
+  [1m[36mMessage Load (32.0ms)[0m  [1m[34mSELECT "messages".* FROM "messages" WHERE "messages"."room_id" = $1[0m  [["room_id", 51]]
+  ↳ app/views/api/messages/index.json.jbuilder:5
+  Rendered api/messages/index.json.jbuilder (45.6ms)
+Completed 200 OK in 83ms (Views: 14.1ms | ActiveRecord: 41.7ms)
+
+
+Started POST "/api/roommemberships" for ::1 at 2021-05-25 16:04:37 -0700
+Processing by Api::RoommembershipsController#create as JSON
+  Parameters: {"membership"=>{"user_id"=>"1", "room_id"=>"51"}}
+  [1m[36mRoomMembership Load (0.3ms)[0m  [1m[34mSELECT  "room_memberships".* FROM "room_memberships" WHERE "room_memberships"."user_id" = $1 AND "room_memberships"."room_id" = $2 LIMIT $3[0m  [["user_id", 1], ["room_id", 51], ["LIMIT", 1]]
+  ↳ app/controllers/api/roommemberships_controller.rb:3
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/roommemberships_controller.rb:10
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/roommemberships_controller.rb:10
+  [1m[36mRooms Load (0.3ms)[0m  [1m[34mSELECT  "rooms".* FROM "rooms" WHERE "rooms"."id" = $1 LIMIT $2[0m  [["id", 51], ["LIMIT", 1]]
+  ↳ app/controllers/api/roommemberships_controller.rb:10
+  [1m[36mRoomMembership Create (0.4ms)[0m  [1m[32mINSERT INTO "room_memberships" ("user_id", "room_id") VALUES ($1, $2) RETURNING "id"[0m  [["user_id", 1], ["room_id", 51]]
+  ↳ app/controllers/api/roommemberships_controller.rb:10
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/roommemberships_controller.rb:10
+  Rendering api/roommemberships/index.json.jbuilder
+  [1m[36mRoomMembership Load (0.4ms)[0m  [1m[34mSELECT "room_memberships".* FROM "room_memberships"[0m
+  ↳ app/views/api/roommemberships/index.json.jbuilder:1
+  Rendered api/roommemberships/index.json.jbuilder (4.5ms)
+Completed 200 OK in 20ms (Views: 10.4ms | ActiveRecord: 3.2ms)
+
+
+RoomsChannel#create({"body"=>"Hey Joe whats going on? Wanna go on a hike this weekend?", "room_id"=>51, "user_id"=>8})
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/channels/rooms_channel.rb:30
+  [1m[36mRooms Load (0.4ms)[0m  [1m[34mSELECT  "rooms".* FROM "rooms" WHERE "rooms"."id" = $1 LIMIT $2[0m  [["id", 51], ["LIMIT", 1]]
+  ↳ app/channels/rooms_channel.rb:30
+  [1m[36mMessage Create (3.5ms)[0m  [1m[32mINSERT INTO "messages" ("body", "user_id", "room_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["body", "Hey Joe whats going on? Wanna go on a hike this weekend?"], ["user_id", 8], ["room_id", 51], ["created_at", "2021-05-25 23:04:53.738980"], ["updated_at", "2021-05-25 23:04:53.738980"]]
+  ↳ app/channels/rooms_channel.rb:30
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/channels/rooms_channel.rb:30
+[ActiveJob] Enqueued MessagesBroadcastJob (Job ID: bc63473b-cd0f-4f9b-924c-945750f942a4) to Async(default) with arguments: #<GlobalID:0x00007fe4bd2ae050 @uri=#<URI::GID gid://sofa-boarding/Message/827>>
+  [1m[36mMessage Load (0.4ms)[0m  [1m[34mSELECT  "messages".* FROM "messages" WHERE "messages"."id" = $1 LIMIT $2[0m  [["id", 827], ["LIMIT", 1]]
+  ↳ /Users/Eyal/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.4.2/lib/active_record/log_subscriber.rb:98
+[ActiveJob] [MessagesBroadcastJob] [bc63473b-cd0f-4f9b-924c-945750f942a4] Performing MessagesBroadcastJob (Job ID: bc63473b-cd0f-4f9b-924c-945750f942a4) from Async(default) with arguments: #<GlobalID:0x00007fe4bd298098 @uri=#<URI::GID gid://sofa-boarding/Message/827>>
+[ActiveJob] [MessagesBroadcastJob] [bc63473b-cd0f-4f9b-924c-945750f942a4]   [1m[36mRooms Load (0.5ms)[0m  [1m[34mSELECT  "rooms".* FROM "rooms" WHERE "rooms"."id" = $1 LIMIT $2[0m  [["id", 51], ["LIMIT", 1]]
+[ActiveJob] [MessagesBroadcastJob] [bc63473b-cd0f-4f9b-924c-945750f942a4]   ↳ app/jobs/messages_broadcast_job.rb:5
+[ActiveJob] [MessagesBroadcastJob] [bc63473b-cd0f-4f9b-924c-945750f942a4] [ActionCable] Broadcasting to rooms:Z2lkOi8vc29mYS1ib2FyZGluZy9Sb29tcy81MQ: {:body=>"Hey Joe whats going on? Wanna go on a hike this weekend?", :user_id=>8, :room_id=>51, :created_at=>Tue, 25 May 2021 23:04:53 UTC +00:00, :id=>827}
+[ActiveJob] [MessagesBroadcastJob] [bc63473b-cd0f-4f9b-924c-945750f942a4] Performed MessagesBroadcastJob (Job ID: bc63473b-cd0f-4f9b-924c-945750f942a4) from Async(default) in 3.06ms
+RoomsChannel transmitting {"body"=>"Hey Joe whats going on? Wanna go on a hike this weekend?", "user_id"=>8, "room_id"=>51, "created_at"=>"2021-05-25T23:04:53.738Z", "id"=>827} (via streamed from rooms:Z2lkOi8vc29mYS1ib2FyZGluZy9Sb29tcy81MQ)
+Started DELETE "/api/session" for ::1 at 2021-05-25 16:05:10 -0700
+Processing by Api::SessionsController#destroy as JSON
+Started GET "/api/friendrequests" for ::1 at 2021-05-25 16:05:10 -0700
+Started GET "/api/friendships" for ::1 at 2021-05-25 16:05:10 -0700
+Started GET "/api/profilebio" for ::1 at 2021-05-25 16:05:10 -0700
+Started GET "/api/users" for ::1 at 2021-05-25 16:05:10 -0700
+  [1m[36mUser Load (33.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "KfzP52LWQu2ZcCgbI_BCLA"], ["LIMIT", 1]]
+Processing by Api::FriendrequestsController#index as JSON
+Processing by Api::FriendshipsController#index as JSON
+  ↳ app/controllers/application_controller.rb:11
+Processing by Api::ProfilebioController#index as JSON
+  Rendering api/friendships/index.json.jbuilder
+Processing by Api::UsersController#index as JSON
+  Rendering api/profilebio/index.json.jbuilder
+  Rendering api/friendrequests/index.json.jbuilder
+  [1m[35m (17.0ms)[0m  [1m[35mBEGIN[0m
+  Rendering api/users/index.json.jbuilder
+  [1m[36mFriendship Load (13.1ms)[0m  [1m[34mSELECT "friendships".* FROM "friendships"[0m
+  [1m[36mProfileBio Load (0.6ms)[0m  [1m[34mSELECT "profile_bios".* FROM "profile_bios"[0m
+  ↳ app/views/api/profilebio/index.json.jbuilder:1
+  [1m[36mFriendRequest Load (6.7ms)[0m  [1m[34mSELECT "friend_requests".* FROM "friend_requests"[0m
+  ↳ app/views/api/friendrequests/index.json.jbuilder:1
+  ↳ app/models/user.rb:63
+  Rendered api/profilebio/index.json.jbuilder (12.7ms)
+  ↳ app/views/api/friendships/index.json.jbuilder:1
+  Rendered api/friendships/index.json.jbuilder (38.0ms)
+  Rendered api/friendrequests/index.json.jbuilder (20.0ms)
+Completed 200 OK in 60ms (Views: 53.1ms | ActiveRecord: 6.7ms)
+
+
+  [1m[36mUser Exists (2.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."name" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["name", "asdf"], ["id", 8], ["LIMIT", 1]]
+Completed 200 OK in 56ms (Views: 42.6ms | ActiveRecord: 13.1ms)
+
+
+Completed 200 OK in 40ms (Views: 39.2ms | ActiveRecord: 0.6ms)
+
+
+  [1m[36mUser Load (2.6ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/models/user.rb:63
+  ↳ app/views/api/users/index.json.jbuilder:1
+  [1m[36mUser Exists (2.9ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "asdf@asdf.com"], ["id", 8], ["LIMIT", 1]]
+  ↳ app/models/user.rb:63
+  [1m[36mUser Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["session_token", "HsuqpTYnpcf9rPeP5kguHg"], ["id", 8], ["LIMIT", 1]]
+  ↳ app/models/user.rb:63
+  [1m[36mActiveStorage::Attachment Load (1.0ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 18], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.5ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.9ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mUser Update (8.2ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1 WHERE "users"."id" = $2[0m  [["session_token", "HsuqpTYnpcf9rPeP5kguHg"], ["id", 8]]
+  ↳ app/models/user.rb:63
+  [1m[36mActiveStorage::Blob Load (2.7ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (1.2ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 3], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[35m (8.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:63
+Completed 200 OK in 141ms (Views: 0.3ms | ActiveRecord: 72.4ms)
+
+
+  [1m[36mActiveStorage::Attachment Load (22.5ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (1.8ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 2], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.4ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 5], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 20], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.4ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 17], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 6], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 8], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.9ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 7], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 21], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (3.3ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 18], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 22], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.8ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 19], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (10.6ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 26], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 25], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 25], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 23], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 14], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.4ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 15], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 17], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 16], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.9ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 19], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 16], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 24], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 21], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 23], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 9], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 13], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 11], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 12], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 10], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  Rendered api/users/index.json.jbuilder (176.5ms)
+Completed 200 OK in 198ms (Views: 138.4ms | ActiveRecord: 59.1ms)
+
+
+Started GET "/api/users" for ::1 at 2021-05-25 16:05:10 -0700
+Processing by Api::UsersController#index as JSON
+  Rendering api/users/index.json.jbuilder
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/api/users/index.json.jbuilder:1
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 18], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 3], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.8ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 2], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (8.3ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (1.9ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 5], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 20], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 17], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 6], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 7], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 8], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 21], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 18], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 22], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 19], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 26], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 25], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 25], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 23], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 14], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 15], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (1.2ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 17], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 16], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 19], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 16], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 24], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 21], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (1.1ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 23], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 9], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 13], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (8.4ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.7ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 11], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 12], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (1.2ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 10], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  Rendered api/users/index.json.jbuilder (161.5ms)
+Completed 200 OK in 171ms (Views: 134.8ms | ActiveRecord: 35.5ms)
+
+
+Started POST "/api/session" for ::1 at 2021-05-25 16:05:14 -0700
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"user"=>{"email"=>"1234", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "1234"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:43
+Completed 422 Unprocessable Entity in 2ms (Views: 0.2ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/api/session" for ::1 at 2021-05-25 16:05:15 -0700
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"user"=>{"email"=>"12342", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "12342"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:43
+Completed 422 Unprocessable Entity in 1ms (Views: 0.1ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/api/session" for ::1 at 2021-05-25 16:05:15 -0700
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"user"=>{"email"=>"12342", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "12342"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:43
+Completed 422 Unprocessable Entity in 1ms (Views: 0.2ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/api/session" for ::1 at 2021-05-25 16:05:22 -0700
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"user"=>{"email"=>"1234@1234.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "1234@1234.com"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:43
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:63
+  [1m[36mUser Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."name" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["name", "1234"], ["id", 2], ["LIMIT", 1]]
+  ↳ app/models/user.rb:63
+  [1m[36mUser Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "1234@1234.com"], ["id", 2], ["LIMIT", 1]]
+  ↳ app/models/user.rb:63
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["session_token", "9YNokPHFG3ffvTGXysKfRw"], ["id", 2], ["LIMIT", 1]]
+  ↳ app/models/user.rb:63
+  [1m[36mUser Update (0.6ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1 WHERE "users"."id" = $2[0m  [["session_token", "9YNokPHFG3ffvTGXysKfRw"], ["id", 2]]
+  ↳ app/models/user.rb:63
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:63
+  Rendering api/users/show.json.jbuilder
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 2], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:3
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/api/users/show.json.jbuilder:3
+  Rendered api/users/show.json.jbuilder (4.1ms)
+Completed 200 OK in 274ms (Views: 10.7ms | ActiveRecord: 4.5ms)
+
+
+Started GET "/api/profilebio" for ::1 at 2021-05-25 16:05:23 -0700
+Started GET "/api/friendrequests" for ::1 at 2021-05-25 16:05:23 -0700
+Started GET "/api/users" for ::1 at 2021-05-25 16:05:23 -0700
+Started GET "/api/friendships" for ::1 at 2021-05-25 16:05:23 -0700
+Processing by Api::ProfilebioController#index as JSON
+Processing by Api::FriendrequestsController#index as JSON
+Processing by Api::FriendshipsController#index as JSON
+Processing by Api::UsersController#index as JSON
+  Rendering api/profilebio/index.json.jbuilder
+  Rendering api/friendships/index.json.jbuilder
+  Rendering api/friendrequests/index.json.jbuilder
+  [1m[36mProfileBio Load (15.9ms)[0m  [1m[34mSELECT "profile_bios".* FROM "profile_bios"[0m
+  ↳ app/views/api/profilebio/index.json.jbuilder:1
+  Rendering api/users/index.json.jbuilder
+  Rendered api/profilebio/index.json.jbuilder (29.1ms)
+Completed 200 OK in 50ms (Views: 33.9ms | ActiveRecord: 15.9ms)
+
+
+  [1m[36mFriendRequest Load (24.9ms)[0m  [1m[34mSELECT "friend_requests".* FROM "friend_requests"[0m
+  ↳ app/views/api/friendrequests/index.json.jbuilder:1
+  Rendered api/friendrequests/index.json.jbuilder (34.1ms)
+  [1m[36mUser Load (21.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mFriendship Load (35.6ms)[0m  [1m[34mSELECT "friendships".* FROM "friendships"[0m
+Completed 200 OK in 68ms (Views: 42.7ms | ActiveRecord: 24.9ms)
+
+
+  ↳ app/views/api/users/index.json.jbuilder:1
+  ↳ app/views/api/friendships/index.json.jbuilder:1
+  Rendered api/friendships/index.json.jbuilder (42.2ms)
+Completed 200 OK in 72ms (Views: 36.4ms | ActiveRecord: 35.6ms)
+
+
+  [1m[36mActiveStorage::Attachment Load (6.6ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 18], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (1.3ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 3], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (1.1ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 5], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 20], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 17], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 6], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 7], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 8], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 21], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 18], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 2], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 22], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 19], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 26], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 25], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (15.8ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 25], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.5ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 23], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 14], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.5ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 15], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 17], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 16], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.7ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 19], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 16], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 24], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 21], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 23], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 9], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 13], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 11], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 12], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 10], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  Rendered api/users/index.json.jbuilder (164.0ms)
+Completed 200 OK in 205ms (Views: 146.6ms | ActiveRecord: 58.4ms)
+
+
+Started GET "/" for ::1 at 2021-05-25 16:05:29 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.4ms)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "9YNokPHFG3ffvTGXysKfRw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:11
+  Rendered api/users/_user.json.jbuilder (1.0ms)
+Completed 200 OK in 92ms (Views: 90.9ms | ActiveRecord: 0.5ms)
+
+
+Finished "/cable/" [WebSocket] for ::1 at 2021-05-25 16:05:29 -0700
+RoomsChannel stopped streaming from rooms:Z2lkOi8vc29mYS1ib2FyZGluZy9Sb29tcy81MQ
+Started GET "/api/profilebio" for ::1 at 2021-05-25 16:05:30 -0700
+Processing by Api::ProfilebioController#index as JSON
+Started GET "/api/friendrequests" for ::1 at 2021-05-25 16:05:30 -0700
+  Rendering api/profilebio/index.json.jbuilder
+Started GET "/api/friendships" for ::1 at 2021-05-25 16:05:30 -0700
+Started GET "/api/users" for ::1 at 2021-05-25 16:05:30 -0700
+  [1m[36mProfileBio Load (11.4ms)[0m  [1m[34mSELECT "profile_bios".* FROM "profile_bios"[0m
+  ↳ app/views/api/profilebio/index.json.jbuilder:1
+  Rendered api/profilebio/index.json.jbuilder (16.3ms)
+Completed 200 OK in 34ms (Views: 22.6ms | ActiveRecord: 11.4ms)
+
+
+Processing by Api::UsersController#index as JSON
+  Rendering api/users/index.json.jbuilder
+Processing by Api::FriendshipsController#index as JSON
+  Rendering api/friendships/index.json.jbuilder
+Processing by Api::FriendrequestsController#index as JSON
+  [1m[36mUser Load (14.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/api/users/index.json.jbuilder:1
+  Rendering api/friendrequests/index.json.jbuilder
+  [1m[36mFriendship Load (3.6ms)[0m  [1m[34mSELECT "friendships".* FROM "friendships"[0m
+  ↳ app/views/api/friendships/index.json.jbuilder:1
+  Rendered api/friendships/index.json.jbuilder (24.2ms)
+  [1m[36mFriendRequest Load (1.1ms)[0m  [1m[34mSELECT "friend_requests".* FROM "friend_requests"[0m
+Completed 200 OK in 35ms (Views: 31.3ms | ActiveRecord: 3.6ms)
+
+
+  [1m[36mActiveStorage::Attachment Load (1.7ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 18], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/friendrequests/index.json.jbuilder:1
+  ↳ app/views/api/users/index.json.jbuilder:4
+  Rendered api/friendrequests/index.json.jbuilder (16.7ms)
+Completed 200 OK in 39ms (Views: 37.8ms | ActiveRecord: 1.1ms)
+
+
+  [1m[36mActiveStorage::Blob Load (0.9ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (4.5ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.6ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 3], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 5], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 20], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 17], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 6], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 7], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 8], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 21], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 18], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 2], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.8ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 22], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 19], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 26], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.4ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 25], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (14.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 25], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.7ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 23], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 14], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 15], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.7ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 17], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.9ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 16], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.4ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.7ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 19], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 16], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 24], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 21], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 23], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (1.5ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (1.8ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 9], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 13], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.4ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.6ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 11], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 12], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.6ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 10], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  Rendered api/users/index.json.jbuilder (204.4ms)
+Completed 200 OK in 219ms (Views: 163.8ms | ActiveRecord: 54.5ms)
+
+
+Started GET "/" for ::1 at 2021-05-25 16:07:30 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.6ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "9YNokPHFG3ffvTGXysKfRw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:11
+  Rendered api/users/_user.json.jbuilder (0.7ms)
+Completed 200 OK in 771ms (Views: 769.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/profilebio" for ::1 at 2021-05-25 16:07:32 -0700
+Processing by Api::ProfilebioController#index as JSON
+Started GET "/api/friendrequests" for ::1 at 2021-05-25 16:07:32 -0700
+  Rendering api/profilebio/index.json.jbuilder
+Processing by Api::FriendrequestsController#index as JSON
+Started GET "/api/friendships" for ::1 at 2021-05-25 16:07:32 -0700
+  Rendering api/friendrequests/index.json.jbuilder
+Processing by Api::FriendshipsController#index as JSON
+  Rendering api/friendships/index.json.jbuilder
+Started GET "/api/users" for ::1 at 2021-05-25 16:07:32 -0700
+  [1m[36mFriendship Load (9.2ms)[0m  [1m[34mSELECT "friendships".* FROM "friendships"[0m
+  ↳ app/views/api/friendships/index.json.jbuilder:1
+  Rendered api/friendships/index.json.jbuilder (11.0ms)
+Completed 200 OK in 25ms (Views: 15.5ms | ActiveRecord: 9.2ms)
+
+
+  [1m[36mFriendRequest Load (29.0ms)[0m  [1m[34mSELECT "friend_requests".* FROM "friend_requests"[0m
+  ↳ app/views/api/friendrequests/index.json.jbuilder:1
+  Rendered api/friendrequests/index.json.jbuilder (40.8ms)
+Completed 200 OK in 56ms (Views: 26.6ms | ActiveRecord: 29.0ms)
+
+
+Processing by Api::UsersController#index as JSON
+  Rendering api/users/index.json.jbuilder
+  [1m[36mProfileBio Load (70.5ms)[0m  [1m[34mSELECT "profile_bios".* FROM "profile_bios"[0m
+  ↳ app/views/api/profilebio/index.json.jbuilder:1
+  Rendered api/profilebio/index.json.jbuilder (73.2ms)
+Completed 200 OK in 93ms (Views: 21.8ms | ActiveRecord: 70.5ms)
+
+
+  [1m[36mUser Load (3.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/api/users/index.json.jbuilder:1
+  [1m[36mActiveStorage::Attachment Load (12.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 18], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.4ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.4ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.7ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 3], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.7ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 5], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 20], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.4ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 17], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 6], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 7], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (1.0ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 8], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (1.0ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 21], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 18], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (17.9ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 2], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.9ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 22], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.7ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 19], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (1.1ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 26], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (1.1ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 25], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (4.8ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 25], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (2.7ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 23], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 14], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (2.0ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 15], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.6ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.6ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 17], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.6ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 16], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (10.5ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 19], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.4ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 16], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (3.7ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 24], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.4ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 21], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.8ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 23], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.5ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 9], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (3.4ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 13], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (1.1ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 11], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 12], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 10], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  Rendered api/users/index.json.jbuilder (298.1ms)
+Completed 200 OK in 311ms (Views: 230.0ms | ActiveRecord: 80.6ms)
+
+
+Started GET "/" for ::1 at 2021-05-25 16:09:58 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.4ms)
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "9YNokPHFG3ffvTGXysKfRw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:11
+  Rendered api/users/_user.json.jbuilder (0.4ms)
+Completed 200 OK in 554ms (Views: 553.6ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/api/profilebio" for ::1 at 2021-05-25 16:09:59 -0700
+Processing by Api::ProfilebioController#index as JSON
+  Rendering api/profilebio/index.json.jbuilder
+  [1m[36mProfileBio Load (1.8ms)[0m  [1m[34mSELECT "profile_bios".* FROM "profile_bios"[0m
+  ↳ app/views/api/profilebio/index.json.jbuilder:1
+  Rendered api/profilebio/index.json.jbuilder (5.4ms)
+Started GET "/api/friendrequests" for ::1 at 2021-05-25 16:10:00 -0700
+Completed 200 OK in 59ms (Views: 56.4ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/api/friendships" for ::1 at 2021-05-25 16:10:00 -0700
+Started GET "/api/users" for ::1 at 2021-05-25 16:10:00 -0700
+Processing by Api::UsersController#index as JSON
+Processing by Api::FriendrequestsController#index as JSON
+Processing by Api::FriendshipsController#index as JSON
+  Rendering api/friendrequests/index.json.jbuilder
+  Rendering api/friendships/index.json.jbuilder
+  Rendering api/users/index.json.jbuilder
+  [1m[36mFriendship Load (14.9ms)[0m  [1m[34mSELECT "friendships".* FROM "friendships"[0m
+  ↳ app/views/api/friendships/index.json.jbuilder:1
+  Rendered api/friendships/index.json.jbuilder (18.0ms)
+Completed 200 OK in 50ms (Views: 32.8ms | ActiveRecord: 14.9ms)
+
+
+  [1m[36mFriendRequest Load (89.7ms)[0m  [1m[34mSELECT "friend_requests".* FROM "friend_requests"[0m
+  ↳ app/views/api/friendrequests/index.json.jbuilder:1
+  Rendered api/friendrequests/index.json.jbuilder (97.7ms)
+Completed 200 OK in 124ms (Views: 33.8ms | ActiveRecord: 89.7ms)
+
+
+  [1m[36mUser Load (77.9ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/api/users/index.json.jbuilder:1
+  [1m[36mActiveStorage::Attachment Load (0.9ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 18], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.5ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (4.9ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (8.0ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 3], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (2.9ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 4], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (10.6ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 5], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 20], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.4ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 17], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 6], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.6ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 7], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 8], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.5ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.7ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 21], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.4ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 18], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.6ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 2], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.4ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 22], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.4ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 19], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 26], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.4ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 25], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 25], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.4ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 23], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 14], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 15], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.4ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 17], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (1.2ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.8ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 16], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.4ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 19], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.4ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 16], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (5.0ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 24], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.8ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 21], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 23], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (4.3ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 9], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 13], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (27.6ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 11], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (2.4ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 12], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 10], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/index.json.jbuilder:4
+  Rendered api/users/index.json.jbuilder (295.6ms)
+Completed 200 OK in 356ms (Views: 195.8ms | ActiveRecord: 160.4ms)
+
+

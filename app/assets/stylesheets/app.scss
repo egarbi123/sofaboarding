@@ -10,9 +10,12 @@ body {
 .app {
     display: flex;
     flex-direction: column;
-    min-width: 750px;
-    width: 90%;
+    width: 100%;
     height: 100%;
     margin: auto;
-    overflow: scroll;
+}
+
+.controller {
+    border-left: 20px solid #5a5ac5;
+    border-right: 20px solid #5a5ac5;
 }

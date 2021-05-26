@@ -3047,52 +3047,31 @@ var NavBar = /*#__PURE__*/function (_React$Component) {
     value: function logout(e) {
       e.preventDefault();
       this.props.logout();
-    } // welcome() {
-    //     let name = '"NAME"';
-    //     if (this.props.state.users[this.props.state.session.id] && this.props.state.users[this.props.state.session.id].name) {
-    //         name = this.props.state.users[this.props.state.session.id].name
-    //         return (
-    //             <div className="nav-logo">
-    //                 <p>Welcome, {name}!</p>
-    //             </div>
-    //         )
-    //     } else {
-    //         return (
-    //             <div className="nav-logo">
-    //                 <p>SOFABOARDING</p>
-    //             </div>
-    //         )
-    //     }
-    // }
-
+    }
   }, {
     key: "display",
     value: function display() {
       if (this.props.state.session.id) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "nav-session"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
-          className: "nav-link-list"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
           className: "nav-link",
           to: "/",
           onClick: this.props.logout
-        }, "LOG OUT")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "LOG OUT")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
           className: "nav-link",
           to: "/"
-        }, "HOME"))));
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "HOME")));
       } else {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "nav-session"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
-          className: "nav-link-list"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
           className: "nav-link",
           to: "/signup"
-        }, "SIGN UP")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "SIGN UP")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
           className: "nav-link",
           to: "/login"
-        }, "LOG IN"))));
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "LOG IN")));
       }
     }
   }, {
@@ -3100,8 +3079,9 @@ var NavBar = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "nav"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "nav-logo"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        className: "nav-logo",
+        to: "/"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "SOFABOARDING")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "nav-search"
       }), this.display());
@@ -3825,17 +3805,23 @@ var UserInfo = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "determineBio",
     value: function determineBio() {
-      if (this.props.state.bio) {
-        var bios = this.props.state.bio;
+      var _this2 = this;
+
+      if (Object.values(this.props.state.bio).length) {
+        var bios = Object.values(this.props.state.bio);
         var myId = this.props.state.session.id;
         console.log(bios);
-        console.log(bios[myId].user_bio);
+        bios.map(function (bio) {
+          console.log(bio);
 
-        if (this.state.currentBio !== bios[myId].user_bio) {
-          this.setState({
-            "currentBio": bios[myId].user_bio
-          });
-        }
+          if (bio.user_id === myId) {
+            if (_this2.state.currentBio !== bio.user_bio) {
+              _this2.setState({
+                "currentBio": bio.user_bio
+              });
+            }
+          }
+        });
       }
     }
   }, {
@@ -3903,10 +3889,10 @@ var UserInfo = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "update",
     value: function update(field) {
-      var _this2 = this;
+      var _this3 = this;
 
       return function (e) {
-        return _this2.setState(_defineProperty({}, field, e.currentTarget.value));
+        return _this3.setState(_defineProperty({}, field, e.currentTarget.value));
       };
     }
   }, {

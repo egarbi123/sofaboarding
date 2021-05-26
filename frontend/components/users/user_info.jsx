@@ -24,14 +24,18 @@ class UserInfo extends React.Component {
     }
 
     determineBio() {
-        if (this.props.state.bio) {
-            let bios = this.props.state.bio;
+        if (Object.values(this.props.state.bio).length) {
+            let bios = Object.values(this.props.state.bio);
             let myId = this.props.state.session.id;
             console.log(bios);
-            console.log(bios[myId].user_bio);
-            if (this.state.currentBio !== bios[myId].user_bio) {
-                this.setState({"currentBio": bios[myId].user_bio});
-            }
+            bios.map(bio => {
+                console.log(bio);
+                if (bio.user_id === myId) {
+                    if (this.state.currentBio !== bio.user_bio) {
+                        this.setState({"currentBio": bio.user_bio});
+                    }
+                }
+            })
         }
     }
 
