@@ -46,6 +46,8 @@ class UserInfo extends React.Component {
     }
 
     handleSubmit(e) {
+        console.log('in handleSubmit');
+        this.unshowAddProfilePic();
         e.preventDefault();
         let formData = new FormData();
         formData.append('user[id]', this.props.state.session.id);
@@ -59,28 +61,34 @@ class UserInfo extends React.Component {
         // console.log(this.props.state.users)
         if (Object.values(this.props.state.users).length > 0 && this.props.state.users[this.props.state.session.id] && this.props.state.users[this.props.state.session.id].profilePicUrl) {
             return (
-                <img className="profile-pic" src={this.props.state.users[this.props.state.session.id].profilePicUrl}/>
+                <img onClick={this.showAddProfilePic} className="profile-pic" src={this.props.state.users[this.props.state.session.id].profilePicUrl}/>
             )
         } else {
             return (
-                <img className="profile-pic" src={window.profile_pic} />
+                <img onClick={this.showAddProfilePic} className="profile-pic" src={window.profile_pic}/>
             )
         }
     }
     
+    showAddProfilePic() {
+        document.getElementById("pic-form").style.display = "flex";
+    }
+
+    unshowAddProfilePic() {
+        document.getElementById("pic-form").style.display = "none";
+    }
+
     addProfilePic() {
         return (
-            <form onSubmit={this.handleSubmit}>
-                <div className="pic-form">
+            <form id="pic-form" onSubmit={this.handleSubmit}>
+                <div>
                     <div className="add-image">
-                        Want a new profile picture?
                         <input
                             type="file"
                             className="pic-button"
-                            // style={{ display: 'none' }}
                             onChange={this.handleFile}
                         />
-                        <button className="pic-button">Save Picture</button>
+                        <button className="pic-accept-button"><p>Save new image</p></button>
                     </div>
                 </div>
             </form>
@@ -131,15 +139,17 @@ class UserInfo extends React.Component {
                     </div>
                 </div>
                 <div className="info-name">
-                    <p>Welcome, {name}!</p>
+                    <div className="welcome-message">
+                        <p>Welcome, {name}!</p>
+                    </div>
                     <div>
                         {this.showBio()}
                     </div>
                     <form className="bio-form" onSubmit={this.handleBio}>
-                        <p>Your Bio:</p>
                         <input
+                            id="bio-text"
                             type="text"
-                            value={this.state.userBio}
+                            value="If you would like to change your bio, type it in here!"
                             onChange={this.update("userBio")}
                         />
                         <button className="button">Submit changes</button>

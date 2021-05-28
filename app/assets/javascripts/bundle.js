@@ -3836,6 +3836,8 @@ var UserInfo = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
+      console.log('in handleSubmit');
+      this.unshowAddProfilePic();
       e.preventDefault();
       var formData = new FormData();
       formData.append('user[id]', this.props.state.session.id);
@@ -3853,33 +3855,43 @@ var UserInfo = /*#__PURE__*/function (_React$Component) {
       // console.log(this.props.state.users)
       if (Object.values(this.props.state.users).length > 0 && this.props.state.users[this.props.state.session.id] && this.props.state.users[this.props.state.session.id].profilePicUrl) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          onClick: this.showAddProfilePic,
           className: "profile-pic",
           src: this.props.state.users[this.props.state.session.id].profilePicUrl
         });
       } else {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          onClick: this.showAddProfilePic,
           className: "profile-pic",
           src: window.profile_pic
         });
       }
     }
   }, {
+    key: "showAddProfilePic",
+    value: function showAddProfilePic() {
+      document.getElementById("pic-form").style.display = "flex";
+    }
+  }, {
+    key: "unshowAddProfilePic",
+    value: function unshowAddProfilePic() {
+      document.getElementById("pic-form").style.display = "none";
+    }
+  }, {
     key: "addProfilePic",
     value: function addProfilePic() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        id: "pic-form",
         onSubmit: this.handleSubmit
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "pic-form"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "add-image"
-      }, "Want a new profile picture?", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "file",
-        className: "pic-button" // style={{ display: 'none' }}
-        ,
+        className: "pic-button",
         onChange: this.handleFile
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "pic-button"
-      }, "Save Picture"))));
+        className: "pic-accept-button"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Save new image")))));
     }
   }, {
     key: "showBio",
@@ -3935,12 +3947,15 @@ var UserInfo = /*#__PURE__*/function (_React$Component) {
         className: "photo-container"
       }, this.imageRender(), this.addProfilePic())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "info-name"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Welcome, ", name, "!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.showBio()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "welcome-message"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Welcome, ", name, "!")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.showBio()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         className: "bio-form",
         onSubmit: this.handleBio
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Your Bio:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        id: "bio-text",
         type: "text",
-        value: this.state.userBio,
+        value: "If you would like to change your bio, type it in here!",
         onChange: this.update("userBio")
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "button"
