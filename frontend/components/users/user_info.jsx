@@ -97,7 +97,7 @@ class UserInfo extends React.Component {
 
     showBio() {
         return (
-            <p>BIO: {this.state.currentBio}</p>
+            <p>Your bio: {this.state.currentBio}</p>
         )
     }
 
@@ -140,20 +140,20 @@ class UserInfo extends React.Component {
                 </div>
                 <div className="info-name">
                     <div className="welcome-message">
-                        <p>Welcome, {name}!</p>
+                        <p>Welcome to SofaBoarding, {name}!</p>
                     </div>
-                    <div>
+                    <div className="bio-container">
                         {this.showBio()}
+                        <form className="bio-form" onSubmit={this.handleBio}>
+                            <input
+                                id="bio-text"
+                                type="text"
+                                value="If you would like to change your bio, type it in here!"
+                                onChange={this.update("userBio")}
+                                />
+                            <button className="bio-accept-button">Submit changes</button>
+                        </form>
                     </div>
-                    <form className="bio-form" onSubmit={this.handleBio}>
-                        <input
-                            id="bio-text"
-                            type="text"
-                            value="If you would like to change your bio, type it in here!"
-                            onChange={this.update("userBio")}
-                        />
-                        <button className="button">Submit changes</button>
-                    </form>
                 </div>
             </div>
         )

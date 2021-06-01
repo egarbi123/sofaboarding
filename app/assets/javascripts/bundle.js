@@ -3896,7 +3896,7 @@ var UserInfo = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "showBio",
     value: function showBio() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "BIO: ", this.state.currentBio);
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Your bio: ", this.state.currentBio);
     }
   }, {
     key: "update",
@@ -3949,7 +3949,9 @@ var UserInfo = /*#__PURE__*/function (_React$Component) {
         className: "info-name"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "welcome-message"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Welcome, ", name, "!")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.showBio()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Welcome to SofaBoarding, ", name, "!")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "bio-container"
+      }, this.showBio(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         className: "bio-form",
         onSubmit: this.handleBio
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -3958,8 +3960,8 @@ var UserInfo = /*#__PURE__*/function (_React$Component) {
         value: "If you would like to change your bio, type it in here!",
         onChange: this.update("userBio")
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "button"
-      }, "Submit changes"))));
+        className: "bio-accept-button"
+      }, "Submit changes")))));
     }
   }]);
 
