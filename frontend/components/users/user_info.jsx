@@ -5,7 +5,7 @@ class UserInfo extends React.Component {
         super(props);
         this.state = {
             profile_picture: null,
-            userBio: "",
+            userBio: "Change your bio here",
             currentBio: ""
         };
         this.handleFile = this.handleFile.bind(this);
@@ -102,6 +102,7 @@ class UserInfo extends React.Component {
     }
 
     update(field) {
+        console.log('In Update');
         return e => this.setState({[field]: e.currentTarget.value })
     }
 
@@ -145,10 +146,9 @@ class UserInfo extends React.Component {
                     <div className="bio-container">
                         {this.showBio()}
                         <form className="bio-form" onSubmit={this.handleBio}>
-                            <input
+                            <textarea
                                 id="bio-text"
-                                type="text"
-                                value="If you would like to change your bio, type it in here!"
+                                value={this.state.userBio}
                                 onChange={this.update("userBio")}
                                 />
                             <button className="bio-accept-button">Submit changes</button>

@@ -2,22 +2,43 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 800px;
     font-family: "Trebuchet MS", Helvetica, sans-serif;
 }
 
 .friend-info {
     display: flex;
     flex-direction: row;
-    height: 250px;
-    background-color: burlywood;
+    height: 400px;
 }
 
 .friend-pic {
-    width: 200px;
+    width: 300px;
     justify-content: left;
     margin-left: 25px;
     margin-right: 25px;
 }
 
-.friend-request {}
+.friend-request {
+    display: flex;
+    flex-direction: column;
+}
+
+.request-button:hover {
+    cursor: pointer;
+}
+
+.request-button {
+    border: 1px solid blue;
+    width: 250px;
+    height: 40px;
+    text-align: center;
+    justify-content: center;
+}
+
+.request-button p {
+    margin: auto
+}
+
+.friend-bio {
+    border: 1px solid black;
+}

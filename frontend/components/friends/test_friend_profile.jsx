@@ -5,7 +5,8 @@ class FriendProfile extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            "status": "unknown"
+            "status": "unknown",
+            "bio": ""
         }
         this.friendId = parseInt(this.props.location.pathname.substr(1));
     }
@@ -20,10 +21,12 @@ class FriendProfile extends React.Component {
         if (Object.values(this.props.state.users).length < 2) {
             this.props.fetchUsers();
         }
+        this.props.fetchBio();
     }
 
     componentDidUpdate() {
         this.updateStatus();
+        this.updateBio();
     }
 
     updateStatus() {
@@ -167,20 +170,37 @@ class FriendProfile extends React.Component {
     requestButton() {
         switch (this.state.status) {
             case "friends":
-                return <div onClick={() => this.removeFriend()}>Already Friends: Unfriend</div>;
+                return <div className="request-button" onClick={() => this.removeFriend()}>Already Friends: Unfriend</div>;
             case "iAlreadyRequested":
-                return <div onClick={() => this.deleteFriendRequest()}>Unsend Friend Request</div>;
+                return <div className="request-button" onClick={() => this.deleteFriendRequest()}>Unsend Friend Request</div>;
             case "iAmRequested":
-                return <div onClick={() => this.addFriend()}>Accept Friendship!</div>;
+                return <div className="request-button" onClick={() => this.addFriend()}>Accept Friendship!</div>;
             case "notFriends":
-                return <div onClick={() => this.sendFriendRequest()}>Send Friend Request!</div>;
+                return <div className="request-button" onClick={() => this.sendFriendRequest()}>Send Friend Request!</div>;
             default:
                 return <div>Status unknown!</div>;
 
         }
     }
 
+    updateBio() {
+        Object.values(this.props.state.bio).map(user => {
+            if (user.user_id === this.friendId) {
+                if (user.user_bio !== this.state.bio) {
+                    console.log('setting state!')
+                    this.setState({ "bio": user.user_bio})
+                }
+            }
+        })
+    }
+    showBio() {
+        return (
+            <p>{this.state.bio}</p>
+        )
+    }
+
     render() {
+        console.log(this);
         return (
             <div className="friend-profile">
                 <div className="friend-info">
@@ -191,13 +211,16 @@ class FriendProfile extends React.Component {
                     </div>
                     <div className="friend-request">
                         {this.nameRender()}
-                        {this.requestButton()}
+                        <div className="request-button">
+                            {this.requestButton()}
+                        </div>
+                        {this.showBio()}
                     </div>
                 </div>
-                {<ChatBlockContainer friendId={this.friendId} />}
             </div>
         )
     }
 }
 
 export default FriendProfile;
+{/* <ChatBlockContainer friendId={this.friendId} /> */}
