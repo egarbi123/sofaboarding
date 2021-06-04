@@ -170,7 +170,9 @@ class FriendProfile extends React.Component {
     requestButton() {
         switch (this.state.status) {
             case "friends":
-                return <div className="request-button" onClick={() => this.removeFriend()}>Already Friends: Unfriend</div>;
+                return <div className="request-button" onClick={() => this.removeFriend()}>
+                            Already Friends: Unfriend
+                        </div>;
             case "iAlreadyRequested":
                 return <div className="request-button" onClick={() => this.deleteFriendRequest()}>Unsend Friend Request</div>;
             case "iAmRequested":
