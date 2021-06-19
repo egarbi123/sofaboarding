@@ -1,12 +1,14 @@
 import { connect } from 'react-redux';
 import NewChat from './new_chat';
 import { fetchRooms, makeActiveRoom, clearRoomMessages, createRoom, fetchRoomMemberships, createRoomMembership, deleteRoomMembership } from '../../actions/chat_actions';
+import { fetchUsers } from '../../actions/user_actions'
 
 const mSTP = state => ({
     state: state
 })
 
 const mDTP = dispatch => ({
+    fetchUsers: () => dispatch(fetchUsers()),
     fetchRooms: () => dispatch(fetchRooms()),
     setActiveRoom: (roomId) => dispatch(makeActiveRoom(roomId)),
     clearMessages: () => dispatch(clearRoomMessages()),

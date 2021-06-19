@@ -352,6 +352,7 @@ class FriendProfile extends React.Component {
                         {this.nameRender()}
                         {this.requestButton()}
                     </div>
+                    {<ChatBlockContainer friendId={this.friendId}/>}
                 </div>
             </div>
         )
@@ -359,4 +360,3 @@ class FriendProfile extends React.Component {
 }
 
 export default FriendProfile;
-/* {<ChatBlockContainer friendId={this.friendId}/>} */

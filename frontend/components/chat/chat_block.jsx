@@ -9,6 +9,7 @@ class ChatBlock extends React.Component {
     }
 
     componentDidMount() {
+
     }
 
     showRoom() {
@@ -21,35 +22,21 @@ class ChatBlock extends React.Component {
         }
     }
 
-    // showIndex() {
-    //     if (this.props.friendId) {
-    //         return (
-    //             <NewChatContainer friendId={this.props.friendId} />
-    //         )
-    //     } else {
-    //         return <NewChatContainer />
-    //     }
-    // }
-
     showIndex() {
         if (this.props.friendId) {
             return (
-                <RoomIndexContainer friendId={this.props.friendId} />
+                <NewChatContainer friendId={this.props.friendId} />
             )
         } else {
-            return <RoomIndexContainer />
+            return <NewChatContainer />
         }
     }
 
     render() {
-        // console.log(this);
         return (
             <div className="chatBlock">
                 <div className="roomBlock">
                     {this.showIndex()}
-                </div>
-                <div className="single-room-block">
-                    {this.showRoom()}
                 </div>
             </div>
         )

@@ -78,11 +78,11 @@ class FriendProfile extends React.Component {
     imageRender() {
         if (this.props.state.users[this.props.state.session.friendId] && this.props.state.users[this.props.state.session.friendId].profilePicUrl) {
             return (
-                <img className="profile-pic" src={this.props.state.users[this.props.state.session.friendId].profilePicUrl} />
+                <img className="profile-pic-friend" src={this.props.state.users[this.props.state.session.friendId].profilePicUrl} />
             )
         } else {
             return (
-                <img className="profile-pic" src={window.profile_pic} />
+                <img className="profile-pic-friend" src={window.profile_pic} />
             )
         }
     }
@@ -219,10 +219,10 @@ class FriendProfile extends React.Component {
                         {this.showBio()}
                     </div>
                 </div>
+                <ChatBlockContainer friendId={this.friendId} />
             </div>
         )
     }
 }
 
 export default FriendProfile;
-{/* <ChatBlockContainer friendId={this.friendId} /> */}

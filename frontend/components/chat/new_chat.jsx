@@ -1,5 +1,7 @@
 import React from 'react';
 import MessagesBlock from './messages_block';
+import MessagesAreaContainer from './messages_area_container';
+
 
 class NewChat extends React.Component {
     constructor(props) {
@@ -19,6 +21,9 @@ class NewChat extends React.Component {
         }
         if (Object.values(this.props.state.roomMemberships).length < 1) {
             this.props.fetchRoomMemberships();
+        }
+        if (Object.values(this.props.state.users).length < 2) {
+            this.props.fetchUsers();
         }
     }
 
@@ -166,9 +171,6 @@ class NewChat extends React.Component {
         if (this.props.state.rooms) {
             rooms = Object.values(this.props.state.rooms);
         }
-
-        console.log(this);
-
         return (
             <div className="roomIndex">
                 <h2>Chat Rooms:</h2>
