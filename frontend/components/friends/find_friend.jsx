@@ -1,10 +1,9 @@
 import React from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import FriendCarousel from './friend_carousel_container';
 
 class FindFriends extends React.Component {
     constructor(props) {
         super(props);
-        this.imageRender = this.imageRender.bind(this);
         this.state = {
             "friendsArray": [],
             "acceptFriendsArray": [],
@@ -28,162 +27,38 @@ class FindFriends extends React.Component {
         }
     }
 
-    
-    imageRender(user) {
-        if (user.profilePicUrl) {
-            return (
-                <img className="profile-pic-mid" src={user.profilePicUrl} />
-                )
-            } else {
-            return (
-                <img className="profile-pic-mid" src={window.profile_pic} />
-            )
-        }
-    }
-    
-    setActiveFriend(friendId) {
-        this.props.makeActiveFriend(friendId)
-    }
-
-    displayLabel(label, list) {
-        if (list.length > 0) {
-            return <h3>{label}</h3>
-        }
-    }
-    
     showUsers() {
         let usersArray = Object.values(this.props.state.users);
+        let newFriends = [];
+        usersArray.map((user) => {
+            if (this.state.newFriendsArray.includes(user.id)) {
+                newFriends.push(user);
+            }
+        })
+        let requestedFriends = [];
+        usersArray.map((user) => {
+            if (this.state.alreadyRequestedArray.includes(user.id)) {
+                requestedFriends.push(user);
+            }
+        })
+        let yourFriends = [];
+        usersArray.map((user) => {
+            if (this.state.friendsArray.includes(user.id)) {
+                yourFriends.push(user);
+            }
+        })
+        let acceptFriends = [];
+        usersArray.map((user) => {
+            if (this.state.acceptFriendsArray.includes(user.id)) {
+                acceptFriends.push(user);
+            }
+        })
         return (
             <div className="show-users">
-                <div className="friends-section">
-                    {this.displayLabel('Find New Friends:', this.state.newFriendsArray)}
-                    <ul>
-                        {usersArray.map((user) => {
-                            if (this.state.newFriendsArray.includes(user.id)) {
-                                return (
-                                    <li key={user.id} onClick={() => this.setActiveFriend(user.id)}>
-                                        <Link className="nav-link" to={`/${user.id}`}>
-                                            <div key={user.id} className="med-user-cont">
-                                                <div className="med-image-cont">
-                                                    {this.imageRender(user)}
-                                                </div>
-                                                <p>
-                                                    {user.name}
-                                                </p>
-                                            </div>
-                                        </Link>
-                                    </li>
-                                )
-                            }
-                        }
-                        )}
-                    </ul>
-                </div>
-                <div className="friends-section">
-                    {this.displayLabel('Friend Requests Sent To:', this.state.alreadyRequestedArray)}
-                    <ul>
-                        {usersArray.map((user) => {
-                            if (this.state.alreadyRequestedArray.includes(user.id)) {
-                                return (
-                                    <li key={user.id} onClick={() => this.setActiveFriend(user.id)}>
-                                        <Link className="nav-link" to={`/${user.id}`}>
-                                            <div key={user.id} className="med-user-cont">
-                                                <div className="med-image-cont">
-                                                    {this.imageRender(user)}
-                                                </div>
-                                                <p>
-                                                    {user.name}
-                                                </p>
-                                            </div>
-                                        </Link>
-                                    </li>
-                                )
-                            }
-                        }
-                        )}
-                    </ul>
-                </div>
-                
-                <div className="friends-section">
-                    {this.displayLabel('Your Friends:', this.state.friendsArray)}
-                    <ul>
-                        {usersArray.map((user) => {
-                            if (this.state.friendsArray.includes(user.id)) {
-                                return (
-                                    <li key={user.id} onClick={() => this.setActiveFriend(user.id)}>
-                                        <Link className="nav-link" to={`/${user.id}`}>
-                                            <div key={user.id} className="med-user-cont">
-                                                <div className="med-image-cont">
-                                                    {this.imageRender(user)}
-                                                </div>
-                                                <p>
-                                                    {user.name}
-                                                </p>
-                                            </div>
-                                        </Link>
-                                    </li>
-                                )
-                            }
-                        }
-                        )}
-                    </ul>
-                </div>
-                <div className="friends-section">
-                    {this.displayLabel('Friend Request received from:', this.state.acceptFriendsArray)}
-                    <ul>
-                        {usersArray.map((user) => {
-                            if (this.state.acceptFriendsArray.includes(user.id)) {
-                                return (
-                                    <li key={user.id} onClick={() => this.setActiveFriend(user.id)}>
-                                        <Link className="nav-link" to={`/${user.id}`}>
-                                            <div key={user.id} className="med-user-cont">
-                                                <div className="med-image-cont">
-                                                    {this.imageRender(user)}
-                                                </div>
-                                                <p>
-                                                    {user.name}
-                                                </p>
-                                            </div>
-                                        </Link>
-                                    </li>
-                                )
-                            }
-                        }
-                        )}
-                    </ul>
-                </div>
-                {/* <div className="friends-section">
-                    <h3>Friend requests already sent to:</h3>
-                    <ul>
-                        {usersArray.map(
-                            (user) => {
-                                if (this.state.alreadyRequestedArray.includes(user.id)) {
-                                    let requestId = 0;
-                                    let friendId = 0;
-                                    for (let i = 0; i < requestsArray.length; i++) {
-                                        if (requestsArray[i].receiver_id === user.id && requestsArray[i].requestor_id === this.props.state.session.id) {
-                                            requestId = requestsArray[i].id;
-                                            friendId = requestsArray[i].receiver_id;
-                                            
-                                        }
-                                    }
-                                    return (
-                                        <li key={user.id} onClick={() => this.deleteFriendRequest(requestId, friendId)}>
-                                            <div key={user.id} className="small-user-container">
-                                            <div className="small-image-container">
-                                                    {this.imageRender(user)}
-                                                    </div>
-                                                <p>
-                                                {user.name}
-                                                </p>
-                                            </div>
-                                        </li>
-                                        )
-                                }
-                            }
-                        )}
-                        </ul>
-                </div> */}
+                <FriendCarousel friendsList={newFriends} label="Find New Friends"/>
+                <FriendCarousel friendsList={requestedFriends} label="Friend Requests Already Send To"/>
+                <FriendCarousel friendsList={yourFriends} label="Your Friends"/>
+                <FriendCarousel friendsList={acceptFriends} label="You Have Received Friend Requests"/>
             </div>
         )
     }
@@ -201,73 +76,3 @@ class FindFriends extends React.Component {
 }
 
 export default FindFriends;
-
-
-// sendRequest(friendId) {
-//     let myId = this.props.state.session.id;
-//     let friendInteger = parseInt(friendId);
-//     let object = {
-//         requestor_id: myId,
-//         receiver_id: friendInteger
-//     }
-//     this.props.sendFriendRequest(object);
-//     let newNewFriendsArray = [];
-//     for (let i = 0; i < this.state.newFriendsArray.length; i++) {
-//         if (this.state.newFriendsArray[i] !== friendId) {
-//             newNewFriendsArray.push(this.state.newFriendsArray[i]);
-//         }
-//     }
-//     let newAlreadyRequestedArray = [];
-//     for (let i = 0; i < this.state.alreadyRequestedArray.length; i++) {
-//         newAlreadyRequestedArray.push(this.state.alreadyRequestedArray[i]);
-//     }
-//     newAlreadyRequestedArray.push(friendId);
-//     this.setState({
-//         'alreadyRequestedArray': newAlreadyRequestedArray,
-//         'newFriendsArray': newNewFriendsArray
-//     })
-// }
-
-// deleteFriendRequest(id, friendId) {
-//     this.props.deleteFriendRequest(id);
-//     let newAlreadyRequestedArray = [];
-//     for (let i = 0; i < this.state.alreadyRequestedArray.length; i++) {
-//         if (this.state.alreadyRequestedArray[i] !== friendId) {
-//             newAlreadyRequestedArray.push(this.state.alreadyRequestedArray[i]);
-//         }
-//     }
-//     let newNewFriendsArray = [];
-//     for (let i = 0; i < this.state.newFriendsArray.length; i++) {
-//         newNewFriendsArray.push(this.state.newFriendsArray[i]);
-//     }
-//     newNewFriendsArray.push(friendId);
-//     this.setState({
-//         'alreadyRequestedArray': newAlreadyRequestedArray,
-//         'newFriendsArray': newNewFriendsArray
-//     })
-// }
-
-// addFriend(friendId) {
-//     let myId = this.props.state.session.id;
-//     let friendInteger = parseInt(friendId);
-//     let object = {
-//         user_id: myId,
-//         friend_id: friendInteger
-//     }
-//     this.props.createFriendship(object);
-//     let newFriendsList = [];
-//     for (let i = 0; i < this.state.friendsArray; i++) {
-//         newFriendsList.push(this.state.friendsArray[i]);
-//     }
-//     newFriendsList.push(friendId);
-//     let newAcceptFriendsList = [];
-//     for (let i = 0; i < this.state.acceptFriendsArray.length; i++) {
-//         if (this.state.acceptFriendsArray[i] !== friendId) {
-//             newAcceptFriendsList.push(this.state.acceptFriendsArray[i])
-//         }
-//     }
-//     this.setState({
-//         'friendsArray': newFriendsList,
-//         'acceptFriendsArray': newAcceptFriendsList
-//     })
-// }

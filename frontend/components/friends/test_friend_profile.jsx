@@ -202,6 +202,7 @@ class FriendProfile extends React.Component {
     }
 
     render() {
+        console.log('IN TEST FRIEND PROFILE!!!')
         console.log(this);
         return (
             <div className="friend-profile">

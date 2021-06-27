@@ -2323,7 +2323,7 @@ var mDTP = function mDTP(dispatch) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _friend_carousel_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./friend_carousel_container */ "./frontend/components/friends/friend_carousel_container.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2360,7 +2360,6 @@ var FindFriends = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, FindFriends);
 
     _this = _super.call(this, props);
-    _this.imageRender = _this.imageRender.bind(_assertThisInitialized(_this));
     _this.state = {
       "friendsArray": [],
       "acceptFriendsArray": [],
@@ -2398,117 +2397,50 @@ var FindFriends = /*#__PURE__*/function (_React$Component) {
       }
     }
   }, {
-    key: "imageRender",
-    value: function imageRender(user) {
-      if (user.profilePicUrl) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-          className: "profile-pic-mid",
-          src: user.profilePicUrl
-        });
-      } else {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-          className: "profile-pic-mid",
-          src: window.profile_pic
-        });
-      }
-    }
-  }, {
-    key: "setActiveFriend",
-    value: function setActiveFriend(friendId) {
-      this.props.makeActiveFriend(friendId);
-    }
-  }, {
-    key: "displayLabel",
-    value: function displayLabel(label, list) {
-      if (list.length > 0) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, label);
-      }
-    }
-  }, {
     key: "showUsers",
     value: function showUsers() {
       var _this2 = this;
 
       var usersArray = Object.values(this.props.state.users);
+      var newFriends = [];
+      usersArray.map(function (user) {
+        if (_this2.state.newFriendsArray.includes(user.id)) {
+          newFriends.push(user);
+        }
+      });
+      var requestedFriends = [];
+      usersArray.map(function (user) {
+        if (_this2.state.alreadyRequestedArray.includes(user.id)) {
+          requestedFriends.push(user);
+        }
+      });
+      var yourFriends = [];
+      usersArray.map(function (user) {
+        if (_this2.state.friendsArray.includes(user.id)) {
+          yourFriends.push(user);
+        }
+      });
+      var acceptFriends = [];
+      usersArray.map(function (user) {
+        if (_this2.state.acceptFriendsArray.includes(user.id)) {
+          acceptFriends.push(user);
+        }
+      });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "show-users"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "friends-section"
-      }, this.displayLabel('Find New Friends:', this.state.newFriendsArray), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, usersArray.map(function (user) {
-        if (_this2.state.newFriendsArray.includes(user.id)) {
-          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-            key: user.id,
-            onClick: function onClick() {
-              return _this2.setActiveFriend(user.id);
-            }
-          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-            className: "nav-link",
-            to: "/".concat(user.id)
-          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-            key: user.id,
-            className: "med-user-cont"
-          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-            className: "med-image-cont"
-          }, _this2.imageRender(user)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, user.name))));
-        }
-      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "friends-section"
-      }, this.displayLabel('Friend Requests Sent To:', this.state.alreadyRequestedArray), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, usersArray.map(function (user) {
-        if (_this2.state.alreadyRequestedArray.includes(user.id)) {
-          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-            key: user.id,
-            onClick: function onClick() {
-              return _this2.setActiveFriend(user.id);
-            }
-          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-            className: "nav-link",
-            to: "/".concat(user.id)
-          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-            key: user.id,
-            className: "med-user-cont"
-          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-            className: "med-image-cont"
-          }, _this2.imageRender(user)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, user.name))));
-        }
-      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "friends-section"
-      }, this.displayLabel('Your Friends:', this.state.friendsArray), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, usersArray.map(function (user) {
-        if (_this2.state.friendsArray.includes(user.id)) {
-          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-            key: user.id,
-            onClick: function onClick() {
-              return _this2.setActiveFriend(user.id);
-            }
-          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-            className: "nav-link",
-            to: "/".concat(user.id)
-          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-            key: user.id,
-            className: "med-user-cont"
-          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-            className: "med-image-cont"
-          }, _this2.imageRender(user)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, user.name))));
-        }
-      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "friends-section"
-      }, this.displayLabel('Friend Request received from:', this.state.acceptFriendsArray), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, usersArray.map(function (user) {
-        if (_this2.state.acceptFriendsArray.includes(user.id)) {
-          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-            key: user.id,
-            onClick: function onClick() {
-              return _this2.setActiveFriend(user.id);
-            }
-          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-            className: "nav-link",
-            to: "/".concat(user.id)
-          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-            key: user.id,
-            className: "med-user-cont"
-          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-            className: "med-image-cont"
-          }, _this2.imageRender(user)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, user.name))));
-        }
-      }))));
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_friend_carousel_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        friendsList: newFriends,
+        label: "Find New Friends"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_friend_carousel_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        friendsList: requestedFriends,
+        label: "Friend Requests Already Send To"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_friend_carousel_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        friendsList: yourFriends,
+        label: "Your Friends"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_friend_carousel_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        friendsList: acceptFriends,
+        label: "You Have Received Friend Requests"
+      }));
     }
   }, {
     key: "render",
@@ -2526,72 +2458,7 @@ var FindFriends = /*#__PURE__*/function (_React$Component) {
   return FindFriends;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (FindFriends); // sendRequest(friendId) {
-//     let myId = this.props.state.session.id;
-//     let friendInteger = parseInt(friendId);
-//     let object = {
-//         requestor_id: myId,
-//         receiver_id: friendInteger
-//     }
-//     this.props.sendFriendRequest(object);
-//     let newNewFriendsArray = [];
-//     for (let i = 0; i < this.state.newFriendsArray.length; i++) {
-//         if (this.state.newFriendsArray[i] !== friendId) {
-//             newNewFriendsArray.push(this.state.newFriendsArray[i]);
-//         }
-//     }
-//     let newAlreadyRequestedArray = [];
-//     for (let i = 0; i < this.state.alreadyRequestedArray.length; i++) {
-//         newAlreadyRequestedArray.push(this.state.alreadyRequestedArray[i]);
-//     }
-//     newAlreadyRequestedArray.push(friendId);
-//     this.setState({
-//         'alreadyRequestedArray': newAlreadyRequestedArray,
-//         'newFriendsArray': newNewFriendsArray
-//     })
-// }
-// deleteFriendRequest(id, friendId) {
-//     this.props.deleteFriendRequest(id);
-//     let newAlreadyRequestedArray = [];
-//     for (let i = 0; i < this.state.alreadyRequestedArray.length; i++) {
-//         if (this.state.alreadyRequestedArray[i] !== friendId) {
-//             newAlreadyRequestedArray.push(this.state.alreadyRequestedArray[i]);
-//         }
-//     }
-//     let newNewFriendsArray = [];
-//     for (let i = 0; i < this.state.newFriendsArray.length; i++) {
-//         newNewFriendsArray.push(this.state.newFriendsArray[i]);
-//     }
-//     newNewFriendsArray.push(friendId);
-//     this.setState({
-//         'alreadyRequestedArray': newAlreadyRequestedArray,
-//         'newFriendsArray': newNewFriendsArray
-//     })
-// }
-// addFriend(friendId) {
-//     let myId = this.props.state.session.id;
-//     let friendInteger = parseInt(friendId);
-//     let object = {
-//         user_id: myId,
-//         friend_id: friendInteger
-//     }
-//     this.props.createFriendship(object);
-//     let newFriendsList = [];
-//     for (let i = 0; i < this.state.friendsArray; i++) {
-//         newFriendsList.push(this.state.friendsArray[i]);
-//     }
-//     newFriendsList.push(friendId);
-//     let newAcceptFriendsList = [];
-//     for (let i = 0; i < this.state.acceptFriendsArray.length; i++) {
-//         if (this.state.acceptFriendsArray[i] !== friendId) {
-//             newAcceptFriendsList.push(this.state.acceptFriendsArray[i])
-//         }
-//     }
-//     this.setState({
-//         'friendsArray': newFriendsList,
-//         'acceptFriendsArray': newAcceptFriendsList
-//     })
-// }
+/* harmony default export */ __webpack_exports__["default"] = (FindFriends);
 
 /***/ }),
 
@@ -2641,6 +2508,213 @@ var mDTP = function mDTP(dispatch) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_find_friend__WEBPACK_IMPORTED_MODULE_1__["default"]));
+
+/***/ }),
+
+/***/ "./frontend/components/friends/friend_carousel.jsx":
+/*!*********************************************************!*\
+  !*** ./frontend/components/friends/friend_carousel.jsx ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+var FriendCarousel = /*#__PURE__*/function (_React$Component) {
+  _inherits(FriendCarousel, _React$Component);
+
+  var _super = _createSuper(FriendCarousel);
+
+  function FriendCarousel(props) {
+    var _this;
+
+    _classCallCheck(this, FriendCarousel);
+
+    _this = _super.call(this, props);
+    _this.state = {
+      start: 3
+    };
+    return _this;
+  }
+
+  _createClass(FriendCarousel, [{
+    key: "imageRender",
+    value: function imageRender(user) {
+      if (user.profilePicUrl) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          className: "profile-pic-mid",
+          src: user.profilePicUrl
+        });
+      } else {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          className: "profile-pic-mid",
+          src: window.profile_pic
+        });
+      }
+    }
+  }, {
+    key: "setActiveFriend",
+    value: function setActiveFriend(friendId) {
+      this.props.makeActiveFriend(friendId);
+    }
+  }, {
+    key: "clickLeft",
+    value: function clickLeft() {
+      if (this.state.start > 3) {
+        this.setState({
+          start: this.state.start - 3
+        });
+      }
+    }
+  }, {
+    key: "clickRight",
+    value: function clickRight() {
+      if (this.state.start <= this.props.friendsList.length - 3) {
+        this.setState({
+          start: this.state.start + 3
+        });
+      }
+    }
+  }, {
+    key: "showCarousel",
+    value: function showCarousel() {
+      var _this2 = this;
+
+      var list = this.props.friendsList;
+      var start = this.state.start;
+      var display = [];
+
+      for (var i = start - 3; i < start; i++) {
+        display.push(list[i]);
+      }
+
+      if (display.length > 1 && display[0] !== undefined) {
+        return display.map(function (user) {
+          if (user !== undefined) {
+            return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+              key: user.id,
+              onClick: function onClick() {
+                return _this2.setActiveFriend(user.id);
+              }
+            }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+              className: "nav-link",
+              to: "/".concat(user.id)
+            }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+              key: user.id,
+              className: "med-user-cont"
+            }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+              className: "med-image-cont"
+            }, _this2.imageRender(user)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, user.name))));
+          }
+        });
+      }
+
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Almost with you ;)");
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this3 = this;
+
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "friends-section"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, this.props.label), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "carousel"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "buttonLeft",
+        onClick: function onClick() {
+          return _this3.clickLeft();
+        }
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.showCarousel()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "buttonRight",
+        onClick: function onClick() {
+          return _this3.clickRight();
+        }
+      })));
+    }
+  }]);
+
+  return FriendCarousel;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (FriendCarousel);
+
+/***/ }),
+
+/***/ "./frontend/components/friends/friend_carousel_container.jsx":
+/*!*******************************************************************!*\
+  !*** ./frontend/components/friends/friend_carousel_container.jsx ***!
+  \*******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _friend_carousel__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./friend_carousel */ "./frontend/components/friends/friend_carousel.jsx");
+/* harmony import */ var _actions_friendship_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/friendship_actions */ "./frontend/actions/friendship_actions.js");
+
+
+
+
+var mSTP = function mSTP(state) {
+  return {
+    state: state
+  };
+};
+
+var mDTP = function mDTP(dispatch) {
+  return {
+    sendFriendRequest: function sendFriendRequest(friendRequest) {
+      return dispatch(Object(_actions_friendship_actions__WEBPACK_IMPORTED_MODULE_2__["sendFriendRequest"])(friendRequest));
+    },
+    createFriendship: function createFriendship(friendship) {
+      return dispatch(Object(_actions_friendship_actions__WEBPACK_IMPORTED_MODULE_2__["createFriendship"])(friendship));
+    },
+    deleteFriendRequest: function deleteFriendRequest(requestId) {
+      return dispatch(Object(_actions_friendship_actions__WEBPACK_IMPORTED_MODULE_2__["deleteFriendRequest"])(requestId));
+    },
+    fetchAllRequests: function fetchAllRequests() {
+      return dispatch(Object(_actions_friendship_actions__WEBPACK_IMPORTED_MODULE_2__["fetchAllRequests"])());
+    },
+    fetchAllFriendships: function fetchAllFriendships() {
+      return dispatch(Object(_actions_friendship_actions__WEBPACK_IMPORTED_MODULE_2__["fetchAllFriendships"])());
+    },
+    makeActiveFriend: function makeActiveFriend(friendId) {
+      return dispatch(Object(_actions_friendship_actions__WEBPACK_IMPORTED_MODULE_2__["makeActiveFriend"])(friendId));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_friend_carousel__WEBPACK_IMPORTED_MODULE_1__["default"]));
 
 /***/ }),
 
@@ -3017,6 +3091,7 @@ var FriendProfile = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      console.log('IN TEST FRIEND PROFILE!!!');
       console.log(this);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "friend-profile"
@@ -3866,10 +3941,7 @@ var UserInfo = /*#__PURE__*/function (_React$Component) {
       if (Object.values(this.props.state.bio).length) {
         var bios = Object.values(this.props.state.bio);
         var myId = this.props.state.session.id;
-        console.log(bios);
         bios.map(function (bio) {
-          console.log(bio);
-
           if (bio.user_id === myId) {
             if (_this2.state.currentBio !== bio.user_bio) {
               _this2.setState({
@@ -3892,7 +3964,6 @@ var UserInfo = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
-      console.log('in handleSubmit');
       this.unshowAddProfilePic();
       e.preventDefault();
       var formData = new FormData();
@@ -3908,7 +3979,6 @@ var UserInfo = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "imageRender",
     value: function imageRender() {
-      // console.log(this.props.state.users)
       if (Object.values(this.props.state.users).length > 0 && this.props.state.users[this.props.state.session.id] && this.props.state.users[this.props.state.session.id].profilePicUrl) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
           onClick: this.showAddProfilePic,
@@ -3959,7 +4029,6 @@ var UserInfo = /*#__PURE__*/function (_React$Component) {
     value: function update(field) {
       var _this3 = this;
 
-      console.log('In Update');
       return function (e) {
         return _this3.setState(_defineProperty({}, field, e.currentTarget.value));
       };
@@ -3968,15 +4037,13 @@ var UserInfo = /*#__PURE__*/function (_React$Component) {
     key: "handleBio",
     value: function handleBio(e) {
       e.preventDefault();
-      console.log('SUBMIT');
       var object = {};
       object['user_id'] = this.props.state.session.id;
       object['user_bio'] = this.state.userBio;
 
       if (this.props.state.bio[this.props.state.session.id]) {
         object['id'] = this.props.state.bio[this.props.state.session.id].id;
-      } // console.log(object);
-
+      }
 
       if (this.state.currentBio) {
         console.log('IN IF STATEMENT');
@@ -3988,13 +4055,11 @@ var UserInfo = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      console.log(this);
       var name = "NAME";
 
       if (Object.values(this.props.state.users).length > 0 && this.props.state.users[this.props.state.session.id] && this.props.state.users[this.props.state.session.id].name) {
         name = this.props.state.users[this.props.state.session.id].name;
-      } // console.log( name, this);
-
+      }
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "user-info"

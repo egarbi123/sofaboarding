@@ -27,9 +27,7 @@ class UserInfo extends React.Component {
         if (Object.values(this.props.state.bio).length) {
             let bios = Object.values(this.props.state.bio);
             let myId = this.props.state.session.id;
-            console.log(bios);
             bios.map(bio => {
-                console.log(bio);
                 if (bio.user_id === myId) {
                     if (this.state.currentBio !== bio.user_bio) {
                         this.setState({"currentBio": bio.user_bio});
@@ -46,7 +44,6 @@ class UserInfo extends React.Component {
     }
 
     handleSubmit(e) {
-        console.log('in handleSubmit');
         this.unshowAddProfilePic();
         e.preventDefault();
         let formData = new FormData();
@@ -58,7 +55,6 @@ class UserInfo extends React.Component {
     }
 
     imageRender() {
-        // console.log(this.props.state.users)
         if (Object.values(this.props.state.users).length > 0 && this.props.state.users[this.props.state.session.id] && this.props.state.users[this.props.state.session.id].profilePicUrl) {
             return (
                 <img onClick={this.showAddProfilePic} className="profile-pic" src={this.props.state.users[this.props.state.session.id].profilePicUrl}/>
@@ -102,20 +98,17 @@ class UserInfo extends React.Component {
     }
 
     update(field) {
-        console.log('In Update');
         return e => this.setState({[field]: e.currentTarget.value })
     }
 
     handleBio(e) {
         e.preventDefault();
-        console.log('SUBMIT')
         let object = {}
         object['user_id'] = this.props.state.session.id;
         object['user_bio'] = this.state.userBio;
         if (this.props.state.bio[this.props.state.session.id]) {
             object['id'] = this.props.state.bio[this.props.state.session.id].id
         }
-        // console.log(object);
         if (this.state.currentBio) {
             console.log('IN IF STATEMENT')
             this.props.updateBio(object);
@@ -125,12 +118,10 @@ class UserInfo extends React.Component {
     }
 
     render() {
-        console.log(this);
         let name = "NAME"
         if (Object.values(this.props.state.users).length > 0 && this.props.state.users[this.props.state.session.id] && this.props.state.users[this.props.state.session.id].name) {
             name = this.props.state.users[this.props.state.session.id].name
         }
-        // console.log( name, this);
         return (
             <div className="user-info">
                 <div className="info-pic">

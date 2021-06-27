@@ -12,7 +12,6 @@
     height: 400px;
     width: 100%;
     justify-content: center;
-    // overflow: scroll;
 }
 
 .friends-section h3 {
@@ -25,7 +24,6 @@
     padding-left: none;
     display: flex;
     flex-direction: row;
-    overflow: scroll;
 }
 
 .friends-section ul li {
@@ -70,4 +68,33 @@
     width: 150px;
     height: 150px;
     border-radius: 5px;
+}
+
+.carousel {
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    margin: auto;
+}
+
+.buttonLeft {
+    width: 50px;
+    height: 300px;
+    background-color: gray;
+    margin: auto;
+}
+
+.buttonLeft:hover {
+    cursor: pointer;
+}
+
+.buttonRight:hover {
+    cursor: pointer;
+}
+
+.buttonRight {
+    width: 50px;
+    height: 300px;
+    background-color: gray;
+    margin: auto;
 }
