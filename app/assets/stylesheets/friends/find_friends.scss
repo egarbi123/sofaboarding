@@ -11,7 +11,6 @@
 .friends-section {
     height: 400px;
     width: 100%;
-    justify-content: center;
 }
 
 .friends-section h3 {
@@ -21,13 +20,14 @@
 .friends-section ul {
     list-style: none;
     height: 300px;
-    padding-left: none;
+    padding: unset;
+    margin: unset;
     display: flex;
     flex-direction: row;
 }
 
 .friends-section ul li {
-    padding-right: 25px;
+    padding-right: 20px;
 }
 
 .small-user-cont {
@@ -50,6 +50,7 @@
     background-color: rgb(214, 191, 235);
     display: flex;
     flex-direction: column;
+    border-radius: 20px;
 }
 
 .med-user-cont p {
@@ -75,13 +76,18 @@
     flex-direction: row;
     width: 90%;
     margin: auto;
+    justify-content: center;
 }
 
 .buttonLeft {
     width: 50px;
-    height: 300px;
-    background-color: gray;
-    margin: auto;
+    height: 200px;
+    background-color: antiquewhite;
+    border: 1px solid gray;
+    margin-right: 25px;
+    margin-top: 66px;
+    border-radius: 10px;
+    content: ' \276E';
 }
 
 .buttonLeft:hover {
@@ -94,7 +100,19 @@
 
 .buttonRight {
     width: 50px;
-    height: 300px;
-    background-color: gray;
-    margin: auto;
+    height: 200px;
+    background-color: antiquewhite;
+    border: 1px solid gray;
+    margin-top: 66px;
+    border-radius: 10px;
+}
+
+.buttonLeft:active {
+    transform: scale(0.98);
+    box-shadow: 2px 1px 10px 1px grayscale($color: #bdb7b7);
+}
+
+.buttonRight:active {
+    transform: scale(0.98);
+    box-shadow: 2px 1px 10px 1px grayscale($color: #bdb7b7);
 }

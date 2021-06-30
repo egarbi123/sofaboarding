@@ -4,7 +4,7 @@ body {
 
 #root {
     display: flex;
-    background-color: #e6ffff
+    background-color: aliceblue;
 }
 
 .app {
@@ -15,7 +15,4 @@ body {
     margin: auto;
 }
 
-.controller {
-    border-left: 20px solid #5a5ac5;
-    border-right: 20px solid #5a5ac5;
-}
+.controller {}

@@ -93,7 +93,7 @@ class UserInfo extends React.Component {
 
     showBio() {
         return (
-            <p>Your bio: {this.state.currentBio}</p>
+            <p>Bio: {this.state.currentBio}</p>
         )
     }
 

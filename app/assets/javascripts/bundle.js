@@ -4022,7 +4022,7 @@ var UserInfo = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "showBio",
     value: function showBio() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Your bio: ", this.state.currentBio);
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Bio: ", this.state.currentBio);
     }
   }, {
     key: "update",
