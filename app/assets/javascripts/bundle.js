@@ -2429,17 +2429,17 @@ var FindFriends = /*#__PURE__*/function (_React$Component) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "show-users"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_friend_carousel_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        friendsList: newFriends,
-        label: "Find New Friends"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_friend_carousel_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        friendsList: requestedFriends,
-        label: "Friend Requests Already Send To"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_friend_carousel_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
         friendsList: yourFriends,
-        label: "Your Friends"
+        label: "Friends"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_friend_carousel_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
         friendsList: acceptFriends,
-        label: "You Have Received Friend Requests"
+        label: "Requests"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_friend_carousel_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        friendsList: requestedFriends,
+        label: "You Requested"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_friend_carousel_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        friendsList: newFriends,
+        label: "Find New Friends"
       }));
     }
   }, {
@@ -2644,21 +2644,25 @@ var FriendCarousel = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this3 = this;
 
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "friends-section"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, this.props.label), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "carousel"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "buttonLeft",
-        onClick: function onClick() {
-          return _this3.clickLeft();
-        }
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.showCarousel()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "buttonRight",
-        onClick: function onClick() {
-          return _this3.clickRight();
-        }
-      })));
+      if (this.props.friendsList.length < 1) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null);
+      } else {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "friends-section"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, this.props.label), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "carousel"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "buttonLeft",
+          onClick: function onClick() {
+            return _this3.clickLeft();
+          }
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.showCarousel()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "buttonRight",
+          onClick: function onClick() {
+            return _this3.clickRight();
+          }
+        })));
+      }
     }
   }]);
 
