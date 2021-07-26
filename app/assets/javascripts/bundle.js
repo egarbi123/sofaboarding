@@ -1589,9 +1589,12 @@ var NewChat = /*#__PURE__*/function (_React$Component) {
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "roomIndex"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Chat Rooms:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "room-index-cont"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Your chats"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "roomBox"
       }, this.mapRooms(rooms, this.handleClick, this.state.roomIds), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        className: "room-form",
         onSubmit: this.handleSubmit
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         className: "room-input",
@@ -1601,7 +1604,7 @@ var NewChat = /*#__PURE__*/function (_React$Component) {
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "submit",
         className: "chat-btn"
-      }, "CREATE"))), this.showRoom());
+      }, "CREATE")))), this.showRoom());
     }
   }]);
 
@@ -2432,14 +2435,14 @@ var FindFriends = /*#__PURE__*/function (_React$Component) {
         friendsList: yourFriends,
         label: "Friends"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_friend_carousel_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        friendsList: newFriends,
+        label: "Find New Friends"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_friend_carousel_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
         friendsList: acceptFriends,
         label: "Requests"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_friend_carousel_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
         friendsList: requestedFriends,
         label: "You Requested"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_friend_carousel_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        friendsList: newFriends,
-        label: "Find New Friends"
       }));
     }
   }, {
@@ -3917,7 +3920,8 @@ var UserInfo = /*#__PURE__*/function (_React$Component) {
     _this.state = {
       profile_picture: null,
       userBio: "Change your bio here",
-      currentBio: ""
+      currentBio: "",
+      placeholder: "Type new bio here..."
     };
     _this.handleFile = _this.handleFile.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
@@ -4081,9 +4085,10 @@ var UserInfo = /*#__PURE__*/function (_React$Component) {
         className: "bio-form",
         onSubmit: this.handleBio
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
-        id: "bio-text",
-        value: this.state.userBio,
-        onChange: this.update("userBio")
+        id: "bio-text" // value={this.state.userBio}
+        ,
+        onChange: this.update("userBio"),
+        placeholder: this.state.placeholder
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "bio-accept-button"
       }, "Submit changes")))));

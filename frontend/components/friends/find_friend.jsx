@@ -56,9 +56,9 @@ class FindFriends extends React.Component {
         return (
             <div className="show-users">
                 <FriendCarousel friendsList={yourFriends} label="Friends"/>
+                <FriendCarousel friendsList={newFriends} label="Find New Friends"/>
                 <FriendCarousel friendsList={acceptFriends} label="Requests"/>
                 <FriendCarousel friendsList={requestedFriends} label="You Requested"/>
-                <FriendCarousel friendsList={newFriends} label="Find New Friends"/>
             </div>
         )
     }

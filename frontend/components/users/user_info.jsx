@@ -6,7 +6,8 @@ class UserInfo extends React.Component {
         this.state = {
             profile_picture: null,
             userBio: "Change your bio here",
-            currentBio: ""
+            currentBio: "",
+            placeholder: "Type new bio here..."
         };
         this.handleFile = this.handleFile.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -139,8 +140,9 @@ class UserInfo extends React.Component {
                         <form className="bio-form" onSubmit={this.handleBio}>
                             <textarea
                                 id="bio-text"
-                                value={this.state.userBio}
+                                // value={this.state.userBio}
                                 onChange={this.update("userBio")}
+                                placeholder={this.state.placeholder}
                                 />
                             <button className="bio-accept-button">Submit changes</button>
                         </form>

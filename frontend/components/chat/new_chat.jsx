@@ -173,17 +173,19 @@ class NewChat extends React.Component {
         }
         return (
             <div className="roomIndex">
-                <h2>Chat Rooms:</h2>
-                <div className="roomBox">
-                    {this.mapRooms(rooms, this.handleClick, this.state.roomIds)}
-                    <form onSubmit={this.handleSubmit}>
-                        <input className="room-input"
-                            type="text"
-                            value={this.state.title}
-                            onChange={this.update('title')}
-                        />
-                        <button type='submit' className='chat-btn'>CREATE</button>
-                    </form>
+                <div className="room-index-cont">
+                    <h2>Your chats</h2>
+                    <div className="roomBox">
+                        {this.mapRooms(rooms, this.handleClick, this.state.roomIds)}
+                        <form className="room-form" onSubmit={this.handleSubmit}>
+                            <input className="room-input"
+                                type="text"
+                                value={this.state.title}
+                                onChange={this.update('title')}
+                            />
+                            <button type='submit' className='chat-btn'>CREATE</button>
+                        </form>
+                    </div>
                 </div>
                 {this.showRoom()}
             </div>
