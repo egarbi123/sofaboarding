@@ -1182,11 +1182,11 @@ var MessagesArea = /*#__PURE__*/function (_React$Component) {
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "messageArea"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, this.props.state.rooms[this.props.activeRoom].title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "messageRoom"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "messageBox"
-      }, this.mapMessages(messages)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, this.props.formtype), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+      }, this.mapMessages(messages)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: this.handleSubmit
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
@@ -1507,7 +1507,9 @@ var NewChat = /*#__PURE__*/function (_React$Component) {
               return handleClick(room.id);
             },
             key: room.id
-          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, room.title));
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "room-name"
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, room.title)));
         }
       });
     }
@@ -1536,6 +1538,7 @@ var NewChat = /*#__PURE__*/function (_React$Component) {
 
       return friendsInRoom.map(function (friend) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "room-user pointer",
           key: friend.id,
           onClick: function onClick() {
             return _this4.addFriendToRoom(friend.id);
@@ -1565,9 +1568,23 @@ var NewChat = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "showControls",
     value: function showControls() {
+      var _this6 = this;
+
+      var chatters = [];
+      var memberships = Object.values(this.props.state.roomMemberships);
+      memberships.map(function (member) {
+        if (member.room_id === _this6.props.state.session.activeRoom) {
+          chatters.push(_this6.props.state.users[member.user_id].name);
+        }
+      });
+      console.log(chatters);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "room-controls"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, this.props.state.rooms[this.props.state.session.activeRoom].title, " Controls:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Invite a friend:"), this.showFriends(), this.removeFromRoom());
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, this.props.state.rooms[this.props.state.session.activeRoom].title, " controls"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "current users"), chatters.map(function (names) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "room-user"
+        }, names);
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Invite a friend to this chat"), this.showFriends(), this.removeFromRoom());
     }
   }, {
     key: "showRoom",
@@ -1593,7 +1610,7 @@ var NewChat = /*#__PURE__*/function (_React$Component) {
         className: "room-index-cont"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Your chats"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "roomBox"
-      }, this.mapRooms(rooms, this.handleClick, this.state.roomIds), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+      }, this.mapRooms(rooms, this.handleClick, this.state.roomIds)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         className: "room-form",
         onSubmit: this.handleSubmit
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -1604,7 +1621,7 @@ var NewChat = /*#__PURE__*/function (_React$Component) {
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "submit",
         className: "chat-btn"
-      }, "CREATE")))), this.showRoom());
+      }, "CREATE"))), this.showRoom());
     }
   }]);
 
@@ -2649,6 +2666,12 @@ var FriendCarousel = /*#__PURE__*/function (_React$Component) {
 
       if (this.props.friendsList.length < 1) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null);
+      } else if (this.props.friendsList.length < 4) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "friends-section"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, this.props.label), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "carousel"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.showCarousel())));
       } else {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "friends-section"
@@ -2659,12 +2682,16 @@ var FriendCarousel = /*#__PURE__*/function (_React$Component) {
           onClick: function onClick() {
             return _this3.clickLeft();
           }
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.showCarousel()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+          "class": "arrow left"
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.showCarousel()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "buttonRight",
           onClick: function onClick() {
             return _this3.clickRight();
           }
-        })));
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+          "class": "arrow right"
+        }))));
       }
     }
   }]);

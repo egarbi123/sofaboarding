@@ -101,9 +101,11 @@ class NewChat extends React.Component {
             if (room && roomIds.includes(room.id)) {
                 return (
                     <div className="room" onClick={() => handleClick(room.id)} key={room.id}>
-                        <p>
-                            {room.title}
-                        </p>
+                        <div className="room-name">
+                            <p>
+                                {room.title}
+                            </p>
+                        </div>
                     </div>
                 )
             }
@@ -127,7 +129,7 @@ class NewChat extends React.Component {
             }
         }
         return friendsInRoom.map(friend => {
-            return (<div key={friend.id} onClick={() => this.addFriendToRoom(friend.id)} >{friend.name}</div>)
+            return (<div className="room-user pointer" key={friend.id} onClick={() => this.addFriendToRoom(friend.id)} >{friend.name}</div>)
         })
     }
 
@@ -145,10 +147,21 @@ class NewChat extends React.Component {
     }
 
     showControls() {
+        let chatters = [];
+        let memberships = Object.values(this.props.state.roomMemberships);
+        memberships.map(member => {
+            if (member.room_id === this.props.state.session.activeRoom) {
+                chatters.push(this.props.state.users[member.user_id].name);
+            }
+        })
+        console.log(chatters);
+
         return (
             <div className="room-controls">
-                <h2>{this.props.state.rooms[this.props.state.session.activeRoom].title} Controls:</h2>
-                <p>Invite a friend:</p>
+                <h2>{this.props.state.rooms[this.props.state.session.activeRoom].title} controls</h2>
+                <p>current users</p>
+                {chatters.map((names) => (<div className="room-user">{names}</div>))}
+                <p>Invite a friend to this chat</p>
                 {this.showFriends()}
                 {this.removeFromRoom()}
             </div>
@@ -177,15 +190,15 @@ class NewChat extends React.Component {
                     <h2>Your chats</h2>
                     <div className="roomBox">
                         {this.mapRooms(rooms, this.handleClick, this.state.roomIds)}
-                        <form className="room-form" onSubmit={this.handleSubmit}>
-                            <input className="room-input"
-                                type="text"
-                                value={this.state.title}
-                                onChange={this.update('title')}
-                            />
-                            <button type='submit' className='chat-btn'>CREATE</button>
-                        </form>
                     </div>
+                    <form className="room-form" onSubmit={this.handleSubmit}>
+                        <input className="room-input"
+                            type="text"
+                            value={this.state.title}
+                            onChange={this.update('title')}
+                        />
+                        <button type='submit' className='chat-btn'>CREATE</button>
+                    </form>
                 </div>
                 {this.showRoom()}
             </div>

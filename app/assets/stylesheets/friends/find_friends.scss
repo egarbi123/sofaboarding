@@ -33,7 +33,7 @@
 .small-user-cont {
     width: 300px;
     height: 50px;
-    background-color: rgb(214, 191, 235);
+    background-color: rgb(136, 176, 230);
     display: flex;
     flex-direction: row;
 }
@@ -51,7 +51,8 @@
 .med-user-cont {
     width: 200px;
     height: 300px;
-    background-color: rgb(214, 191, 235);
+    background-color: rgb(176, 203, 238);
+    // border: 1px solid rgb(129, 128, 128);
     display: flex;
     flex-direction: column;
     border-radius: 20px;
@@ -85,13 +86,14 @@
 
 .buttonLeft {
     width: 50px;
-    height: 200px;
+    height: 50px;
     background-color: antiquewhite;
-    border: 1px solid gray;
+    border: 1px solid black;
     margin-right: 25px;
-    margin-top: 66px;
+    margin-top: 124px;
     border-radius: 10px;
-    content: ' \276E';
+    text-align: center;
+    justify-content: center;
 }
 
 .buttonLeft:hover {
@@ -102,13 +104,34 @@
     cursor: pointer;
 }
 
+.arrow {
+    border: solid black;
+    border-width: 0 5px 5px 0;
+    display: inline-block;
+    padding: 2px;
+    margin-top: 21px;
+}
+
+.right {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+}
+
+.left {
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+}
+
 .buttonRight {
     width: 50px;
-    height: 200px;
+    height: 50px;
     background-color: antiquewhite;
-    border: 1px solid gray;
-    margin-top: 66px;
+    border: 1px solid black;
+    margin-right: 30px;
+    margin-top: 124px;
     border-radius: 10px;
+    text-align: center;
+    justify-content: center;
 }
 
 .buttonLeft:active {

@@ -71,16 +71,27 @@ class FriendCarousel extends React.Component {
     render() {
         if (this.props.friendsList.length < 1) {
             return (<div></div>)
+        } else if (this.props.friendsList.length < 4) {
+            return (
+                <div className="friends-section">
+                    <h3>{this.props.label}</h3>
+                    <div className="carousel">
+                        <ul>
+                            {this.showCarousel()}
+                        </ul>
+                    </div>
+                </div>
+            )
         } else {
             return (
                 <div className="friends-section">
                     <h3>{this.props.label}</h3>
                     <div className="carousel">
-                        <div className="buttonLeft" onClick={() => this.clickLeft() }></div>
+                        <div className="buttonLeft" onClick={() => this.clickLeft()}><i class="arrow left"></i></div>
                         <ul>
                             {this.showCarousel()}
                         </ul>
-                        <div className="buttonRight" onClick={() => this.clickRight() }></div>
+                        <div className="buttonRight" onClick={() => this.clickRight()}><i class="arrow right"></i></div>
                     </div>
                 </div>
             )

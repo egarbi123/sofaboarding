@@ -1,12 +1,13 @@
 .sign {
     display: flex;
     flex-direction: column;
-    background-color: #ffb3f2;
+    background-color: #cee8f7;
     width: 500px;
     height: 300px;
     margin: auto;
     margin-top: 50px;
     margin-bottom: 100px;
+    border-radius: 40px;
 }
 
 .sign p {

@@ -13,37 +13,38 @@
 .messageArea {
     text-align: center;
     justify-content: center;
-    width: 300px;
+    width: 350px;
     margin: auto;
 }
 
 .messageRoom form {
     display: flex;
     flex-direction: row;
-    position: absolute;
-    bottom: 0px;
 }
 
 .messageRoom form input {
-    width: 152px;
+    width: 202px;
+    border-radius: 5px;
 }
 
 .messageRoom {
-    width: 250px;
+    width: 300px;
     min-height: 300px;
-    position: relative;
-    border: 1px solid black;
+    // border: 1px solid black;
     margin: auto;
+    display: flex;
+    flex-direction: column;
 }
 
 .messageBox {
-    max-height: 300px;
+    height: 300px;
     overflow: scroll;
     border: 1px solid black;
+    border-radius: 3px;
 }
 
 .message {
-    width: 250px;
+    width: 300px;
     margin: auto;
     height: 45px;
     display: flex;
@@ -52,7 +53,7 @@
 }
 
 .my-message {
-    width: 250px;
+    width: 300px;
     margin: auto;
     height: 45px;
     display: flex;
@@ -64,11 +65,12 @@
 .chat-pic {
     height: 40px;
     width: 40px;
-    border-radius: 2px;
+    border-radius: 20px;
 }
 
 .chat-pic-container {
     width: 40px;
     height: 40px;
     margin: 2.5px 5px 2.5px 2.5px;
+    border-radius: 2px;
 }
