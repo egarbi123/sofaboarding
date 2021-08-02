@@ -3070,7 +3070,7 @@ var FriendProfile = /*#__PURE__*/function (_React$Component) {
             onClick: function onClick() {
               return _this2.removeFriend();
             }
-          }, "Already Friends: Unfriend");
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Already Friends: Unfriend"));
 
         case "iAlreadyRequested":
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3078,7 +3078,7 @@ var FriendProfile = /*#__PURE__*/function (_React$Component) {
             onClick: function onClick() {
               return _this2.deleteFriendRequest();
             }
-          }, "Unsend Friend Request");
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Unsend Friend Request"));
 
         case "iAmRequested":
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3086,7 +3086,7 @@ var FriendProfile = /*#__PURE__*/function (_React$Component) {
             onClick: function onClick() {
               return _this2.addFriend();
             }
-          }, "Accept Friendship!");
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Accept Friendship!"));
 
         case "notFriends":
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3094,7 +3094,7 @@ var FriendProfile = /*#__PURE__*/function (_React$Component) {
             onClick: function onClick() {
               return _this2.sendFriendRequest();
             }
-          }, "Send Friend Request!");
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Send Friend Request!"));
 
         default:
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Status unknown!");

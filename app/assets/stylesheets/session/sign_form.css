@@ -8,6 +8,7 @@
     margin-top: 50px;
     margin-bottom: 100px;
     border-radius: 40px;
+    font-family: Helvetica, sans-serif;
 }
 
 .sign p {
@@ -17,6 +18,10 @@
 .sign-form {
     display: flex;
     flex-direction: column;
+}
+
+.sign-form button {
+    margin: auto;
 }
 
 .sign_form p {
@@ -31,12 +36,13 @@
 }
 
 .row p {
-    width: 50%;
-    text-align: center;
+    width: 150px;
+    text-align: right;
+    margin-right: 5px;
 }
 
 .row input {
-    width: 50%;
+    width: 200px;
     height: 22px;
     margin-top: 10px;
 }

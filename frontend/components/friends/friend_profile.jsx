@@ -185,38 +185,6 @@ class FriendProfile extends React.Component {
             })
         }
         this.props.fetchAllRequests();
-        // console.log('this:', this);
-        // let propstateRequests = this.state.friendRequests;
-        // console.log(propstateRequests);
-        // let requestId = 0;
-        // let requestor_id = 0;
-        // let receiver_id = 0;
-        // let request_id = 0;
-        // for (let i = 0; i < propstateRequests.length; i++) {
-        //     requestor_id = propstateRequests[i].requestor_id;
-        //     receiver_id = propstateRequests[i].receiver_id
-        //     request_id = propstateRequests[i].id
-        //     console.log('CDC', requestor_id, receiver_id)
-        //     if (requestor_id === this.props.state.session.id && receiver_id === this.friendId) {
-        //         console.log('made it')
-        //         requestId = request_id;
-        //     }
-        // }
-        // console.log(requestId);
-        // if (requestId !== 0 && requestId !== undefined) {
-        //     console.log('REQUEST SENT')
-        //     this.props.deleteFriendRequest(requestId);
-        //     let newRequests = [];
-        // let requests = this.state.friendRequests
-        // for (let i = 0; i < requests.length; i++) {
-        //     if (requests[i].id !== requestId) {
-        //         newRequests.push(requests[i]);
-        //     }
-        // }
-        //     console.log('NEWREQUESTS:', newRequests);
-        //     console.log('OLDREQUESTS:', requests);
-        //     this.setState({'friendRequests': newRequests})
-        // }
     }
 
 
@@ -268,7 +236,7 @@ class FriendProfile extends React.Component {
         console.log(requestId);
         // this.props.deleteFriendRequest(requestId);
 
-        // grap myId and FriendId, addFriendship
+        // grab myId and FriendId, addFriendship
         let object = {
             'user_id': myId,
             'friend_id': friendId
@@ -325,15 +293,15 @@ class FriendProfile extends React.Component {
 
         switch (this.state.status) {
             case "friends":
-                return <div onClick={() => this.removeFriend()}>Already Friends: Unfriend</div>;
+                return <div onClick={() => this.removeFriend()}><p>Already Friends: Unfriend</p></div>;
             case "iAlreadyRequested":
-                return <div onClick={() => this.deleteFriendRequest()}>Unsend Friend Request</div>;
+                return <div onClick={() => this.deleteFriendRequest()}><p>Unsend Friend Request</p></div>;
             case "iAmRequested":
-                return <div onClick={() => this.addFriend()}>Accept Friendship!</div>;
+                return <div onClick={() => this.addFriend()}><p>Accept Friendship!</p></div>;
             case "notFriends":
-                return <div onClick={() => this.sendFriendRequest()}>Send Friend Request!</div>;
+                return <div onClick={() => this.sendFriendRequest()}><p>Send Friend Request!</p></div>;
             default:
-                return <div onClick={() => this.sendFriendRequest()}>Send Friend Request!</div>;
+                return <div onClick={() => this.sendFriendRequest()}><p>Send Friend Request!</p></div>;
             
         }
     }
