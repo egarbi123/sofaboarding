@@ -5,7 +5,7 @@ class UserInfo extends React.Component {
         super(props);
         this.state = {
             profile_picture: null,
-            userBio: "Change your bio here",
+            userBio: "Sorry, I do not have a bio right now.",
             currentBio: "",
             placeholder: "Type new bio here..."
         };
@@ -85,7 +85,7 @@ class UserInfo extends React.Component {
                             className="pic-button"
                             onChange={this.handleFile}
                         />
-                        <button className="pic-accept-button"><p>Save new image</p></button>
+                        <button className="pic-accept-button">Save new image</button>
                     </div>
                 </div>
             </form>

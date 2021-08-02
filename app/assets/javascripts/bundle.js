@@ -3946,7 +3946,7 @@ var UserInfo = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.state = {
       profile_picture: null,
-      userBio: "Change your bio here",
+      userBio: "Sorry, I do not have a bio right now.",
       currentBio: "",
       placeholder: "Type new bio here..."
     };
@@ -4052,7 +4052,7 @@ var UserInfo = /*#__PURE__*/function (_React$Component) {
         onChange: this.handleFile
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "pic-accept-button"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Save new image")))));
+      }, "Save new image"))));
     }
   }, {
     key: "showBio",
