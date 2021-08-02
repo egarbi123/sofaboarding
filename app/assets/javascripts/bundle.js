@@ -2456,10 +2456,10 @@ var FindFriends = /*#__PURE__*/function (_React$Component) {
         label: "Find New Friends"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_friend_carousel_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
         friendsList: acceptFriends,
-        label: "Requests"
+        label: "Requests Received"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_friend_carousel_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
         friendsList: requestedFriends,
-        label: "You Requested"
+        label: "Requests Sent"
       }));
     }
   }, {

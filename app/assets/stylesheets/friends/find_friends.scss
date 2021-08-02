@@ -58,6 +58,10 @@
     border-radius: 20px;
 }
 
+.med-user-cont:hover {
+    border: 1px solid black;
+}
+
 .med-user-cont p {
     text-align: center;
     font-size: larger;
@@ -88,7 +92,7 @@
     width: 50px;
     height: 50px;
     background-color: antiquewhite;
-    border: 1px solid black;
+    // border: 1px solid black;
     margin-right: 25px;
     margin-top: 124px;
     border-radius: 10px;
@@ -98,15 +102,17 @@
 
 .buttonLeft:hover {
     cursor: pointer;
+    border: 1px solid black;
 }
 
 .buttonRight:hover {
     cursor: pointer;
+    border: 1px solid black;
 }
 
 .arrow {
     border: solid black;
-    border-width: 0 5px 5px 0;
+    border-width: 0 3px 3px 0;
     display: inline-block;
     padding: 2px;
     margin-top: 21px;
@@ -126,7 +132,7 @@
     width: 50px;
     height: 50px;
     background-color: antiquewhite;
-    border: 1px solid black;
+    // border: 1px solid black;
     margin-right: 30px;
     margin-top: 124px;
     border-radius: 10px;
