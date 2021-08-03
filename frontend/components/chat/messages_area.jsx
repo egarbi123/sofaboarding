@@ -67,7 +67,6 @@ class MessagesArea extends React.Component {
                     room_id: currentRoomId,
                     user_id: currentUserId
                 });
-                console.log(this);
             }
         });
     }
@@ -94,8 +93,6 @@ class MessagesArea extends React.Component {
         return messages.map(message => {
             let user = this.props.state.users[message.user_id];
             if (user !== undefined && user.id !== this.props.state.session.id) {
-                // console.log(message);
-                console.log(message.created_at);
                 return (
                     <div className="my-message" key={message.id}>
                         <div className="chat-pic-container">

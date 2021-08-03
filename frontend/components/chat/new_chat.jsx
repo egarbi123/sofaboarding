@@ -101,8 +101,8 @@ class NewChat extends React.Component {
             if (room && roomIds.includes(room.id)) {
                 return (
                     <div className="room" key={room.id}>
-                        <div className="room-name" onClick={() => handleClick(room.id)}>
-                            <p>
+                        <div className="room-name" key={room.id} onClick={() => handleClick(room.id)}>
+                            <p key={room.id}>
                                 {room.title}
                             </p>
                         </div>
@@ -154,13 +154,11 @@ class NewChat extends React.Component {
                 chatters.push(this.props.state.users[member.user_id].name);
             }
         })
-        console.log(chatters);
-
         return (
             <div className="room-controls">
                 {/* <h2>{this.props.state.rooms[this.props.state.session.activeRoom].title} controls</h2> */}
                 <h4>Chat Participants</h4>
-                {chatters.map((names) => (<div className="room-user">{names}</div>))}
+                {chatters.map((names) => (<div className="room-user" key={names}>{names}</div>))}
                 <h4>Invite To This Chat</h4>
                 {this.showFriends()}
                 {this.removeFromRoom()}

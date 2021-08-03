@@ -515,7 +515,6 @@ var receiveBio = function receiveBio(bio) {
 
 var createBio = function createBio(bio) {
   return function (dispatch) {
-    console.log(bio);
     return _util_user_api_util__WEBPACK_IMPORTED_MODULE_0__["createBio"](bio).then(function (bio) {
       return dispatch(receiveBio(bio));
     });
@@ -523,7 +522,6 @@ var createBio = function createBio(bio) {
 };
 var fetchBio = function fetchBio(bio) {
   return function (dispatch) {
-    console.log(bio);
     return _util_user_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchBio"](bio).then(function (bio) {
       return dispatch(receiveBio(bio));
     });
@@ -531,7 +529,6 @@ var fetchBio = function fetchBio(bio) {
 };
 var updateBio = function updateBio(data) {
   return function (dispatch) {
-    console.log(data);
     return _util_user_api_util__WEBPACK_IMPORTED_MODULE_0__["updateBio"](data).then(function (bio) {
       return dispatch(receiveBio(bio));
     });
@@ -1113,7 +1110,6 @@ var MessagesArea = /*#__PURE__*/function (_React$Component) {
             room_id: currentRoomId,
             user_id: currentUserId
           });
-          console.log(this);
         }
       });
     }
@@ -1148,8 +1144,6 @@ var MessagesArea = /*#__PURE__*/function (_React$Component) {
         var user = _this4.props.state.users[message.user_id];
 
         if (user !== undefined && user.id !== _this4.props.state.session.id) {
-          // console.log(message);
-          console.log(message.created_at);
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             className: "my-message",
             key: message.id
@@ -1512,10 +1506,13 @@ var NewChat = /*#__PURE__*/function (_React$Component) {
             key: room.id
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             className: "room-name",
+            key: room.id,
             onClick: function onClick() {
               return handleClick(room.id);
             }
-          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, room.title)));
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+            key: room.id
+          }, room.title)));
         }
       });
     }
@@ -1583,12 +1580,12 @@ var NewChat = /*#__PURE__*/function (_React$Component) {
           chatters.push(_this6.props.state.users[member.user_id].name);
         }
       });
-      console.log(chatters);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "room-controls"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Chat Participants"), chatters.map(function (names) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "room-user"
+          className: "room-user",
+          key: names
         }, names);
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Invite To This Chat"), this.showFriends(), this.removeFromRoom());
     }
@@ -2689,14 +2686,14 @@ var FriendCarousel = /*#__PURE__*/function (_React$Component) {
             return _this3.clickLeft();
           }
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-          "class": "arrow left"
+          className: "arrow left"
         })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.showCarousel()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "buttonRight",
           onClick: function onClick() {
             return _this3.clickRight();
           }
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-          "class": "arrow right"
+          className: "arrow right"
         }))));
       }
     }
@@ -3114,8 +3111,6 @@ var FriendProfile = /*#__PURE__*/function (_React$Component) {
       Object.values(this.props.state.bio).map(function (user) {
         if (user.user_id === _this3.friendId) {
           if (user.user_bio !== _this3.state.bio) {
-            console.log('setting state!');
-
             _this3.setState({
               "bio": user.user_bio
             });
@@ -3131,8 +3126,6 @@ var FriendProfile = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      console.log('IN TEST FRIEND PROFILE!!!');
-      console.log(this);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "friend-profile"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3392,7 +3385,6 @@ var Splash = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      console.log(this);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "splash"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {

@@ -26,19 +26,16 @@ const receiveBio = bio => ({
 })
 
 export const createBio = (bio) => dispatch => {
-    console.log(bio)
     return UserApiUtil.createBio(bio)
         .then(bio => dispatch(receiveBio(bio)))
 }
 
 export const fetchBio = (bio) => dispatch => {
-    console.log(bio)
     return UserApiUtil.fetchBio(bio)
         .then((bio) => dispatch(receiveBio(bio)))
 }
 
 export const updateBio = data => dispatch => {
-    console.log(data);
     return UserApiUtil.updateBio(data)
         .then(bio => dispatch(receiveBio(bio)))
 }

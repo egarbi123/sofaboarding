@@ -189,7 +189,6 @@ class FriendProfile extends React.Component {
         Object.values(this.props.state.bio).map(user => {
             if (user.user_id === this.friendId) {
                 if (user.user_bio !== this.state.bio) {
-                    console.log('setting state!')
                     this.setState({ "bio": user.user_bio})
                 }
             }
@@ -202,8 +201,6 @@ class FriendProfile extends React.Component {
     }
 
     render() {
-        console.log('IN TEST FRIEND PROFILE!!!')
-        console.log(this);
         return (
             <div className="friend-profile">
                 <div className="friend-info">

@@ -87,11 +87,11 @@ class FriendCarousel extends React.Component {
                 <div className="friends-section">
                     <h3>{this.props.label}</h3>
                     <div className="carousel">
-                        <div className="buttonLeft" onClick={() => this.clickLeft()}><i class="arrow left"></i></div>
+                        <div className="buttonLeft" onClick={() => this.clickLeft()}><i className="arrow left"></i></div>
                         <ul>
                             {this.showCarousel()}
                         </ul>
-                        <div className="buttonRight" onClick={() => this.clickRight()}><i class="arrow right"></i></div>
+                        <div className="buttonRight" onClick={() => this.clickRight()}><i className="arrow right"></i></div>
                     </div>
                 </div>
             )
