@@ -142,7 +142,7 @@ class NewChat extends React.Component {
             }
         })
         return (
-            <div className="chat-btn" onClick={() => this.props.deleteRoomMembership(myMembership)}>LEAVE ROOM</div>
+            <div className="chat-leave-btn" onClick={() => this.props.deleteRoomMembership(myMembership)}>LEAVE ROOM</div>
         )
     }
 
@@ -158,10 +158,10 @@ class NewChat extends React.Component {
 
         return (
             <div className="room-controls">
-                <h2>{this.props.state.rooms[this.props.state.session.activeRoom].title} controls</h2>
-                <p>current users</p>
+                {/* <h2>{this.props.state.rooms[this.props.state.session.activeRoom].title} controls</h2> */}
+                <h4>Chat Participants</h4>
                 {chatters.map((names) => (<div className="room-user">{names}</div>))}
-                <p>Invite a friend to this chat</p>
+                <h4>Invite To This Chat</h4>
                 {this.showFriends()}
                 {this.removeFromRoom()}
             </div>
@@ -187,7 +187,7 @@ class NewChat extends React.Component {
         return (
             <div className="roomIndex">
                 <div className="room-index-cont">
-                    <h2>Your chats</h2>
+                    <h2>Chat Rooms</h2>
                     <div className="roomBox">
                         {this.mapRooms(rooms, this.handleClick, this.state.roomIds)}
                     </div>

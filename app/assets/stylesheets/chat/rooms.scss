@@ -93,8 +93,9 @@
 .room-controls {
     top: 25px;
     width: 200px;
-    height: 270px;
+    height: 320px;
     text-align: center;
+    justify-content: center;
     margin-top: 50px;
 }
 
@@ -103,14 +104,12 @@
     position: absolute;
 }
 
-.room-controls .chat-btn {
-    position: relative;
-    left: 20px;
-}
-
 .room-user {
-    margin: 0px 2px 0px 0px;
+    width: 120px;
+    margin-bottom: 3px;
+    margin-left: 40px;
     border-radius: 3px;
+    background-color: rgb(205, 230, 231);
 }
 
 .pointer:hover {
@@ -126,4 +125,21 @@
     // min-width: 90px;
     // max-width: 150px;
     cursor: pointer;
+}
+
+.chat-leave-btn {
+    background-color: rgb(247, 138, 138);
+    border-radius: 5px;
+    padding: 5px 5px;
+    font-size: 12px;
+    width: 120px;
+    // min-width: 90px;
+    // max-width: 150px;
+    cursor: pointer;
+    margin-top: 50px;
+    margin-left: 35px;
+}
+
+.chat-leave-btn:hover {
+    background-color: rgb(243, 106, 106);
 }

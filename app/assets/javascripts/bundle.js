@@ -1559,7 +1559,7 @@ var NewChat = /*#__PURE__*/function (_React$Component) {
         }
       });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "chat-btn",
+        className: "chat-leave-btn",
         onClick: function onClick() {
           return _this5.props.deleteRoomMembership(myMembership);
         }
@@ -1580,11 +1580,11 @@ var NewChat = /*#__PURE__*/function (_React$Component) {
       console.log(chatters);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "room-controls"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, this.props.state.rooms[this.props.state.session.activeRoom].title, " controls"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "current users"), chatters.map(function (names) {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Chat Participants"), chatters.map(function (names) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "room-user"
         }, names);
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Invite a friend to this chat"), this.showFriends(), this.removeFromRoom());
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Invite To This Chat"), this.showFriends(), this.removeFromRoom());
     }
   }, {
     key: "showRoom",
@@ -1608,7 +1608,7 @@ var NewChat = /*#__PURE__*/function (_React$Component) {
         className: "roomIndex"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "room-index-cont"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Your chats"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Chat Rooms"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "roomBox"
       }, this.mapRooms(rooms, this.handleClick, this.state.roomIds)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         className: "room-form",
