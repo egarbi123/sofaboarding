@@ -94,13 +94,16 @@ class MessagesArea extends React.Component {
         return messages.map(message => {
             let user = this.props.state.users[message.user_id];
             if (user !== undefined && user.id !== this.props.state.session.id) {
+                // console.log(message);
+                console.log(message.created_at);
                 return (
                     <div className="my-message" key={message.id}>
                         <div className="chat-pic-container">
                             {this.imageRender(user.id)}
                         </div>
-                        <p className="bold-text">{this.props.state.users[message.user_id].name}:</p>
-                        <p>{message.body}</p>
+                        <p className="chat-name">{this.props.state.users[message.user_id].name}:</p>
+                        <p className="my-chat-msg">{message.body}</p>
+                        {/* <p className="chat-time">{message.created_at}</p> */}
                     </div>
                 )
             } else if (user !== undefined && typeof user.id === 'number') {
@@ -109,7 +112,7 @@ class MessagesArea extends React.Component {
                         <div className="chat-pic-container">
                             {this.imageRender(user.id)}
                         </div>
-                        <p>{message.body}</p>
+                        <p className="chat-msg">{message.body}</p>
                     </div>
                 )
             } else {

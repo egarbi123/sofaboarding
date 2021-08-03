@@ -1148,21 +1148,27 @@ var MessagesArea = /*#__PURE__*/function (_React$Component) {
         var user = _this4.props.state.users[message.user_id];
 
         if (user !== undefined && user.id !== _this4.props.state.session.id) {
+          // console.log(message);
+          console.log(message.created_at);
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             className: "my-message",
             key: message.id
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             className: "chat-pic-container"
           }, _this4.imageRender(user.id)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-            className: "bold-text"
-          }, _this4.props.state.users[message.user_id].name, ":"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, message.body));
+            className: "chat-name"
+          }, _this4.props.state.users[message.user_id].name, ":"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+            className: "my-chat-msg"
+          }, message.body));
         } else if (user !== undefined && typeof user.id === 'number') {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             className: "message",
             key: message.id
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             className: "chat-pic-container"
-          }, _this4.imageRender(user.id)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, message.body));
+          }, _this4.imageRender(user.id)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+            className: "chat-msg"
+          }, message.body));
         } else {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             className: "message",
