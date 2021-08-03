@@ -100,8 +100,8 @@ class NewChat extends React.Component {
         return rooms.map(room => {
             if (room && roomIds.includes(room.id)) {
                 return (
-                    <div className="room" onClick={() => handleClick(room.id)} key={room.id}>
-                        <div className="room-name">
+                    <div className="room" key={room.id}>
+                        <div className="room-name" onClick={() => handleClick(room.id)}>
                             <p>
                                 {room.title}
                             </p>

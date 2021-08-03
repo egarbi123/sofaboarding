@@ -1503,12 +1503,12 @@ var NewChat = /*#__PURE__*/function (_React$Component) {
         if (room && roomIds.includes(room.id)) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             className: "room",
-            onClick: function onClick() {
-              return handleClick(room.id);
-            },
             key: room.id
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-            className: "room-name"
+            className: "room-name",
+            onClick: function onClick() {
+              return handleClick(room.id);
+            }
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, room.title)));
         }
       });
