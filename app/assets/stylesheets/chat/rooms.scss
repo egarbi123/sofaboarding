@@ -5,10 +5,11 @@
     min-width: 750px;
     width: 100%;
     font: caption;
-    height: 600px;
-    width: 800px;
+    height: 400px;
+    width: 90%;
     overflow: scroll;
-    margin: auto;
+    margin-bottom: 100px;
+    // margin: auto;
 }
 
 .roomBlock {
@@ -44,7 +45,8 @@
     // border: 1px solid black;
     border-radius: 4px;
     width: 200px;
-    height: 300px;
+    height: fit-content;
+    max-height: 300px;
     overflow: scroll;
     margin: 0px 25px 5px 25px;
 }
