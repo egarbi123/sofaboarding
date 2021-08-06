@@ -18,6 +18,7 @@ class Api::RoommembershipsController < ApplicationController
     end
 
     def destroy
+        puts 'hello'
         @roomMembership = RoomMembership.find(params[:id])
         if @roomMembership.destroy
             @allRoomMemberships = RoomMembership.all

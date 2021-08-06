@@ -1,4 +1,5 @@
 import React from 'react';
+import EventForm from './event_form_container';
 
 class EventPage extends React.Component {
     constructor(props) {
@@ -16,7 +17,8 @@ class EventPage extends React.Component {
     render() {
         return (
             <div className="event-page">
-                
+                In event page
+                {<EventForm />}
             </div>
         )
     }

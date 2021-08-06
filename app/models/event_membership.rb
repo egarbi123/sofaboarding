@@ -1,0 +1,2 @@
+class EventMembership < ApplicationRecord
+end
