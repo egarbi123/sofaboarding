@@ -4,14 +4,17 @@ class EventForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            "description": "",
-            "date": "",
-            "time": "",
+            name: "",
+            description: "",
+            date: "",
+            time: ""
         }
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleSubmit(e) {
-
+        e.preventDefault();
+        console.log(this.state);
     }
 
     update(field) {
@@ -23,6 +26,14 @@ class EventForm extends React.Component {
             <div className="event-form">
                 <h4>Create A New Event</h4>
                 <form onSubmit={this.handleSubmit}>
+                    <div className="row">
+                        <p>Name:</p>
+                        <input
+                            type="string"
+                            value={this.state.name}
+                            onChange={this.update('name')}
+                        />
+                    </div>
                     <div className="row">
                         <p>Description:</p>
                         <input
@@ -47,6 +58,7 @@ class EventForm extends React.Component {
                             onChange={this.update('time')}
                         />
                     </div>
+                    <button type="submit" className="button">Create Event</button>
                 </form>
             </div>
         )

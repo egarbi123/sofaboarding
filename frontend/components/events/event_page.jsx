@@ -5,10 +5,7 @@ class EventPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            "description": "",
             "guestList": [],
-            "date": "",
-            "time": "",
         }
     }
 

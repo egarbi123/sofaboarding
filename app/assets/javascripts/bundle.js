@@ -2294,16 +2294,21 @@ var EventForm = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      "description": "",
-      "date": "",
-      "time": ""
+      name: "",
+      description: "",
+      date: "",
+      time: ""
     };
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(EventForm, [{
     key: "handleSubmit",
-    value: function handleSubmit(e) {}
+    value: function handleSubmit(e) {
+      e.preventDefault();
+      console.log(this.state);
+    }
   }, {
     key: "update",
     value: function update(field) {
@@ -2322,6 +2327,12 @@ var EventForm = /*#__PURE__*/function (_React$Component) {
         onSubmit: this.handleSubmit
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Name:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "string",
+        value: this.state.name,
+        onChange: this.update('name')
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Description:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         value: this.state.description,
@@ -2338,7 +2349,10 @@ var EventForm = /*#__PURE__*/function (_React$Component) {
         type: "string",
         value: this.state.time,
         onChange: this.update('time')
-      }))));
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        type: "submit",
+        className: "button"
+      }, "Create Event")));
     }
   }]);
 
@@ -2426,10 +2440,7 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      "description": "",
-      "guestList": [],
-      "date": "",
-      "time": ""
+      "guestList": []
     };
     return _this;
   }
