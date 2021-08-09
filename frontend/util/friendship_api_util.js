@@ -1,4 +1,4 @@
-export const fetchFriendRequests = () => (
+const fetchFriendRequests = () => (
     $.ajax({
         url: `/api/friendrequests`,
         method: 'GET'
