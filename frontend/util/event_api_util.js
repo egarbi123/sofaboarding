@@ -1,9 +1,13 @@
-export const createEvent = () => (
-    $.ajax({
-        url: `/api/events`,
-        method: 'POST'
-    })
-)
+export const createEvent = (event) => {
+    console.log(event)
+    return (
+        $.ajax({
+            url: `/api/events`,
+            method: 'POST',
+            data: { event }
+        })
+    )
+}
 
 export const updateEvent = (data) => (
     $.ajax({

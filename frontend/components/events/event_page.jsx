@@ -12,6 +12,7 @@ class EventPage extends React.Component {
     
 
     render() {
+        // console.log(this.props.state);
         return (
             <div className="event-page">
                 In event page
