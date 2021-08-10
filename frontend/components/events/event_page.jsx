@@ -9,10 +9,12 @@ class EventPage extends React.Component {
         }
     }
 
-    
+    componentDidMount() {
+        this.props.fetchAllEvents();
+    }
 
     render() {
-        // console.log(this.props.state);
+        console.log(this);
         return (
             <div className="event-page">
                 In event page

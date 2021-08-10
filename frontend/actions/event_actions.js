@@ -14,6 +14,11 @@ const removeEvent = (event) => ({
     event
 })
 
+export const createEvent = (event) => dispatch => (
+    EventApiUtil.createEvent(event)
+    .then(events => dispatch(receiveAllEvents(events)))
+)
+
 export const fetchAllEvents = () => dispatch => (
     EventApiUtil.fetchEvents()
     .then(events => dispatch(receiveAllEvents(events)))

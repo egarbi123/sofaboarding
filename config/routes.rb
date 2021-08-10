@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get "/friendships", to: 'static_pages#root'
   get "/roommemberships", to: 'static_pages#root'
   get "/:friendId", to: 'static_pages#root'
+  get "/events", to: 'static_pages#root'
   root to: 'static_pages#root'
   # get "/friendrequests", to: 'static_pages#root'
   namespace :api, defaults: { format: :json } do
@@ -23,5 +24,6 @@ Rails.application.routes.draw do
     resources :roommemberships, only: [:create, :index, :destroy]
     resources :messages, only: [:create, :index]
     resources :profilebio, only: [:create, :update, :index]
+    resources :events, only: [:create, :update, :index, :destroy]
   end 
 end

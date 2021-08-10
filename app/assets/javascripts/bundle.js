@@ -254,13 +254,14 @@ var newMessage = function newMessage(message) {
 /*!*******************************************!*\
   !*** ./frontend/actions/event_actions.js ***!
   \*******************************************/
-/*! exports provided: RECEIVE_ALL_EVENTS, REMOVE_EVENT, fetchAllEvents, deleteEvent */
+/*! exports provided: RECEIVE_ALL_EVENTS, REMOVE_EVENT, createEvent, fetchAllEvents, deleteEvent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ALL_EVENTS", function() { return RECEIVE_ALL_EVENTS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_EVENT", function() { return REMOVE_EVENT; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createEvent", function() { return createEvent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAllEvents", function() { return fetchAllEvents; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteEvent", function() { return deleteEvent; });
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
@@ -285,6 +286,13 @@ var removeEvent = function removeEvent(event) {
   };
 };
 
+var createEvent = function createEvent(event) {
+  return function (dispatch) {
+    return _util_event_api_util__WEBPACK_IMPORTED_MODULE_1__["createEvent"](event).then(function (events) {
+      return dispatch(receiveAllEvents(events));
+    });
+  };
+};
 var fetchAllEvents = function fetchAllEvents() {
   return function (dispatch) {
     return _util_event_api_util__WEBPACK_IMPORTED_MODULE_1__["fetchEvents"]().then(function (events) {
@@ -2504,9 +2512,14 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(EventPage, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.fetchAllEvents();
+    }
+  }, {
     key: "render",
     value: function render() {
-      // console.log(this.props.state);
+      console.log(this);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "event-page"
       }, "In event page", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_event_form_container__WEBPACK_IMPORTED_MODULE_1__["default"], null));
@@ -2531,6 +2544,8 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _event_page__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./event_page */ "./frontend/components/events/event_page.jsx");
+/* harmony import */ var _actions_event_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/event_actions */ "./frontend/actions/event_actions.js");
+
 
 
 
@@ -2541,7 +2556,11 @@ var mSTP = function mSTP(state) {
 };
 
 var mDTP = function mDTP(dispatch) {
-  return {};
+  return {
+    fetchAllEvents: function fetchAllEvents() {
+      return dispatch(Object(_actions_event_actions__WEBPACK_IMPORTED_MODULE_2__["fetchAllEvents"])());
+    }
+  };
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_event_page__WEBPACK_IMPORTED_MODULE_1__["default"]));
