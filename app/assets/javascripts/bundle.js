@@ -2367,7 +2367,13 @@ var EventForm = /*#__PURE__*/function (_React$Component) {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
-      this.props.createEvent(this.state); // console.log(this);
+
+      if (this.state.name && this.state.description && this.state.date && this.state.time) {
+        console.log('uploading');
+        this.props.createEvent(this.state);
+      } else {
+        console.log('no event here :(');
+      }
     }
   }, {
     key: "update",
@@ -2517,9 +2523,16 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
       this.props.fetchAllEvents();
     }
   }, {
+    key: "showEvents",
+    value: function showEvents() {
+      var events = Object.values(this.props.state.event);
+      console.log(events);
+    }
+  }, {
     key: "render",
     value: function render() {
       console.log(this);
+      this.showEvents();
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "event-page"
       }, "In event page", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_event_form_container__WEBPACK_IMPORTED_MODULE_1__["default"], null));

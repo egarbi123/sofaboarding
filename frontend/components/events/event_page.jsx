@@ -13,11 +13,19 @@ class EventPage extends React.Component {
         this.props.fetchAllEvents();
     }
 
+    showEvents() {
+        let events = Object.values(this.props.state.event);
+        console.log(events);
+    }
+
     render() {
         console.log(this);
+        this.showEvents();
+        
         return (
             <div className="event-page">
                 In event page
+
                 {<EventForm />}
             </div>
         )
