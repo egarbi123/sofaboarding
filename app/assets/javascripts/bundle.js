@@ -2524,18 +2524,30 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "showEvents",
-    value: function showEvents() {
-      var events = Object.values(this.props.state.event);
-      console.log(events);
+    value: function showEvents(events) {
+      return events.map(function (event) {
+        if (event) {
+          console.log(event.description);
+        }
+
+        if (event && event.description) {
+          console.log('in if');
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, event.description));
+        } else {
+          console.log('in else');
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "NO EVENT HERE ;D"));
+        }
+      });
     }
   }, {
     key: "render",
     value: function render() {
-      console.log(this);
-      this.showEvents();
+      console.log(this); // this.showEvents();
+
+      var events = Object.values(this.props.state.event);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "event-page"
-      }, "In event page", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_event_form_container__WEBPACK_IMPORTED_MODULE_1__["default"], null));
+      }, "In event page", this.showEvents(events), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_event_form_container__WEBPACK_IMPORTED_MODULE_1__["default"], null));
     }
   }]);
 
