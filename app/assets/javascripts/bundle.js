@@ -2409,7 +2409,7 @@ var EventForm = /*#__PURE__*/function (_React$Component) {
         placeholder: 'December 2, 2021'
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         style: {
-          "font-size": "xx-small"
+          "fontSize": "xx-small"
         }
       }, "Please keep format to Month Day, Year example: December 2, 2021"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row"
@@ -2514,9 +2514,10 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      "guestList": []
+      "eventId": null
     };
     _this.handleRemoveEvent = _this.handleRemoveEvent.bind(_assertThisInitialized(_this));
+    _this.eventInfo = _this.eventInfo.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -2528,37 +2529,70 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleRemoveEvent",
     value: function handleRemoveEvent(eventId) {
-      console.log(eventId);
       this.props.deleteEvent(eventId);
     }
   }, {
     key: "showEvents",
     value: function showEvents(events, handleClick) {
       return events.map(function (event) {
-        if (event) {
-          console.log(event.description);
-        }
-
-        if (event && event.name) {
-          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-            onClick: function onClick() {
-              return handleClick(event.id);
-            }
-          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, event.name));
-        } else {
-          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "NO EVENT HERE ;D"));
-        }
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          key: event.id,
+          onClick: function onClick() {
+            return handleClick(event.id);
+          }
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, event.name));
       });
+    }
+  }, {
+    key: "eventInfo",
+    value: function eventInfo(events) {
+      var _this2 = this;
+
+      var event = {
+        name: "No Current Event",
+        description: "No Description",
+        date: "No Date",
+        time: "No Time"
+      };
+
+      if (this.state.eventId !== null) {
+        events.map(function (ev) {
+          console.log(ev);
+
+          if (ev.id === _this2.state.eventId) {
+            event = ev;
+          }
+        });
+        console.log(event);
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "event-display"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Name: ", event.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Description: ", event.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Date: ", event.date), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Time: ", event.time), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          onClick: function onClick() {
+            return _this2.handleRemoveEvent(event.id);
+          }
+        }, "Delete Event")));
+      }
+    }
+  }, {
+    key: "showEventList",
+    value: function showEventList(events) {
+      if (events.length > 0) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "These Are The Current Events");
+      }
     }
   }, {
     key: "render",
     value: function render() {
-      console.log('THIS', this);
+      var _this3 = this;
+
       var events = Object.values(this.props.state.event);
-      console.log(events);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "event-page"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "These Are The Current Events"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.showEvents(events, this.handleRemoveEvent)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_event_form_container__WEBPACK_IMPORTED_MODULE_1__["default"], null));
+      }, this.showEventList(events), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.showEvents(events, function (eventId) {
+        return _this3.setState({
+          eventId: eventId
+        });
+      })), this.eventInfo(events), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_event_form_container__WEBPACK_IMPORTED_MODULE_1__["default"], null));
     }
   }]);
 

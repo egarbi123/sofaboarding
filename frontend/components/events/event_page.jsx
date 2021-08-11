@@ -5,9 +5,10 @@ class EventPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            "guestList": [],
+            "eventId": null,
         }
         this.handleRemoveEvent = this.handleRemoveEvent.bind(this);
+        this.eventInfo = this.eventInfo.bind(this);
     }
 
     componentDidMount() {
@@ -15,33 +16,60 @@ class EventPage extends React.Component {
     }
 
     handleRemoveEvent(eventId) {
-        console.log(eventId);
         this.props.deleteEvent(eventId);
     }
 
     showEvents(events, handleClick) {
         return events.map(event => {
-            if (event) {console.log(event.description)}
-            if (event  && event.name) {
-                return (<li onClick={() => handleClick(event.id)}>
-                    <p>{event.name}</p>
-                </li>)
-            } else {
-                return (<li><p>NO EVENT HERE ;D</p></li>)
-            }
+            return (<li key={event.id} onClick={() => handleClick(event.id)}>
+                <p>{event.name}</p>
+            </li>)
         })
     }
 
+    eventInfo(events) {
+        let event = {
+            name: "No Current Event",
+            description: "No Description",
+            date: "No Date",
+            time: "No Time"
+        }
+        if (this.state.eventId !== null) {
+            events.map(ev => {
+                console.log(ev);
+                if (ev.id === this.state.eventId) {
+                    event = ev
+                }
+            })
+            console.log(event);
+            return (
+                <div className="event-display">
+                    <div>
+                        <p>Name: {event.name}</p>
+                        <p>Description: {event.description}</p>
+                        <p>Date: {event.date}</p>
+                        <p>Time: {event.time}</p>
+                        <button onClick={() => this.handleRemoveEvent(event.id)}>Delete Event</button>
+                    </div>
+                </div>
+            )
+        }
+    }
+
+    showEventList(events) {
+        if (events.length > 0) {
+            return (<h5>These Are The Current Events</h5>)
+        }
+    }
     render() {
-        console.log('THIS', this);
         let events = Object.values(this.props.state.event);
-        console.log(events);
         return (
             <div className="event-page">
-                <h5>These Are The Current Events</h5>
+                {this.showEventList(events)}
                 <ul>
-                    {this.showEvents(events, this.handleRemoveEvent)}
+                    {this.showEvents(events, (eventId) => this.setState({ eventId: eventId }))}
                 </ul>
+                {this.eventInfo(events)}
                 {<EventForm />}
             </div>
         )
