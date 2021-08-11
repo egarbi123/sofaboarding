@@ -11,9 +11,9 @@ class EventPage extends React.Component {
         this.eventInfo = this.eventInfo.bind(this);
     }
 
-    componentDidMount() {
-        this.props.fetchAllEvents();
-    }
+    // componentDidMount() {
+    //     this.props.fetchAllEvents();
+    // }
 
     handleRemoveEvent(eventId) {
         this.props.deleteEvent(eventId);
@@ -44,13 +44,14 @@ class EventPage extends React.Component {
             console.log(event);
             return (
                 <div className="event-display">
-                    <div>
+                    <div className="event-info">
                         <p>Name: {event.name}</p>
                         <p>Description: {event.description}</p>
                         <p>Date: {event.date}</p>
                         <p>Time: {event.time}</p>
                         <button onClick={() => this.handleRemoveEvent(event.id)}>Delete Event</button>
                     </div>
+                    <div className="exit" onClick={() => this.setState({ "eventId": null })}>X</div>
                 </div>
             )
         }

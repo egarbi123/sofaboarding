@@ -2519,14 +2519,12 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
     _this.handleRemoveEvent = _this.handleRemoveEvent.bind(_assertThisInitialized(_this));
     _this.eventInfo = _this.eventInfo.bind(_assertThisInitialized(_this));
     return _this;
-  }
+  } // componentDidMount() {
+  //     this.props.fetchAllEvents();
+  // }
+
 
   _createClass(EventPage, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.props.fetchAllEvents();
-    }
-  }, {
     key: "handleRemoveEvent",
     value: function handleRemoveEvent(eventId) {
       this.props.deleteEvent(eventId);
@@ -2566,11 +2564,20 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
         console.log(event);
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "event-display"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Name: ", event.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Description: ", event.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Date: ", event.date), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Time: ", event.time), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "event-info"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Name: ", event.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Description: ", event.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Date: ", event.date), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Time: ", event.time), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           onClick: function onClick() {
             return _this2.handleRemoveEvent(event.id);
           }
-        }, "Delete Event")));
+        }, "Delete Event")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "exit",
+          onClick: function onClick() {
+            return _this2.setState({
+              "eventId": null
+            });
+          }
+        }, "X"));
       }
     }
   }, {
@@ -4583,7 +4590,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _users_user_info_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../users/user_info_container */ "./frontend/components/users/user_info_container.jsx");
 /* harmony import */ var _chat_chat_block_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../chat/chat_block_container */ "./frontend/components/chat/chat_block_container.jsx");
 /* harmony import */ var _events_event_page_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../events/event_page_container */ "./frontend/components/events/event_page_container.jsx");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -4610,8 +4616,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-
-
+ // import { Link } from 'react-router-dom';
 
 var UserProfile = /*#__PURE__*/function (_React$Component) {
   _inherits(UserProfile, _React$Component);
