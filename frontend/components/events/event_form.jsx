@@ -51,8 +51,10 @@ class EventForm extends React.Component {
                             type="string"
                             value={this.state.date}
                             onChange={this.update('date')}
-                        />
+                            placeholder={'December 2, 2021'}
+                            />
                     </div>
+                    <p style={{ "font-size": "xx-small" }}>Please keep format to Month Day, Year example: December 2, 2021</p>
                     <div className="row">
                         <p>Time:</p>
                         <input

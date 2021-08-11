@@ -22,9 +22,9 @@ class EventPage extends React.Component {
     showEvents(events, handleClick) {
         return events.map(event => {
             if (event) {console.log(event.description)}
-            if (event  && event.description) {
+            if (event  && event.name) {
                 return (<li onClick={() => handleClick(event.id)}>
-                    <p>{event.description}</p>
+                    <p>{event.name}</p>
                 </li>)
             } else {
                 return (<li><p>NO EVENT HERE ;D</p></li>)
