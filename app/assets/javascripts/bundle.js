@@ -2369,11 +2369,8 @@ var EventForm = /*#__PURE__*/function (_React$Component) {
       e.preventDefault();
 
       if (this.state.name && this.state.description && this.state.date && this.state.time) {
-        console.log('uploading');
         this.props.createEvent(this.state);
-      } else {
-        console.log('no event here :(');
-      }
+      } else {}
     }
   }, {
     key: "update",
@@ -2514,6 +2511,7 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
     _this.state = {
       "guestList": []
     };
+    _this.handleRemoveEvent = _this.handleRemoveEvent.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -2523,31 +2521,39 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
       this.props.fetchAllEvents();
     }
   }, {
+    key: "handleRemoveEvent",
+    value: function handleRemoveEvent(eventId) {
+      console.log(eventId);
+      this.props.deleteEvent(eventId);
+    }
+  }, {
     key: "showEvents",
-    value: function showEvents(events) {
+    value: function showEvents(events, handleClick) {
       return events.map(function (event) {
         if (event) {
           console.log(event.description);
         }
 
         if (event && event.description) {
-          console.log('in if');
-          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, event.description));
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+            onClick: function onClick() {
+              return handleClick(event.id);
+            }
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, event.description));
         } else {
-          console.log('in else');
-          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "NO EVENT HERE ;D"));
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "NO EVENT HERE ;D"));
         }
       });
     }
   }, {
     key: "render",
     value: function render() {
-      console.log(this); // this.showEvents();
-
+      console.log('THIS', this);
       var events = Object.values(this.props.state.event);
+      console.log(events);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "event-page"
-      }, "In event page", this.showEvents(events), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_event_form_container__WEBPACK_IMPORTED_MODULE_1__["default"], null));
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "These Are The Current Events"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.showEvents(events, this.handleRemoveEvent)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_event_form_container__WEBPACK_IMPORTED_MODULE_1__["default"], null));
     }
   }]);
 
@@ -2584,6 +2590,9 @@ var mDTP = function mDTP(dispatch) {
   return {
     fetchAllEvents: function fetchAllEvents() {
       return dispatch(Object(_actions_event_actions__WEBPACK_IMPORTED_MODULE_2__["fetchAllEvents"])());
+    },
+    deleteEvent: function deleteEvent(id) {
+      return dispatch(Object(_actions_event_actions__WEBPACK_IMPORTED_MODULE_2__["deleteEvent"])(id));
     }
   };
 };
@@ -4949,9 +4958,7 @@ var HEADERS = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_event_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/event_actions */ "./frontend/actions/event_actions.js");
 
-var _nullEvent = {
-  events: null
-};
+var _nullEvent = {};
 
 var eventReducer = function eventReducer() {
   var oldState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _nullEvent;

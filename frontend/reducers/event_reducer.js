@@ -4,7 +4,7 @@ import {
 } from '../actions/event_actions';
 
 const _nullEvent = {
-    events: null,
+
 }
 
 const eventReducer = (oldState = _nullEvent, action) => {

@@ -15,10 +15,8 @@ class EventForm extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         if (this.state.name && this.state.description && this.state.date && this.state.time) {
-            console.log('uploading');
             this.props.createEvent(this.state);
         } else {
-            console.log('no event here :(')
         }
     }
 

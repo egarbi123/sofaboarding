@@ -7,36 +7,41 @@ class EventPage extends React.Component {
         this.state = {
             "guestList": [],
         }
+        this.handleRemoveEvent = this.handleRemoveEvent.bind(this);
     }
 
     componentDidMount() {
         this.props.fetchAllEvents();
     }
 
-    showEvents(events) {
+    handleRemoveEvent(eventId) {
+        console.log(eventId);
+        this.props.deleteEvent(eventId);
+    }
+
+    showEvents(events, handleClick) {
         return events.map(event => {
             if (event) {console.log(event.description)}
             if (event  && event.description) {
-                console.log('in if')
-                return (<div>
+                return (<li onClick={() => handleClick(event.id)}>
                     <p>{event.description}</p>
-                </div>)
+                </li>)
             } else {
-                console.log('in else')
-                return (<div><p>NO EVENT HERE ;D</p></div>)
+                return (<li><p>NO EVENT HERE ;D</p></li>)
             }
         })
     }
 
     render() {
-        console.log(this);
-        // this.showEvents();
+        console.log('THIS', this);
         let events = Object.values(this.props.state.event);
-
+        console.log(events);
         return (
             <div className="event-page">
-                In event page
-                {this.showEvents(events)}
+                <h5>These Are The Current Events</h5>
+                <ul>
+                    {this.showEvents(events, this.handleRemoveEvent)}
+                </ul>
                 {<EventForm />}
             </div>
         )
