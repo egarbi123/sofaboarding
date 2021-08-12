@@ -236,7 +236,7 @@ class UserProfile extends React.Component {
                     {<UserInfo />}
                 </div>
                 <div className="profile-main">
-                    {<EventPage />}
+                    {/* {<EventPage />} */}
                     {<FindFriends 
                         friendsArray={friends} 
                         acceptFriendsArray={acceptFriends} 
