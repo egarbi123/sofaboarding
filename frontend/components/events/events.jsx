@@ -5,34 +5,50 @@ class Events extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            "events": []
+            "events": [],
+            "eventsActive": false,
         }
+        this.toggleEvents = this.toggleEvents.bind(this);
     }
 
     componentDidMount() {
-        // console.log('IN CDM')
         this.props.fetchAllEvents();
     }
 
     componentDidUpdate() {
-        // console.log('IN CDU')
         let events = Object.values(this.props.state.event);
         if (this.state.events.length !== events.length) {
             this.setState({ events: events})
         } 
     }
 
-    mapEvents() {
-
+    toggleEvents() {
+        if (this.state.eventsActive) {
+            this.setState({ "eventsActive": false })
+        } else {
+            this.setState({ "eventsActive": true })
+        }
     }
 
     render() {
-        // console.log(this);
-        if (this.state.events.length >= 1) {
+        if (this.state.eventsActive) {
             return (<EventPage events={this.state.events} />)
         } else {
-            return (<div>No Events Yet :/</div>)
+            return (
+                <div className="enter-events">
+                    <div className="row">
+                        <h3>Click Below To Enter Events Section</h3>
+                        <p style={{ "font-size": "x-small" }}>Please Note: Although This Section Is Available, It Is Still Undergoing Maintenance.  Thank You For Your Understanding</p>
+                    </div>
+                    <button onClick={() => this.toggleEvents()}>Enter Events</button>
+                </div>
+            )
         }
+        // if (this.state.events.length >= 1) {
+        //     return (<EventPage events={this.state.events} />)
+        // } else {
+        //     return (<div>No Events Yet :/</div>)
+        // }
     }
 }
 

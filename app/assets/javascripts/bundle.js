@@ -2514,15 +2514,12 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      "eventId": _this.props.events
+      "events": _this.props.events
     };
     _this.handleRemoveEvent = _this.handleRemoveEvent.bind(_assertThisInitialized(_this));
     _this.eventInfo = _this.eventInfo.bind(_assertThisInitialized(_this));
     return _this;
-  } // componentDidMount() {
-  //     this.props.fetchAllEvents();
-  // }
-
+  }
 
   _createClass(EventPage, [{
     key: "handleRemoveEvent",
@@ -2555,13 +2552,10 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
 
       if (this.state.eventId !== null) {
         events.map(function (ev) {
-          console.log(ev);
-
           if (ev.id === _this2.state.eventId) {
             event = ev;
           }
         });
-        console.log(event);
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "event-display"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2592,10 +2586,7 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this3 = this;
 
-      console.log(this);
-      var events = Object.values(this.props.state.event); // let events = this.state.events;
-
-      console.log(events);
+      var events = this.state.events;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "event-page"
       }, this.showEventList(events), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.showEvents(events, function (eventId) {
@@ -2699,21 +2690,21 @@ var Events = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      "events": []
+      "events": [],
+      "eventsActive": false
     };
+    _this.toggleEvents = _this.toggleEvents.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(Events, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      // console.log('IN CDM')
       this.props.fetchAllEvents();
     }
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate() {
-      // console.log('IN CDU')
       var events = Object.values(this.props.state.event);
 
       if (this.state.events.length !== events.length) {
@@ -2723,19 +2714,47 @@ var Events = /*#__PURE__*/function (_React$Component) {
       }
     }
   }, {
-    key: "mapEvents",
-    value: function mapEvents() {}
+    key: "toggleEvents",
+    value: function toggleEvents() {
+      if (this.state.eventsActive) {
+        this.setState({
+          "eventsActive": false
+        });
+      } else {
+        this.setState({
+          "eventsActive": true
+        });
+      }
+    }
   }, {
     key: "render",
     value: function render() {
-      // console.log(this);
-      if (this.state.events.length >= 1) {
+      var _this2 = this;
+
+      if (this.state.eventsActive) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_event_page_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
           events: this.state.events
         });
       } else {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "No Events Yet :/");
-      }
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "enter-events"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "row"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Click Below To Enter Events Section"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          style: {
+            "font-size": "x-small"
+          }
+        }, "Please Note: Although This Section Is Available, It Is Still Undergoing Maintenance.  Thank You For Your Understanding")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          onClick: function onClick() {
+            return _this2.toggleEvents();
+          }
+        }, "Enter Events"));
+      } // if (this.state.events.length >= 1) {
+      //     return (<EventPage events={this.state.events} />)
+      // } else {
+      //     return (<div>No Events Yet :/</div>)
+      // }
+
     }
   }]);
 
