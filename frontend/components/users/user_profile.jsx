@@ -3,6 +3,7 @@ import FindFriends from '../friends/find_friend_container';
 import UserInfo from '../users/user_info_container';
 import ChatBlockContainer from '../chat/chat_block_container';
 import EventPage from '../events/event_page_container';
+import Events from '../events/events_container';
 // import { Link } from 'react-router-dom';
 
 class UserProfile extends React.Component {
@@ -236,7 +237,8 @@ class UserProfile extends React.Component {
                     {<UserInfo />}
                 </div>
                 <div className="profile-main">
-                    {<EventPage />}
+                    {<Events />}
+                    {/* {<EventPage />} */}
                     {<FindFriends 
                         friendsArray={friends} 
                         acceptFriendsArray={acceptFriends} 
