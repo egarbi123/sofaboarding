@@ -5,15 +5,11 @@ class EventPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            "eventId": null,
+            "events": this.props.events,
         }
         this.handleRemoveEvent = this.handleRemoveEvent.bind(this);
         this.eventInfo = this.eventInfo.bind(this);
     }
-
-    // componentDidMount() {
-    //     this.props.fetchAllEvents();
-    // }
 
     handleRemoveEvent(eventId) {
         this.props.deleteEvent(eventId);
@@ -36,12 +32,10 @@ class EventPage extends React.Component {
         }
         if (this.state.eventId !== null) {
             events.map(ev => {
-                console.log(ev);
                 if (ev.id === this.state.eventId) {
                     event = ev
                 }
             })
-            console.log(event);
             return (
                 <div className="event-display">
                     <div className="event-info">
@@ -63,7 +57,8 @@ class EventPage extends React.Component {
         }
     }
     render() {
-        let events = Object.values(this.props.state.event);
+        let events = this.state.events;
+
         return (
             <div className="event-page">
                 {this.showEventList(events)}
