@@ -5154,6 +5154,36 @@ var HEADERS = {
 
 /***/ }),
 
+/***/ "./frontend/reducers/event_membership_reducer.js":
+/*!*******************************************************!*\
+  !*** ./frontend/reducers/event_membership_reducer.js ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_event_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/event_actions */ "./frontend/actions/event_actions.js");
+
+
+var eventMembershipReducer = function eventMembershipReducer() {
+  var oldState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(oldState);
+
+  switch (action.type) {
+    case _actions_event_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ALL_EVENT_MEMBERSHIPS"]:
+      return Object.assign({}, oldState, action.memberships);
+
+    default:
+      return oldState;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (eventMembershipReducer);
+
+/***/ }),
+
 /***/ "./frontend/reducers/event_reducer.js":
 /*!********************************************!*\
   !*** ./frontend/reducers/event_reducer.js ***!
@@ -5425,6 +5455,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _room_membership_reducer__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./room_membership_reducer */ "./frontend/reducers/room_membership_reducer.js");
 /* harmony import */ var _profile_bio_reducer__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./profile_bio_reducer */ "./frontend/reducers/profile_bio_reducer.js");
 /* harmony import */ var _event_reducer__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./event_reducer */ "./frontend/reducers/event_reducer.js");
+/* harmony import */ var _event_membership_reducer__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./event_membership_reducer */ "./frontend/reducers/event_membership_reducer.js");
+
 
 
 
@@ -5444,7 +5476,8 @@ var RootReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])(
   friendships: _friendship_reducer__WEBPACK_IMPORTED_MODULE_6__["default"],
   roomMemberships: _room_membership_reducer__WEBPACK_IMPORTED_MODULE_7__["default"],
   bio: _profile_bio_reducer__WEBPACK_IMPORTED_MODULE_8__["default"],
-  event: _event_reducer__WEBPACK_IMPORTED_MODULE_9__["default"]
+  event: _event_reducer__WEBPACK_IMPORTED_MODULE_9__["default"],
+  eventMemberships: _event_membership_reducer__WEBPACK_IMPORTED_MODULE_10__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (RootReducer);
 
