@@ -38,17 +38,12 @@ class Events extends React.Component {
                 <div className="enter-events">
                     <div className="row">
                         <h3>Click Below To Enter Events Section</h3>
-                        <p style={{ "font-size": "x-small" }}>Please Note: Although This Section Is Available, It Is Still Undergoing Maintenance.  Thank You For Your Understanding</p>
+                        <p style={{ "fontSize": "x-small" }}>Please Note: Although This Section Is Available, It Is Still Undergoing Maintenance.  Thank You For Your Understanding</p>
                     </div>
                     <button onClick={() => this.toggleEvents()}>Enter Events</button>
                 </div>
             )
         }
-        // if (this.state.events.length >= 1) {
-        //     return (<EventPage events={this.state.events} />)
-        // } else {
-        //     return (<div>No Events Yet :/</div>)
-        // }
     }
 }
 

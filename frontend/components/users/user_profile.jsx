@@ -2,9 +2,7 @@ import React from 'react';
 import FindFriends from '../friends/find_friend_container';
 import UserInfo from '../users/user_info_container';
 import ChatBlockContainer from '../chat/chat_block_container';
-import EventPage from '../events/event_page_container';
 import Events from '../events/events_container';
-// import { Link } from 'react-router-dom';
 
 class UserProfile extends React.Component {
     constructor(props) {
@@ -37,7 +35,7 @@ class UserProfile extends React.Component {
         if (this.newFriends.length > 0 && this.state.newFriends.length < 1) {
             this.setState({ "newFriends": this.newFriends })
         }
-        // this.usersToState();
+        this.usersToState();
     }
 
     
@@ -116,7 +114,6 @@ class UserProfile extends React.Component {
             } else if (requested.includes(id)) {
                 this.alreadyRequestedArray.push(user.id);
             } else {
-                // console.log(user.id)
                 this.newFriendsArray.push(user.id);
             }
         })
@@ -142,8 +139,6 @@ class UserProfile extends React.Component {
     usersToState() {
         // Gather info to use
         let usersArray = Object.values(this.props.state.users);
-        // console.log('usersArray', usersArray);
-        // console.log(this.props.state.users)
         let requests = {};
         let friendships = {};
         if (this.props.state.friendRequests) {
@@ -186,7 +181,6 @@ class UserProfile extends React.Component {
             })
         }
         
-        // Info into objects/ arrays
         let friendsArray = [];
         let acceptFriendsArray = [];
         let alreadyRequestedArray = [];
@@ -196,20 +190,15 @@ class UserProfile extends React.Component {
             if (id === this.props.state.session.id) {
                 return;
             } else if (alreadyFriends.includes(id)) {
-                // friendsObject[user.id] = user;
                 friendsArray.push(user.id);
             } else if (receivedRequests.includes(id)) {
-                // acceptFriendsObject[user.id] = user;
                 acceptFriendsArray.push(user.id)
             } else if (requested.includes(id)) {
-                // alreadyRequestedObject[user.id] = user;
                 alreadyRequestedArray.push(user.id);
             } else {
-                // newFriendsObject[user.id] = user;
                 newFriendsArray.push(user.id);
             }
         })
-        // console.log('thir.alreadyRequestedArray === alreadyRequestedArray)
         if (this.state.friends.length !== friendsArray) {
             this.infoToState();
         } else if (this.state.acceptFriends.length !== acceptFriendsArray) {
@@ -225,19 +214,16 @@ class UserProfile extends React.Component {
     
     render() {
         let {friends, acceptFriends, requestedFriends, newFriends} = this.state;
-        
         if (!this.props.state) {
             return (<div> "loading </div>)
         }
-        // console.log(this);
-        this.usersToState()
+
         return (
             <div className="user-profile">
                 <div className="profile-info">
                     {<UserInfo />}
                 </div>
                 <div className="profile-main">
-                    {/* {<EventPage />} */}
                     {<FindFriends 
                         friendsArray={friends} 
                         acceptFriendsArray={acceptFriends} 

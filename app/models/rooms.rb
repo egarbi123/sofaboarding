@@ -5,6 +5,7 @@ class Rooms < ApplicationRecord
         foreign_key: :room_id,
         class_name: :Message,
         dependent: :destroy
+        
     has_many :users, 
       through: :room_membership,
       source: :user
