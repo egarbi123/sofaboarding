@@ -30,3 +30,25 @@ export const deleteEvent = (id) => (
         method: 'DELETE'
     })
 )
+
+export const fetchEventMemberships = () => (
+    $.ajax({
+        url: `/api/eventmemberships`,
+        method: 'GET'
+    })
+)
+
+export const createEventMembership = membership => (
+    $.ajax({
+        url: `/api/eventmemberships`,
+        method: 'POST',
+        data: { membership }
+    })
+)
+
+export const removeEventMembership = membershipId => (
+    $.ajax({
+        url: `/api/eventmemberships/${membershipId}`,
+        method: 'DELETE'
+    })
+)
