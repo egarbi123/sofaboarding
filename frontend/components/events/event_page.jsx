@@ -9,10 +9,20 @@ class EventPage extends React.Component {
         }
         this.handleRemoveEvent = this.handleRemoveEvent.bind(this);
         this.eventInfo = this.eventInfo.bind(this);
+        this.joinEvent = this.joinEvent.bind(this);
     }
 
     handleRemoveEvent(eventId) {
         this.props.deleteEvent(eventId);
+    }
+
+    joinEvent(eventId) {
+        let membership = {
+            "user_id": this.props.state.session.id,
+            "event_id": eventId,
+            "owner": true
+        }
+        this.props.createEventMembership(membership);
     }
 
     showEvents(events, handleClick) {
@@ -44,6 +54,7 @@ class EventPage extends React.Component {
                         <p>Date: {event.date}</p>
                         <p>Time: {event.time}</p>
                         <button onClick={() => this.handleRemoveEvent(event.id)}>Delete Event</button>
+                        <button onClick={() => this.joinEvent(event.id)}>Join Event</button>
                     </div>
                     <div className="exit" onClick={() => this.setState({ "eventId": null })}>X</div>
                 </div>
@@ -56,6 +67,7 @@ class EventPage extends React.Component {
             return (<h5>These Are The Current Events</h5>)
         }
     }
+
     render() {
         let events = this.state.events;
 

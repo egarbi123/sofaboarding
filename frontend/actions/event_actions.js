@@ -25,10 +25,12 @@ export const fetchEventMemberships = () => dispatch => (
     .then(memberships => dispatch(receiveEventMemberships(memberships)))
 )
 
-export const createRoomMembership = membership => dispatch => (
-    EventApiUtil.createEventMembership(membership)
-    .then(memberships => dispatch(receiveEventMemberships(memberships)))
-)
+export const createEventMembership = membership => dispatch => {
+    console.log('IN CREATE EVENT MEMBERSHIPS ACTION!')
+    console.log(membership);
+    return EventApiUtil.createEventMembership(membership)
+        .then(memberships => dispatch(receiveEventMemberships(memberships)))
+}
 
 export const createEvent = (event) => dispatch => (
     EventApiUtil.createEvent(event)

@@ -254,7 +254,7 @@ var newMessage = function newMessage(message) {
 /*!*******************************************!*\
   !*** ./frontend/actions/event_actions.js ***!
   \*******************************************/
-/*! exports provided: RECEIVE_ALL_EVENTS, REMOVE_EVENT, RECEIVE_ALL_EVENT_MEMBERSHIPS, fetchEventMemberships, createRoomMembership, createEvent, fetchAllEvents, deleteEvent */
+/*! exports provided: RECEIVE_ALL_EVENTS, REMOVE_EVENT, RECEIVE_ALL_EVENT_MEMBERSHIPS, fetchEventMemberships, createEventMembership, createEvent, fetchAllEvents, deleteEvent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -263,7 +263,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_EVENT", function() { return REMOVE_EVENT; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ALL_EVENT_MEMBERSHIPS", function() { return RECEIVE_ALL_EVENT_MEMBERSHIPS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchEventMemberships", function() { return fetchEventMemberships; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createRoomMembership", function() { return createRoomMembership; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createEventMembership", function() { return createEventMembership; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createEvent", function() { return createEvent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAllEvents", function() { return fetchAllEvents; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteEvent", function() { return deleteEvent; });
@@ -301,8 +301,10 @@ var fetchEventMemberships = function fetchEventMemberships() {
     });
   };
 };
-var createRoomMembership = function createRoomMembership(membership) {
+var createEventMembership = function createEventMembership(membership) {
   return function (dispatch) {
+    console.log('IN CREATE EVENT MEMBERSHIPS ACTION!');
+    console.log(membership);
     return _util_event_api_util__WEBPACK_IMPORTED_MODULE_0__["createEventMembership"](membership).then(function (memberships) {
       return dispatch(receiveEventMemberships(memberships));
     });
@@ -2540,6 +2542,7 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
     };
     _this.handleRemoveEvent = _this.handleRemoveEvent.bind(_assertThisInitialized(_this));
     _this.eventInfo = _this.eventInfo.bind(_assertThisInitialized(_this));
+    _this.joinEvent = _this.joinEvent.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -2547,6 +2550,16 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
     key: "handleRemoveEvent",
     value: function handleRemoveEvent(eventId) {
       this.props.deleteEvent(eventId);
+    }
+  }, {
+    key: "joinEvent",
+    value: function joinEvent(eventId) {
+      var membership = {
+        "user_id": this.props.state.session.id,
+        "event_id": eventId,
+        "owner": true
+      };
+      this.props.createEventMembership(membership);
     }
   }, {
     key: "showEvents",
@@ -2586,7 +2599,11 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
           onClick: function onClick() {
             return _this2.handleRemoveEvent(event.id);
           }
-        }, "Delete Event")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, "Delete Event"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          onClick: function onClick() {
+            return _this2.joinEvent(event.id);
+          }
+        }, "Join Event")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "exit",
           onClick: function onClick() {
             return _this2.setState({
@@ -2655,6 +2672,9 @@ var mDTP = function mDTP(dispatch) {
     },
     deleteEvent: function deleteEvent(id) {
       return dispatch(Object(_actions_event_actions__WEBPACK_IMPORTED_MODULE_2__["deleteEvent"])(id));
+    },
+    createEventMembership: function createEventMembership(eventId) {
+      return dispatch(Object(_actions_event_actions__WEBPACK_IMPORTED_MODULE_2__["createEventMembership"])(eventId));
     }
   };
 };
@@ -5795,6 +5815,7 @@ var fetchEventMemberships = function fetchEventMemberships() {
   });
 };
 var createEventMembership = function createEventMembership(membership) {
+  console.log('IN API UTIL', membership);
   return $.ajax({
     url: "/api/eventmemberships",
     method: 'POST',

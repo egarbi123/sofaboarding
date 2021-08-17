@@ -38,13 +38,15 @@ export const fetchEventMemberships = () => (
     })
 )
 
-export const createEventMembership = membership => (
-    $.ajax({
+export const createEventMembership = membership => {
+    console.log('IN API UTIL', membership)
+    return $.ajax({
         url: `/api/eventmemberships`,
         method: 'POST',
         data: { membership }
     })
-)
+}
+
 
 export const removeEventMembership = membershipId => (
     $.ajax({
