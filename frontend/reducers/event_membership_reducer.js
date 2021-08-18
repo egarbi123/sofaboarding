@@ -1,5 +1,6 @@
 import {
-    RECEIVE_ALL_EVENT_MEMBERSHIPS
+    RECEIVE_ALL_EVENT_MEMBERSHIPS,
+    CREATE_EVENT
 } from '../actions/event_actions';
 
 const eventMembershipReducer = (oldState = {}, action) => {
@@ -8,6 +9,8 @@ const eventMembershipReducer = (oldState = {}, action) => {
     switch (action.type) {
         case RECEIVE_ALL_EVENT_MEMBERSHIPS:
             return Object.assign({}, oldState, action.memberships);
+        case CREATE_EVENT:
+            return Object.assign({}, oldState, action.event.eventMemberships);
         default:
             return oldState;
     }

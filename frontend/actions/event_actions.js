@@ -3,6 +3,7 @@ import * as EventApiUtil from '../util/event_api_util';
 export const RECEIVE_ALL_EVENTS = 'RECEIVE_ALL_EVENTS';
 export const REMOVE_EVENT = 'REMOVE_EVENT';
 export const RECEIVE_ALL_EVENT_MEMBERSHIPS = 'RECEIVE_ALL_EVENT_MEMBERSHIPS';
+export const CREATE_EVENT = 'CREATE_EVENT';
 
 
 const receiveAllEvents = (events) => ({
@@ -20,6 +21,11 @@ const receiveEventMemberships = memberships => ({
     memberships
 })
 
+const makeEvent = event => ({
+    type: CREATE_EVENT,
+    event
+})
+
 export const fetchEventMemberships = () => dispatch => (
     EventApiUtil.fetchEventMemberships()
     .then(memberships => dispatch(receiveEventMemberships(memberships)))
@@ -32,7 +38,7 @@ export const createEventMembership = membership => dispatch => (
 
 export const createEvent = (event) => dispatch => (
     EventApiUtil.createEvent(event)
-    .then(events => dispatch(receiveAllEvents(events)))
+    .then(events => dispatch(makeEvent(events)))
 )
 
 export const fetchAllEvents = () => dispatch => (

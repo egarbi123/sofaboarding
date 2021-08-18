@@ -254,7 +254,7 @@ var newMessage = function newMessage(message) {
 /*!*******************************************!*\
   !*** ./frontend/actions/event_actions.js ***!
   \*******************************************/
-/*! exports provided: RECEIVE_ALL_EVENTS, REMOVE_EVENT, RECEIVE_ALL_EVENT_MEMBERSHIPS, fetchEventMemberships, createEventMembership, createEvent, fetchAllEvents, deleteEvent */
+/*! exports provided: RECEIVE_ALL_EVENTS, REMOVE_EVENT, RECEIVE_ALL_EVENT_MEMBERSHIPS, CREATE_EVENT, fetchEventMemberships, createEventMembership, createEvent, fetchAllEvents, deleteEvent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -262,6 +262,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ALL_EVENTS", function() { return RECEIVE_ALL_EVENTS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_EVENT", function() { return REMOVE_EVENT; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ALL_EVENT_MEMBERSHIPS", function() { return RECEIVE_ALL_EVENT_MEMBERSHIPS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CREATE_EVENT", function() { return CREATE_EVENT; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchEventMemberships", function() { return fetchEventMemberships; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createEventMembership", function() { return createEventMembership; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createEvent", function() { return createEvent; });
@@ -272,6 +273,7 @@ __webpack_require__.r(__webpack_exports__);
 var RECEIVE_ALL_EVENTS = 'RECEIVE_ALL_EVENTS';
 var REMOVE_EVENT = 'REMOVE_EVENT';
 var RECEIVE_ALL_EVENT_MEMBERSHIPS = 'RECEIVE_ALL_EVENT_MEMBERSHIPS';
+var CREATE_EVENT = 'CREATE_EVENT';
 
 var receiveAllEvents = function receiveAllEvents(events) {
   return {
@@ -294,6 +296,13 @@ var receiveEventMemberships = function receiveEventMemberships(memberships) {
   };
 };
 
+var makeEvent = function makeEvent(event) {
+  return {
+    type: CREATE_EVENT,
+    event: event
+  };
+};
+
 var fetchEventMemberships = function fetchEventMemberships() {
   return function (dispatch) {
     return _util_event_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchEventMemberships"]().then(function (memberships) {
@@ -311,7 +320,7 @@ var createEventMembership = function createEventMembership(membership) {
 var createEvent = function createEvent(event) {
   return function (dispatch) {
     return _util_event_api_util__WEBPACK_IMPORTED_MODULE_0__["createEvent"](event).then(function (events) {
-      return dispatch(receiveAllEvents(events));
+      return dispatch(makeEvent(events));
     });
   };
 };
@@ -5211,6 +5220,9 @@ var eventMembershipReducer = function eventMembershipReducer() {
     case _actions_event_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ALL_EVENT_MEMBERSHIPS"]:
       return Object.assign({}, oldState, action.memberships);
 
+    case _actions_event_actions__WEBPACK_IMPORTED_MODULE_0__["CREATE_EVENT"]:
+      return Object.assign({}, oldState, action.event.eventMemberships);
+
     default:
       return oldState;
   }
@@ -5243,6 +5255,9 @@ var eventReducer = function eventReducer() {
       return Object.assign({}, oldState, action.events);
 
     case _actions_event_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_EVENT"]:
+      return Object.assign({}, oldState, action.event.events);
+
+    case _actions_event_actions__WEBPACK_IMPORTED_MODULE_0__["CREATE_EVENT"]:
       return Object.assign({}, oldState, action.event.events);
 
     default:

@@ -2,8 +2,16 @@ class Api::EventsController < ApplicationController
     def create
         @event = Event.new(event_params)
         if @event.save
-            @events = Event.all
-            render :index
+            user_id = current_user.id
+            event_id = @event.id
+            @eventMembership_params = { "user_id" => user_id, "event_id" => event_id, "owner" => true}
+            puts @eventMembership_params
+            @eventMembership = EventMembership.new(@eventMembership_params)
+            if @eventMembership.save!
+                @events = Event.all
+                @allEventMemberships = EventMembership.all
+                render :allofit
+            end
         else
             render json: @event.errors.full_messages, status: 422
         end
