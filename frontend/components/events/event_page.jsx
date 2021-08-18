@@ -1,4 +1,5 @@
 import React from 'react';
+import { fetchEventMemberships } from '../../actions/event_actions';
 import EventForm from './event_form_container';
 
 class EventPage extends React.Component {
@@ -10,6 +11,11 @@ class EventPage extends React.Component {
         this.handleRemoveEvent = this.handleRemoveEvent.bind(this);
         this.eventInfo = this.eventInfo.bind(this);
         this.joinEvent = this.joinEvent.bind(this);
+    }
+
+    componentDidMount() {
+        this.props.fetchAllEvents();
+        this.props.fetchEventMemberships()
     }
 
     handleRemoveEvent(eventId) {
@@ -25,7 +31,7 @@ class EventPage extends React.Component {
         this.props.createEventMembership(membership);
     }
 
-    showEvents(events, handleClick) {
+    showEvents(events, handleClick, eventMemberships) {
         return events.map(event => {
             return (<li key={event.id} onClick={() => handleClick(event.id)}>
                 <p>{event.name}</p>
@@ -70,12 +76,15 @@ class EventPage extends React.Component {
 
     render() {
         let events = this.state.events;
+        let eventMemberships = [];
+
+        console.log(this);
 
         return (
             <div className="event-page">
                 {this.showEventList(events)}
                 <ul>
-                    {this.showEvents(events, (eventId) => this.setState({ eventId: eventId }))}
+                    {this.showEvents(events, (eventId) => this.setState({ eventId: eventId }), eventMemberships)}
                 </ul>
                 {this.eventInfo(events)}
                 {<EventForm />}

@@ -7,7 +7,8 @@ class EventForm extends React.Component {
             name: "",
             description: "",
             date: "",
-            time: ""
+            time: "",
+            user_id: this.props.state.session.id
         }
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -25,6 +26,7 @@ class EventForm extends React.Component {
     }
 
     render() {
+        console.log(this);
         return (
             <div className="event-form">
                 <h4>Create A New Event</h4>

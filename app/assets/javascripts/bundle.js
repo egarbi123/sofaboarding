@@ -303,8 +303,6 @@ var fetchEventMemberships = function fetchEventMemberships() {
 };
 var createEventMembership = function createEventMembership(membership) {
   return function (dispatch) {
-    console.log('IN CREATE EVENT MEMBERSHIPS ACTION!');
-    console.log(membership);
     return _util_event_api_util__WEBPACK_IMPORTED_MODULE_0__["createEventMembership"](membership).then(function (memberships) {
       return dispatch(receiveEventMemberships(memberships));
     });
@@ -2381,7 +2379,8 @@ var EventForm = /*#__PURE__*/function (_React$Component) {
       name: "",
       description: "",
       date: "",
-      time: ""
+      time: "",
+      user_id: _this.props.state.session.id
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
@@ -2408,6 +2407,7 @@ var EventForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      console.log(this);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "event-form"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Create A New Event"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
@@ -2481,6 +2481,9 @@ var mDTP = function mDTP(dispatch) {
   return {
     createEvent: function createEvent(event) {
       return dispatch(Object(_actions_event_actions__WEBPACK_IMPORTED_MODULE_2__["createEvent"])(event));
+    },
+    createEventMembership: function createEventMembership(membership) {
+      return dispatch(Object(_actions_event_actions__WEBPACK_IMPORTED_MODULE_2__["createEventMembership"])(membership));
     }
   };
 };
@@ -2500,7 +2503,8 @@ var mDTP = function mDTP(dispatch) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _event_form_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./event_form_container */ "./frontend/components/events/event_form_container.jsx");
+/* harmony import */ var _actions_event_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/event_actions */ "./frontend/actions/event_actions.js");
+/* harmony import */ var _event_form_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./event_form_container */ "./frontend/components/events/event_form_container.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2526,6 +2530,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var EventPage = /*#__PURE__*/function (_React$Component) {
   _inherits(EventPage, _React$Component);
 
@@ -2547,6 +2552,12 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(EventPage, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.fetchAllEvents();
+      this.props.fetchEventMemberships();
+    }
+  }, {
     key: "handleRemoveEvent",
     value: function handleRemoveEvent(eventId) {
       this.props.deleteEvent(eventId);
@@ -2563,7 +2574,7 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "showEvents",
-    value: function showEvents(events, handleClick) {
+    value: function showEvents(events, handleClick, eventMemberships) {
       return events.map(function (event) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           key: event.id,
@@ -2626,13 +2637,15 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
       var _this3 = this;
 
       var events = this.state.events;
+      var eventMemberships = [];
+      console.log(this);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "event-page"
       }, this.showEventList(events), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.showEvents(events, function (eventId) {
         return _this3.setState({
           eventId: eventId
         });
-      })), this.eventInfo(events), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_event_form_container__WEBPACK_IMPORTED_MODULE_1__["default"], null));
+      }, eventMemberships)), this.eventInfo(events), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_event_form_container__WEBPACK_IMPORTED_MODULE_2__["default"], null));
     }
   }]);
 
@@ -2675,6 +2688,9 @@ var mDTP = function mDTP(dispatch) {
     },
     createEventMembership: function createEventMembership(eventId) {
       return dispatch(Object(_actions_event_actions__WEBPACK_IMPORTED_MODULE_2__["createEventMembership"])(eventId));
+    },
+    fetchEventMemberships: function fetchEventMemberships() {
+      return dispatch(Object(_actions_event_actions__WEBPACK_IMPORTED_MODULE_2__["fetchEventMemberships"])());
     }
   };
 };

@@ -1,6 +1,5 @@
 class Api::EventmembershipsController < ApplicationController
     def create
-        puts 'IN EVENT MEMBERSHIPS CONTROLLER!'
         @eventMembership = EventMembership.new(eventMembership_params)
         if @eventMembership.save!
             @allEventMemberships = EventMembership.all
