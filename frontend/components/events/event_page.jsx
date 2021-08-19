@@ -12,6 +12,7 @@ class EventPage extends React.Component {
         this.eventInfo = this.eventInfo.bind(this);
         this.joinEvent = this.joinEvent.bind(this);
         this.showMembers = this.showMembers.bind(this);
+        this.findMembershipID = this.findMembershipID.bind(this);
     }
 
     componentDidMount() {
@@ -19,8 +20,26 @@ class EventPage extends React.Component {
         this.props.fetchEventMemberships()
     }
 
-    handleRemoveEvent(eventId) {
+    handleRemoveEvent(eventId, members) {
         this.props.deleteEvent(eventId);
+        if (members.length > 0) {
+            members.map(member => {
+                this.props.deleteEventMembership(this.findMembershipID(member));
+            })
+        }
+    }
+
+    findMembershipID(memberID) {
+        let memberships = Object.values(this.props.state.eventMemberships);
+        return memberships.map(membership => {
+            if (membership.user_id === memberID) {
+                return membership.id
+            } 
+        })
+    }
+
+    handleRemoveMember(membershipID) {
+        this.props.deleteEventMembership(membershipID)
     }
 
     joinEvent(eventId) {
@@ -47,10 +66,10 @@ class EventPage extends React.Component {
             console.log(member);
             if (member === owner) {
                 return (
-                    <div key={member}>OWNER -- {users[member].name}</div>
+                    <div key={member} onClick={() => this.handleRemoveMember(member)}>OWNER -- {users[member].name}</div>
                 )
             } else {
-                return (<div key={member}>USER -- {users[member].name}</div>)
+                return (<div key={member} onClick={() => this.handleRemoveMember(member)}>USER -- {users[member].name}</div>)
             }
         })
     }
@@ -81,6 +100,7 @@ class EventPage extends React.Component {
                     }
                 }
             })
+            
             return (
                 <div className="event-display">
                     <div>
@@ -89,7 +109,7 @@ class EventPage extends React.Component {
                             <p>Description: {event.description}</p>
                             <p>Date: {event.date}</p>
                             <p>Time: {event.time}</p>
-                            <button onClick={() => this.handleRemoveEvent(event.id)}>Delete Event</button>
+                            <button onClick={() => this.handleRemoveEvent(event.id, membersIDs)}>Delete Event</button>
                             <button onClick={() => this.joinEvent(event.id)}>Join Event</button>
                         </div>
                         <div>

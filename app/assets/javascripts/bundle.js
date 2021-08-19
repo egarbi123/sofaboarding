@@ -2567,6 +2567,7 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
     _this.eventInfo = _this.eventInfo.bind(_assertThisInitialized(_this));
     _this.joinEvent = _this.joinEvent.bind(_assertThisInitialized(_this));
     _this.showMembers = _this.showMembers.bind(_assertThisInitialized(_this));
+    _this.findMembershipID = _this.findMembershipID.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -2578,8 +2579,31 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "handleRemoveEvent",
-    value: function handleRemoveEvent(eventId) {
+    value: function handleRemoveEvent(eventId, members) {
+      var _this2 = this;
+
       this.props.deleteEvent(eventId);
+
+      if (members.length > 0) {
+        members.map(function (member) {
+          _this2.props.deleteEventMembership(_this2.findMembershipID(member));
+        });
+      }
+    }
+  }, {
+    key: "findMembershipID",
+    value: function findMembershipID(memberID) {
+      var memberships = Object.values(this.props.state.eventMemberships);
+      return memberships.map(function (membership) {
+        if (membership.user_id === memberID) {
+          return membership.id;
+        }
+      });
+    }
+  }, {
+    key: "handleRemoveMember",
+    value: function handleRemoveMember(membershipID) {
+      this.props.deleteEventMembership(membershipID);
     }
   }, {
     key: "joinEvent",
@@ -2606,17 +2630,25 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "showMembers",
     value: function showMembers(eventMembers, owner) {
+      var _this3 = this;
+
       var users = this.props.state.users;
       return eventMembers.map(function (member) {
         console.log(member);
 
         if (member === owner) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-            key: member
+            key: member,
+            onClick: function onClick() {
+              return _this3.handleRemoveMember(member);
+            }
           }, "OWNER -- ", users[member].name);
         } else {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-            key: member
+            key: member,
+            onClick: function onClick() {
+              return _this3.handleRemoveMember(member);
+            }
           }, "USER -- ", users[member].name);
         }
       });
@@ -2624,7 +2656,7 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "eventInfo",
     value: function eventInfo(events) {
-      var _this2 = this;
+      var _this4 = this;
 
       var event = {
         name: "No Current Event",
@@ -2636,7 +2668,7 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
 
       if (this.state.eventId !== null) {
         events.map(function (ev) {
-          if (ev.id === _this2.state.eventId) {
+          if (ev.id === _this4.state.eventId) {
             event = ev;
             eventId = ev.id;
           }
@@ -2659,16 +2691,16 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
           className: "event-info"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Name: ", event.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Description: ", event.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Date: ", event.date), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Time: ", event.time), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           onClick: function onClick() {
-            return _this2.handleRemoveEvent(event.id);
+            return _this4.handleRemoveEvent(event.id, membersIDs);
           }
         }, "Delete Event"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           onClick: function onClick() {
-            return _this2.joinEvent(event.id);
+            return _this4.joinEvent(event.id);
           }
         }, "Join Event")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.showMembers(membersIDs, owner))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "exit",
           onClick: function onClick() {
-            return _this2.setState({
+            return _this4.setState({
               "eventId": null
             });
           }
@@ -2685,14 +2717,14 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      var _this5 = this;
 
       var events = this.state.events;
       console.log(this);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "event-page"
       }, this.showEventList(events), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.showEvents(events, function (eventId) {
-        return _this3.setState({
+        return _this5.setState({
           eventId: eventId
         });
       })), this.eventInfo(events), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_event_form_container__WEBPACK_IMPORTED_MODULE_2__["default"], null));
