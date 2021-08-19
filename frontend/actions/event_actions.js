@@ -4,6 +4,7 @@ export const RECEIVE_ALL_EVENTS = 'RECEIVE_ALL_EVENTS';
 export const REMOVE_EVENT = 'REMOVE_EVENT';
 export const RECEIVE_ALL_EVENT_MEMBERSHIPS = 'RECEIVE_ALL_EVENT_MEMBERSHIPS';
 export const CREATE_EVENT = 'CREATE_EVENT';
+export const REMOVE_EVENT_MEMBERSHIP = 'REMOVE_EVENT_MEMBERSHIP';
 
 
 const receiveAllEvents = (events) => ({
@@ -33,6 +34,11 @@ export const fetchEventMemberships = () => dispatch => (
 
 export const createEventMembership = membership => dispatch => (
     EventApiUtil.createEventMembership(membership)
+    .then(memberships => dispatch(receiveEventMemberships(memberships)))
+)
+
+export const deleteEventMembership = membershipId => dispatch => (
+    EventApiUtil.removeEventMembership(membershipId)
     .then(memberships => dispatch(receiveEventMemberships(memberships)))
 )
 

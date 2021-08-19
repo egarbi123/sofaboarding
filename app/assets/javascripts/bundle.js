@@ -254,7 +254,7 @@ var newMessage = function newMessage(message) {
 /*!*******************************************!*\
   !*** ./frontend/actions/event_actions.js ***!
   \*******************************************/
-/*! exports provided: RECEIVE_ALL_EVENTS, REMOVE_EVENT, RECEIVE_ALL_EVENT_MEMBERSHIPS, CREATE_EVENT, fetchEventMemberships, createEventMembership, createEvent, fetchAllEvents, deleteEvent */
+/*! exports provided: RECEIVE_ALL_EVENTS, REMOVE_EVENT, RECEIVE_ALL_EVENT_MEMBERSHIPS, CREATE_EVENT, REMOVE_EVENT_MEMBERSHIP, fetchEventMemberships, createEventMembership, deleteEventMembership, createEvent, fetchAllEvents, deleteEvent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -263,8 +263,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_EVENT", function() { return REMOVE_EVENT; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ALL_EVENT_MEMBERSHIPS", function() { return RECEIVE_ALL_EVENT_MEMBERSHIPS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CREATE_EVENT", function() { return CREATE_EVENT; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_EVENT_MEMBERSHIP", function() { return REMOVE_EVENT_MEMBERSHIP; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchEventMemberships", function() { return fetchEventMemberships; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createEventMembership", function() { return createEventMembership; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteEventMembership", function() { return deleteEventMembership; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createEvent", function() { return createEvent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAllEvents", function() { return fetchAllEvents; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteEvent", function() { return deleteEvent; });
@@ -274,6 +276,7 @@ var RECEIVE_ALL_EVENTS = 'RECEIVE_ALL_EVENTS';
 var REMOVE_EVENT = 'REMOVE_EVENT';
 var RECEIVE_ALL_EVENT_MEMBERSHIPS = 'RECEIVE_ALL_EVENT_MEMBERSHIPS';
 var CREATE_EVENT = 'CREATE_EVENT';
+var REMOVE_EVENT_MEMBERSHIP = 'REMOVE_EVENT_MEMBERSHIP';
 
 var receiveAllEvents = function receiveAllEvents(events) {
   return {
@@ -313,6 +316,13 @@ var fetchEventMemberships = function fetchEventMemberships() {
 var createEventMembership = function createEventMembership(membership) {
   return function (dispatch) {
     return _util_event_api_util__WEBPACK_IMPORTED_MODULE_0__["createEventMembership"](membership).then(function (memberships) {
+      return dispatch(receiveEventMemberships(memberships));
+    });
+  };
+};
+var deleteEventMembership = function deleteEventMembership(membershipId) {
+  return function (dispatch) {
+    return _util_event_api_util__WEBPACK_IMPORTED_MODULE_0__["removeEventMembership"](membershipId).then(function (memberships) {
       return dispatch(receiveEventMemberships(memberships));
     });
   };
@@ -2416,7 +2426,6 @@ var EventForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      console.log(this);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "event-form"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Create A New Event"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
@@ -2557,6 +2566,7 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
     _this.handleRemoveEvent = _this.handleRemoveEvent.bind(_assertThisInitialized(_this));
     _this.eventInfo = _this.eventInfo.bind(_assertThisInitialized(_this));
     _this.joinEvent = _this.joinEvent.bind(_assertThisInitialized(_this));
+    _this.showMembers = _this.showMembers.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -2583,7 +2593,7 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "showEvents",
-    value: function showEvents(events, handleClick, eventMemberships) {
+    value: function showEvents(events, handleClick) {
       return events.map(function (event) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           key: event.id,
@@ -2591,6 +2601,24 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
             return handleClick(event.id);
           }
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, event.name));
+      });
+    }
+  }, {
+    key: "showMembers",
+    value: function showMembers(eventMembers, owner) {
+      var users = this.props.state.users;
+      return eventMembers.map(function (member) {
+        console.log(member);
+
+        if (member === owner) {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            key: member
+          }, "OWNER -- ", users[member].name);
+        } else {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            key: member
+          }, "USER -- ", users[member].name);
+        }
       });
     }
   }, {
@@ -2604,16 +2632,30 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
         date: "No Date",
         time: "No Time"
       };
+      var eventId = undefined;
 
       if (this.state.eventId !== null) {
         events.map(function (ev) {
           if (ev.id === _this2.state.eventId) {
             event = ev;
+            eventId = ev.id;
+          }
+        });
+        var eventMemberships = Object.values(this.props.state.eventMemberships);
+        var membersIDs = [];
+        var owner = undefined;
+        eventMemberships.map(function (membership) {
+          if (membership.event_id === eventId) {
+            membersIDs.push(membership.user_id);
+
+            if (membership.owner) {
+              owner = membership.user_id;
+            }
           }
         });
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "event-display"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "event-info"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Name: ", event.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Description: ", event.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Date: ", event.date), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Time: ", event.time), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           onClick: function onClick() {
@@ -2623,7 +2665,7 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
           onClick: function onClick() {
             return _this2.joinEvent(event.id);
           }
-        }, "Join Event")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, "Join Event")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.showMembers(membersIDs, owner))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "exit",
           onClick: function onClick() {
             return _this2.setState({
@@ -2646,7 +2688,6 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
       var _this3 = this;
 
       var events = this.state.events;
-      var eventMemberships = [];
       console.log(this);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "event-page"
@@ -2654,7 +2695,7 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
         return _this3.setState({
           eventId: eventId
         });
-      }, eventMemberships)), this.eventInfo(events), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_event_form_container__WEBPACK_IMPORTED_MODULE_2__["default"], null));
+      })), this.eventInfo(events), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_event_form_container__WEBPACK_IMPORTED_MODULE_2__["default"], null));
     }
   }]);
 
@@ -2700,6 +2741,9 @@ var mDTP = function mDTP(dispatch) {
     },
     fetchEventMemberships: function fetchEventMemberships() {
       return dispatch(Object(_actions_event_actions__WEBPACK_IMPORTED_MODULE_2__["fetchEventMemberships"])());
+    },
+    deleteEventMembership: function deleteEventMembership(membershipId) {
+      return dispatch(Object(_actions_event_actions__WEBPACK_IMPORTED_MODULE_2__["deleteEventMembership"])(membershipId));
     }
   };
 };

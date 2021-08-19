@@ -12,6 +12,17 @@ class Api::EventmembershipsController < ApplicationController
         render :index
     end
 
+    def destroy
+        @eventMembership = EventMembership.find(params[:id])
+        if @eventMembership.destroy
+            @allEventMemberships = EventMembership.all
+            render :index, status: 200
+        else
+            @allEventMemberships = EventMembership.all
+            render :index, status: 422
+        end
+    end
+
     private
 
     def eventMembership_params

@@ -28,6 +28,6 @@ Rails.application.routes.draw do
     resources :messages, only: [:create, :index]
     resources :profilebio, only: [:create, :update, :index]
     resources :events, only: [:create, :update, :index, :destroy]
-    resources :eventmemberships, only: [:create, :index]
+    resources :eventmemberships, only: [:create, :index, :destroy]
   end 
 end

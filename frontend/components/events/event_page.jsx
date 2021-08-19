@@ -11,6 +11,7 @@ class EventPage extends React.Component {
         this.handleRemoveEvent = this.handleRemoveEvent.bind(this);
         this.eventInfo = this.eventInfo.bind(this);
         this.joinEvent = this.joinEvent.bind(this);
+        this.showMembers = this.showMembers.bind(this);
     }
 
     componentDidMount() {
@@ -31,11 +32,26 @@ class EventPage extends React.Component {
         this.props.createEventMembership(membership);
     }
 
-    showEvents(events, handleClick, eventMemberships) {
+    showEvents(events, handleClick) {
         return events.map(event => {
             return (<li key={event.id} onClick={() => handleClick(event.id)}>
                 <p>{event.name}</p>
             </li>)
+        })
+    }
+
+    showMembers(eventMembers, owner) {
+        let users = this.props.state.users;
+
+        return eventMembers.map(member => {
+            console.log(member);
+            if (member === owner) {
+                return (
+                    <div key={member}>OWNER -- {users[member].name}</div>
+                )
+            } else {
+                return (<div key={member}>USER -- {users[member].name}</div>)
+            }
         })
     }
 
@@ -46,21 +62,39 @@ class EventPage extends React.Component {
             date: "No Date",
             time: "No Time"
         }
+        let eventId = undefined;
         if (this.state.eventId !== null) {
             events.map(ev => {
                 if (ev.id === this.state.eventId) {
-                    event = ev
+                    event = ev;
+                    eventId = ev.id
+                }
+            })
+            let eventMemberships = Object.values(this.props.state.eventMemberships);
+            let membersIDs = [];
+            let owner = undefined;
+            eventMemberships.map(membership => {
+                if (membership.event_id === eventId) {
+                    membersIDs.push(membership.user_id);
+                    if (membership.owner) {
+                        owner = membership.user_id;
+                    }
                 }
             })
             return (
                 <div className="event-display">
-                    <div className="event-info">
-                        <p>Name: {event.name}</p>
-                        <p>Description: {event.description}</p>
-                        <p>Date: {event.date}</p>
-                        <p>Time: {event.time}</p>
-                        <button onClick={() => this.handleRemoveEvent(event.id)}>Delete Event</button>
-                        <button onClick={() => this.joinEvent(event.id)}>Join Event</button>
+                    <div>
+                        <div className="event-info">
+                            <p>Name: {event.name}</p>
+                            <p>Description: {event.description}</p>
+                            <p>Date: {event.date}</p>
+                            <p>Time: {event.time}</p>
+                            <button onClick={() => this.handleRemoveEvent(event.id)}>Delete Event</button>
+                            <button onClick={() => this.joinEvent(event.id)}>Join Event</button>
+                        </div>
+                        <div>
+                            {this.showMembers(membersIDs, owner)}
+                        </div>
                     </div>
                     <div className="exit" onClick={() => this.setState({ "eventId": null })}>X</div>
                 </div>
@@ -76,7 +110,6 @@ class EventPage extends React.Component {
 
     render() {
         let events = this.state.events;
-        let eventMemberships = [];
 
         console.log(this);
 
@@ -84,7 +117,7 @@ class EventPage extends React.Component {
             <div className="event-page">
                 {this.showEventList(events)}
                 <ul>
-                    {this.showEvents(events, (eventId) => this.setState({ eventId: eventId }), eventMemberships)}
+                    {this.showEvents(events, (eventId) => this.setState({ eventId: eventId }))}
                 </ul>
                 {this.eventInfo(events)}
                 {<EventForm />}
