@@ -72,6 +72,19 @@ class EventPage extends React.Component {
         }
     }
 
+    handleRemoveMember(memberID, eventID) {
+        let memberships = Object.values(this.props.state.eventMemberships);
+        let membershipID = undefined;
+        for (let i = 0; i < memberships.length; i++) {
+            if (memberships[i].event_id === eventID && memberships[i].user_id === memberID) {
+                membershipID = memberships[i].id
+            }
+        }
+        if (membershipID) {
+            this.handleRemoveMembership(membershipID);
+        }
+    }
+
     handleRemoveMembership(membershipID) {
         console.log(membershipID);
         // this.props.deleteEventMembership(membershipID)
@@ -95,25 +108,38 @@ class EventPage extends React.Component {
         })
     }
 
-    showMembers(eventMembers, owner) {
+    showMembers(eventMembers, owner, eventID) {
         let users = this.props.state.users;
         console.log('IN showMembers: this.userIsOwner', this.userIsOwner);
         return eventMembers.map(member => {
             if (this.userIsOwner === true) {
                 if (member === owner) {
                     return (
-                        <div key={member}>You Are The Owner</div>
+                        <div key={member}><p>You Are The Owner</p></div>
                     )
                 } else {
-                    return (<div key={member} className="pointer" onClick={() => this.handleRemoveMembership(member)}>USER -- {users[member].name}</div>)
+                    return (
+                        <div key={member} className="row">
+                            <p>Member: {users[member].name}</p>
+                            <button onClick={() => this.handleRemoveMember(member, eventID)} className="pointer ">Remove {users[member].name}</button>
+                        </div>
+                    )
                 }
             } else {
                 if (member === owner) {
                     return (
-                        <div key={member}>OWNER -- {users[member].name}</div>
+                        <div key={member}>OWNER: {users[member].name}</div>
                     )
                 } else {
-                    return (<div key={member}>USER -- {users[member].name}</div>)
+                    if (this.props.state.session.id !== member) {
+                        return (<div key={member}>Member: {users[member].name}</div>)
+                    } else {
+                        return (
+                            <div className="row" key={member}>
+                                <button onClick={() => this.handleRemoveMembership(member)}>Leave Event</button>
+                            </div>
+                        )
+                    }
                 }
             }
         })
@@ -163,12 +189,26 @@ class EventPage extends React.Component {
                             <div className="exit" onClick={() => this.setState({ "eventId": undefined })}>X</div>
                         </div>
                         <h4>Members:</h4>
-                        {this.showMembers(membersIDs, owner)}
+                        {this.showMembers(membersIDs, owner, eventId)}
                         <button onClick={() => this.handleRemoveEvent(event.id, membersIDs)}>Delete Event</button>
-                        <button onClick={() => this.joinEvent(event.id)}>Join Event</button>
+                        {this.showJoinEventButton(event.id)}
                     </div>
                 </div>
             )
+        }
+    }
+    
+    showJoinEventButton(eventID) {
+        let userID = this.props.state.session.id;
+        let memberships = Object.values(this.props.state.eventMemberships);
+        let alreadyMember = false;
+        for (let i = 0; i < memberships.length; i++) {
+            if (memberships[i].user_id === userID && memberships[i].event_id === eventID) {
+                alreadyMember = true;
+            }
+        }
+        if (alreadyMember === false) {
+            return <button onClick={() => this.joinEvent(eventID)}>Join Event</button>
         }
     }
 

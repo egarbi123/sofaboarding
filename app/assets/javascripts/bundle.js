@@ -2675,6 +2675,22 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
       }
     }
   }, {
+    key: "handleRemoveMember",
+    value: function handleRemoveMember(memberID, eventID) {
+      var memberships = Object.values(this.props.state.eventMemberships);
+      var membershipID = undefined;
+
+      for (var i = 0; i < memberships.length; i++) {
+        if (memberships[i].event_id === eventID && memberships[i].user_id === memberID) {
+          membershipID = memberships[i].id;
+        }
+      }
+
+      if (membershipID) {
+        this.handleRemoveMembership(membershipID);
+      }
+    }
+  }, {
     key: "handleRemoveMembership",
     value: function handleRemoveMembership(membershipID) {
       console.log(membershipID); // this.props.deleteEventMembership(membershipID)
@@ -2706,7 +2722,7 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "showMembers",
-    value: function showMembers(eventMembers, owner) {
+    value: function showMembers(eventMembers, owner, eventID) {
       var _this2 = this;
 
       var users = this.props.state.users;
@@ -2716,25 +2732,38 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
           if (member === owner) {
             return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
               key: member
-            }, "You Are The Owner");
+            }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "You Are The Owner"));
           } else {
             return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
               key: member,
-              className: "pointer",
+              className: "row"
+            }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Member: ", users[member].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
               onClick: function onClick() {
-                return _this2.handleRemoveMembership(member);
-              }
-            }, "USER -- ", users[member].name);
+                return _this2.handleRemoveMember(member, eventID);
+              },
+              className: "pointer "
+            }, "Remove ", users[member].name));
           }
         } else {
           if (member === owner) {
             return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
               key: member
-            }, "OWNER -- ", users[member].name);
+            }, "OWNER: ", users[member].name);
           } else {
-            return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-              key: member
-            }, "USER -- ", users[member].name);
+            if (_this2.props.state.session.id !== member) {
+              return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+                key: member
+              }, "Member: ", users[member].name);
+            } else {
+              return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+                className: "row",
+                key: member
+              }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+                onClick: function onClick() {
+                  return _this2.handleRemoveMembership(member);
+                }
+              }, "Leave Event"));
+            }
           }
         }
       });
@@ -2788,15 +2817,34 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
               "eventId": undefined
             });
           }
-        }, "X")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Members:"), this.showMembers(membersIDs, owner), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        }, "X")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Members:"), this.showMembers(membersIDs, owner, eventId), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           onClick: function onClick() {
             return _this3.handleRemoveEvent(event.id, membersIDs);
           }
-        }, "Delete Event"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        }, "Delete Event"), this.showJoinEventButton(event.id)));
+      }
+    }
+  }, {
+    key: "showJoinEventButton",
+    value: function showJoinEventButton(eventID) {
+      var _this4 = this;
+
+      var userID = this.props.state.session.id;
+      var memberships = Object.values(this.props.state.eventMemberships);
+      var alreadyMember = false;
+
+      for (var i = 0; i < memberships.length; i++) {
+        if (memberships[i].user_id === userID && memberships[i].event_id === eventID) {
+          alreadyMember = true;
+        }
+      }
+
+      if (alreadyMember === false) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           onClick: function onClick() {
-            return _this3.joinEvent(event.id);
+            return _this4.joinEvent(eventID);
           }
-        }, "Join Event")));
+        }, "Join Event");
       }
     }
   }, {
@@ -2809,7 +2857,7 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this4 = this;
+      var _this5 = this;
 
       var events = this.state.events;
       console.log(this);
@@ -2818,7 +2866,7 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
       }, this.showEventHeader(events), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "events-list"
       }, this.showEvents(events, function (eventId) {
-        return _this4.setState({
+        return _this5.setState({
           eventId: eventId
         });
       })), this.eventInfo(events), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_event_form_container__WEBPACK_IMPORTED_MODULE_1__["default"], null));
