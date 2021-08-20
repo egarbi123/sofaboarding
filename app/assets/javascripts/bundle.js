@@ -2419,6 +2419,13 @@ var EventForm = /*#__PURE__*/function (_React$Component) {
 
       if (this.state.name && this.state.description && this.state.date && this.state.time) {
         this.props.createEvent(event);
+        this.setState({
+          name: "",
+          description: "",
+          date: "",
+          time: "",
+          user_id: this.props.state.session.id
+        });
       } else {}
     }
   }, {
@@ -2435,8 +2442,7 @@ var EventForm = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this3 = this;
 
-      console.log(this);
-
+      // console.log(this);
       if (this.state.showEvent === true) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "event-form"
@@ -2593,7 +2599,8 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
     _this.handleRemoveEvent = _this.handleRemoveEvent.bind(_assertThisInitialized(_this));
     _this.eventInfo = _this.eventInfo.bind(_assertThisInitialized(_this));
     _this.joinEvent = _this.joinEvent.bind(_assertThisInitialized(_this));
-    _this.showMembers = _this.showMembers.bind(_assertThisInitialized(_this));
+    _this.showMembers = _this.showMembers.bind(_assertThisInitialized(_this)); // this.updateEvents = this.updateEvents.bind(this);
+
     return _this;
   }
 
@@ -2602,7 +2609,14 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
     value: function componentDidMount() {
       this.props.fetchAllEvents();
       this.props.fetchEventMemberships();
-    }
+    } // updateEvents() {
+    //     let stateEvents = Object.values(this.state.events);
+    //     let propsEvents = Object.values(this.props.state.event);
+    //     if (stateEvents.length !== propsEvents.length) {
+    //         this.setState({"events": this.props.state.event})
+    //     }
+    // }
+
   }, {
     key: "handleRemoveEvent",
     value: function handleRemoveEvent(eventId, members) {
@@ -2666,6 +2680,7 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
         if (member === owner) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             key: member,
+            className: "pointer",
             onClick: function onClick() {
               return _this2.handleRemoveMembership(member);
             }
@@ -2673,6 +2688,7 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
         } else {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             key: member,
+            className: "pointer",
             onClick: function onClick() {
               return _this2.handleRemoveMembership(member);
             }
@@ -2693,7 +2709,7 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
       };
       var eventId = undefined;
 
-      if (this.state.eventId !== null) {
+      if (this.state.eventId !== undefined) {
         events.map(function (ev) {
           if (ev.id === _this3.state.eventId) {
             event = ev;
@@ -2714,9 +2730,22 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
         });
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "event-display"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "event-info"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Name: ", event.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Description: ", event.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Date: ", event.date), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Time: ", event.time), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Name: ", event.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Description: ", event.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Date: ", event.date), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Time: ", event.time)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "event-controls"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "event-name-exit"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "column"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Event:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, event.name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "exit",
+          onClick: function onClick() {
+            return _this3.setState({
+              "eventId": undefined
+            });
+          }
+        }, "X")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Members:"), this.showMembers(membersIDs, owner), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           onClick: function onClick() {
             return _this3.handleRemoveEvent(event.id, membersIDs);
           }
@@ -2724,14 +2753,7 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
           onClick: function onClick() {
             return _this3.joinEvent(event.id);
           }
-        }, "Join Event")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.showMembers(membersIDs, owner))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "exit",
-          onClick: function onClick() {
-            return _this3.setState({
-              "eventId": null
-            });
-          }
-        }, "X"));
+        }, "Join Event")));
       }
     }
   }, {
@@ -2746,8 +2768,8 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this4 = this;
 
-      var events = this.state.events; // console.log(this);
-
+      var events = this.state.events;
+      console.log(this);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "event-page"
       }, this.showEventHeader(events), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {

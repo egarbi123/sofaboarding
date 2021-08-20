@@ -11,12 +11,21 @@ class EventPage extends React.Component {
         this.eventInfo = this.eventInfo.bind(this);
         this.joinEvent = this.joinEvent.bind(this);
         this.showMembers = this.showMembers.bind(this);
+        // this.updateEvents = this.updateEvents.bind(this);
     }
 
     componentDidMount() {
         this.props.fetchAllEvents();
         this.props.fetchEventMemberships()
     }
+    
+    // updateEvents() {
+    //     let stateEvents = Object.values(this.state.events);
+    //     let propsEvents = Object.values(this.props.state.event);
+    //     if (stateEvents.length !== propsEvents.length) {
+    //         this.setState({"events": this.props.state.event})
+    //     }
+    // }
 
     handleRemoveEvent(eventId, members) {
         this.props.deleteEvent(eventId);
@@ -67,10 +76,10 @@ class EventPage extends React.Component {
         return eventMembers.map(member => {
             if (member === owner) {
                 return (
-                    <div key={member} onClick={() => this.handleRemoveMembership(member)}>OWNER -- {users[member].name}</div>
+                    <div key={member} className="pointer" onClick={() => this.handleRemoveMembership(member)}>OWNER -- {users[member].name}</div>
                 )
             } else {
-                return (<div key={member} onClick={() => this.handleRemoveMembership(member)}>USER -- {users[member].name}</div>)
+                return (<div key={member} className="pointer" onClick={() => this.handleRemoveMembership(member)}>USER -- {users[member].name}</div>)
             }
         })
     }
@@ -83,7 +92,7 @@ class EventPage extends React.Component {
             time: "No Time"
         }
         let eventId = undefined;
-        if (this.state.eventId !== null) {
+        if (this.state.eventId !== undefined) {
             events.map(ev => {
                 if (ev.id === this.state.eventId) {
                     event = ev;
@@ -104,20 +113,25 @@ class EventPage extends React.Component {
             
             return (
                 <div className="event-display">
-                    <div>
-                        <div className="event-info">
-                            <p>Name: {event.name}</p>
-                            <p>Description: {event.description}</p>
-                            <p>Date: {event.date}</p>
-                            <p>Time: {event.time}</p>
-                            <button onClick={() => this.handleRemoveEvent(event.id, membersIDs)}>Delete Event</button>
-                            <button onClick={() => this.joinEvent(event.id)}>Join Event</button>
-                        </div>
-                        <div>
-                            {this.showMembers(membersIDs, owner)}
-                        </div>
+                    <div className="event-info">
+                        <p>Name: {event.name}</p>
+                        <p>Description: {event.description}</p>
+                        <p>Date: {event.date}</p>
+                        <p>Time: {event.time}</p>
                     </div>
-                    <div className="exit" onClick={() => this.setState({ "eventId": null })}>X</div>
+                    <div className="event-controls">
+                        <div className="event-name-exit">
+                            <div className="column">
+                                <h4>Event:</h4>
+                                <p>{event.name}</p>
+                            </div>
+                            <div className="exit" onClick={() => this.setState({ "eventId": undefined })}>X</div>
+                        </div>
+                        <h4>Members:</h4>
+                        {this.showMembers(membersIDs, owner)}
+                        <button onClick={() => this.handleRemoveEvent(event.id, membersIDs)}>Delete Event</button>
+                        <button onClick={() => this.joinEvent(event.id)}>Join Event</button>
+                    </div>
                 </div>
             )
         }
@@ -132,7 +146,7 @@ class EventPage extends React.Component {
     render() {
         let events = this.state.events;
 
-        // console.log(this);
+        console.log(this);
 
         return (
             <div className="event-page">
