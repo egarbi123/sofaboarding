@@ -33,6 +33,7 @@ class EventPage extends React.Component {
         let memberships = Object.values(this.props.state.eventMemberships);
         return memberships.map(membership => {
             if (membership.user_id === memberID) {
+                console.log('FOUND MEMBERSHIP ID')
                 return membership.id
             } 
         })
@@ -53,9 +54,9 @@ class EventPage extends React.Component {
 
     showEvents(events, handleClick) {
         return events.map(event => {
-            return (<li key={event.id} onClick={() => handleClick(event.id)}>
+            return (<div key={event.id} className="event-piece" onClick={() => handleClick(event.id)}>
                 <p>{event.name}</p>
-            </li>)
+            </div>)
         })
     }
 
@@ -136,9 +137,9 @@ class EventPage extends React.Component {
         return (
             <div className="event-page">
                 {this.showEventList(events)}
-                <ul>
+                <div className="events-list">
                     {this.showEvents(events, (eventId) => this.setState({ eventId: eventId }))}
-                </ul>
+                </div>
                 {this.eventInfo(events)}
                 {<EventForm />}
             </div>

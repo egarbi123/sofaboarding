@@ -3,18 +3,37 @@
     text-align: center;
 }
 
-.event-page ul li {
-    list-style: none;
+.event-piece {
     width: 200px;
     height: fit-content;
     background-color: violet;
     border-radius: 10px;
-    padding-bottom: 5px;
+    padding-bottom: 2px;
+    padding-right: 2px;
+}
+
+.event-piece:hover {
+    width: 200px;
+    height: fit-content;
+    background-color: rgb(175, 31, 175);
+    border-radius: 10px;
+    padding-bottom: 2px;
+    padding-right: 2px;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.events-list {
+    display: flex;
+    flex-direction: row;
+    width: 610px;
+    flex-wrap: wrap;
 }
 
 .event-display {
-    width: fit-content;
-    height: 300px;
+    // width: fit-content;
+    height: fit-content;
+    width: 600px;
     display: flex;
     flex-direction: row;
 }

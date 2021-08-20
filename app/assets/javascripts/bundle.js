@@ -2596,6 +2596,7 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
       var memberships = Object.values(this.props.state.eventMemberships);
       return memberships.map(function (membership) {
         if (membership.user_id === memberID) {
+          console.log('FOUND MEMBERSHIP ID');
           return membership.id;
         }
       });
@@ -2619,8 +2620,9 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
     key: "showEvents",
     value: function showEvents(events, handleClick) {
       return events.map(function (event) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           key: event.id,
+          className: "event-piece",
           onClick: function onClick() {
             return handleClick(event.id);
           }
@@ -2723,7 +2725,9 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
       console.log(this);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "event-page"
-      }, this.showEventList(events), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.showEvents(events, function (eventId) {
+      }, this.showEventList(events), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "events-list"
+      }, this.showEvents(events, function (eventId) {
         return _this5.setState({
           eventId: eventId
         });
