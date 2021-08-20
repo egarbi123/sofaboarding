@@ -6,7 +6,10 @@ class EventPage extends React.Component {
         super(props);
         this.state = {
             "events": this.props.events,
+            "eventId": undefined,
+            "userIsOwner": false,
         }
+        this.userIsOwner = false;
         this.handleRemoveEvent = this.handleRemoveEvent.bind(this);
         this.eventInfo = this.eventInfo.bind(this);
         this.joinEvent = this.joinEvent.bind(this);
@@ -17,6 +20,28 @@ class EventPage extends React.Component {
     componentDidMount() {
         this.props.fetchAllEvents();
         this.props.fetchEventMemberships()
+    }
+
+    componentDidUpdate() {
+        let owner = null;
+        if (this.state.eventId) {
+            console.log('IN CDM: WE HAVE an eventID');
+            let memberships = Object.values(this.props.state.eventMemberships);
+            for (let i = 0; i < memberships.length; i++) {
+                if (memberships[i].owner) {
+                    owner = memberships[i].user_id;
+                }
+            }
+        }
+        console.log('IN CDM', owner);
+        if (this.props.state.session.id === owner) {
+            console.log('IN CDM: OWNER!', );
+            this.userIsOwner = true;
+            if (this.state.userIsOwner !== true) {
+                this.setState({"userIsOwner": true});
+            }
+            console.log(this.state.userIsOwner)
+        }
     }
     
     // updateEvents() {
@@ -72,14 +97,24 @@ class EventPage extends React.Component {
 
     showMembers(eventMembers, owner) {
         let users = this.props.state.users;
-
+        console.log('IN showMembers: this.userIsOwner', this.userIsOwner);
         return eventMembers.map(member => {
-            if (member === owner) {
-                return (
-                    <div key={member} className="pointer" onClick={() => this.handleRemoveMembership(member)}>OWNER -- {users[member].name}</div>
-                )
+            if (this.userIsOwner === true) {
+                if (member === owner) {
+                    return (
+                        <div key={member}>You Are The Owner</div>
+                    )
+                } else {
+                    return (<div key={member} className="pointer" onClick={() => this.handleRemoveMembership(member)}>USER -- {users[member].name}</div>)
+                }
             } else {
-                return (<div key={member} className="pointer" onClick={() => this.handleRemoveMembership(member)}>USER -- {users[member].name}</div>)
+                if (member === owner) {
+                    return (
+                        <div key={member}>OWNER -- {users[member].name}</div>
+                    )
+                } else {
+                    return (<div key={member}>USER -- {users[member].name}</div>)
+                }
             }
         })
     }

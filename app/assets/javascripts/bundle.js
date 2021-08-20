@@ -2594,8 +2594,11 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      "events": _this.props.events
+      "events": _this.props.events,
+      "eventId": undefined,
+      "userIsOwner": false
     };
+    _this.userIsOwner = false;
     _this.handleRemoveEvent = _this.handleRemoveEvent.bind(_assertThisInitialized(_this));
     _this.eventInfo = _this.eventInfo.bind(_assertThisInitialized(_this));
     _this.joinEvent = _this.joinEvent.bind(_assertThisInitialized(_this));
@@ -2609,6 +2612,37 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
     value: function componentDidMount() {
       this.props.fetchAllEvents();
       this.props.fetchEventMemberships();
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {
+      var owner = null;
+
+      if (this.state.eventId) {
+        console.log('IN CDM: WE HAVE an eventID');
+        var memberships = Object.values(this.props.state.eventMemberships);
+
+        for (var i = 0; i < memberships.length; i++) {
+          if (memberships[i].owner) {
+            owner = memberships[i].user_id;
+          }
+        }
+      }
+
+      console.log('IN CDM', owner);
+
+      if (this.props.state.session.id === owner) {
+        console.log('IN CDM: OWNER!');
+        this.userIsOwner = true;
+
+        if (this.state.userIsOwner !== true) {
+          this.setState({
+            "userIsOwner": true
+          });
+        }
+
+        console.log(this.state.userIsOwner);
+      }
     } // updateEvents() {
     //     let stateEvents = Object.values(this.state.events);
     //     let propsEvents = Object.values(this.props.state.event);
@@ -2676,23 +2710,32 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
       var _this2 = this;
 
       var users = this.props.state.users;
+      console.log('IN showMembers: this.userIsOwner', this.userIsOwner);
       return eventMembers.map(function (member) {
-        if (member === owner) {
-          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-            key: member,
-            className: "pointer",
-            onClick: function onClick() {
-              return _this2.handleRemoveMembership(member);
-            }
-          }, "OWNER -- ", users[member].name);
+        if (_this2.userIsOwner === true) {
+          if (member === owner) {
+            return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+              key: member
+            }, "You Are The Owner");
+          } else {
+            return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+              key: member,
+              className: "pointer",
+              onClick: function onClick() {
+                return _this2.handleRemoveMembership(member);
+              }
+            }, "USER -- ", users[member].name);
+          }
         } else {
-          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-            key: member,
-            className: "pointer",
-            onClick: function onClick() {
-              return _this2.handleRemoveMembership(member);
-            }
-          }, "USER -- ", users[member].name);
+          if (member === owner) {
+            return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+              key: member
+            }, "OWNER -- ", users[member].name);
+          } else {
+            return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+              key: member
+            }, "USER -- ", users[member].name);
+          }
         }
       });
     }
