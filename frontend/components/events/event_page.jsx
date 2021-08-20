@@ -1,5 +1,4 @@
 import React from 'react';
-import { fetchEventMemberships } from '../../actions/event_actions';
 import EventForm from './event_form_container';
 
 class EventPage extends React.Component {
@@ -12,7 +11,6 @@ class EventPage extends React.Component {
         this.eventInfo = this.eventInfo.bind(this);
         this.joinEvent = this.joinEvent.bind(this);
         this.showMembers = this.showMembers.bind(this);
-        this.findMembershipID = this.findMembershipID.bind(this);
     }
 
     componentDidMount() {
@@ -22,32 +20,35 @@ class EventPage extends React.Component {
 
     handleRemoveEvent(eventId, members) {
         this.props.deleteEvent(eventId);
+        console.log('IN handleRemoveEvent: members:', members);
         if (members.length > 0) {
-            members.map(member => {
-                this.props.deleteEventMembership(this.findMembershipID(member));
-            })
+            this.deleteMemberships(eventId);
         }
     }
 
-    findMembershipID(memberID) {
+    deleteMemberships(eventId) {
         let memberships = Object.values(this.props.state.eventMemberships);
-        return memberships.map(membership => {
-            if (membership.user_id === memberID) {
-                console.log('FOUND MEMBERSHIP ID')
-                return membership.id
-            } 
-        })
+        console.log('IN deleteMemberships: memberships:', memberships);
+        // console.log('In deleteMemberships: members', members);
+        for (let i = 0; i < memberships.length; i++) {
+            if (memberships[i].event_id === eventId) {
+                console.log('DELETING MEMBERSHIP WITH ID:', memberships[i].id);
+                this.props.deleteEventMembership(memberships[i].id);
+            }
+        }
     }
 
-    handleRemoveMember(membershipID) {
-        this.props.deleteEventMembership(membershipID)
+    handleRemoveMembership(membershipID) {
+        console.log(membershipID);
+        // this.props.deleteEventMembership(membershipID)
+        this.props.deleteEventMembership(membershipID);
     }
 
     joinEvent(eventId) {
         let membership = {
             "user_id": this.props.state.session.id,
             "event_id": eventId,
-            "owner": true
+            "owner": false
         }
         this.props.createEventMembership(membership);
     }
@@ -64,13 +65,12 @@ class EventPage extends React.Component {
         let users = this.props.state.users;
 
         return eventMembers.map(member => {
-            console.log(member);
             if (member === owner) {
                 return (
-                    <div key={member} onClick={() => this.handleRemoveMember(member)}>OWNER -- {users[member].name}</div>
+                    <div key={member} onClick={() => this.handleRemoveMembership(member)}>OWNER -- {users[member].name}</div>
                 )
             } else {
-                return (<div key={member} onClick={() => this.handleRemoveMember(member)}>USER -- {users[member].name}</div>)
+                return (<div key={member} onClick={() => this.handleRemoveMembership(member)}>USER -- {users[member].name}</div>)
             }
         })
     }
@@ -123,7 +123,7 @@ class EventPage extends React.Component {
         }
     }
 
-    showEventList(events) {
+    showEventHeader(events) {
         if (events.length > 0) {
             return (<h5>These Are The Current Events</h5>)
         }
@@ -136,7 +136,7 @@ class EventPage extends React.Component {
 
         return (
             <div className="event-page">
-                {this.showEventList(events)}
+                {this.showEventHeader(events)}
                 <div className="events-list">
                     {this.showEvents(events, (eventId) => this.setState({ eventId: eventId }))}
                 </div>

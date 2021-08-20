@@ -5,7 +5,6 @@ class Api::EventsController < ApplicationController
             user_id = current_user.id
             event_id = @event.id
             @eventMembership_params = { "user_id" => user_id, "event_id" => event_id, "owner" => true}
-            puts @eventMembership_params
             @eventMembership = EventMembership.new(@eventMembership_params)
             if @eventMembership.save!
                 @events = Event.all
