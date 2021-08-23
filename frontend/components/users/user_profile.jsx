@@ -229,7 +229,7 @@ class UserProfile extends React.Component {
                         acceptFriendsArray={acceptFriends} 
                         alreadyRequestedArray={requestedFriends} 
                         newFriendsArray={newFriends} 
-                        />}
+                    />}
                     {<ChatBlockContainer />}
                     {<Events />}
                 </div>

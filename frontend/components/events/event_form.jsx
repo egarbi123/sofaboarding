@@ -23,7 +23,7 @@ class EventForm extends React.Component {
         event.time = this.state.time; 
         event.user_id = this.state.user_id; 
         if (this.state.name && this.state.description && this.state.date && this.state.time) {
-            this.props.createEvent(event);
+            this.props.createEvent(event).then(this.props.handleAddEvent(event));
             this.setState({
                 name: "",
                 description: "",
@@ -31,7 +31,10 @@ class EventForm extends React.Component {
                 time: "",
                 user_id: this.props.state.session.id,
             })
+            // this.props.fetchAllEvents().then(this.props.handleAddEvent(event));
+            // this.props.handleAddEvent(event);
         } else {
+
         }
     }
 
@@ -40,7 +43,7 @@ class EventForm extends React.Component {
     }
 
     render() {
-        // console.log(this);
+        console.log(this);
         if (this.state.showEvent === true) {
             return (
                 <div className="event-form">

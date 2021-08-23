@@ -2418,14 +2418,15 @@ var EventForm = /*#__PURE__*/function (_React$Component) {
       event.user_id = this.state.user_id;
 
       if (this.state.name && this.state.description && this.state.date && this.state.time) {
-        this.props.createEvent(event);
+        this.props.createEvent(event).then(this.props.handleAddEvent(event));
         this.setState({
           name: "",
           description: "",
           date: "",
           time: "",
           user_id: this.props.state.session.id
-        });
+        }); // this.props.fetchAllEvents().then(this.props.handleAddEvent(event));
+        // this.props.handleAddEvent(event);
       } else {}
     }
   }, {
@@ -2442,7 +2443,8 @@ var EventForm = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this3 = this;
 
-      // console.log(this);
+      console.log(this);
+
       if (this.state.showEvent === true) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "event-form"
@@ -2537,6 +2539,9 @@ var mDTP = function mDTP(dispatch) {
     },
     createEventMembership: function createEventMembership(membership) {
       return dispatch(Object(_actions_event_actions__WEBPACK_IMPORTED_MODULE_2__["createEventMembership"])(membership));
+    },
+    fetchAllEvents: function fetchAllEvents() {
+      return dispatch(Object(_actions_event_actions__WEBPACK_IMPORTED_MODULE_2__["fetchAllEvents"])());
     }
   };
 };
@@ -2602,8 +2607,8 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
     _this.handleRemoveEvent = _this.handleRemoveEvent.bind(_assertThisInitialized(_this));
     _this.eventInfo = _this.eventInfo.bind(_assertThisInitialized(_this));
     _this.joinEvent = _this.joinEvent.bind(_assertThisInitialized(_this));
-    _this.showMembers = _this.showMembers.bind(_assertThisInitialized(_this)); // this.updateEvents = this.updateEvents.bind(this);
-
+    _this.showMembers = _this.showMembers.bind(_assertThisInitialized(_this));
+    _this.handleAddEvent = _this.handleAddEvent.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -2619,7 +2624,6 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
       var owner = null;
 
       if (this.state.eventId) {
-        console.log('IN CDM: WE HAVE an eventID');
         var memberships = Object.values(this.props.state.eventMemberships);
 
         for (var i = 0; i < memberships.length; i++) {
@@ -2629,10 +2633,7 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
         }
       }
 
-      console.log('IN CDM', owner);
-
       if (this.props.state.session.id === owner) {
-        console.log('IN CDM: OWNER!');
         this.userIsOwner = true;
 
         if (this.state.userIsOwner !== true) {
@@ -2640,17 +2641,26 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
             "userIsOwner": true
           });
         }
-
-        console.log(this.state.userIsOwner);
       }
-    } // updateEvents() {
-    //     let stateEvents = Object.values(this.state.events);
-    //     let propsEvents = Object.values(this.props.state.event);
-    //     if (stateEvents.length !== propsEvents.length) {
-    //         this.setState({"events": this.props.state.event})
-    //     }
-    // }
 
+      if (Object.values(this.props.state.event).length !== this.state.events.length) {
+        this.setState({
+          'events': Object.values(this.props.state.event)
+        });
+      }
+    }
+  }, {
+    key: "handleAddEvent",
+    value: function handleAddEvent() {
+      var stateEvents = Object.values(this.state.events);
+      var propsEvents = Object.values(this.props.state.event);
+
+      if (stateEvents.length !== propsEvents) {
+        this.setState({
+          "events": propsEvents
+        });
+      }
+    }
   }, {
     key: "handleRemoveEvent",
     value: function handleRemoveEvent(eventId, members) {
@@ -2726,7 +2736,6 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
       var _this2 = this;
 
       var users = this.props.state.users;
-      console.log('IN showMembers: this.userIsOwner', this.userIsOwner);
       return eventMembers.map(function (member) {
         if (_this2.userIsOwner === true) {
           if (member === owner) {
@@ -2783,10 +2792,12 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
 
       if (this.state.eventId !== undefined) {
         events.map(function (ev) {
-          if (ev.id === _this3.state.eventId) {
-            event = ev;
-            eventId = ev.id;
-          }
+          if (ev.id) {
+            if (ev.id === _this3.state.eventId) {
+              event = ev;
+              eventId = ev.id;
+            }
+          } else {}
         });
         var eventMemberships = Object.values(this.props.state.eventMemberships);
         var membersIDs = [];
@@ -2869,7 +2880,12 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
         return _this5.setState({
           eventId: eventId
         });
-      })), this.eventInfo(events), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_event_form_container__WEBPACK_IMPORTED_MODULE_1__["default"], null));
+      })), this.eventInfo(events), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_event_form_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        events: this.state.events,
+        handleAddEvent: function handleAddEvent() {
+          _this5.handleAddEvent();
+        }
+      }));
     }
   }]);
 
