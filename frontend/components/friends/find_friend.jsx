@@ -64,6 +64,7 @@ class FindFriends extends React.Component {
     }
     
     render() {
+        console.log(this);
         if (!this.props.state) {
             return (<div> "loading </div>)
         }

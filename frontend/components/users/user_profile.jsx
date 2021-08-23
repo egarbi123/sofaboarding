@@ -18,8 +18,7 @@ class UserProfile extends React.Component {
     }
     
     componentDidMount() {
-        this.props.fetchAllRequests();
-        this.props.fetchAllFriendships();
+        this.usersToState();
     }
 
     componentDidupdate() {
@@ -35,7 +34,6 @@ class UserProfile extends React.Component {
         if (this.newFriends.length > 0 && this.state.newFriends.length < 1) {
             this.setState({ "newFriends": this.newFriends })
         }
-        this.usersToState();
     }
 
     
@@ -199,6 +197,7 @@ class UserProfile extends React.Component {
                 newFriendsArray.push(user.id);
             }
         })
+        console.log(friendsArray)
         if (this.state.friends.length !== friendsArray) {
             this.infoToState();
         } else if (this.state.acceptFriends.length !== acceptFriendsArray) {
@@ -217,7 +216,7 @@ class UserProfile extends React.Component {
         if (!this.props.state) {
             return (<div> "loading </div>)
         }
-
+        this.usersToState();
         return (
             <div className="user-profile">
                 <div className="profile-info">

@@ -2297,7 +2297,6 @@ var Controller = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      // console.log(this);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "controller"
       }, this.display());
@@ -2323,6 +2322,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _controller__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./controller */ "./frontend/components/controller/controller.jsx");
 /* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/user_actions */ "./frontend/actions/user_actions.js");
+/* harmony import */ var _actions_friendship_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/friendship_actions */ "./frontend/actions/friendship_actions.js");
+
 
 
  // import { logout } from '../../actions/session_actions';
@@ -2338,6 +2339,12 @@ var mDTP = function mDTP(dispatch) {
     // logout: () => dispatch(logout())
     fetchUsers: function fetchUsers() {
       return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_2__["fetchUsers"])());
+    },
+    fetchAllFriendships: function fetchAllFriendships() {
+      return dispatch(Object(_actions_friendship_actions__WEBPACK_IMPORTED_MODULE_3__["fetchAllFriendships"])());
+    },
+    fetchAllRequests: function fetchAllRequests() {
+      return dispatch(Object(_actions_friendship_actions__WEBPACK_IMPORTED_MODULE_3__["fetchAllRequests"])());
     }
   };
 };
@@ -3321,6 +3328,8 @@ var FindFriends = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      console.log(this);
+
       if (!this.props.state) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, " \"loading ");
       }
@@ -5094,8 +5103,7 @@ var UserProfile = /*#__PURE__*/function (_React$Component) {
   _createClass(UserProfile, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.fetchAllRequests();
-      this.props.fetchAllFriendships();
+      this.usersToState();
     }
   }, {
     key: "componentDidupdate",
@@ -5123,8 +5131,6 @@ var UserProfile = /*#__PURE__*/function (_React$Component) {
           "newFriends": this.newFriends
         });
       }
-
-      this.usersToState();
     }
   }, {
     key: "imageRender",
@@ -5315,6 +5321,7 @@ var UserProfile = /*#__PURE__*/function (_React$Component) {
           newFriendsArray.push(user.id);
         }
       });
+      console.log(friendsArray);
 
       if (this.state.friends.length !== friendsArray) {
         this.infoToState();
@@ -5341,6 +5348,7 @@ var UserProfile = /*#__PURE__*/function (_React$Component) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, " \"loading ");
       }
 
+      this.usersToState();
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "user-profile"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
