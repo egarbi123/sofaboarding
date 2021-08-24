@@ -4,16 +4,15 @@
 .messageBlock {
     display: flex;
     flex-direction: column;
-    width: 500px;
-    top: 25px;
-    left: 250px;
+    width: 100%;
+    margin-top: 25px;
 }
 
 .messageArea {
     text-align: center;
     justify-content: center;
-    width: 500px;
-    margin: auto;
+    width: 100%;
+    // margin: auto;
 }
 
 .messageRoom form {
@@ -22,19 +21,17 @@
 }
 
 .messageRoom form input {
-    width: 417px;
+    width: 90%;
     border-radius: 5px;
     margin-right: 5px;
 }
 
 .messageRoom {
-    width: 500px;
-    min-height: 300px;
+    width: 90%;
     max-height: 400px;
-    // border: 1px solid black;
-    margin: auto;
     display: flex;
     flex-direction: column;
+    margin-right: 25px;
 }
 
 .messageBox {
@@ -45,7 +42,7 @@
 }
 
 .message {
-    width: 500px;
+    width: 100%;
     margin-top: 5px;
     margin-bottom: 5px;
     min-height: 45px;
@@ -55,7 +52,7 @@
 }
 
 .my-message {
-    width: 500px;
+    width: 100%;
     margin-top: 5px;
     margin-bottom: 5px;
     min-height: 45px;
@@ -103,4 +100,15 @@
 
 .chat-time {
     font-size: xx-small;
+}
+
+.message-btn {
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px 5px;
+    font-size: 12px;
+    width: 10%;
+    // min-width: 90px;
+    // max-width: 150px;
+    cursor: pointer;
 }

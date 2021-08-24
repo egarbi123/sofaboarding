@@ -136,7 +136,7 @@ class MessagesArea extends React.Component {
                             value={this.state.body}
                             onChange={this.update('body')}
                         />
-                        <button type='submit' className='chat-btn'>SEND</button>
+                        <button type='submit' className='message-btn'>SEND</button>
                     </form>
                 </div>
             </div>

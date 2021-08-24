@@ -2,32 +2,32 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .chatBlock {
-    min-width: 750px;
     width: 100%;
     font: caption;
     height: 400px;
-    width: 90%;
-    overflow: scroll;
-    margin-bottom: 100px;
-    // margin: auto;
 }
 
 .roomBlock {
     display: flex;
     flex-direction: row;
+    width: 100%;
+    height: 100%;
 }
 
 .roomIndex {
     display: flex;
     flex-direction: row;
+    // margin: auto;
+    width: 100%;
     text-align: center;
-    position: relative;
-    margin: auto;
 }
 
 .room-index-cont {
     display: flex;
     flex-direction: column;
+    width: 250px;
+    margin-left: 45px;
+    margin-right: 45px;
 }
 
 .room-form {
@@ -89,21 +89,16 @@
 .single-room {
     display: flex;
     flex-direction: row;
-    min-width: 500px;
+    width: 100%;
 }
 
 .room-controls {
-    top: 25px;
+    min-width: 200px;
     width: 200px;
     height: 320px;
     text-align: center;
     justify-content: center;
     margin-top: 50px;
-}
-
-.single-room-block {
-    width: 70%;
-    position: absolute;
 }
 
 .room-user {
@@ -124,8 +119,6 @@
     padding: 5px 5px;
     font-size: 12px;
     width: 70px;
-    // min-width: 90px;
-    // max-width: 150px;
     cursor: pointer;
 }
 

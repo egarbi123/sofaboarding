@@ -37,13 +37,25 @@
     text-align: center;
     font-size: large;
     width: 50%;
+    cursor: default;
 }
 
-.friend-request p {
-    text-align: center;
-    width: fit-content;
+.friend-bio {
     margin: auto;
     margin-top: 50px;
+    margin-left: 100px;
+    text-align: center;
+    width: fit-content;
+    height: fit-content;
+    border-radius: 5px;
+    background-color: rgb(205, 230, 231);
+}
+
+.friend-bio p {
+    padding: 20px 20px 20px 20px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    cursor: default;
 }
 
 .request-button:hover {
@@ -63,9 +75,4 @@
 .request-button p {
     margin: auto;
     padding-top: 10px;
-    // margin-top: 20px;
-}
-
-.friend-bio {
-    border: 1px solid black;
 }

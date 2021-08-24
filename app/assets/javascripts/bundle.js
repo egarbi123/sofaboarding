@@ -1295,7 +1295,7 @@ var MessagesArea = /*#__PURE__*/function (_React$Component) {
         onChange: this.update('body')
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "submit",
-        className: "chat-btn"
+        className: "message-btn"
       }, "SEND"))));
     }
   }]);
@@ -3634,69 +3634,10 @@ var mDTP = function mDTP(dispatch) {
 
 /***/ }),
 
-/***/ "./frontend/components/friends/friend_profile_container.jsx":
-/*!******************************************************************!*\
-  !*** ./frontend/components/friends/friend_profile_container.jsx ***!
-  \******************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _test_friend_profile__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./test_friend_profile */ "./frontend/components/friends/test_friend_profile.jsx");
-/* harmony import */ var _actions_friendship_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/friendship_actions */ "./frontend/actions/friendship_actions.js");
-/* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/user_actions */ "./frontend/actions/user_actions.js");
- // import FriendProfile from './friend_profile';
-
-
-
-
-
-
-var mSTP = function mSTP(state) {
-  return {
-    state: state
-  };
-};
-
-var mDTP = function mDTP(dispatch) {
-  return {
-    sendFriendRequest: function sendFriendRequest(friendId) {
-      return dispatch(Object(_actions_friendship_actions__WEBPACK_IMPORTED_MODULE_2__["sendFriendRequest"])(friendId));
-    },
-    createFriendship: function createFriendship(friendship) {
-      return dispatch(Object(_actions_friendship_actions__WEBPACK_IMPORTED_MODULE_2__["createFriendship"])(friendship));
-    },
-    deleteFriendRequest: function deleteFriendRequest(requestId) {
-      return dispatch(Object(_actions_friendship_actions__WEBPACK_IMPORTED_MODULE_2__["deleteFriendRequest"])(requestId));
-    },
-    fetchAllRequests: function fetchAllRequests() {
-      return dispatch(Object(_actions_friendship_actions__WEBPACK_IMPORTED_MODULE_2__["fetchAllRequests"])());
-    },
-    fetchAllFriendships: function fetchAllFriendships() {
-      return dispatch(Object(_actions_friendship_actions__WEBPACK_IMPORTED_MODULE_2__["fetchAllFriendships"])());
-    },
-    fetchUsers: function fetchUsers() {
-      return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_3__["fetchUsers"])());
-    },
-    fetchBio: function fetchBio() {
-      return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_3__["fetchBio"])());
-    },
-    deleteFriendship: function deleteFriendship(friendshipId) {
-      return dispatch(Object(_actions_friendship_actions__WEBPACK_IMPORTED_MODULE_2__["deleteFriendship"])(friendshipId));
-    }
-  };
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_test_friend_profile__WEBPACK_IMPORTED_MODULE_1__["default"]));
-
-/***/ }),
-
-/***/ "./frontend/components/friends/test_friend_profile.jsx":
-/*!*************************************************************!*\
-  !*** ./frontend/components/friends/test_friend_profile.jsx ***!
-  \*************************************************************/
+/***/ "./frontend/components/friends/friend_profile.jsx":
+/*!********************************************************!*\
+  !*** ./frontend/components/friends/friend_profile.jsx ***!
+  \********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -4000,7 +3941,9 @@ var FriendProfile = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "showBio",
     value: function showBio() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, this.state.bio);
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "friend-bio"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, this.state.bio));
     }
   }, {
     key: "render",
@@ -4029,6 +3972,64 @@ var FriendProfile = /*#__PURE__*/function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (FriendProfile);
+
+/***/ }),
+
+/***/ "./frontend/components/friends/friend_profile_container.jsx":
+/*!******************************************************************!*\
+  !*** ./frontend/components/friends/friend_profile_container.jsx ***!
+  \******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _friend_profile__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./friend_profile */ "./frontend/components/friends/friend_profile.jsx");
+/* harmony import */ var _actions_friendship_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/friendship_actions */ "./frontend/actions/friendship_actions.js");
+/* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/user_actions */ "./frontend/actions/user_actions.js");
+
+
+
+
+
+
+var mSTP = function mSTP(state) {
+  return {
+    state: state
+  };
+};
+
+var mDTP = function mDTP(dispatch) {
+  return {
+    sendFriendRequest: function sendFriendRequest(friendId) {
+      return dispatch(Object(_actions_friendship_actions__WEBPACK_IMPORTED_MODULE_2__["sendFriendRequest"])(friendId));
+    },
+    createFriendship: function createFriendship(friendship) {
+      return dispatch(Object(_actions_friendship_actions__WEBPACK_IMPORTED_MODULE_2__["createFriendship"])(friendship));
+    },
+    deleteFriendRequest: function deleteFriendRequest(requestId) {
+      return dispatch(Object(_actions_friendship_actions__WEBPACK_IMPORTED_MODULE_2__["deleteFriendRequest"])(requestId));
+    },
+    fetchAllRequests: function fetchAllRequests() {
+      return dispatch(Object(_actions_friendship_actions__WEBPACK_IMPORTED_MODULE_2__["fetchAllRequests"])());
+    },
+    fetchAllFriendships: function fetchAllFriendships() {
+      return dispatch(Object(_actions_friendship_actions__WEBPACK_IMPORTED_MODULE_2__["fetchAllFriendships"])());
+    },
+    fetchUsers: function fetchUsers() {
+      return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_3__["fetchUsers"])());
+    },
+    fetchBio: function fetchBio() {
+      return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_3__["fetchBio"])());
+    },
+    deleteFriendship: function deleteFriendship(friendshipId) {
+      return dispatch(Object(_actions_friendship_actions__WEBPACK_IMPORTED_MODULE_2__["deleteFriendship"])(friendshipId));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_friend_profile__WEBPACK_IMPORTED_MODULE_1__["default"]));
 
 /***/ }),
 

@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
-// import FriendProfile from './friend_profile';
-import FriendProfile from './test_friend_profile';
+import FriendProfile from './friend_profile';
 import { sendFriendRequest, createFriendship, deleteFriendRequest, fetchAllFriendships, fetchAllRequests } from '../../actions/friendship_actions';
 import { fetchUsers, fetchBio } from '../../actions/user_actions';
 import { deleteFriendship } from '../../actions/friendship_actions';
