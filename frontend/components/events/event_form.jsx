@@ -34,10 +34,16 @@ class EventForm extends React.Component {
                 open: false,
                 user_id: this.props.state.session.id,
             })
-            // this.props.fetchAllEvents().then(this.props.handleAddEvent(event));
-            // this.props.handleAddEvent(event);
         } else {
-
+            alert('Problem creating event. Please make sure all sections are filled in.');
+            this.setState({
+                name: "",
+                description: "",
+                date: "",
+                time: "",
+                open: false,
+                user_id: this.props.state.session.id,
+            })
         }
     }
 

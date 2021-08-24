@@ -53,7 +53,6 @@ class EventPage extends React.Component {
 
     handleRemoveEvent(eventId, members) {
         this.props.deleteEvent(eventId);
-        console.log('IN handleRemoveEvent: members:', members);
         if (members.length > 0) {
             this.deleteMemberships(eventId);
         }
@@ -61,11 +60,8 @@ class EventPage extends React.Component {
 
     deleteMemberships(eventId) {
         let memberships = Object.values(this.props.state.eventMemberships);
-        console.log('IN deleteMemberships: memberships:', memberships);
-        // console.log('In deleteMemberships: members', members);
         for (let i = 0; i < memberships.length; i++) {
             if (memberships[i].event_id === eventId) {
-                console.log('DELETING MEMBERSHIP WITH ID:', memberships[i].id);
                 this.props.deleteEventMembership(memberships[i].id);
             }
         }
@@ -85,8 +81,6 @@ class EventPage extends React.Component {
     }
 
     handleRemoveMembership(membershipID) {
-        console.log(membershipID);
-        // this.props.deleteEventMembership(membershipID)
         this.props.deleteEventMembership(membershipID);
     }
 
@@ -119,7 +113,7 @@ class EventPage extends React.Component {
                 listOrder.push(memberID);
             }
         })
-        console.log('listOrder:', listOrder);
+        
         return listOrder.map(memberID => {
             if (memberID === owner) {
                 if (owner === this.props.state.session.id) {
@@ -150,38 +144,6 @@ class EventPage extends React.Component {
                 return (<div key={memberID}>{users[memberID].name}</div>)
             }
         })
-        // return eventMembers.map(member => {
-        //     if (this.userIsOwner === true) {
-        //         if (member === owner) {
-        //             return (
-        //                 <div key={member}><p>You Are The Owner</p></div>
-        //             )
-        //         } else {
-        //             return (
-        //                 <div key={member} className="row">
-        //                     <p>Member: {users[member].name}</p>
-        //                     <button onClick={() => this.handleRemoveMember(member, eventID)} className="pointer ">Remove {users[member].name}</button>
-        //                 </div>
-        //             )
-        //         }
-        //     } else {
-        //         if (member === owner) {
-        //             return (
-        //                 <div key={member}>OWNER: {users[member].name}</div>
-        //             )
-        //         } else {
-        //             if (this.props.state.session.id !== member) {
-        //                 return (<div key={member}>Member: {users[member].name}</div>)
-        //             } else {
-        //                 return (
-        //                     <div className="row" key={member}>
-        //                         <button onClick={() => this.handleRemoveMembership(member)}>Leave Event</button>
-        //                     </div>
-        //                 )
-        //             }
-        //         }
-        //     }
-        // })
     }
 
     eventInfo(events) {
@@ -264,8 +226,6 @@ class EventPage extends React.Component {
 
     render() {
         let events = this.state.events;
-
-        console.log(this);
 
         return (
             <div className="event-page">

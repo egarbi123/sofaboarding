@@ -5,7 +5,7 @@ class UserInfo extends React.Component {
         super(props);
         this.state = {
             profile_picture: null,
-            userBio: "Sorry, I do not have a bio right now.",
+            userBio: "",
             currentBio: "",
             placeholder: "Type new bio here..."
         };
@@ -111,11 +111,10 @@ class UserInfo extends React.Component {
             object['id'] = this.props.state.bio[this.props.state.session.id].id
         }
         if (this.state.currentBio) {
-            console.log('IN IF STATEMENT')
             this.props.updateBio(object);
         }
         this.props.createBio(object);
-        
+        this.setState({userBio: ""})
     }
 
     render() {
@@ -140,11 +139,11 @@ class UserInfo extends React.Component {
                         <form className="bio-form" onSubmit={this.handleBio}>
                             <textarea
                                 id="bio-text"
-                                // value={this.state.userBio}
+                                value={this.state.userBio}
                                 onChange={this.update("userBio")}
                                 placeholder={this.state.placeholder}
                                 />
-                            <button className="bio-accept-button">Submit changes</button>
+                            <button className="bio-accept-button">Submit Bio</button>
                         </form>
                     </div>
                 </div>

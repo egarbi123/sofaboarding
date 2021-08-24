@@ -2437,9 +2437,18 @@ var EventForm = /*#__PURE__*/function (_React$Component) {
           time: "",
           open: false,
           user_id: this.props.state.session.id
-        }); // this.props.fetchAllEvents().then(this.props.handleAddEvent(event));
-        // this.props.handleAddEvent(event);
-      } else {}
+        });
+      } else {
+        alert('Problem creating event. Please make sure all sections are filled in.');
+        this.setState({
+          name: "",
+          description: "",
+          date: "",
+          time: "",
+          open: false,
+          user_id: this.props.state.session.id
+        });
+      }
     }
   }, {
     key: "update",
@@ -2683,7 +2692,6 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
     key: "handleRemoveEvent",
     value: function handleRemoveEvent(eventId, members) {
       this.props.deleteEvent(eventId);
-      console.log('IN handleRemoveEvent: members:', members);
 
       if (members.length > 0) {
         this.deleteMemberships(eventId);
@@ -2693,11 +2701,9 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
     key: "deleteMemberships",
     value: function deleteMemberships(eventId) {
       var memberships = Object.values(this.props.state.eventMemberships);
-      console.log('IN deleteMemberships: memberships:', memberships); // console.log('In deleteMemberships: members', members);
 
       for (var i = 0; i < memberships.length; i++) {
         if (memberships[i].event_id === eventId) {
-          console.log('DELETING MEMBERSHIP WITH ID:', memberships[i].id);
           this.props.deleteEventMembership(memberships[i].id);
         }
       }
@@ -2721,8 +2727,6 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleRemoveMembership",
     value: function handleRemoveMembership(membershipID) {
-      console.log(membershipID); // this.props.deleteEventMembership(membershipID)
-
       this.props.deleteEventMembership(membershipID);
     }
   }, {
@@ -2766,7 +2770,6 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
           listOrder.push(memberID);
         }
       });
-      console.log('listOrder:', listOrder);
       return listOrder.map(function (memberID) {
         if (memberID === owner) {
           if (owner === _this2.props.state.session.id) {
@@ -2804,38 +2807,7 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
             key: memberID
           }, users[memberID].name);
         }
-      }); // return eventMembers.map(member => {
-      //     if (this.userIsOwner === true) {
-      //         if (member === owner) {
-      //             return (
-      //                 <div key={member}><p>You Are The Owner</p></div>
-      //             )
-      //         } else {
-      //             return (
-      //                 <div key={member} className="row">
-      //                     <p>Member: {users[member].name}</p>
-      //                     <button onClick={() => this.handleRemoveMember(member, eventID)} className="pointer ">Remove {users[member].name}</button>
-      //                 </div>
-      //             )
-      //         }
-      //     } else {
-      //         if (member === owner) {
-      //             return (
-      //                 <div key={member}>OWNER: {users[member].name}</div>
-      //             )
-      //         } else {
-      //             if (this.props.state.session.id !== member) {
-      //                 return (<div key={member}>Member: {users[member].name}</div>)
-      //             } else {
-      //                 return (
-      //                     <div className="row" key={member}>
-      //                         <button onClick={() => this.handleRemoveMembership(member)}>Leave Event</button>
-      //                     </div>
-      //                 )
-      //             }
-      //         }
-      //     }
-      // })
+      });
     }
   }, {
     key: "eventInfo",
@@ -2931,7 +2903,6 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
       var _this5 = this;
 
       var events = this.state.events;
-      console.log(this);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "event-page"
       }, this.showEventHeader(events), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -4852,7 +4823,7 @@ var UserInfo = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.state = {
       profile_picture: null,
-      userBio: "Sorry, I do not have a bio right now.",
+      userBio: "",
       currentBio: "",
       placeholder: "Type new bio here..."
     };
@@ -4987,11 +4958,13 @@ var UserInfo = /*#__PURE__*/function (_React$Component) {
       }
 
       if (this.state.currentBio) {
-        console.log('IN IF STATEMENT');
         this.props.updateBio(object);
       }
 
       this.props.createBio(object);
+      this.setState({
+        userBio: ""
+      });
     }
   }, {
     key: "render",
@@ -5018,13 +4991,13 @@ var UserInfo = /*#__PURE__*/function (_React$Component) {
         className: "bio-form",
         onSubmit: this.handleBio
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
-        id: "bio-text" // value={this.state.userBio}
-        ,
+        id: "bio-text",
+        value: this.state.userBio,
         onChange: this.update("userBio"),
         placeholder: this.state.placeholder
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "bio-accept-button"
-      }, "Submit changes")))));
+      }, "Submit Bio")))));
     }
   }]);
 
