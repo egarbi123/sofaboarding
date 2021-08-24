@@ -8,30 +8,42 @@
 .friend-info {
     display: flex;
     flex-direction: row;
+    width: 100%;
     height: 400px;
 }
 
 .friend-pic {
-    width: 300px;
+    width: 350px;
+    height: 350px;
     justify-content: left;
-    margin-left: 25px;
-    margin-right: 25px;
+    padding: 0px 20px 0px 20px;
 }
 
 .friend-request {
     display: flex;
     flex-direction: column;
+    text-align: center;
+    width: 100%;
+    height: 100%;
 }
 
-.friend-request h5 {
+.friend-name-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+}
+
+.friend-name-button h5 {
     text-align: center;
     font-size: large;
-    width: 250px;
+    width: 50%;
 }
 
 .friend-request p {
     text-align: center;
-    max-width: 400px;
+    width: fit-content;
+    margin: auto;
+    margin-top: 50px;
 }
 
 .request-button:hover {
@@ -44,6 +56,7 @@
     border-radius: 10px;
     width: 250px;
     height: 40px;
+    margin: auto;
     text-align: center;
 }
 

@@ -129,10 +129,6 @@ class FriendProfile extends React.Component {
     }
 
     deleteFriendRequest() {
-        // identify if my current state has any matching request, by comparing requestor_id && receiver_id
-        // if match exists, find it in props.state.friendRequests for request_id
-        // if request_id is found, recreate a new state to set. And make API call to remove request.
-
         let stateRequests = this.state.friendRequests;
         let requestor_id = 0;
         let receiver_id = 0;
@@ -166,9 +162,7 @@ class FriendProfile extends React.Component {
                 }
             }
         }
-        console.log(object)
         if (object.id) {
-            console.log('IN IF STATEMENT')
             this.props.deleteFriendRequest(props_id);
             let newRequests = [];
             let requests = this.state.friendRequests
@@ -190,11 +184,9 @@ class FriendProfile extends React.Component {
 
 
     removeFriend() {
-        console.log(this);
         let myId = this.props.state.session.id;
         let friendId = this.friendId; 
         let friendships = Object.values(this.state.friendships)
-        console.log(friendships);
         let friendshipId = '';
         for (let i = 0; i < friendships.length; i++) {
             if (friendships[i].user_id === myId) {
@@ -208,10 +200,6 @@ class FriendProfile extends React.Component {
                 }
             }
             
-        }
-        console.log(friendshipId);
-        if (typeof(friendshipId) === 'number') {
-            console.log(true);
         }
         this.props.deleteFriendship(friendshipId);
         this.setState({
@@ -253,8 +241,6 @@ class FriendProfile extends React.Component {
         let status = "notFriends";
         let friendships = Object.values(this.props.state.friendships);
         let friendRequests = Object.values(this.props.state.friendRequests);
-        // console.log('friendships:', friendships);
-        // console.log('friendRequests:', friendRequests);
         let myId = this.props.state.session.id;
         let friendId = this.friendId;
         for (let i = 0; i < friendships.length; i++) {
@@ -285,8 +271,6 @@ class FriendProfile extends React.Component {
                 }
             }
         }
-        console.log(this.state.status)
-        console.log(status)
         if (this.state.status !== status) {
             this.setState({'status': status})
         }
@@ -307,7 +291,6 @@ class FriendProfile extends React.Component {
     }
 
     render() {
-        console.log(this);
         return (
             <div className="friend-profile">
                 <div className="friend-info">

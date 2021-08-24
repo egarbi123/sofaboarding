@@ -4015,9 +4015,11 @@ var FriendProfile = /*#__PURE__*/function (_React$Component) {
         className: "photo-container"
       }, this.imageRender())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "friend-request"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "friend-name-button"
       }, this.nameRender(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "request-button"
-      }, this.requestButton()), this.showBio())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_chat_chat_block_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      }, this.requestButton())), this.showBio())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_chat_chat_block_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
         friendId: this.friendId
       }));
     }

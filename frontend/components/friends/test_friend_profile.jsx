@@ -210,9 +210,11 @@ class FriendProfile extends React.Component {
                         </div>
                     </div>
                     <div className="friend-request">
-                        {this.nameRender()}
-                        <div className="request-button">
-                            {this.requestButton()}
+                        <div className="friend-name-button">
+                            {this.nameRender()}
+                            <div className="request-button">
+                                {this.requestButton()}
+                            </div>
                         </div>
                         {this.showBio()}
                     </div>
