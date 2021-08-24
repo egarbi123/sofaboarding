@@ -2745,46 +2745,88 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
       var _this2 = this;
 
       var users = this.props.state.users;
-      return eventMembers.map(function (member) {
-        if (_this2.userIsOwner === true) {
-          if (member === owner) {
-            return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-              key: member
-            }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "You Are The Owner"));
-          } else {
-            return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-              key: member,
-              className: "row"
-            }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Member: ", users[member].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-              onClick: function onClick() {
-                return _this2.handleRemoveMember(member, eventID);
-              },
-              className: "pointer "
-            }, "Remove ", users[member].name));
-          }
-        } else {
-          if (member === owner) {
-            return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-              key: member
-            }, "OWNER: ", users[member].name);
-          } else {
-            if (_this2.props.state.session.id !== member) {
-              return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-                key: member
-              }, "Member: ", users[member].name);
-            } else {
-              return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-                className: "row",
-                key: member
-              }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-                onClick: function onClick() {
-                  return _this2.handleRemoveMembership(member);
-                }
-              }, "Leave Event"));
-            }
-          }
+      var listOrder = [];
+      listOrder.push(owner);
+
+      if (this.props.state.session.id !== owner) {
+        listOrder.push(this.props.state.session.id);
+      }
+
+      eventMembers.map(function (memberID) {
+        if (memberID !== owner && memberID !== _this2.props.state.session.id) {
+          listOrder.push(memberID);
         }
       });
+      console.log('listOrder:', listOrder);
+      return listOrder.map(function (memberID) {
+        if (memberID === owner) {
+          if (owner === _this2.props.state.session.id) {
+            return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+              key: memberID
+            }, "You Are The Owner");
+          } else {
+            return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+              key: memberID
+            }, "This Event Belongs To ", users[memberID].name);
+          }
+        }
+
+        if (owner === _this2.props.state.session.id) {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            key: memberID,
+            className: "row"
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, users[memberID].name, " -- "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+            onClick: function onClick() {
+              return _this2.handleRemoveMember(memberID, eventID);
+            },
+            className: "pointer "
+          }, "Remove"));
+        } else if (memberID === _this2.props.state.session.id) {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "row",
+            key: memberID
+          }, users[memberID].name, ":", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+            onClick: function onClick() {
+              return _this2.handleRemoveMembership(memberID);
+            }
+          }, "Leave Event"));
+        } else {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            key: memberID
+          }, users[memberID].name);
+        }
+      }); // return eventMembers.map(member => {
+      //     if (this.userIsOwner === true) {
+      //         if (member === owner) {
+      //             return (
+      //                 <div key={member}><p>You Are The Owner</p></div>
+      //             )
+      //         } else {
+      //             return (
+      //                 <div key={member} className="row">
+      //                     <p>Member: {users[member].name}</p>
+      //                     <button onClick={() => this.handleRemoveMember(member, eventID)} className="pointer ">Remove {users[member].name}</button>
+      //                 </div>
+      //             )
+      //         }
+      //     } else {
+      //         if (member === owner) {
+      //             return (
+      //                 <div key={member}>OWNER: {users[member].name}</div>
+      //             )
+      //         } else {
+      //             if (this.props.state.session.id !== member) {
+      //                 return (<div key={member}>Member: {users[member].name}</div>)
+      //             } else {
+      //                 return (
+      //                     <div className="row" key={member}>
+      //                         <button onClick={() => this.handleRemoveMembership(member)}>Leave Event</button>
+      //                     </div>
+      //                 )
+      //             }
+      //         }
+      //     }
+      // })
     }
   }, {
     key: "eventInfo",
