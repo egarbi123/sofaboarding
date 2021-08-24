@@ -27,7 +27,10 @@ class FindFriends extends React.Component {
         }
     }
 
-    showUsers() {
+    render() {
+        if (!this.props.state) {
+            return (<div> "loading </div>)
+        }
         let usersArray = Object.values(this.props.state.users);
         let newFriends = [];
         usersArray.map((user) => {
@@ -54,23 +57,13 @@ class FindFriends extends React.Component {
             }
         })
         return (
-            <div className="show-users">
-                <FriendCarousel friendsList={yourFriends} label="Friends"/>
-                <FriendCarousel friendsList={newFriends} label="Find New Friends"/>
-                <FriendCarousel friendsList={acceptFriends} label="Requests Received"/>
-                <FriendCarousel friendsList={requestedFriends} label="Requests Sent"/>
-            </div>
-        )
-    }
-    
-    render() {
-        console.log(this);
-        if (!this.props.state) {
-            return (<div> "loading </div>)
-        }
-        return (
             <div className="find-friends">
-                {this.showUsers()}
+                <div className="show-users">
+                    <FriendCarousel friendsList={yourFriends} label="Friends" />
+                    <FriendCarousel friendsList={newFriends} label="Find New Friends" />
+                    <FriendCarousel friendsList={acceptFriends} label="Requests Received" />
+                    <FriendCarousel friendsList={requestedFriends} label="Requests Sent" />
+                </div>
             </div>
         )
     }

@@ -2284,6 +2284,8 @@ var Controller = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.fetchUsers();
+      this.props.fetchAllFriendships();
+      this.props.fetchAllRequests();
     }
   }, {
     key: "display",
@@ -3280,9 +3282,13 @@ var FindFriends = /*#__PURE__*/function (_React$Component) {
       }
     }
   }, {
-    key: "showUsers",
-    value: function showUsers() {
+    key: "render",
+    value: function render() {
       var _this2 = this;
+
+      if (!this.props.state) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, " \"loading ");
+      }
 
       var usersArray = Object.values(this.props.state.users);
       var newFriends = [];
@@ -3310,6 +3316,8 @@ var FindFriends = /*#__PURE__*/function (_React$Component) {
         }
       });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "find-friends"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "show-users"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_friend_carousel_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
         friendsList: yourFriends,
@@ -3323,20 +3331,7 @@ var FindFriends = /*#__PURE__*/function (_React$Component) {
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_friend_carousel_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
         friendsList: requestedFriends,
         label: "Requests Sent"
-      }));
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      console.log(this);
-
-      if (!this.props.state) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, " \"loading ");
-      }
-
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "find-friends"
-      }, this.showUsers());
+      })));
     }
   }]);
 
@@ -5101,36 +5096,9 @@ var UserProfile = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(UserProfile, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.usersToState();
-    }
-  }, {
-    key: "componentDidupdate",
-    value: function componentDidupdate() {
-      if (this.friends.length > 0 && this.state.friends.length < 1) {
-        this.setState({
-          "friends": this.friends
-        });
-      }
-
-      if (this.acceptFriends.length > 0 && this.state.acceptFriends.length < 1) {
-        this.setState({
-          "acceptFriends": this.acceptFriends
-        });
-      }
-
-      if (this.requestedFriends.length > 0 && this.state.requestedFriends.length < 1) {
-        this.setState({
-          "requestedFriends": this.requestedFriends
-        });
-      }
-
-      if (this.newFriends.length > 0 && this.state.newFriends.length < 1) {
-        this.setState({
-          "newFriends": this.newFriends
-        });
-      }
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {
+      this.infoToState();
     }
   }, {
     key: "imageRender",
@@ -5153,7 +5121,6 @@ var UserProfile = /*#__PURE__*/function (_React$Component) {
       var _this2 = this;
 
       // Gather info to use
-      // console.log('++++',this);
       var usersArray = Object.values(this.props.state.users);
       var requests = {};
       var friendships = {};
@@ -5221,26 +5188,11 @@ var UserProfile = /*#__PURE__*/function (_React$Component) {
         }
       });
 
-      if (this.friendsArray.length !== this.state.friends.length) {
+      if (this.friendsArray.length !== this.state.friends.length || this.acceptFriendsArray.length !== this.state.acceptFriends.length || this.alreadyRequestedArray.length !== this.state.requestedFriends.length || this.newFriendsArray.length !== this.state.newFriends.length) {
         this.setState({
-          'friends': this.friendsArray
-        });
-      }
-
-      if (this.acceptFriendsArray.length !== this.state.acceptFriends.length) {
-        this.setState({
-          'acceptFriends': this.acceptFriendsArray
-        });
-      }
-
-      if (this.alreadyRequestedArray.length !== this.state.requestedFriends.length) {
-        this.setState({
-          'requestedFriends': this.alreadyRequestedArray
-        });
-      }
-
-      if (this.newFriendsArray.length !== this.state.newFriends.length) {
-        this.setState({
+          'friends': this.friendsArray,
+          'acceptFriends': this.acceptFriendsArray,
+          'requestedFriends': this.alreadyRequestedArray,
           'newFriends': this.newFriendsArray
         });
       }
@@ -5249,91 +5201,6 @@ var UserProfile = /*#__PURE__*/function (_React$Component) {
     key: "setActiveFriend",
     value: function setActiveFriend(friendId) {
       this.props.makeActiveFriend(friendId);
-    }
-  }, {
-    key: "usersToState",
-    value: function usersToState() {
-      var _this3 = this;
-
-      // Gather info to use
-      var usersArray = Object.values(this.props.state.users);
-      var requests = {};
-      var friendships = {};
-
-      if (this.props.state.friendRequests) {
-        requests = this.props.state.friendRequests;
-      }
-
-      if (this.props.state.friendships) {
-        friendships = this.props.state.friendships;
-      } // Turn objects into arrays
-
-
-      var requestsArray = Object.values(requests);
-      var friendshipsArray = Object.values(friendships); // Set up  different categories
-
-      var requested = [];
-      var receivedRequests = [];
-      var alreadyFriends = []; // Distinguish categories
-
-      if (requestsArray.length > 1) {
-        requestsArray.map(function (request) {
-          if (request.requestor_id === _this3.props.state.session.id) {
-            requested.push(request.receiver_id);
-          }
-
-          if (request.receiver_id === _this3.props.state.session.id) {
-            receivedRequests.push(request.requestor_id);
-          }
-        });
-      }
-
-      if (friendshipsArray.length > 1) {
-        friendshipsArray.map(function (friend) {
-          if (friend) {
-            if (friend.user_id === _this3.props.state.session.id) {
-              alreadyFriends.push(friend.friend_id);
-            }
-
-            if (friend.friend_id === _this3.props.state.session.id) {
-              alreadyFriends.push(friend.user_id);
-            }
-          }
-        });
-      }
-
-      var friendsArray = [];
-      var acceptFriendsArray = [];
-      var alreadyRequestedArray = [];
-      var newFriendsArray = [];
-      usersArray.map(function (user) {
-        var id = parseInt(user.id);
-
-        if (id === _this3.props.state.session.id) {
-          return;
-        } else if (alreadyFriends.includes(id)) {
-          friendsArray.push(user.id);
-        } else if (receivedRequests.includes(id)) {
-          acceptFriendsArray.push(user.id);
-        } else if (requested.includes(id)) {
-          alreadyRequestedArray.push(user.id);
-        } else {
-          newFriendsArray.push(user.id);
-        }
-      });
-      console.log(friendsArray);
-
-      if (this.state.friends.length !== friendsArray) {
-        this.infoToState();
-      } else if (this.state.acceptFriends.length !== acceptFriendsArray) {
-        this.infoToState();
-      } else if (this.state.requestedFriends.length !== alreadyRequestedArray.length) {
-        this.infoToState();
-      } else if (this.state.newFriends.length !== newFriendsArray.length) {
-        this.infoToState();
-      } else {
-        return;
-      }
     }
   }, {
     key: "render",
@@ -5348,7 +5215,6 @@ var UserProfile = /*#__PURE__*/function (_React$Component) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, " \"loading ");
       }
 
-      this.usersToState();
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "user-profile"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {

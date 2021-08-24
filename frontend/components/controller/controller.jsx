@@ -9,6 +9,8 @@ class Controller extends React.Component {
 
     componentDidMount() {
         this.props.fetchUsers();
+        this.props.fetchAllFriendships();
+        this.props.fetchAllRequests();
     }
 
     display() {
