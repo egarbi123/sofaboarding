@@ -56,7 +56,8 @@ class Api::EventsController < ApplicationController
             :name,
             :description,
             :date,
-            :time
+            :time,
+            :open
         )
     end
 end

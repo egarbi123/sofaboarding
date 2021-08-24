@@ -2408,6 +2408,7 @@ var EventForm = /*#__PURE__*/function (_React$Component) {
       description: "",
       date: "",
       time: "",
+      open: false,
       user_id: _this.props.state.session.id,
       showEvent: false
     };
@@ -2424,6 +2425,7 @@ var EventForm = /*#__PURE__*/function (_React$Component) {
       event.description = this.state.description;
       event.date = this.state.date;
       event.time = this.state.time;
+      event.open = this.state.open;
       event.user_id = this.state.user_id;
 
       if (this.state.name && this.state.description && this.state.date && this.state.time) {
@@ -2433,6 +2435,7 @@ var EventForm = /*#__PURE__*/function (_React$Component) {
           description: "",
           date: "",
           time: "",
+          open: false,
           user_id: this.props.state.session.id
         }); // this.props.fetchAllEvents().then(this.props.handleAddEvent(event));
         // this.props.handleAddEvent(event);
@@ -2488,6 +2491,12 @@ var EventForm = /*#__PURE__*/function (_React$Component) {
           type: "string",
           value: this.state.time,
           onChange: this.update('time')
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "row"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Open:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          type: "boolean",
+          value: this.state.open,
+          onChange: this.update('open')
         })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           type: "submit",
           className: "button"
@@ -2866,7 +2875,7 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
           className: "event-display"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "event-info"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Name: ", event.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Description: ", event.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Date: ", event.date), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Time: ", event.time)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Name: ", event.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Description: ", event.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Date: ", event.date), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Time: ", event.time), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Open: ", event.open)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "event-controls"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "event-name-exit"

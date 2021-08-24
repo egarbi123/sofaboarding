@@ -8,6 +8,7 @@ class EventForm extends React.Component {
             description: "",
             date: "",
             time: "",
+            open: false,
             user_id: this.props.state.session.id,
             showEvent: false,
         }
@@ -20,7 +21,8 @@ class EventForm extends React.Component {
         event.name = this.state.name; 
         event.description = this.state.description; 
         event.date = this.state.date; 
-        event.time = this.state.time; 
+        event.time = this.state.time;
+        event.open = this.state.open;
         event.user_id = this.state.user_id; 
         if (this.state.name && this.state.description && this.state.date && this.state.time) {
             this.props.createEvent(event).then(this.props.handleAddEvent(event));
@@ -29,6 +31,7 @@ class EventForm extends React.Component {
                 description: "",
                 date: "",
                 time: "",
+                open: false,
                 user_id: this.props.state.session.id,
             })
             // this.props.fetchAllEvents().then(this.props.handleAddEvent(event));
@@ -81,6 +84,14 @@ class EventForm extends React.Component {
                                 type="string"
                                 value={this.state.time}
                                 onChange={this.update('time')}
+                            />
+                        </div>
+                        <div className="row">
+                            <p>Open:</p>
+                            <input
+                                type="boolean"
+                                value={this.state.open}
+                                onChange={this.update('open')}
                             />
                         </div>
                         <button type="submit" className="button">Create Event</button>

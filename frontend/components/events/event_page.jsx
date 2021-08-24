@@ -222,6 +222,7 @@ class EventPage extends React.Component {
                         <p>Description: {event.description}</p>
                         <p>Date: {event.date}</p>
                         <p>Time: {event.time}</p>
+                        <p>Open: {event.open}</p>
                     </div>
                     <div className="event-controls">
                         <div className="event-name-exit">
