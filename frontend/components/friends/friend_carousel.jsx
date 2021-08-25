@@ -70,7 +70,7 @@ class FriendCarousel extends React.Component {
 
     render() {
         if (this.props.friendsList.length < 1) {
-            return (<div></div>)
+            return (<div>Currently no {this.props.label}</div>)
         } else if (this.props.friendsList.length < 4) {
             return (
                 <div className="friends-section">

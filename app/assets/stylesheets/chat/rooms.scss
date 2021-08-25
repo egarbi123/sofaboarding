@@ -42,7 +42,6 @@
 }
 
 .roomBox {
-    // border: 1px solid black;
     border-radius: 4px;
     width: 200px;
     height: fit-content;
@@ -68,10 +67,12 @@
 
 .room-name:hover {
     background-color: aqua;
+    cursor: pointer;
 }
 
-.room-name:hover {
-    cursor: pointer;
+.room-name:active {
+    transform: scale(0.98);
+    box-shadow: 2px 1px 10px 1px grayscale($color: #bdb7b7);
 }
 
 .room p {
@@ -128,8 +129,6 @@
     padding: 5px 5px;
     font-size: 12px;
     width: 120px;
-    // min-width: 90px;
-    // max-width: 150px;
     cursor: pointer;
     margin-top: 50px;
     margin-left: 35px;

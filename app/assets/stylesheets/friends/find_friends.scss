@@ -1,11 +1,23 @@
 .find-friends {
     width: 100%;
     font-family: "Trebuchet MS", Helvetica, sans-serif;
+    display: flex;
+    flex-direction: row;
+}
+
+.find-friends-controls {
+    display: flex;
+    flex-direction: column;
+    min-width: 250px;
+    width: 250px;
+    margin-left: 45px;
+    margin-right: 45px;
+    text-align: center;
 }
 
 .show-users {
     display: flex;
-    flex-direction: column;
+    width: 100%;
 }
 
 .friends-section {
@@ -148,4 +160,29 @@
 .buttonRight:active {
     transform: scale(0.98);
     box-shadow: 2px 1px 10px 1px grayscale($color: #bdb7b7);
+}
+
+.friends-button {
+    width: 95%;
+    height: 30px;
+    background-color: rgb(205, 230, 231);
+    margin: auto;
+    border-radius: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.friends-button:hover {
+    cursor: pointer;
+    background-color: aqua;
+}
+
+.friends-button:active {
+    transform: scale(0.98);
+    box-shadow: 2px 1px 10px 1px grayscale($color: #bdb7b7);
+}
+
+.friends-button p {
+    margin-top: 5px;
+    margin-bottom: 0px;
 }

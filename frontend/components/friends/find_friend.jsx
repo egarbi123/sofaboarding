@@ -8,7 +8,8 @@ class FindFriends extends React.Component {
             "friendsArray": [],
             "acceptFriendsArray": [],
             "alreadyRequestedArray": [],
-            "newFriendsArray": []
+            "newFriendsArray": [],
+            "currentList": "friendsArray"
         }
     }
     
@@ -24,6 +25,43 @@ class FindFriends extends React.Component {
         }
         if (this.state.newFriendsArray.length !== this.props.newFriendsArray.length) {
             this.setState({'newFriendsArray': this.props.newFriendsArray})
+        }
+    }
+
+    showUsers() {
+        let usersArray = Object.values(this.props.state.users);
+        let newFriends = [];
+        usersArray.map((user) => {
+            if (this.state.newFriendsArray.includes(user.id)) {
+                newFriends.push(user);
+            }
+        })
+        let requestedFriends = [];
+        usersArray.map((user) => {
+            if (this.state.alreadyRequestedArray.includes(user.id)) {
+                requestedFriends.push(user);
+            }
+        })
+        let yourFriends = [];
+        usersArray.map((user) => {
+            if (this.state.friendsArray.includes(user.id)) {
+                yourFriends.push(user);
+            }
+        })
+        let acceptFriends = [];
+        usersArray.map((user) => {
+            if (this.state.acceptFriendsArray.includes(user.id)) {
+                acceptFriends.push(user);
+            }
+        })
+        if (this.state.currentList === "friendsArray") {
+            return (<FriendCarousel friendsList={yourFriends} label="Friends" />)
+        } else if (this.state.currentList === "alreadyAccepted") {
+            return (<FriendCarousel friendsList={requestedFriends} label="Requests Sent" />)
+        } else if (this.state.currentList === "acceptFriendsArray") {
+            return (<FriendCarousel friendsList={acceptFriends} label="Requests Received" />)
+        } else {
+            return (<FriendCarousel friendsList={newFriends} label="Find New Friends" />)
         }
     }
 
@@ -58,11 +96,15 @@ class FindFriends extends React.Component {
         })
         return (
             <div className="find-friends">
+                <div className="find-friends-controls">
+                    <h2>Friends</h2>
+                    <div className="friends-button" onClick={() => this.setState({"currentList": "friendsArray"})}><p>Friends List</p></div>
+                    <div className="friends-button" onClick={() => this.setState({"currentList": "newFriendsArray"})}><p>Find New Friends</p></div>
+                    <div className="friends-button" onClick={() => this.setState({"currentList": "acceptFriendsArray"})}><p>Accept Friend Requests</p></div>
+                    <div className="friends-button" onClick={() => this.setState({"currentList": "alreadyAcceptedArray"})}><p>Friends Requested</p></div>
+                </div>
                 <div className="show-users">
-                    <FriendCarousel friendsList={yourFriends} label="Friends" />
-                    <FriendCarousel friendsList={newFriends} label="Find New Friends" />
-                    <FriendCarousel friendsList={acceptFriends} label="Requests Received" />
-                    <FriendCarousel friendsList={requestedFriends} label="Requests Sent" />
+                    {this.showUsers()}
                 </div>
             </div>
         )
