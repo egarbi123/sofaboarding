@@ -2436,6 +2436,7 @@ var EventForm = /*#__PURE__*/function (_React$Component) {
           date: "",
           time: "",
           open: false,
+          showEvent: false,
           user_id: this.props.state.session.id
         });
       } else {
@@ -2445,7 +2446,6 @@ var EventForm = /*#__PURE__*/function (_React$Component) {
           description: "",
           date: "",
           time: "",
-          open: false,
           user_id: this.props.state.session.id
         });
       }
@@ -2460,9 +2460,37 @@ var EventForm = /*#__PURE__*/function (_React$Component) {
       };
     }
   }, {
+    key: "handleCheckbox",
+    value: function handleCheckbox() {
+      if (this.state.open) {
+        this.setState({
+          "open": false
+        });
+      } else {
+        this.setState({
+          "open": true
+        });
+      }
+    }
+  }, {
+    key: "showCheckbox",
+    value: function showCheckbox() {
+      var _this3 = this;
+
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Open:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "radio",
+        value: this.state.open,
+        onChange: function onChange() {
+          return _this3.handleCheckbox();
+        }
+      }));
+    }
+  }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      var _this4 = this;
 
       console.log(this);
 
@@ -2500,18 +2528,12 @@ var EventForm = /*#__PURE__*/function (_React$Component) {
           type: "string",
           value: this.state.time,
           onChange: this.update('time')
-        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "row"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Open:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          type: "boolean",
-          value: this.state.open,
-          onChange: this.update('open')
-        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        })), this.showCheckbox(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           type: "submit",
           className: "button"
         }, "Create Event")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           onClick: function onClick() {
-            return _this3.setState({
+            return _this4.setState({
               showEvent: false
             });
           }
@@ -2521,7 +2543,7 @@ var EventForm = /*#__PURE__*/function (_React$Component) {
           className: "create-event"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           onClick: function onClick() {
-            return _this3.setState({
+            return _this4.setState({
               showEvent: true
             });
           }
@@ -2810,6 +2832,15 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
       });
     }
   }, {
+    key: "showIfOpen",
+    value: function showIfOpen(event) {
+      if (event.open) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "This Event Is Open To Everyone!");
+      } else {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "This Event Is Private, Only The Host Can Invite New Participants!");
+      }
+    }
+  }, {
     key: "eventInfo",
     value: function eventInfo(events) {
       var _this3 = this;
@@ -2847,7 +2878,7 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
           className: "event-display"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "event-info"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Name: ", event.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Description: ", event.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Date: ", event.date), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Time: ", event.time), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Open: ", event.open)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Name: ", event.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Description: ", event.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Date: ", event.date), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Time: ", event.time), this.showIfOpen(event)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "event-controls"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "event-name-exit"
@@ -3366,31 +3397,6 @@ var FindFriends = /*#__PURE__*/function (_React$Component) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, " \"loading ");
       }
 
-      var usersArray = Object.values(this.props.state.users);
-      var newFriends = [];
-      usersArray.map(function (user) {
-        if (_this3.state.newFriendsArray.includes(user.id)) {
-          newFriends.push(user);
-        }
-      });
-      var requestedFriends = [];
-      usersArray.map(function (user) {
-        if (_this3.state.alreadyRequestedArray.includes(user.id)) {
-          requestedFriends.push(user);
-        }
-      });
-      var yourFriends = [];
-      usersArray.map(function (user) {
-        if (_this3.state.friendsArray.includes(user.id)) {
-          yourFriends.push(user);
-        }
-      });
-      var acceptFriends = [];
-      usersArray.map(function (user) {
-        if (_this3.state.acceptFriendsArray.includes(user.id)) {
-          acceptFriends.push(user);
-        }
-      });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "find-friends"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {

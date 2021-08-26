@@ -32,6 +32,7 @@ class EventForm extends React.Component {
                 date: "",
                 time: "",
                 open: false,
+                showEvent: false,
                 user_id: this.props.state.session.id,
             })
         } else {
@@ -41,7 +42,6 @@ class EventForm extends React.Component {
                 description: "",
                 date: "",
                 time: "",
-                open: false,
                 user_id: this.props.state.session.id,
             })
         }
@@ -49,6 +49,27 @@ class EventForm extends React.Component {
 
     update(field) {
         return e => this.setState({ [field]: e.currentTarget.value })
+    }
+
+    handleCheckbox() {
+        if (this.state.open) {
+            this.setState({"open": false});
+        } else {
+            this.setState({"open": true});
+        }
+    }
+
+    showCheckbox() {
+        return (
+            <div className="row">
+                <p>Open:</p>
+                <input
+                    type="radio"
+                    value={this.state.open}
+                    onChange={() => this.handleCheckbox()}
+                />
+            </div>
+        )
     }
 
     render() {
@@ -92,14 +113,7 @@ class EventForm extends React.Component {
                                 onChange={this.update('time')}
                             />
                         </div>
-                        <div className="row">
-                            <p>Open:</p>
-                            <input
-                                type="boolean"
-                                value={this.state.open}
-                                onChange={this.update('open')}
-                            />
-                        </div>
+                        {this.showCheckbox()}
                         <button type="submit" className="button">Create Event</button>
                     </form>
                     <button onClick={() => this.setState({showEvent: false})}>Click Here To Hide Form</button>

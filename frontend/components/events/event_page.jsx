@@ -146,6 +146,14 @@ class EventPage extends React.Component {
         })
     }
 
+    showIfOpen(event) {
+        if (event.open) {
+            return (<p>This Event Is Open To Everyone!</p>);
+        } else {
+            return (<p>This Event Is Private, Only The Host Can Invite New Participants!</p>)
+        }
+    }
+
     eventInfo(events) {
         let event = {
             name: "No Current Event",
@@ -184,7 +192,7 @@ class EventPage extends React.Component {
                         <p>Description: {event.description}</p>
                         <p>Date: {event.date}</p>
                         <p>Time: {event.time}</p>
-                        <p>Open: {event.open}</p>
+                        {this.showIfOpen(event)}
                     </div>
                     <div className="event-controls">
                         <div className="event-name-exit">

@@ -69,31 +69,6 @@ class FindFriends extends React.Component {
         if (!this.props.state) {
             return (<div> "loading </div>)
         }
-        let usersArray = Object.values(this.props.state.users);
-        let newFriends = [];
-        usersArray.map((user) => {
-            if (this.state.newFriendsArray.includes(user.id)) {
-                newFriends.push(user);
-            }
-        })
-        let requestedFriends = [];
-        usersArray.map((user) => {
-            if (this.state.alreadyRequestedArray.includes(user.id)) {
-                requestedFriends.push(user);
-            }
-        })
-        let yourFriends = [];
-        usersArray.map((user) => {
-            if (this.state.friendsArray.includes(user.id)) {
-                yourFriends.push(user);
-            }
-        })
-        let acceptFriends = [];
-        usersArray.map((user) => {
-            if (this.state.acceptFriendsArray.includes(user.id)) {
-                acceptFriends.push(user);
-            }
-        })
         return (
             <div className="find-friends">
                 <div className="find-friends-controls">
