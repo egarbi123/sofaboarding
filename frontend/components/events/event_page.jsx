@@ -52,21 +52,22 @@ class EventPage extends React.Component {
     }
 
     handleRemoveEvent(eventId, members) {
+        let eventsArray = this.state.events; 
+        let newEventsArray = [];
+        for (let i = 0; i < eventsArray.length; i++) {
+            if (eventsArray[i]['id'] !== eventId) {
+                newEventsArray.push(eventsArray[i]);
+            }
+        }
         this.props.deleteEvent(eventId);
         if (members.length > 0) {
             this.deleteMemberships(eventId);
         }
+        // console.log(eventsArray);
+        // console.log(newEventsArray);
+        // this.setState({"events": newEventsArray});
     }
-
-    deleteMemberships(eventId) {
-        let memberships = Object.values(this.props.state.eventMemberships);
-        for (let i = 0; i < memberships.length; i++) {
-            if (memberships[i].event_id === eventId) {
-                this.props.deleteEventMembership(memberships[i].id);
-            }
-        }
-    }
-
+    
     handleRemoveMember(memberID, eventID) {
         let memberships = Object.values(this.props.state.eventMemberships);
         let membershipID = undefined;
@@ -79,9 +80,18 @@ class EventPage extends React.Component {
             this.handleRemoveMembership(membershipID);
         }
     }
-
+    
     handleRemoveMembership(membershipID) {
         this.props.deleteEventMembership(membershipID);
+    }
+
+    deleteMemberships(eventId) {
+        let memberships = Object.values(this.props.state.eventMemberships);
+        for (let i = 0; i < memberships.length; i++) {
+            if (memberships[i].event_id === eventId) {
+                this.props.deleteEventMembership(memberships[i].id);
+            }
+        }
     }
 
     joinEvent(eventId) {

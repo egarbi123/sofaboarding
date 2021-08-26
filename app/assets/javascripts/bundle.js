@@ -2713,22 +2713,23 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleRemoveEvent",
     value: function handleRemoveEvent(eventId, members) {
+      var eventsArray = this.state.events;
+      var newEventsArray = [];
+
+      for (var i = 0; i < eventsArray.length; i++) {
+        if (eventsArray[i]['id'] !== eventId) {
+          newEventsArray.push(eventsArray[i]);
+        }
+      }
+
       this.props.deleteEvent(eventId);
 
       if (members.length > 0) {
         this.deleteMemberships(eventId);
-      }
-    }
-  }, {
-    key: "deleteMemberships",
-    value: function deleteMemberships(eventId) {
-      var memberships = Object.values(this.props.state.eventMemberships);
+      } // console.log(eventsArray);
+      // console.log(newEventsArray);
+      // this.setState({"events": newEventsArray});
 
-      for (var i = 0; i < memberships.length; i++) {
-        if (memberships[i].event_id === eventId) {
-          this.props.deleteEventMembership(memberships[i].id);
-        }
-      }
     }
   }, {
     key: "handleRemoveMember",
@@ -2750,6 +2751,17 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
     key: "handleRemoveMembership",
     value: function handleRemoveMembership(membershipID) {
       this.props.deleteEventMembership(membershipID);
+    }
+  }, {
+    key: "deleteMemberships",
+    value: function deleteMemberships(eventId) {
+      var memberships = Object.values(this.props.state.eventMemberships);
+
+      for (var i = 0; i < memberships.length; i++) {
+        if (memberships[i].event_id === eventId) {
+          this.props.deleteEventMembership(memberships[i].id);
+        }
+      }
     }
   }, {
     key: "joinEvent",
