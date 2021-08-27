@@ -47,6 +47,11 @@ export const createEvent = (event) => dispatch => (
     .then(events => dispatch(makeEvent(events)))
 )
 
+export const updateEvent = (event) => dispatch => (
+    EventApiUtil.updateEvent(event)
+    .then(events => dispatch(makeEvent(events)))
+)
+
 export const fetchAllEvents = () => dispatch => (
     EventApiUtil.fetchEvents()
     .then(events => dispatch(receiveAllEvents(events)))

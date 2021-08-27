@@ -254,7 +254,7 @@ var newMessage = function newMessage(message) {
 /*!*******************************************!*\
   !*** ./frontend/actions/event_actions.js ***!
   \*******************************************/
-/*! exports provided: RECEIVE_ALL_EVENTS, REMOVE_EVENT, RECEIVE_ALL_EVENT_MEMBERSHIPS, CREATE_EVENT, REMOVE_EVENT_MEMBERSHIP, fetchEventMemberships, createEventMembership, deleteEventMembership, createEvent, fetchAllEvents, deleteEvent */
+/*! exports provided: RECEIVE_ALL_EVENTS, REMOVE_EVENT, RECEIVE_ALL_EVENT_MEMBERSHIPS, CREATE_EVENT, REMOVE_EVENT_MEMBERSHIP, fetchEventMemberships, createEventMembership, deleteEventMembership, createEvent, updateEvent, fetchAllEvents, deleteEvent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -268,6 +268,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createEventMembership", function() { return createEventMembership; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteEventMembership", function() { return deleteEventMembership; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createEvent", function() { return createEvent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateEvent", function() { return updateEvent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAllEvents", function() { return fetchAllEvents; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteEvent", function() { return deleteEvent; });
 /* harmony import */ var _util_event_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/event_api_util */ "./frontend/util/event_api_util.js");
@@ -330,6 +331,13 @@ var deleteEventMembership = function deleteEventMembership(membershipId) {
 var createEvent = function createEvent(event) {
   return function (dispatch) {
     return _util_event_api_util__WEBPACK_IMPORTED_MODULE_0__["createEvent"](event).then(function (events) {
+      return dispatch(makeEvent(events));
+    });
+  };
+};
+var updateEvent = function updateEvent(event) {
+  return function (dispatch) {
+    return _util_event_api_util__WEBPACK_IMPORTED_MODULE_0__["updateEvent"](event).then(function (events) {
       return dispatch(makeEvent(events));
     });
   };
@@ -2613,6 +2621,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _event_form_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./event_form_container */ "./frontend/components/events/event_form_container.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -2650,7 +2660,12 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
     _this.state = {
       "events": _this.props.events,
       "eventId": undefined,
-      "userIsOwner": false
+      "userIsOwner": false,
+      "eventBeingEdited": false,
+      "Name": "",
+      "Description": "",
+      "Date": "",
+      "Time": ""
     };
     _this.userIsOwner = false;
     _this.handleRemoveEvent = _this.handleRemoveEvent.bind(_assertThisInitialized(_this));
@@ -2670,6 +2685,8 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate() {
+      var _this2 = this;
+
       var owner = null;
 
       if (this.state.eventId) {
@@ -2696,6 +2713,32 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
         this.setState({
           'events': Object.values(this.props.state.event)
         });
+      }
+
+      console.log('IN CDU -- this:', this);
+
+      if (this.state.eventId) {
+        var _event = {};
+        this.state.events.map(function (ev) {
+          if (ev.id === _this2.state.eventId) {
+            _event = ev;
+          }
+        });
+
+        if (this.state.Name !== _event.name) {
+          this.setState({
+            "Name": _event.name,
+            "Description": _event.description,
+            "Date": _event.date,
+            "Time": _event.time
+          });
+        }
+      }
+
+      console.log('IN CDU -- EVENT:', event);
+
+      if (this.eventId && !this.state.name) {
+        console.log('IN CDU IF STATEMENT');
       }
     }
   }, {
@@ -2726,10 +2769,14 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
 
       if (members.length > 0) {
         this.deleteMemberships(eventId);
-      } // console.log(eventsArray);
-      // console.log(newEventsArray);
-      // this.setState({"events": newEventsArray});
+      } // console.log('this.state.events:', this.state.events);
+      // console.log('newEventsArray:', newEventsArray);
 
+
+      this.setState({
+        "events": newEventsArray,
+        "eventId": undefined
+      });
     }
   }, {
     key: "handleRemoveMember",
@@ -2789,7 +2836,7 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "showMembers",
     value: function showMembers(eventMembers, owner, eventID) {
-      var _this2 = this;
+      var _this3 = this;
 
       var users = this.props.state.users;
       var listOrder = [];
@@ -2800,13 +2847,13 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
       }
 
       eventMembers.map(function (memberID) {
-        if (memberID !== owner && memberID !== _this2.props.state.session.id) {
+        if (memberID !== owner && memberID !== _this3.props.state.session.id) {
           listOrder.push(memberID);
         }
       });
       return listOrder.map(function (memberID) {
         if (memberID === owner) {
-          if (owner === _this2.props.state.session.id) {
+          if (owner === _this3.props.state.session.id) {
             return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
               key: memberID
             }, "You Are The Owner");
@@ -2817,23 +2864,23 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
           }
         }
 
-        if (owner === _this2.props.state.session.id) {
+        if (owner === _this3.props.state.session.id) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             key: memberID,
             className: "row"
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, users[memberID].name, " -- "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
             onClick: function onClick() {
-              return _this2.handleRemoveMember(memberID, eventID);
+              return _this3.handleRemoveMember(memberID, eventID);
             },
             className: "pointer "
           }, "Remove"));
-        } else if (memberID === _this2.props.state.session.id) {
+        } else if (memberID === _this3.props.state.session.id) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             className: "row",
             key: memberID
           }, users[memberID].name, ":", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
             onClick: function onClick() {
-              return _this2.handleRemoveMembership(memberID);
+              return _this3.handleRemoveMembership(memberID);
             }
           }, "Leave Event"));
         } else {
@@ -2853,9 +2900,63 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
       }
     }
   }, {
+    key: "showEventSection",
+    value: function showEventSection(section, event) {
+      if (this.state.eventBeingEdited) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "row"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Edit ", section, ":"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          type: "string",
+          value: this.state[section],
+          onChange: this.update("".concat(section))
+        }));
+      } else {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "row"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          className: "event-name"
+        }, section, ": ", event.name));
+      }
+    }
+  }, {
+    key: "showEditButton",
+    value: function showEditButton() {
+      var _this4 = this;
+
+      if (this.state.userIsOwner) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          onClick: function onClick() {
+            return _this4.toggleEdit();
+          }
+        }, "Edit Event");
+      }
+    }
+  }, {
+    key: "toggleEdit",
+    value: function toggleEdit() {
+      if (this.state.eventBeingEdited) {
+        this.setState({
+          "eventBeingEdited": false
+        });
+      } else {
+        this.setState({
+          "eventBeingEdited": true
+        });
+      }
+    }
+  }, {
+    key: "update",
+    value: function update(field) {
+      var _this5 = this;
+
+      return function (e) {
+        return _this5.setState(_defineProperty({}, field, e.currentTarget.value));
+      };
+    }
+  }, {
     key: "eventInfo",
     value: function eventInfo(events) {
-      var _this3 = this;
+      var _this6 = this;
 
       var event = {
         name: "No Current Event",
@@ -2868,7 +2969,7 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
       if (this.state.eventId !== undefined) {
         events.map(function (ev) {
           if (ev.id) {
-            if (ev.id === _this3.state.eventId) {
+            if (ev.id === _this6.state.eventId) {
               event = ev;
               eventId = ev.id;
             }
@@ -2890,7 +2991,15 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
           className: "event-display"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "event-info"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Name: ", event.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Description: ", event.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Date: ", event.date), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Time: ", event.time), this.showIfOpen(event)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "row"
+        }, this.showEventSection('Name', event)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "row"
+        }, this.showEventSection('Description', event)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "row"
+        }, this.showEventSection('Date', event)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "row"
+        }, this.showEventSection('Time', event)), this.showIfOpen(event)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "event-controls"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "event-name-exit"
@@ -2899,13 +3008,13 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Event:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, event.name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "exit",
           onClick: function onClick() {
-            return _this3.setState({
+            return _this6.setState({
               "eventId": undefined
             });
           }
-        }, "X")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Members:"), this.showMembers(membersIDs, owner, eventId), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        }, "X")), this.showEditButton(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Members:"), this.showMembers(membersIDs, owner, eventId), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           onClick: function onClick() {
-            return _this3.handleRemoveEvent(event.id, membersIDs);
+            return _this6.handleRemoveEvent(event.id, membersIDs);
           }
         }, "Delete Event"), this.showJoinEventButton(event.id)));
       }
@@ -2913,7 +3022,7 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "showJoinEventButton",
     value: function showJoinEventButton(eventID) {
-      var _this4 = this;
+      var _this7 = this;
 
       var userID = this.props.state.session.id;
       var memberships = Object.values(this.props.state.eventMemberships);
@@ -2928,7 +3037,7 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
       if (alreadyMember === false) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           onClick: function onClick() {
-            return _this4.joinEvent(eventID);
+            return _this7.joinEvent(eventID);
           }
         }, "Join Event");
       }
@@ -2943,21 +3052,23 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this5 = this;
+      var _this8 = this;
 
       var events = this.state.events;
+      console.log('THIS', this);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "event-page"
       }, this.showEventHeader(events), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "events-list"
-      }, this.showEvents(events, function (eventId) {
-        return _this5.setState({
-          eventId: eventId
+      }, this.showEvents(this.state.events, function (eventId) {
+        return _this8.setState({
+          eventId: eventId,
+          "eventBeingEdited": false
         });
       })), this.eventInfo(events), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_event_form_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
         events: this.state.events,
         handleAddEvent: function handleAddEvent() {
-          _this5.handleAddEvent();
+          _this8.handleAddEvent();
         }
       }));
     }

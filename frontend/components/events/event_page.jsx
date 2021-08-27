@@ -8,6 +8,11 @@ class EventPage extends React.Component {
             "events": this.props.events,
             "eventId": undefined,
             "userIsOwner": false,
+            "eventBeingEdited": false,
+            "Name": "",
+            "Description": "",
+            "Date": "",
+            "Time": ""
         }
         this.userIsOwner = false;
         this.handleRemoveEvent = this.handleRemoveEvent.bind(this);
@@ -41,6 +46,27 @@ class EventPage extends React.Component {
         if (Object.values(this.props.state.event).length !== this.state.events.length) {
             this.setState({'events': Object.values(this.props.state.event)})
         }
+        console.log('IN CDU -- this:', this);
+        if (this.state.eventId) {
+            let event = {};
+            this.state.events.map(ev => {
+                if (ev.id === this.state.eventId) {
+                    event = ev
+                }
+            })
+            if (this.state.Name !== event.name) {
+                this.setState({
+                    "Name": event.name,
+                    "Description": event.description,
+                    "Date": event.date,
+                    "Time": event.time,
+                })
+            }
+        }
+        console.log('IN CDU -- EVENT:', event)
+        if (this.eventId && !this.state.name) {
+            console.log('IN CDU IF STATEMENT')
+        }
     }
 
     handleAddEvent() {
@@ -63,9 +89,9 @@ class EventPage extends React.Component {
         if (members.length > 0) {
             this.deleteMemberships(eventId);
         }
-        // console.log(eventsArray);
-        // console.log(newEventsArray);
-        // this.setState({"events": newEventsArray});
+        // console.log('this.state.events:', this.state.events);
+        // console.log('newEventsArray:', newEventsArray);
+        this.setState({"events": newEventsArray, "eventId": undefined});
     }
     
     handleRemoveMember(memberID, eventID) {
@@ -164,6 +190,47 @@ class EventPage extends React.Component {
         }
     }
 
+    showEventSection(section, event) {
+        if (this.state.eventBeingEdited) {
+            return (
+                <div className="row">
+                    <p>Edit {section}:</p>
+                    <input
+                        type="string"
+                        value={this.state[section]}
+                        onChange={this.update(`${section}`)}
+                    />
+                </div>
+            )
+        } else {
+            return (
+                <div className="row">
+                    <p className="event-name">{section}: {event.name}</p>
+                </div>
+            )
+        }
+    }
+    
+    showEditButton() {
+        if (this.state.userIsOwner) {
+            return (
+                <button onClick={() => this.toggleEdit()}>Edit Event</button>
+            )
+        }
+    }
+
+    toggleEdit() {
+        if (this.state.eventBeingEdited) {
+            this.setState({"eventBeingEdited": false});
+        } else {
+            this.setState({"eventBeingEdited": true});
+        }
+    }
+
+    update(field) {
+        return e => this.setState({ [field]: e.currentTarget.value })
+    }
+
     eventInfo(events) {
         let event = {
             name: "No Current Event",
@@ -198,10 +265,18 @@ class EventPage extends React.Component {
             return (
                 <div className="event-display">
                     <div className="event-info">
-                        <p>Name: {event.name}</p>
-                        <p>Description: {event.description}</p>
-                        <p>Date: {event.date}</p>
-                        <p>Time: {event.time}</p>
+                        <div className="row">
+                            {this.showEventSection('Name', event)}
+                        </div>
+                        <div className="row">
+                            {this.showEventSection('Description', event)}
+                        </div>
+                        <div className="row">
+                            {this.showEventSection('Date', event)}
+                        </div>
+                        <div className="row">
+                            {this.showEventSection('Time', event)}
+                        </div>
                         {this.showIfOpen(event)}
                     </div>
                     <div className="event-controls">
@@ -212,6 +287,7 @@ class EventPage extends React.Component {
                             </div>
                             <div className="exit" onClick={() => this.setState({ "eventId": undefined })}>X</div>
                         </div>
+                        {this.showEditButton()}
                         <h4>Members:</h4>
                         {this.showMembers(membersIDs, owner, eventId)}
                         <button onClick={() => this.handleRemoveEvent(event.id, membersIDs)}>Delete Event</button>
@@ -244,12 +320,12 @@ class EventPage extends React.Component {
 
     render() {
         let events = this.state.events;
-
+        console.log('THIS', this);
         return (
             <div className="event-page">
                 {this.showEventHeader(events)}
                 <div className="events-list">
-                    {this.showEvents(events, (eventId) => this.setState({ eventId: eventId }))}
+                    {this.showEvents(this.state.events, (eventId) => this.setState({ eventId: eventId, "eventBeingEdited": false }))}
                 </div>
                 {this.eventInfo(events)}
                 {<EventForm events={this.state.events} handleAddEvent={() => {this.handleAddEvent()}}/>}
