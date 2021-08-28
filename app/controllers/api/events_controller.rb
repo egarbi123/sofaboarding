@@ -19,7 +19,7 @@ class Api::EventsController < ApplicationController
     def update
         @event = Event.find(params[:id])
         if (@event)
-            if @event.update(event_params)
+            if @event.update(edit_params)
                 @events = Event.all
                 render :index
             else
@@ -60,4 +60,15 @@ class Api::EventsController < ApplicationController
             :open
         )
     end
+
+    def edit_params
+        params.permit(
+            :name,
+            :description,
+            :date,
+            :time,
+            :open
+        )
+    end
+    
 end

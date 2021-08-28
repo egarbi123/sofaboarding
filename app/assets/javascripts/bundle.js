@@ -2500,8 +2500,6 @@ var EventForm = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this4 = this;
 
-      console.log(this);
-
       if (this.state.showEvent === true) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "event-form"
@@ -2662,17 +2660,21 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
       "eventId": undefined,
       "userIsOwner": false,
       "eventBeingEdited": false,
-      "Name": "",
-      "Description": "",
-      "Date": "",
-      "Time": ""
+      name: "",
+      description: "",
+      date: "",
+      time: "",
+      open: false
     };
     _this.userIsOwner = false;
     _this.handleRemoveEvent = _this.handleRemoveEvent.bind(_assertThisInitialized(_this));
+    _this.handleEditEvent = _this.handleEditEvent.bind(_assertThisInitialized(_this));
     _this.eventInfo = _this.eventInfo.bind(_assertThisInitialized(_this));
     _this.joinEvent = _this.joinEvent.bind(_assertThisInitialized(_this));
     _this.showMembers = _this.showMembers.bind(_assertThisInitialized(_this));
     _this.handleAddEvent = _this.handleAddEvent.bind(_assertThisInitialized(_this));
+    _this.showEventSection = _this.showEventSection.bind(_assertThisInitialized(_this));
+    _this.update = _this.update.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -2725,12 +2727,12 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
           }
         });
 
-        if (this.state.Name !== _event.name) {
+        if (this.state.name === "") {
           this.setState({
-            "Name": _event.name,
-            "Description": _event.description,
-            "Date": _event.date,
-            "Time": _event.time
+            "name": _event.name,
+            "description": _event.description,
+            "date": _event.date,
+            "time": _event.time
           });
         }
       }
@@ -2752,6 +2754,21 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
           "events": propsEvents
         });
       }
+    }
+  }, {
+    key: "handleEditEvent",
+    value: function handleEditEvent(e) {
+      e.preventDefault();
+      console.log('in handleEditEvent');
+      var object = {};
+      object['name'] = this.state.name;
+      object['description'] = this.state.description;
+      object['date'] = this.state.date;
+      object['time'] = this.state.time;
+      object['open'] = this.state.open;
+      object['id'] = this.state.eventId;
+      console.log(object);
+      this.props.updateEvent(object);
     }
   }, {
     key: "handleRemoveEvent",
@@ -2901,21 +2918,61 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "showEventSection",
-    value: function showEventSection(section, event) {
+    value: function showEventSection(event) {
       if (this.state.eventBeingEdited) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+          onSubmit: this.handleEditEvent
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "row"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Edit ", section, ":"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Name:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
           type: "string",
-          value: this.state[section],
-          onChange: this.update("".concat(section))
-        }));
+          value: this.state.name,
+          onChange: this.update('name')
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "row"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Description:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          type: "text",
+          value: this.state.description,
+          onChange: this.update('description')
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "row"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Date:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          type: "string",
+          value: this.state.date,
+          onChange: this.update('date'),
+          placeholder: 'December 2, 2021'
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          style: {
+            "fontSize": "xx-small"
+          }
+        }, "Please keep format to Month Day, Year example: December 2, 2021"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "row"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Time:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          type: "string",
+          value: this.state.time,
+          onChange: this.update('time')
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          type: "submit",
+          className: "button"
+        }, "Edit Event"));
       } else {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "row"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
           className: "event-name"
-        }, section, ": ", event.name));
+        }, "Name: ", event.name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "row"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          className: "event-name"
+        }, "Description: ", event.description)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "row"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          className: "event-name"
+        }, "Date: ", event.date)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "row"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          className: "event-name"
+        }, "Time: ", event.time)));
       }
     }
   }, {
@@ -2991,15 +3048,7 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
           className: "event-display"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "event-info"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "row"
-        }, this.showEventSection('Name', event)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "row"
-        }, this.showEventSection('Description', event)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "row"
-        }, this.showEventSection('Date', event)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "row"
-        }, this.showEventSection('Time', event)), this.showIfOpen(event)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, this.showEventSection(event, this.state), this.showIfOpen(event)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "event-controls"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "event-name-exit"
@@ -3110,6 +3159,9 @@ var mDTP = function mDTP(dispatch) {
     },
     deleteEvent: function deleteEvent(id) {
       return dispatch(Object(_actions_event_actions__WEBPACK_IMPORTED_MODULE_2__["deleteEvent"])(id));
+    },
+    updateEvent: function updateEvent(event) {
+      return dispatch(Object(_actions_event_actions__WEBPACK_IMPORTED_MODULE_2__["updateEvent"])(event));
     },
     createEventMembership: function createEventMembership(eventId) {
       return dispatch(Object(_actions_event_actions__WEBPACK_IMPORTED_MODULE_2__["createEventMembership"])(eventId));
@@ -6156,11 +6208,11 @@ var createEvent = function createEvent(event) {
     }
   });
 };
-var updateEvent = function updateEvent(data) {
+var updateEvent = function updateEvent(event) {
   return $.ajax({
-    url: "/api/events/".concat(data.event.id),
+    url: "/api/events/".concat(event.id),
     method: 'PATCH',
-    data: data.form
+    data: event
   });
 };
 var fetchEvents = function fetchEvents() {
