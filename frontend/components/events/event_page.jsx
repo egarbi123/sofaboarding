@@ -9,11 +9,13 @@ class EventPage extends React.Component {
             "eventId": undefined,
             "userIsOwner": false,
             "eventBeingEdited": false,
+            "editingId": undefined,
             name: "",
             description: "",
             date: "",
             time: "",
             open: false,
+            editCorrect: true,
         }
         this.userIsOwner = false;
         this.handleRemoveEvent = this.handleRemoveEvent.bind(this);
@@ -47,9 +49,9 @@ class EventPage extends React.Component {
                 this.setState({"userIsOwner": true});
             }
         }
-        if (Object.values(this.props.state.event).length !== this.state.events.length) {
-            this.setState({'events': Object.values(this.props.state.event)})
-        }
+        if (Object.values(this.props.state.event).length !== this.state.events.length || this.props.eventEdited) {
+            this.setState({'events': Object.values(this.props.state.event), "eventEdited": false});
+        } 
         console.log('IN CDU -- this:', this);
         if (this.state.eventId) {
             let event = {};
@@ -83,7 +85,6 @@ class EventPage extends React.Component {
 
     handleEditEvent(e) {
         e.preventDefault();
-        console.log('in handleEditEvent');
         let object = {};
         object['name'] = this.state.name;
         object['description'] = this.state.description;
@@ -91,8 +92,20 @@ class EventPage extends React.Component {
         object['time'] = this.state.time;
         object['open'] = this.state.open;
         object['id'] = this.state.eventId;
-        console.log(object);
         this.props.updateEvent(object);
+        let stateEvents = this.state.events;
+        let newStateEvents = [];
+        stateEvents.map(event => {
+            if (event.id === object.id) {
+                newStateEvents.push(object);
+            } else {
+                newStateEvents.push(event);
+            }
+        })
+        this.setState({ "eventEdited": true, "events": newStateEvents});
+        // this.setState({"events": newStateEvents})
+        // console.log('stateEvents:', stateEvents);
+        // console.log('this.state:', this.state);
     }
 
     handleRemoveEvent(eventId, members) {
@@ -208,6 +221,27 @@ class EventPage extends React.Component {
         }
     }
 
+    handleCheckbox() {
+        if (this.state.open) {
+            this.setState({ "open": false });
+        } else {
+            this.setState({ "open": true });
+        }
+    }
+
+    showCheckbox() {
+        return (
+            <div className="row">
+                <p>Open:</p>
+                <input
+                    type="radio"
+                    value={this.state.open}
+                    onChange={() => this.handleCheckbox()}
+                />
+            </div>
+        )
+    }
+
     showEventSection(event) {
         if (this.state.eventBeingEdited) {
             return (
@@ -246,6 +280,7 @@ class EventPage extends React.Component {
                             onChange={this.update('time')}
                         />
                     </div>
+                    {this.showCheckbox()}
                     <button type="submit" className="button">Edit Event</button>
                 </form>
             )
@@ -269,19 +304,19 @@ class EventPage extends React.Component {
         }
     }
     
-    showEditButton() {
+    showEditButton(eventId) {
         if (this.state.userIsOwner) {
             return (
-                <button onClick={() => this.toggleEdit()}>Edit Event</button>
+                <button onClick={() => this.toggleEdit(eventId)}>Edit Event</button>
             )
         }
     }
 
-    toggleEdit() {
+    toggleEdit(eventId) {
         if (this.state.eventBeingEdited) {
             this.setState({"eventBeingEdited": false});
         } else {
-            this.setState({"eventBeingEdited": true});
+            this.setState({"eventBeingEdited": true, "editingId": eventId});
         }
     }
 
@@ -334,7 +369,7 @@ class EventPage extends React.Component {
                             </div>
                             <div className="exit" onClick={() => this.setState({ "eventId": undefined })}>X</div>
                         </div>
-                        {this.showEditButton()}
+                        {this.showEditButton(event.id)}
                         <h4>Members:</h4>
                         {this.showMembers(membersIDs, owner, eventId)}
                         <button onClick={() => this.handleRemoveEvent(event.id, membersIDs)}>Delete Event</button>
@@ -370,12 +405,16 @@ class EventPage extends React.Component {
         console.log('THIS', this);
         return (
             <div className="event-page">
-                {this.showEventHeader(events)}
                 <div className="events-list">
-                    {this.showEvents(this.state.events, (eventId) => this.setState({ eventId: eventId, "eventBeingEdited": false }))}
+                    {this.showEventHeader(events)}
+                    {this.showEvents(this.state.events, (eventId) => this.setState({ eventId: eventId, "eventBeingEdited": false, editingId: eventId }))}
                 </div>
-                {this.eventInfo(events)}
-                {<EventForm events={this.state.events} handleAddEvent={() => {this.handleAddEvent()}}/>}
+                <div className="single-event">
+                    <div className="single-event-info">
+                        {this.eventInfo(events)}
+                    </div>
+                    {<EventForm events={this.state.events} handleAddEvent={() => {this.handleAddEvent()}}/>}
+                </div>
             </div>
         )
     }
