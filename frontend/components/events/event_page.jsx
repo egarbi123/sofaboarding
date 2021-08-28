@@ -16,6 +16,7 @@ class EventPage extends React.Component {
             time: "",
             open: false,
             editCorrect: true,
+            showEventForm: false,
         }
         this.userIsOwner = false;
         this.handleRemoveEvent = this.handleRemoveEvent.bind(this);
@@ -400,6 +401,22 @@ class EventPage extends React.Component {
         }
     }
 
+    toggleEventForm() {
+        if (this.state.showEventForm) {
+            this.setState({"showEventForm": false, "eventId": undefined });
+        } else {
+            this.setState({ "showEventForm": true, "eventId": undefined });
+        }
+    }
+
+    showEventForm() {
+        if (this.state.showEventForm) {
+            return (
+                <EventForm events={this.state.events} showEvent={this.state.showEventForm} toggleShow={() => { this.toggleEventForm() }} handleAddEvent={() => { this.handleAddEvent() }} />
+            )
+        }
+    }
+
     render() {
         let events = this.state.events;
         console.log('THIS', this);
@@ -407,13 +424,14 @@ class EventPage extends React.Component {
             <div className="event-page">
                 <div className="events-list">
                     {this.showEventHeader(events)}
-                    {this.showEvents(this.state.events, (eventId) => this.setState({ eventId: eventId, "eventBeingEdited": false, editingId: eventId }))}
+                    {this.showEvents(this.state.events, (eventId) => this.setState({ eventId: eventId, "eventBeingEdited": false, editingId: eventId, "showEventForm": false }))}
+                    <button onClick={() => this.toggleEventForm()}>Create New Event</button>
                 </div>
                 <div className="single-event">
                     <div className="single-event-info">
                         {this.eventInfo(events)}
                     </div>
-                    {<EventForm events={this.state.events} handleAddEvent={() => {this.handleAddEvent()}}/>}
+                    {this.showEventForm()}
                 </div>
             </div>
         )

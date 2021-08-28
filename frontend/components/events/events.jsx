@@ -6,7 +6,7 @@ class Events extends React.Component {
         super(props);
         this.state = {
             "events": [],
-            "eventsActive": false,
+            "eventsActive": true,
         }
         this.toggleEvents = this.toggleEvents.bind(this);
     }

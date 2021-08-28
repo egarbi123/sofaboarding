@@ -2,7 +2,7 @@
     margin: auto;
     display: flex;
     flex-direction: row;
-    height: 400px;
+    height: fit-content;
     width: 100%;
 }
 
@@ -35,6 +35,7 @@
     margin-left: 70px;
     margin-right: 99px;
     margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .single-event {
@@ -103,4 +104,9 @@
 .create-events {
     width: 600px;
     height: fit-content;
+}
+
+.event-form-cont {
+    display: flex;
+    flex-direction: row;
 }

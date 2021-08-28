@@ -2418,7 +2418,7 @@ var EventForm = /*#__PURE__*/function (_React$Component) {
       time: "",
       open: false,
       user_id: _this.props.state.session.id,
-      showEvent: false
+      showEvent: _this.props.showEvent
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
@@ -2500,10 +2500,17 @@ var EventForm = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this4 = this;
 
+      console.log(this);
+
       if (this.state.showEvent === true) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "event-form"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Create A New Event"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+          className: "event-form-cont"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Create A New Event"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          onClick: function onClick() {
+            return _this4.props.toggleShow();
+          }
+        }, "Click Here To Hide Form")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+          className: "event-form",
           onSubmit: this.handleSubmit
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "row"
@@ -2537,21 +2544,13 @@ var EventForm = /*#__PURE__*/function (_React$Component) {
         })), this.showCheckbox(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           type: "submit",
           className: "button"
-        }, "Create Event")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          onClick: function onClick() {
-            return _this4.setState({
-              showEvent: false
-            });
-          }
-        }, "Click Here To Hide Form"));
+        }, "Create Event")));
       } else {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "create-event"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           onClick: function onClick() {
-            return _this4.setState({
-              showEvent: true
-            });
+            return _this4.props.toggleShow();
           }
         }, "Click Here To Create An Event"));
       }
@@ -2666,7 +2665,8 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
       date: "",
       time: "",
       open: false,
-      editCorrect: true
+      editCorrect: true,
+      showEventForm: false
     };
     _this.userIsOwner = false;
     _this.handleRemoveEvent = _this.handleRemoveEvent.bind(_assertThisInitialized(_this));
@@ -3144,9 +3144,42 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
       }
     }
   }, {
+    key: "toggleEventForm",
+    value: function toggleEventForm() {
+      if (this.state.showEventForm) {
+        this.setState({
+          "showEventForm": false,
+          "eventId": undefined
+        });
+      } else {
+        this.setState({
+          "showEventForm": true,
+          "eventId": undefined
+        });
+      }
+    }
+  }, {
+    key: "showEventForm",
+    value: function showEventForm() {
+      var _this9 = this;
+
+      if (this.state.showEventForm) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_event_form_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          events: this.state.events,
+          showEvent: this.state.showEventForm,
+          toggleShow: function toggleShow() {
+            _this9.toggleEventForm();
+          },
+          handleAddEvent: function handleAddEvent() {
+            _this9.handleAddEvent();
+          }
+        });
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
-      var _this9 = this;
+      var _this10 = this;
 
       var events = this.state.events;
       console.log('THIS', this);
@@ -3155,21 +3188,21 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "events-list"
       }, this.showEventHeader(events), this.showEvents(this.state.events, function (eventId) {
-        return _this9.setState({
+        return _this10.setState({
           eventId: eventId,
           "eventBeingEdited": false,
-          editingId: eventId
+          editingId: eventId,
+          "showEventForm": false
         });
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: function onClick() {
+          return _this10.toggleEventForm();
+        }
+      }, "Create New Event")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "single-event"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "single-event-info"
-      }, this.eventInfo(events)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_event_form_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        events: this.state.events,
-        handleAddEvent: function handleAddEvent() {
-          _this9.handleAddEvent();
-        }
-      })));
+      }, this.eventInfo(events)), this.showEventForm()));
     }
   }]);
 
@@ -3279,7 +3312,7 @@ var Events = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.state = {
       "events": [],
-      "eventsActive": false
+      "eventsActive": true
     };
     _this.toggleEvents = _this.toggleEvents.bind(_assertThisInitialized(_this));
     return _this;

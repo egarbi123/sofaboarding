@@ -10,7 +10,7 @@ class EventForm extends React.Component {
             time: "",
             open: false,
             user_id: this.props.state.session.id,
-            showEvent: false,
+            showEvent: this.props.showEvent,
         }
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -73,11 +73,15 @@ class EventForm extends React.Component {
     }
 
     render() {
+        console.log(this);
         if (this.state.showEvent === true) {
             return (
-                <div className="event-form">
-                    <h4>Create A New Event</h4>
-                    <form onSubmit={this.handleSubmit}>
+                <div className="event-form-cont">
+                    <div>
+                        <h4>Create A New Event</h4>
+                        <button onClick={() => this.props.toggleShow()}>Click Here To Hide Form</button>
+                    </div>
+                    <form className="event-form" onSubmit={this.handleSubmit}>
                         <div className="row">
                             <p>Name:</p>
                             <input
@@ -115,13 +119,12 @@ class EventForm extends React.Component {
                         {this.showCheckbox()}
                         <button type="submit" className="button">Create Event</button>
                     </form>
-                    <button onClick={() => this.setState({showEvent: false})}>Click Here To Hide Form</button>
                 </div>
             )
         } else {
             return (
                 <div className="create-event">
-                    <button onClick={() => this.setState({showEvent: true})}>Click Here To Create An Event</button>
+                    <button onClick={() => this.props.toggleShow()}>Click Here To Create An Event</button>
                 </div>
             )
         }
