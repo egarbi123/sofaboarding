@@ -2500,8 +2500,6 @@ var EventForm = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this4 = this;
 
-      console.log(this);
-
       if (this.state.showEvent === true) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "event-form-cont"
@@ -2730,7 +2728,7 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
           }
         });
 
-        if (this.state.name === "") {
+        if (this.state.name !== _event.name) {
           this.setState({
             "name": _event.name,
             "description": _event.description,
@@ -2782,9 +2780,7 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
       this.setState({
         "eventEdited": true,
         "events": newStateEvents
-      }); // this.setState({"events": newStateEvents})
-      // console.log('stateEvents:', stateEvents);
-      // console.log('this.state:', this.state);
+      });
     }
   }, {
     key: "handleRemoveEvent",
@@ -2802,9 +2798,7 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
 
       if (members.length > 0) {
         this.deleteMemberships(eventId);
-      } // console.log('this.state.events:', this.state.events);
-      // console.log('newEventsArray:', newEventsArray);
-
+      }
 
       this.setState({
         "events": newEventsArray,
@@ -2926,10 +2920,12 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "showIfOpen",
     value: function showIfOpen(event) {
-      if (event.open) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "This Event Is Open To Everyone!");
-      } else {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "This Event Is Private, Only The Host Can Invite New Participants!");
+      if (this.state.eventBeingEdited) {} else {
+        if (event.open) {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "This Event Is Open To Everyone!");
+        } else {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "This Event Is Private, Only The Host Can Invite New Participants!");
+        }
       }
     }
   }, {
@@ -2967,20 +2963,29 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
           onSubmit: this.handleEditEvent
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "row"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Name:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          className: "event-row"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          className: "event-inputs"
+        }, "Name:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          className: "event-inputs",
           type: "string",
           value: this.state.name,
           onChange: this.update('name')
         })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "row"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Description:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          className: "event-row"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          className: "event-inputs"
+        }, "Description:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          className: "event-inputs",
           type: "text",
           value: this.state.description,
           onChange: this.update('description')
         })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "row"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Date:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          className: "event-row"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          className: "event-inputs"
+        }, "Date:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          className: "event-inputs",
           type: "string",
           value: this.state.date,
           onChange: this.update('date'),
@@ -2990,30 +2995,35 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
             "fontSize": "xx-small"
           }
         }, "Please keep format to Month Day, Year example: December 2, 2021"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "row"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Time:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          className: "event-row"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          className: "event-inputs"
+        }, "Time:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          className: "event-inputs",
           type: "string",
           value: this.state.time,
           onChange: this.update('time')
         })), this.showCheckbox(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           type: "submit",
-          className: "button"
+          className: "event-button"
         }, "Edit Event"));
       } else {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "row"
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "event-list"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "event-row"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
           className: "event-name"
         }, "Name: ", event.name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "row"
+          className: "event-row"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
           className: "event-name"
         }, "Description: ", event.description)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "row"
+          className: "event-row"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
           className: "event-name"
         }, "Date: ", event.date)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "row"
+          className: "event-row"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
           className: "event-name"
         }, "Time: ", event.time)));
@@ -3182,7 +3192,6 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
       var _this10 = this;
 
       var events = this.state.events;
-      console.log('THIS', this);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "event-page"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {

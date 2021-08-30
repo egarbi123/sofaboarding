@@ -61,7 +61,7 @@ class EventPage extends React.Component {
                     event = ev
                 }
             })
-            if (this.state.name === "") {
+            if (this.state.name !== event.name) {
                 this.setState({
                     "name": event.name,
                     "description": event.description,
@@ -104,9 +104,6 @@ class EventPage extends React.Component {
             }
         })
         this.setState({ "eventEdited": true, "events": newStateEvents});
-        // this.setState({"events": newStateEvents})
-        // console.log('stateEvents:', stateEvents);
-        // console.log('this.state:', this.state);
     }
 
     handleRemoveEvent(eventId, members) {
@@ -121,8 +118,6 @@ class EventPage extends React.Component {
         if (members.length > 0) {
             this.deleteMemberships(eventId);
         }
-        // console.log('this.state.events:', this.state.events);
-        // console.log('newEventsArray:', newEventsArray);
         this.setState({"events": newEventsArray, "eventId": undefined});
     }
     
@@ -215,10 +210,14 @@ class EventPage extends React.Component {
     }
 
     showIfOpen(event) {
-        if (event.open) {
-            return (<p>This Event Is Open To Everyone!</p>);
+        if (this.state.eventBeingEdited) {
+
         } else {
-            return (<p>This Event Is Private, Only The Host Can Invite New Participants!</p>)
+            if (event.open) {
+                return (<p>This Event Is Open To Everyone!</p>);
+            } else {
+                return (<p>This Event Is Private, Only The Host Can Invite New Participants!</p>)
+            }
         }
     }
 
@@ -247,25 +246,28 @@ class EventPage extends React.Component {
         if (this.state.eventBeingEdited) {
             return (
                 <form onSubmit={this.handleEditEvent}>
-                    <div className="row">
-                        <p>Name:</p>
+                    <div className="event-row">
+                        <p className="event-inputs">Name:</p>
                         <input
+                            className="event-inputs"
                             type="string"
                             value={this.state.name}
                             onChange={this.update('name')}
                         />
                     </div>
-                    <div className="row">
-                        <p>Description:</p>
+                    <div className="event-row">
+                        <p className="event-inputs">Description:</p>
                         <input
+                            className="event-inputs"
                             type="text"
                             value={this.state.description}
                             onChange={this.update('description')}
                         />
                     </div>
-                    <div className="row">
-                        <p>Date:</p>
+                    <div className="event-row">
+                        <p className="event-inputs">Date:</p>
                         <input
+                            className="event-inputs"
                             type="string"
                             value={this.state.date}
                             onChange={this.update('date')}
@@ -273,31 +275,32 @@ class EventPage extends React.Component {
                         />
                     </div>
                     <p style={{ "fontSize": "xx-small" }}>Please keep format to Month Day, Year example: December 2, 2021</p>
-                    <div className="row">
-                        <p>Time:</p>
+                    <div className="event-row">
+                        <p className="event-inputs">Time:</p>
                         <input
+                            className="event-inputs"
                             type="string"
                             value={this.state.time}
                             onChange={this.update('time')}
                         />
                     </div>
                     {this.showCheckbox()}
-                    <button type="submit" className="button">Edit Event</button>
+                    <button type="submit" className="event-button">Edit Event</button>
                 </form>
             )
         } else {
             return (
-                <div>
-                    <div className="row">
+                <div className="event-list">
+                    <div className="event-row">
                         <p className="event-name">Name: {event.name}</p>
                     </div>
-                    <div className="row">
+                    <div className="event-row">
                         <p className="event-name">Description: {event.description}</p>
                     </div>
-                    <div className="row">
+                    <div className="event-row">
                         <p className="event-name">Date: {event.date}</p>
                     </div>
-                    <div className="row">
+                    <div className="event-row">
                         <p className="event-name">Time: {event.time}</p>
                     </div>
                 </div>
@@ -419,7 +422,6 @@ class EventPage extends React.Component {
 
     render() {
         let events = this.state.events;
-        console.log('THIS', this);
         return (
             <div className="event-page">
                 <div className="events-list">

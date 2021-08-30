@@ -73,7 +73,6 @@ class EventForm extends React.Component {
     }
 
     render() {
-        console.log(this);
         if (this.state.showEvent === true) {
             return (
                 <div className="event-form-cont">
