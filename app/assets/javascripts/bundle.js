@@ -2887,7 +2887,7 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
           } else {
             return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
               key: memberID
-            }, "This Event Belongs To ", users[memberID].name);
+            }, "Owner: ", users[memberID].name);
           }
         }
 
@@ -3036,6 +3036,7 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
 
       if (this.state.userIsOwner) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: "event-controls-btn",
           onClick: function onClick() {
             return _this5.toggleEdit(eventId);
           }
@@ -3108,25 +3109,35 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "event-name-exit"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "column"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Event:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, event.name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "exit",
+          className: "event-name"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Event Controls"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, event.name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "event-exit",
           onClick: function onClick() {
             return _this7.setState({
               "eventId": undefined
             });
           }
-        }, "X")), this.showEditButton(event.id), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Members:"), this.showMembers(membersIDs, owner, eventId), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        }, "X")), this.showEditButton(event.id), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Members"), this.showMembers(membersIDs, owner, eventId), this.showDeleteEventButton(owner, event, membersIDs), this.showJoinEventButton(event.id)));
+      }
+    }
+  }, {
+    key: "showDeleteEventButton",
+    value: function showDeleteEventButton(owner, event, membersIDs) {
+      var _this8 = this;
+
+      if (owner === this.props.state.session.id) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: "event-controls-btn",
           onClick: function onClick() {
-            return _this7.handleRemoveEvent(event.id, membersIDs);
+            return _this8.handleRemoveEvent(event.id, membersIDs);
           }
-        }, "Delete Event"), this.showJoinEventButton(event.id)));
+        }, "Delete Event");
       }
     }
   }, {
     key: "showJoinEventButton",
     value: function showJoinEventButton(eventID) {
-      var _this8 = this;
+      var _this9 = this;
 
       var userID = this.props.state.session.id;
       var memberships = Object.values(this.props.state.eventMemberships);
@@ -3140,17 +3151,11 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
 
       if (alreadyMember === false) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: "event-controls-btn",
           onClick: function onClick() {
-            return _this8.joinEvent(eventID);
+            return _this9.joinEvent(eventID);
           }
         }, "Join Event");
-      }
-    }
-  }, {
-    key: "showEventHeader",
-    value: function showEventHeader(events) {
-      if (events.length > 0) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "These Are The Current Events");
       }
     }
   }, {
@@ -3171,17 +3176,17 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "showEventForm",
     value: function showEventForm() {
-      var _this9 = this;
+      var _this10 = this;
 
       if (this.state.showEventForm) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_event_form_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
           events: this.state.events,
           showEvent: this.state.showEventForm,
           toggleShow: function toggleShow() {
-            _this9.toggleEventForm();
+            _this10.toggleEventForm();
           },
           handleAddEvent: function handleAddEvent() {
-            _this9.handleAddEvent();
+            _this10.handleAddEvent();
           }
         });
       }
@@ -3189,25 +3194,28 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this10 = this;
+      var _this11 = this;
 
       var events = this.state.events;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "event-page"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "events-list"
-      }, this.showEventHeader(events), this.showEvents(this.state.events, function (eventId) {
-        return _this10.setState({
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Events"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "event-piece-cont"
+      }, this.showEvents(this.state.events, function (eventId) {
+        return _this11.setState({
           eventId: eventId,
           "eventBeingEdited": false,
           editingId: eventId,
           "showEventForm": false
         });
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "event-piece-button",
         onClick: function onClick() {
-          return _this10.toggleEventForm();
+          return _this11.toggleEventForm();
         }
-      }, "Create New Event")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "CREATE NEW EVENT")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "single-event"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "single-event-info"

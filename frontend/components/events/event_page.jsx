@@ -185,7 +185,7 @@ class EventPage extends React.Component {
                     )
                 } else {
                     return (
-                        <div key={memberID}>This Event Belongs To {users[memberID].name}</div>
+                        <div key={memberID}>Owner: {users[memberID].name}</div>
                     )
                 }
             }
@@ -311,7 +311,7 @@ class EventPage extends React.Component {
     showEditButton(eventId) {
         if (this.state.userIsOwner) {
             return (
-                <button onClick={() => this.toggleEdit(eventId)}>Edit Event</button>
+                <button className="event-controls-btn" onClick={() => this.toggleEdit(eventId)}>Edit Event</button>
             )
         }
     }
@@ -367,19 +367,27 @@ class EventPage extends React.Component {
                     </div>
                     <div className="event-controls">
                         <div className="event-name-exit">
-                            <div className="column">
-                                <h4>Event:</h4>
+                            <div className="event-name">
+                                <h4>Event Controls</h4>
                                 <p>{event.name}</p>
                             </div>
-                            <div className="exit" onClick={() => this.setState({ "eventId": undefined })}>X</div>
+                            <div className="event-exit" onClick={() => this.setState({ "eventId": undefined })}>X</div>
                         </div>
                         {this.showEditButton(event.id)}
-                        <h4>Members:</h4>
+                        <h4>Members</h4>
                         {this.showMembers(membersIDs, owner, eventId)}
-                        <button onClick={() => this.handleRemoveEvent(event.id, membersIDs)}>Delete Event</button>
+                        {this.showDeleteEventButton(owner, event, membersIDs)}
                         {this.showJoinEventButton(event.id)}
                     </div>
                 </div>
+            )
+        }
+    }
+
+    showDeleteEventButton(owner, event, membersIDs) {
+        if (owner === this.props.state.session.id) {
+            return (
+                <button className="event-controls-btn" onClick={() => this.handleRemoveEvent(event.id, membersIDs)}>Delete Event</button>
             )
         }
     }
@@ -394,13 +402,7 @@ class EventPage extends React.Component {
             }
         }
         if (alreadyMember === false) {
-            return <button onClick={() => this.joinEvent(eventID)}>Join Event</button>
-        }
-    }
-
-    showEventHeader(events) {
-        if (events.length > 0) {
-            return (<h5>These Are The Current Events</h5>)
+            return <button className="event-controls-btn" onClick={() => this.joinEvent(eventID)}>Join Event</button>
         }
     }
 
@@ -425,9 +427,11 @@ class EventPage extends React.Component {
         return (
             <div className="event-page">
                 <div className="events-list">
-                    {this.showEventHeader(events)}
-                    {this.showEvents(this.state.events, (eventId) => this.setState({ eventId: eventId, "eventBeingEdited": false, editingId: eventId, "showEventForm": false }))}
-                    <button onClick={() => this.toggleEventForm()}>Create New Event</button>
+                    <h2>Events</h2>
+                    <div className="event-piece-cont">
+                        {this.showEvents(this.state.events, (eventId) => this.setState({ eventId: eventId, "eventBeingEdited": false, editingId: eventId, "showEventForm": false }))}
+                    </div>
+                    <button className="event-piece-button" onClick={() => this.toggleEventForm()}>CREATE NEW EVENT</button>
                 </div>
                 <div className="single-event">
                     <div className="single-event-info">
