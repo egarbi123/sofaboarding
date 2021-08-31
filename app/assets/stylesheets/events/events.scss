@@ -96,6 +96,10 @@
     flex-direction: column;
 }
 
+.events-list h2 {
+    cursor: default;
+}
+
 .event-row {
     display: flex;
     flex-direction: row;
@@ -129,6 +133,14 @@
     width: 200px;
 }
 
+.event-controls h4 {
+    cursor: default;
+}
+
+.event-controls p {
+    cursor: default;
+}
+
 .event-name-exit {
     display: flex;
     flex-direction: row;
@@ -141,6 +153,7 @@
 .event-name {
     display: flex;
     flex-direction: column;
+    cursor: default;
 }
 
 .event-exit {
@@ -148,6 +161,7 @@
     width: 20px;
     background-color: rgb(243, 106, 106);
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .event-controls-btn {
@@ -171,4 +185,14 @@
 .event-form-cont {
     display: flex;
     flex-direction: row;
+}
+
+.event-membership-btn {
+    width: 100px;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px 5px;
+    font-size: 12px;
+    cursor: pointer;
+    height: 30px;
 }

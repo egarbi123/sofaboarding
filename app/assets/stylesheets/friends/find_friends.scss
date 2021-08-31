@@ -15,6 +15,10 @@
     text-align: center;
 }
 
+.find-friends-controls h2 {
+    cursor: default;
+}
+
 .show-users {
     display: flex;
     width: 100%;
@@ -27,6 +31,7 @@
 
 .friends-section h3 {
     text-align: center;
+    cursor: default;
 }
 
 .friends-section ul {

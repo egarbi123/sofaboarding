@@ -2883,11 +2883,11 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
           if (owner === _this3.props.state.session.id) {
             return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
               key: memberID
-            }, "You Are The Owner");
+            }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "You Are The Owner"));
           } else {
             return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
               key: memberID
-            }, "Owner: ", users[memberID].name);
+            }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Owner: ", users[memberID].name));
           }
         }
 
@@ -2895,17 +2895,18 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             key: memberID,
             className: "row"
-          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, users[memberID].name, " -- "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, users[memberID].name, " -- ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", _defineProperty({
+            className: "event-membership-btn",
             onClick: function onClick() {
               return _this3.handleRemoveMember(memberID, eventID);
-            },
-            className: "pointer "
-          }, "Remove"));
+            }
+          }, "className", "pointer "), "Remove"));
         } else if (memberID === _this3.props.state.session.id) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             className: "row",
             key: memberID
-          }, users[memberID].name, ":", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, users[memberID].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+            className: "event-membership-btn",
             onClick: function onClick() {
               return _this3.handleRemoveMembership(memberID);
             }

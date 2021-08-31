@@ -15,6 +15,10 @@
     // margin: auto;
 }
 
+.messageArea h2 {
+    cursor: default;
+}
+
 .messageRoom form {
     display: flex;
     flex-direction: row;
@@ -78,6 +82,7 @@
 .chat-name {
     font-size: 90%;
     margin-right: 5px;
+    cursor: default;
 }
 
 .my-chat-msg {
