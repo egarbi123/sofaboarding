@@ -1,5 +1,4 @@
 import React from 'react';
-import { } from 'react-router-dom';
 
 class LogInForm extends React.Component {
     constructor(props) {
@@ -31,7 +30,6 @@ class LogInForm extends React.Component {
     }
 
     render() {
-        console.log(this);
         return (
             <div className="sign">
                 <p>Log In</p>
@@ -54,7 +52,7 @@ class LogInForm extends React.Component {
                     </div>
                     <button type="submit" className="button">{this.props.formtype}</button>
                 </form>
-                    <button onClick={() => this.loginSampleUser()}>LOG IN AS SAMPLE USER</button>
+                    <button className="sample-user-button" onClick={() => this.loginSampleUser()}>LOG IN AS SAMPLE USER</button>
             </div>
         )
     }

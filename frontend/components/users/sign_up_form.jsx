@@ -86,7 +86,7 @@ class SignUpForm extends React.Component {
                     </div>
                     <button type="submit" className="button">Create User</button>
                 </form>
-                <button onClick={() => this.loginSampleUser()}>LOG IN AS SAMPLE USER</button>
+                <button className="sample-user-button" onClick={() => this.loginSampleUser()}>LOG IN AS SAMPLE USER</button>
             </div>
         )
     }
