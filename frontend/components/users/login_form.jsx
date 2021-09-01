@@ -14,6 +14,13 @@ class LogInForm extends React.Component {
         this.props.action(this.state);
     }
 
+    loginSampleUser() {
+        this.props.action({
+            "email": "example@example.com",
+            "password": "asdfasdf"
+        })
+    }
+
     update(field) {
         return e => this.setState({ [field]: e.currentTarget.value })
     }
@@ -24,6 +31,7 @@ class LogInForm extends React.Component {
     }
 
     render() {
+        console.log(this);
         return (
             <div className="sign">
                 <p>Log In</p>
@@ -46,6 +54,7 @@ class LogInForm extends React.Component {
                     </div>
                     <button type="submit" className="button">{this.props.formtype}</button>
                 </form>
+                    <button onClick={() => this.loginSampleUser()}>LOG IN AS SAMPLE USER</button>
             </div>
         )
     }

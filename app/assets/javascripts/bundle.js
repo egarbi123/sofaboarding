@@ -4703,6 +4703,9 @@ var mDTP = function mDTP(dispatch) {
   return {
     signup: function signup(user) {
       return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__["signup"])(user));
+    },
+    login: function login(user) {
+      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__["login"])(user));
     }
   };
 };
@@ -4774,6 +4777,14 @@ var LogInForm = /*#__PURE__*/function (_React$Component) {
       this.props.action(this.state);
     }
   }, {
+    key: "loginSampleUser",
+    value: function loginSampleUser() {
+      this.props.action({
+        "email": "example@example.com",
+        "password": "asdfasdf"
+      });
+    }
+  }, {
     key: "update",
     value: function update(field) {
       var _this2 = this;
@@ -4798,6 +4809,9 @@ var LogInForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this4 = this;
+
+      console.log(this);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "sign"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Log In"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
@@ -4818,7 +4832,11 @@ var LogInForm = /*#__PURE__*/function (_React$Component) {
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "submit",
         className: "button"
-      }, this.props.formtype)));
+      }, this.props.formtype)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: function onClick() {
+          return _this4.loginSampleUser();
+        }
+      }, "LOG IN AS SAMPLE USER"));
     }
   }]);
 
@@ -4941,6 +4959,15 @@ var SignUpForm = /*#__PURE__*/function (_React$Component) {
       }
     }
   }, {
+    key: "loginSampleUser",
+    value: function loginSampleUser() {
+      var object = {
+        "email": "example@example.com",
+        "password": "asdfasdf"
+      };
+      this.props.login(object);
+    }
+  }, {
     key: "update",
     value: function update(field) {
       var _this2 = this;
@@ -4974,6 +5001,8 @@ var SignUpForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this4 = this;
+
       // console.log(this)
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "sign"
@@ -5007,7 +5036,11 @@ var SignUpForm = /*#__PURE__*/function (_React$Component) {
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "submit",
         className: "button"
-      }, "Create User")));
+      }, "Create User")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: function onClick() {
+          return _this4.loginSampleUser();
+        }
+      }, "LOG IN AS SAMPLE USER"));
     }
   }]);
 

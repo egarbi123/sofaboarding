@@ -24,6 +24,11 @@ class SignUpForm extends React.Component {
         }
     }
 
+    loginSampleUser() {
+        let object = {"email": "example@example.com", "password": "asdfasdf"};
+        this.props.login(object);
+    }
+
     update(field) {
         return e => this.setState( { [field]: e.currentTarget.value } )    
     }
@@ -81,6 +86,7 @@ class SignUpForm extends React.Component {
                     </div>
                     <button type="submit" className="button">Create User</button>
                 </form>
+                <button onClick={() => this.loginSampleUser()}>LOG IN AS SAMPLE USER</button>
             </div>
         )
     }
