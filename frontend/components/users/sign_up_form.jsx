@@ -47,9 +47,9 @@ class SignUpForm extends React.Component {
     render() {
         return (
             <div className="sign">
-                <p>Sign Up</p>
+                <h3>SIGN UP</h3>
                 <form className="sign-form" onSubmit={this.handleSubmit}>
-                    <div className="row">
+                    <div className="sign-text row">
                         <p>Name:</p>
                         <input 
                             type="text"
@@ -57,7 +57,7 @@ class SignUpForm extends React.Component {
                             onChange={this.update('name')}
                         />
                     </div>
-                    <div className="row">
+                    <div className="sign-text row">
                         <p>Email:</p>
                         <input
                             type="text"
@@ -65,7 +65,7 @@ class SignUpForm extends React.Component {
                             onChange={this.update('email')}
                         />
                     </div>
-                    <div className="row">
+                    <div className="sign-text row">
                         <p>Password:</p>
                         <input
                             type="password"
@@ -73,7 +73,7 @@ class SignUpForm extends React.Component {
                             onChange={this.update('password')}
                         />
                     </div>
-                    <div className="row">
+                    <div className="sign-text row">
                         <p>Repeat Password:</p>
                         <input
                             type="password"
@@ -81,9 +81,13 @@ class SignUpForm extends React.Component {
                             onChange={this.update('password2')}
                         />
                     </div>
-                    <button type="submit" className="button">Create User</button>
+                    <div className="sign-button-space">
+                        <div type="submit" className="button">CREATE USER</div>
+                    </div>
                 </form>
-                <button className="sample-user-button" onClick={() => this.loginSampleUser()}>LOG IN AS SAMPLE USER</button>
+                    <div className="sign-button-space">
+                        <div className="button" onClick={() => this.loginSampleUser()}>LOG IN AS SAMPLE USER</div>
+                    </div>
             </div>
         )
     }

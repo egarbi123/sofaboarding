@@ -4,14 +4,22 @@
 .button {
     width: fit-content;
     height: 20px;
+    font-size: 16px;
+    background-color: #a2a8d3;
     background-color: #38598b;
     cursor: pointer;
-    border-radius: 5px;
-    padding: 3px 5px 0px 5px;
+    border-radius: 3px;
+    padding: 8px 10px 5px 10px;
 }
 
 .button:hover {
     background-color: #e7eaf6;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 
 .btn {

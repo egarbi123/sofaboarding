@@ -32,9 +32,9 @@ class LogInForm extends React.Component {
     render() {
         return (
             <div className="sign">
-                <p>Log In</p>
+                <h3>LOG IN</h3>
                 <form className="sign-form" onSubmit={this.handleSubmit}>
-                    <div className="row">
+                    <div className="sign-text row">
                         <p>Email:</p>
                         <input
                             type="text"
@@ -42,7 +42,7 @@ class LogInForm extends React.Component {
                             onChange={this.update('email')}
                         />
                     </div>
-                    <div className="row">
+                    <div className="sign-text row">
                         <p>Password:</p>
                         <input
                             type="password"
@@ -50,9 +50,13 @@ class LogInForm extends React.Component {
                             onChange={this.update('password')}
                         />
                     </div>
-                    <button type="submit" className="button">{this.props.formtype}</button>
+                    <div className="sign-button-space">
+                        <div type="submit" className="button">LOG IN</div>
+                    </div>
                 </form>
-                    <button className="sample-user-button" onClick={() => this.loginSampleUser()}>LOG IN AS SAMPLE USER</button>
+                <div className="sign-button-space">
+                        <div className="button" onClick={() => this.loginSampleUser()}>LOG IN AS SAMPLE USER</div>
+                    </div>
             </div>
         )
     }
