@@ -15,7 +15,11 @@
     text-align: center;
 }
 
-.find-friends-controls h2 {
+.find-friends-controls h3 {
+    font-family: Impact, Charcoal, sans-serif;
+    font-size: 28px;
+    letter-spacing: 1.6px;
+    word-spacing: 1.2px;
     cursor: default;
 }
 
@@ -170,21 +174,21 @@
 .friends-button {
     width: 95%;
     height: 30px;
-    background-color: rgb(205, 230, 231);
+    background-color: #38598b;
     margin: auto;
-    border-radius: 5px;
+    border-radius: 3px;
     padding-top: 5px;
     padding-bottom: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    cursor: pointer;
+    font: 1em sans-serif;
 }
 
 .friends-button:hover {
-    cursor: pointer;
-    background-color: aqua;
-}
-
-.friends-button:active {
-    transform: scale(0.98);
-    box-shadow: 2px 1px 10px 1px grayscale($color: #bdb7b7);
+    background-color: #e7eaf6;
+    border-radius: 1px solid black;
+    border-radius: 3px;
 }
 
 .friends-button p {
