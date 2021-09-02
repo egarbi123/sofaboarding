@@ -20,8 +20,18 @@ class Splash extends React.Component {
                     <p>Here you can meet new people around the world</p>
                     <p>Share awesome travel tips and ideas</p>
                     <p>Here we are friends!</p>
-                    <p>Already have an account? <Link className="nav-link" to="/login">Click Here</Link></p>
-                    <p>Would you like to sign up? <Link className="nav-link" to="/signup">Click Here</Link></p>
+                    <div className="splash-buttons">
+                        <div className="splash-split">
+                            <div className="button">
+                                <Link className="nav-link" to="/login">LOGIN</Link>
+                            </div>
+                        </div>
+                        <div className="splash-split">
+                            <div className="button">
+                                <Link className="nav-link" to="/signup">SIGN UP</Link>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         )

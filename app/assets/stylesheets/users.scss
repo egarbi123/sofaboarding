@@ -4,11 +4,14 @@
 .button {
     width: fit-content;
     height: 20px;
-    background-color: gray;
-    font-size: 16px;
+    background-color: #38598b;
     cursor: pointer;
-    margin: auto;
     border-radius: 5px;
+    padding: 3px 5px 0px 5px;
+}
+
+.button:hover {
+    background-color: #e7eaf6;
 }
 
 .btn {
