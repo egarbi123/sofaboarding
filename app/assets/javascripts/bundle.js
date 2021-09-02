@@ -2718,30 +2718,22 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
         });
       }
 
-      console.log('IN CDU -- this:', this);
-
       if (this.state.eventId) {
-        var _event = {};
+        var event = {};
         this.state.events.map(function (ev) {
           if (ev.id === _this2.state.eventId) {
-            _event = ev;
+            event = ev;
           }
         });
 
-        if (this.state.name !== _event.name) {
+        if (this.state.name !== event.name) {
           this.setState({
-            "name": _event.name,
-            "description": _event.description,
-            "date": _event.date,
-            "time": _event.time
+            "name": event.name,
+            "description": event.description,
+            "date": event.date,
+            "time": event.time
           });
         }
-      }
-
-      console.log('IN CDU -- EVENT:', event);
-
-      if (this.eventId && !this.state.name) {
-        console.log('IN CDU IF STATEMENT');
       }
     }
   }, {
@@ -4141,9 +4133,9 @@ var FriendProfile = /*#__PURE__*/function (_React$Component) {
     key: "nameRender",
     value: function nameRender() {
       if (this.friendId && this.props.state.users[this.friendId] && this.props.state.users[this.friendId].name) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, this.props.state.users[this.friendId].name);
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, this.props.state.users[this.friendId].name);
       } else {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "USER NAME");
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "USER NAME");
       }
     }
   }, {
@@ -4243,35 +4235,35 @@ var FriendProfile = /*#__PURE__*/function (_React$Component) {
       switch (this.state.status) {
         case "friends":
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-            className: "request-button",
+            className: "button",
             onClick: function onClick() {
               return _this2.removeFriend();
             }
-          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Already Friends: Unfriend"));
+          }, "Already Friends: Unfriend");
 
         case "iAlreadyRequested":
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-            className: "request-button",
+            className: "button",
             onClick: function onClick() {
               return _this2.deleteFriendRequest();
             }
-          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Unsend Friend Request"));
+          }, "Unsend Friend Request");
 
         case "iAmRequested":
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-            className: "request-button",
+            className: "button",
             onClick: function onClick() {
               return _this2.addFriend();
             }
-          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Accept Friendship!"));
+          }, "Accept Friendship!");
 
         case "notFriends":
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-            className: "request-button",
+            className: "button",
             onClick: function onClick() {
               return _this2.sendFriendRequest();
             }
-          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Send Friend Request!"));
+          }, "Send Friend Request!");
 
         default:
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Status unknown!");
@@ -4295,9 +4287,15 @@ var FriendProfile = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "showBio",
     value: function showBio() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "friend-bio"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, this.state.bio));
+      if (this.state.bio) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "friend-bio"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, this.state.bio));
+      } else {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "friend-bio"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "This User Does Not Have A Bio!"));
+      }
     }
   }, {
     key: "render",
@@ -4780,8 +4778,8 @@ var LogInForm = /*#__PURE__*/function (_React$Component) {
 
   _createClass(LogInForm, [{
     key: "handleSubmit",
-    value: function handleSubmit(e) {
-      e.preventDefault();
+    value: function handleSubmit() {
+      // e.preventDefault();
       this.props.action(this.state);
     }
   }, {
@@ -4822,8 +4820,7 @@ var LogInForm = /*#__PURE__*/function (_React$Component) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "sign"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "LOG IN"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        className: "sign-form",
-        onSubmit: this.handleSubmit
+        className: "sign-form"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "sign-text row"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Email:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -4839,7 +4836,9 @@ var LogInForm = /*#__PURE__*/function (_React$Component) {
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "sign-button-space"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        type: "submit",
+        onClick: function onClick() {
+          return _this4.handleSubmit();
+        },
         className: "button"
       }, "LOG IN"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "sign-button-space"
@@ -4960,8 +4959,8 @@ var SignUpForm = /*#__PURE__*/function (_React$Component) {
 
   _createClass(SignUpForm, [{
     key: "handleSubmit",
-    value: function handleSubmit(e) {
-      e.preventDefault();
+    value: function handleSubmit() {
+      // e.preventDefault();
       this.verifyPassword();
 
       if (this.passwordIsGood) {
@@ -5016,8 +5015,7 @@ var SignUpForm = /*#__PURE__*/function (_React$Component) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "sign"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "SIGN UP"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        className: "sign-form",
-        onSubmit: this.handleSubmit
+        className: "sign-form"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "sign-text row"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Name:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -5045,7 +5043,9 @@ var SignUpForm = /*#__PURE__*/function (_React$Component) {
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "sign-button-space"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        type: "submit",
+        onClick: function onClick() {
+          return _this4.handleSubmit();
+        },
         className: "button"
       }, "CREATE USER"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "sign-button-space"
@@ -5351,8 +5351,8 @@ var UserInfo = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "handleBio",
-    value: function handleBio(e) {
-      e.preventDefault();
+    value: function handleBio() {
+      // e.preventDefault();
       var object = {};
       object['user_id'] = this.props.state.session.id;
       object['user_bio'] = this.state.userBio;
@@ -5373,6 +5373,8 @@ var UserInfo = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this4 = this;
+
       var name = "NAME";
 
       if (Object.values(this.props.state.users).length > 0 && this.props.state.users[this.props.state.session.id] && this.props.state.users[this.props.state.session.id].name) {
@@ -5389,19 +5391,23 @@ var UserInfo = /*#__PURE__*/function (_React$Component) {
         className: "info-name"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "welcome-message"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Welcome to SofaBoarding, ", name, "!")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Welcome to SofaBoarding, ", name, "!")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "bio-container"
       }, this.showBio(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        className: "bio-form",
-        onSubmit: this.handleBio
+        className: "bio-form"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
         id: "bio-text",
         value: this.state.userBio,
         onChange: this.update("userBio"),
         placeholder: this.state.placeholder
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "bio-accept-button"
-      }, "Submit Bio")))));
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "bio-submit"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        onClick: function onClick() {
+          return _this4.handleBio();
+        },
+        className: "button"
+      }, "SUBMIT BIO"))))));
     }
   }]);
 

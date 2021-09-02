@@ -53,7 +53,6 @@ class EventPage extends React.Component {
         if (Object.values(this.props.state.event).length !== this.state.events.length || this.props.eventEdited) {
             this.setState({'events': Object.values(this.props.state.event), "eventEdited": false});
         } 
-        console.log('IN CDU -- this:', this);
         if (this.state.eventId) {
             let event = {};
             this.state.events.map(ev => {
@@ -69,10 +68,6 @@ class EventPage extends React.Component {
                     "time": event.time,
                 })
             }
-        }
-        console.log('IN CDU -- EVENT:', event)
-        if (this.eventId && !this.state.name) {
-            console.log('IN CDU IF STATEMENT')
         }
     }
 

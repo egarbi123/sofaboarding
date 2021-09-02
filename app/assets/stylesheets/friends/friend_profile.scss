@@ -33,10 +33,11 @@
     justify-content: left;
 }
 
-.friend-name-button h5 {
-    text-align: center;
-    font-size: large;
-    width: 50%;
+.friend-name-button h3 {
+    font-family: Impact, Charcoal, sans-serif;
+    font-size: 28px;
+    letter-spacing: 1.6px;
+    word-spacing: 1.2px;
     cursor: default;
 }
 
@@ -48,7 +49,7 @@
     width: fit-content;
     height: fit-content;
     border-radius: 5px;
-    background-color: rgb(205, 230, 231);
+    background-color: #a2a8d3;
 }
 
 .friend-bio p {
@@ -58,21 +59,6 @@
     cursor: default;
 }
 
-.request-button:hover {
-    cursor: pointer;
-    border: 1px solid black;
-}
-
 .request-button {
-    background-color: rgb(187, 241, 248);
-    border-radius: 10px;
-    width: 250px;
-    height: 40px;
     margin: auto;
-    text-align: center;
-}
-
-.request-button p {
-    margin: auto;
-    padding-top: 10px;
 }

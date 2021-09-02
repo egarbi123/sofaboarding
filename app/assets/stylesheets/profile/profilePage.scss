@@ -33,6 +33,11 @@
     margin-left: 23px;
 }
 
+.bio-submit {
+    margin: auto;
+    margin-left: 20px;
+}
+
 .info-pic {
     width: 350px;
     height: 350px;
@@ -81,8 +86,12 @@
     margin-bottom: 0px;
 }
 
-.welcome-message p {
-    font-size: 24px;
+.welcome-message h3 {
+    font-family: Impact, Charcoal, sans-serif;
+    font-size: 28px;
+    letter-spacing: 1.6px;
+    word-spacing: 1.2px;
+    cursor: default;
 }
 
 .profile-pic:hover {

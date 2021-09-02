@@ -8,8 +8,8 @@ class LogInForm extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleSubmit(e) {
-        e.preventDefault();
+    handleSubmit() {
+        // e.preventDefault();
         this.props.action(this.state);
     }
 
@@ -33,7 +33,7 @@ class LogInForm extends React.Component {
         return (
             <div className="sign">
                 <h3>LOG IN</h3>
-                <form className="sign-form" onSubmit={this.handleSubmit}>
+                <form className="sign-form" >
                     <div className="sign-text row">
                         <p>Email:</p>
                         <input
@@ -51,7 +51,7 @@ class LogInForm extends React.Component {
                         />
                     </div>
                     <div className="sign-button-space">
-                        <div type="submit" className="button">LOG IN</div>
+                        <div onClick={() => this.handleSubmit()} className="button">LOG IN</div>
                     </div>
                 </form>
                 <div className="sign-button-space">

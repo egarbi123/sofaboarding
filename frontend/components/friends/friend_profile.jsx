@@ -90,11 +90,11 @@ class FriendProfile extends React.Component {
     nameRender() {
         if (this.friendId && this.props.state.users[this.friendId] && this.props.state.users[this.friendId].name) {
             return (
-                <h5>{this.props.state.users[this.friendId].name}</h5>
+                <h3>{this.props.state.users[this.friendId].name}</h3>
             )
         } else {
             return (
-                <h5>USER NAME</h5>
+                <h3>USER NAME</h3>
             )
         }
     }
@@ -170,15 +170,15 @@ class FriendProfile extends React.Component {
     requestButton() {
         switch (this.state.status) {
             case "friends":
-                return <div className="request-button" onClick={() => this.removeFriend()}>
-                            <p>Already Friends: Unfriend</p>
+                return <div className="button" onClick={() => this.removeFriend()}>
+                            Already Friends: Unfriend
                         </div>;
             case "iAlreadyRequested":
-                return <div className="request-button" onClick={() => this.deleteFriendRequest()}><p>Unsend Friend Request</p></div>;
+                return <div className="button" onClick={() => this.deleteFriendRequest()}>Unsend Friend Request</div>;
             case "iAmRequested":
-                return <div className="request-button" onClick={() => this.addFriend()}><p>Accept Friendship!</p></div>;
+                return <div className="button" onClick={() => this.addFriend()}>Accept Friendship!</div>;
             case "notFriends":
-                return <div className="request-button" onClick={() => this.sendFriendRequest()}><p>Send Friend Request!</p></div>;
+                return <div className="button" onClick={() => this.sendFriendRequest()}>Send Friend Request!</div>;
             default:
                 return <div>Status unknown!</div>;
 
@@ -194,12 +194,21 @@ class FriendProfile extends React.Component {
             }
         })
     }
+
     showBio() {
-        return (
-            <div className="friend-bio">
-                <p>{this.state.bio}</p>
-            </div>
-        )
+        if (this.state.bio) {
+            return (
+                <div className="friend-bio">
+                    <p>{this.state.bio}</p>
+                </div>
+            )
+        } else {
+            return (
+                <div className="friend-bio">
+                    <p>This User Does Not Have A Bio!</p>
+                </div>
+            )
+        }
     }
 
     render() {

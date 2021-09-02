@@ -14,8 +14,8 @@ class SignUpForm extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleSubmit(e) {
-        e.preventDefault();
+    handleSubmit() {
+        // e.preventDefault();
         this.verifyPassword();
         if (this.passwordIsGood) {
             this.props.signup(this.state);
@@ -48,7 +48,7 @@ class SignUpForm extends React.Component {
         return (
             <div className="sign">
                 <h3>SIGN UP</h3>
-                <form className="sign-form" onSubmit={this.handleSubmit}>
+                <form className="sign-form" >
                     <div className="sign-text row">
                         <p>Name:</p>
                         <input 
@@ -82,7 +82,7 @@ class SignUpForm extends React.Component {
                         />
                     </div>
                     <div className="sign-button-space">
-                        <div type="submit" className="button">CREATE USER</div>
+                        <div onClick={() => this.handleSubmit()} className="button">CREATE USER</div>
                     </div>
                 </form>
                     <div className="sign-button-space">

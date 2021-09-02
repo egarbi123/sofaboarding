@@ -102,8 +102,8 @@ class UserInfo extends React.Component {
         return e => this.setState({[field]: e.currentTarget.value })
     }
 
-    handleBio(e) {
-        e.preventDefault();
+    handleBio() {
+        // e.preventDefault();
         let object = {}
         object['user_id'] = this.props.state.session.id;
         object['user_bio'] = this.state.userBio;
@@ -132,18 +132,20 @@ class UserInfo extends React.Component {
                 </div>
                 <div className="info-name">
                     <div className="welcome-message">
-                        <p>Welcome to SofaBoarding, {name}!</p>
+                        <h3>Welcome to SofaBoarding, {name}!</h3>
                     </div>
                     <div className="bio-container">
                         {this.showBio()}
-                        <form className="bio-form" onSubmit={this.handleBio}>
+                        <form className="bio-form">
                             <textarea
                                 id="bio-text"
                                 value={this.state.userBio}
                                 onChange={this.update("userBio")}
                                 placeholder={this.state.placeholder}
                                 />
-                            <button className="bio-accept-button">Submit Bio</button>
+                            <div className="bio-submit">
+                                <div onClick={() => this.handleBio()} className="button">SUBMIT BIO</div>
+                            </div>
                         </form>
                     </div>
                 </div>
