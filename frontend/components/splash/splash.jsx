@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-// import UsersIndexContainer from '../users/user_index_container';
 
 class Splash extends React.Component {
     constructor(props) {

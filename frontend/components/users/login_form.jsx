@@ -51,12 +51,12 @@ class LogInForm extends React.Component {
                         />
                     </div>
                     <div className="sign-button-space">
-                        <div onClick={() => this.handleSubmit()} className="button">LOG IN</div>
+                        <button onClick={() => this.handleSubmit()} className="button">LOG IN</button>
                     </div>
                 </form>
                 <div className="sign-button-space">
-                        <div className="button" onClick={() => this.loginSampleUser()}>LOG IN AS SAMPLE USER</div>
-                    </div>
+                    <button className="button" onClick={() => this.loginSampleUser()}>LOG IN AS SAMPLE USER</button>
+                </div>
             </div>
         )
     }
