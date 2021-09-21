@@ -77,7 +77,7 @@ class EventForm extends React.Component {
             return (
                 <div className="event-form-cont">
                     <div>
-                        <h4>Create A New Event</h4>
+                        <h4>CREATE A NEW EVENT</h4>
                         <button onClick={() => this.props.toggleShow()}>Click Here To Hide Form</button>
                     </div>
                     <form className="event-form" onSubmit={this.handleSubmit}>

@@ -125,7 +125,7 @@ class MessagesArea extends React.Component {
         }
         return (
             <div className="messageArea">
-                <h2>{this.props.state.rooms[this.props.activeRoom].title}</h2>
+                <h3>{this.props.state.rooms[this.props.activeRoom].title}</h3>
                 <div className="messageRoom">
                     <div className="messageBox">
                         {this.mapMessages(messages)}

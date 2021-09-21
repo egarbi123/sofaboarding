@@ -157,9 +157,9 @@ class NewChat extends React.Component {
         return (
             <div className="room-controls">
                 {/* <h2>{this.props.state.rooms[this.props.state.session.activeRoom].title} controls</h2> */}
-                <h4>Chat Participants</h4>
+                <h4>PARTICIPANTS</h4>
                 {chatters.map((names) => (<div className="room-user" key={names}>{names}</div>))}
-                <h4>Invite To This Chat</h4>
+                <h4>INVITE FRIENDS</h4>
                 {this.showFriends()}
                 {this.removeFromRoom()}
             </div>
