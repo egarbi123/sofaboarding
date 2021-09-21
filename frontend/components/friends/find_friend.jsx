@@ -73,10 +73,10 @@ class FindFriends extends React.Component {
             <div className="find-friends">
                 <div className="find-friends-controls">
                     <h3>FRIENDS</h3>
-                    <div className="friends-button" onClick={() => this.setState({"currentList": "friendsArray"})}>FRIENDS LIST</div>
-                    <div className="friends-button" onClick={() => this.setState({"currentList": "newFriendsArray"})}>FIND NEW FRIENDS</div>
-                    <div className="friends-button" onClick={() => this.setState({"currentList": "acceptFriendsArray"})}>ACCEPT FRIEND REQUESTS</div>
-                    <div className="friends-button" onClick={() => this.setState({"currentList": "alreadyAcceptedArray"})}>FRIENDS REQUESTED</div>
+                    <div className="friends-button" onClick={() => this.setState({"currentList": "friendsArray"})}><p>FRIENDS LIST</p></div>
+                    <div className="friends-button" onClick={() => this.setState({ "currentList": "newFriendsArray" })}><p>FIND NEW FRIENDS</p></div>
+                    <div className="friends-button" onClick={() => this.setState({ "currentList": "acceptFriendsArray" })}><p>ACCEPT FRIEND REQUESTS</p></div>
+                    <div className="friends-button" onClick={() => this.setState({ "currentList": "alreadyAcceptedArray" })}><p>FRIENDS REQUESTED</p></div>
                 </div>
                 <div className="show-users">
                     {this.showUsers()}

@@ -3676,28 +3676,28 @@ var FindFriends = /*#__PURE__*/function (_React$Component) {
             "currentList": "friendsArray"
           });
         }
-      }, "FRIENDS LIST"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "FRIENDS LIST")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "friends-button",
         onClick: function onClick() {
           return _this3.setState({
             "currentList": "newFriendsArray"
           });
         }
-      }, "FIND NEW FRIENDS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "FIND NEW FRIENDS")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "friends-button",
         onClick: function onClick() {
           return _this3.setState({
             "currentList": "acceptFriendsArray"
           });
         }
-      }, "ACCEPT FRIEND REQUESTS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "ACCEPT FRIEND REQUESTS")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "friends-button",
         onClick: function onClick() {
           return _this3.setState({
             "currentList": "alreadyAcceptedArray"
           });
         }
-      }, "FRIENDS REQUESTED")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "FRIENDS REQUESTED"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "show-users"
       }, this.showUsers()));
     }

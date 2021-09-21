@@ -112,7 +112,7 @@
 .buttonLeft {
     width: 50px;
     height: 50px;
-    background-color: antiquewhite;
+    background-color: #38598b;
     // border: 1px solid black;
     margin-right: 25px;
     margin-top: 124px;
@@ -123,11 +123,13 @@
 
 .buttonLeft:hover {
     cursor: pointer;
+    background-color: #e7eaf6;
     border: 1px solid black;
 }
 
 .buttonRight:hover {
     cursor: pointer;
+    background-color: #e7eaf6;
     border: 1px solid black;
 }
 
@@ -152,7 +154,7 @@
 .buttonRight {
     width: 50px;
     height: 50px;
-    background-color: antiquewhite;
+    background-color: #38598b;
     // border: 1px solid black;
     margin-right: 30px;
     margin-top: 124px;
@@ -164,11 +166,13 @@
 .buttonLeft:active {
     transform: scale(0.98);
     box-shadow: 2px 1px 10px 1px grayscale($color: #bdb7b7);
+    background-color: #e7eaf6;
 }
 
 .buttonRight:active {
     transform: scale(0.98);
     box-shadow: 2px 1px 10px 1px grayscale($color: #bdb7b7);
+    background-color: #e7eaf6;
 }
 
 .friends-button {
@@ -183,6 +187,10 @@
     font-size: 16px;
     cursor: pointer;
     font: 1em sans-serif;
+}
+
+.friends-button p {
+    display: block;
 }
 
 .friends-button:hover {
