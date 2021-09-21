@@ -153,9 +153,15 @@ class EventPage extends React.Component {
 
     showEvents(events, handleClick) {
         return events.map(event => {
-            return (<div key={event.id} className="event-piece" onClick={() => handleClick(event.id)}>
-                <p>{event.name}</p>
-            </div>)
+            return (
+                <div key={event.id} className="event-piece">
+                    <div className="event-piece-name" key={event.id} onClick={() => handleClick(event.id)}>
+                        <p key={event.id}>
+                            {event.name}
+                        </p>
+                    </div>
+                </div>
+            )
         })
     }
 

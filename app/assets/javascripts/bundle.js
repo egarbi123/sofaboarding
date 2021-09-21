@@ -2846,11 +2846,16 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
       return events.map(function (event) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           key: event.id,
-          className: "event-piece",
+          className: "event-piece"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "event-piece-name",
+          key: event.id,
           onClick: function onClick() {
             return handleClick(event.id);
           }
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, event.name));
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          key: event.id
+        }, event.name)));
       });
     }
   }, {
