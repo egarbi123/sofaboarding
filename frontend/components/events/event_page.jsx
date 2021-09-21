@@ -424,7 +424,7 @@ class EventPage extends React.Component {
         return (
             <div className="event-page">
                 <div className="events-list">
-                    <h2>Events</h2>
+                    <h3>EVENTS</h3>
                     <div className="event-piece-cont">
                         {this.showEvents(this.state.events, (eventId) => this.setState({ eventId: eventId, "eventBeingEdited": false, editingId: eventId, "showEventForm": false }))}
                     </div>

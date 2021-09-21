@@ -19,17 +19,17 @@
 .event-piece {
     width: 200px;
     height: fit-content;
-    background-color: rgb(205, 230, 231);
-    border-radius: 10px;
-    padding-bottom: 2px;
-    padding-right: 2px;
-    margin-bottom: 5px;
+    background-color: #38598b;
+    border-radius: 5px;
+    // padding-bottom: 2px;
+    // padding-right: 2px;
+    margin-bottom: 2px;
 }
 
 .event-piece:hover {
     width: 200px;
     height: fit-content;
-    background-color: aqua;
+    background-color: #e7eaf6;
     border-radius: 10px;
     padding-bottom: 2px;
     padding-right: 2px;
@@ -96,7 +96,8 @@
     flex-direction: column;
 }
 
-.events-list h2 {
+.events-list h3 {
+    font-family: Tahoma, sans-serif;
     cursor: default;
 }
 
