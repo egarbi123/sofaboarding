@@ -85,7 +85,7 @@ class UserInfo extends React.Component {
                             className="pic-button"
                             onChange={this.handleFile}
                         />
-                        <button className="pic-accept-button">Save new image</button>
+                        <button className="pic-accept-button button">Save new image</button>
                     </div>
                 </div>
             </form>

@@ -195,7 +195,7 @@ class NewChat extends React.Component {
                             value={this.state.title}
                             onChange={this.update('title')}
                         />
-                        <button type='submit' className='chat-btn'>CREATE</button>
+                        <button type='submit' className='chat-btn button'>CREATE</button>
                     </form>
                 </div>
                 {this.showRoom()}

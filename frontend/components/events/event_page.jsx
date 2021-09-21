@@ -188,7 +188,7 @@ class EventPage extends React.Component {
                 return (
                     <div key={memberID} className="row">
                         <div><p>{users[memberID].name} -- </p></div>
-                        <button className="event-membership-btn" onClick={() => this.handleRemoveMember(memberID, eventID)} className="pointer ">Remove</button>
+                        <button className="event-membership-btn button pointer" onClick={() => this.handleRemoveMember(memberID, eventID)} >Remove</button>
                     </div>
                 )
             } else if (memberID === this.props.state.session.id) {
@@ -197,7 +197,7 @@ class EventPage extends React.Component {
                         <p>
                             {users[memberID].name}
                         </p>
-                        <button className="event-membership-btn" onClick={() => this.handleRemoveMembership(memberID)}>Leave Event</button>
+                        <button className="event-membership-btn button" onClick={() => this.handleRemoveMembership(memberID)}>Leave Event</button>
                     </div>
                 )
             } else {
@@ -308,7 +308,7 @@ class EventPage extends React.Component {
     showEditButton(eventId) {
         if (this.state.userIsOwner) {
             return (
-                <button className="event-controls-btn" onClick={() => this.toggleEdit(eventId)}>Edit Event</button>
+                <button className="event-controls-btn button" onClick={() => this.toggleEdit(eventId)}>Edit Event</button>
             )
         }
     }
@@ -365,13 +365,13 @@ class EventPage extends React.Component {
                     <div className="event-controls">
                         <div className="event-name-exit">
                             <div className="event-name">
-                                <h4>Event Controls</h4>
+                                <h4>EVENT CONTROLS</h4>
                                 <p>{event.name}</p>
                             </div>
                             <div className="event-exit" onClick={() => this.setState({ "eventId": undefined })}>X</div>
                         </div>
                         {this.showEditButton(event.id)}
-                        <h4>Members</h4>
+                        <h4>MEMBERS</h4>
                         {this.showMembers(membersIDs, owner, eventId)}
                         {this.showDeleteEventButton(owner, event, membersIDs)}
                         {this.showJoinEventButton(event.id)}
@@ -384,7 +384,7 @@ class EventPage extends React.Component {
     showDeleteEventButton(owner, event, membersIDs) {
         if (owner === this.props.state.session.id) {
             return (
-                <button className="event-controls-btn" onClick={() => this.handleRemoveEvent(event.id, membersIDs)}>Delete Event</button>
+                <button className="event-controls-btn button" onClick={() => this.handleRemoveEvent(event.id, membersIDs)}>Delete Event</button>
             )
         }
     }
@@ -399,7 +399,7 @@ class EventPage extends React.Component {
             }
         }
         if (alreadyMember === false) {
-            return <button className="event-controls-btn" onClick={() => this.joinEvent(eventID)}>Join Event</button>
+            return <button className="event-controls-btn button" onClick={() => this.joinEvent(eventID)}>Join Event</button>
         }
     }
 
@@ -428,7 +428,7 @@ class EventPage extends React.Component {
                     <div className="event-piece-cont">
                         {this.showEvents(this.state.events, (eventId) => this.setState({ eventId: eventId, "eventBeingEdited": false, editingId: eventId, "showEventForm": false }))}
                     </div>
-                    <button className="event-piece-button" onClick={() => this.toggleEventForm()}>CREATE NEW EVENT</button>
+                    <button className="event-piece-button button" onClick={() => this.toggleEventForm()}>CREATE NEW EVENT</button>
                 </div>
                 <div className="single-event">
                     <div className="single-event-info">
