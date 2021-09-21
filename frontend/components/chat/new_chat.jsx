@@ -185,7 +185,7 @@ class NewChat extends React.Component {
         return (
             <div className="roomIndex">
                 <div className="room-index-cont">
-                    <h2>Chat Rooms</h2>
+                    <h3>CHAT ROOMS</h3>
                     <div className="roomBox">
                         {this.mapRooms(rooms, this.handleClick, this.state.roomIds)}
                     </div>

@@ -79,7 +79,7 @@ class RoomIndex extends React.Component {
 
         return (
             <div className="roomIndex">
-                <h2>Rooms:</h2>                
+                <h3>CHAT ROOMS</h3>                
                 <div className="roomBox">
                     {this.mapRooms(rooms, this.handleClick, this.state.roomIds)}
                     <form onSubmit={this.handleSubmit}>

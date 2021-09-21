@@ -31,8 +31,9 @@
     margin-right: 45px;
 }
 
-.room-index-cont h2 {
+.room-index-cont h3 {
     cursor: default;
+    font-family: Tahoma, sans-serif;
 }
 
 .room-form {
@@ -64,14 +65,14 @@
 .room-name {
     width: 95%;
     height: 90%;
-    background-color: rgb(205, 230, 231);
+    background-color: #38598b;
     margin: auto;
     margin-top: 2px;
     border-radius: 5px;
 }
 
 .room-name:hover {
-    background-color: aqua;
+    background-color: #e7eaf6;
     cursor: pointer;
 }
 
@@ -116,7 +117,7 @@
     margin-bottom: 3px;
     margin-left: 40px;
     border-radius: 3px;
-    background-color: rgb(205, 230, 231);
+    background-color: #e7eaf6;
     cursor: default;
 }
 
