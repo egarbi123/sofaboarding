@@ -55,13 +55,13 @@ class FindFriends extends React.Component {
             }
         })
         if (this.state.currentList === "friendsArray") {
-            return (<FriendCarousel friendsList={yourFriends} label="Friends" />)
+            return (<FriendCarousel friendsList={yourFriends} label="FRIENDS" />)
         } else if (this.state.currentList === "alreadyAccepted") {
-            return (<FriendCarousel friendsList={requestedFriends} label="Requests Sent" />)
+            return (<FriendCarousel friendsList={requestedFriends} label="REQUESTS SENT" />)
         } else if (this.state.currentList === "acceptFriendsArray") {
-            return (<FriendCarousel friendsList={acceptFriends} label="Requests Received" />)
+            return (<FriendCarousel friendsList={acceptFriends} label="REQUESTS RECEIVED" />)
         } else {
-            return (<FriendCarousel friendsList={newFriends} label="Find New Friends" />)
+            return (<FriendCarousel friendsList={newFriends} label="FIND NEW FRIENDS" />)
         }
     }
 

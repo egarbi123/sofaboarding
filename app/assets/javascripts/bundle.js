@@ -3109,7 +3109,7 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
           className: "event-name-exit"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "event-name"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "EVENT CONTROLS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, event.name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, event.name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "event-exit",
           onClick: function onClick() {
             return _this7.setState({
@@ -3645,22 +3645,22 @@ var FindFriends = /*#__PURE__*/function (_React$Component) {
       if (this.state.currentList === "friendsArray") {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_friend_carousel_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
           friendsList: yourFriends,
-          label: "Friends"
+          label: "FRIENDS"
         });
       } else if (this.state.currentList === "alreadyAccepted") {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_friend_carousel_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
           friendsList: requestedFriends,
-          label: "Requests Sent"
+          label: "REQUESTS SENT"
         });
       } else if (this.state.currentList === "acceptFriendsArray") {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_friend_carousel_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
           friendsList: acceptFriends,
-          label: "Requests Received"
+          label: "REQUESTS RECEIVED"
         });
       } else {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_friend_carousel_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
           friendsList: newFriends,
-          label: "Find New Friends"
+          label: "FIND NEW FRIENDS"
         });
       }
     }
@@ -3901,7 +3901,7 @@ var FriendCarousel = /*#__PURE__*/function (_React$Component) {
       var _this3 = this;
 
       if (this.props.friendsList.length < 1) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Currently no ", this.props.label);
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "CURRENTLY NO ", this.props.label);
       } else if (this.props.friendsList.length < 4) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "friends-section"

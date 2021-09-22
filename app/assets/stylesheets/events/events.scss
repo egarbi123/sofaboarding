@@ -145,6 +145,8 @@
     display: flex;
     flex-direction: column;
     width: 200px;
+    text-align: center;
+    justify-content: center;
 }
 
 .event-controls h4 {
@@ -159,6 +161,7 @@
 .event-name-exit {
     display: flex;
     flex-direction: row;
+    text-align: center;
 }
 
 .event-name-exit p {
@@ -169,14 +172,19 @@
     display: flex;
     flex-direction: column;
     cursor: default;
+    text-align: center;
 }
 
 .event-exit {
     height: 20px;
     width: 20px;
-    background-color: rgb(243, 106, 106);
+    background-color: rgb(247, 138, 138);
     border-radius: 5px;
     cursor: pointer;
+}
+
+.event-exit:hover {
+    background-color: rgb(243, 106, 106);
 }
 
 .event-controls-btn {
