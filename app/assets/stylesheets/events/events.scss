@@ -5,6 +5,7 @@
     height: fit-content;
     width: 100%;
     font-family: "Trebuchet MS", Helvetica, sans-serif;
+    text-align: center;
 }
 
 .event-piece-cont {
@@ -14,7 +15,6 @@
     max-height: 300px;
     overflow: scroll;
     margin: 0px 25px 5px 25px;
-    text-align: center;
 }
 
 .event-piece {
@@ -48,6 +48,10 @@
     font-size: small;
 }
 
+.event-piece-cont {
+    justify-content: center;
+}
+
 .event-piece-button {
     border: 1px solid black;
     border-radius: 5px;
@@ -55,6 +59,7 @@
     font-size: 12px;
     width: 200px;
     cursor: pointer;
+    padding-left: 110px;
 }
 
 .events-list {

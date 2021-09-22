@@ -434,7 +434,9 @@ class EventPage extends React.Component {
                     <div className="event-piece-cont">
                         {this.showEvents(this.state.events, (eventId) => this.setState({ eventId: eventId, "eventBeingEdited": false, editingId: eventId, "showEventForm": false }))}
                     </div>
-                    <button className="event-piece-button button" onClick={() => this.toggleEventForm()}>CREATE NEW EVENT</button>
+                    <div className="event-piece-cont">
+                        <button className="event-piece-button button" onClick={() => this.toggleEventForm()}>CREATE NEW EVENT</button>
+                    </div>
                 </div>
                 <div className="single-event">
                     <div className="single-event-info">
