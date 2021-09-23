@@ -125,10 +125,9 @@
     width: 100%;
 }
 
-.event-inputs {
-    width: 50%;
-}
-
+// .event-inputs {
+//     width: 50%;
+// }
 .event-button {
     margin-right: 50%;
     margin-left: 50%;
@@ -231,4 +230,12 @@
     font-size: 12px;
     cursor: pointer;
     height: 30px;
+}
+
+.event-inputs {
+    height: 26px;
+}
+
+.event-inp-cat {
+    width: 100px;
 }

@@ -258,7 +258,7 @@ class EventPage extends React.Component {
             return (
                 <form onSubmit={this.handleEditEvent}>
                     <div className="event-row">
-                        <p className="event-inputs">Name:</p>
+                        <p className="event-inp-cat">Name:</p>
                         <input
                             className="event-inputs"
                             type="string"
@@ -267,7 +267,7 @@ class EventPage extends React.Component {
                         />
                     </div>
                     <div className="event-row">
-                        <p className="event-inputs">Description:</p>
+                        <p className="event-inp-cat">Description:</p>
                         <input
                             className="event-inputs"
                             type="text"
@@ -276,7 +276,7 @@ class EventPage extends React.Component {
                         />
                     </div>
                     <div className="event-row">
-                        <p className="event-inputs">Date:</p>
+                        <p className="event-inp-cat">Date:</p>
                         <input
                             className="event-inputs"
                             type="string"
@@ -287,7 +287,7 @@ class EventPage extends React.Component {
                     </div>
                     <p style={{ "fontSize": "xx-small" }}>Please keep format to Month Day, Year example: December 2, 2021</p>
                     <div className="event-row">
-                        <p className="event-inputs">Time:</p>
+                        <p className="event-inp-cat">Time:</p>
                         <input
                             className="event-inputs"
                             type="string"
