@@ -294,17 +294,25 @@ class EventPage extends React.Component {
         } else {
             return (
                 <div className="event-list">
-                    <div className="event-row">
-                        <p className="event-name">Name: {event.name}</p>
+                    <div className="event-column">
+                        <div>
+                            <p>Event:</p>
+                        </div>
+                        <div>
+                            <p>About event:</p>
+                        </div>
+                        <div>
+                            <p>Date:</p>
+                        </div>
+                        <div>
+                            <p>Time:</p>
+                        </div>
                     </div>
-                    <div className="event-row">
-                        <p className="event-name">Description: {event.description}</p>
-                    </div>
-                    <div className="event-row">
-                        <p className="event-name">Date: {event.date}</p>
-                    </div>
-                    <div className="event-row">
-                        <p className="event-name">Time: {event.time}</p>
+                    <div className="event-column">
+                        <p className="event-name">{event.name}</p>
+                        <p className="event-name">{event.description}</p>
+                        <p className="event-name">{event.date}</p>
+                        <p className="event-name">{event.time}</p>
                     </div>
                 </div>
             )
