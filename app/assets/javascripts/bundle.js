@@ -2880,12 +2880,16 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
         if (memberID === owner) {
           if (owner === _this3.props.state.session.id) {
             return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+              className: "event-center"
+            }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
               key: memberID
-            }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "You Are The Owner"));
+            }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "You Are The Owner")));
           } else {
             return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+              className: "event-center"
+            }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
               key: memberID
-            }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Owner: ", users[memberID].name));
+            }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Owner: ", users[memberID].name)));
           }
         }
 
@@ -2893,22 +2897,26 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             key: memberID,
             className: "row"
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "event-center"
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, users[memberID].name, " -- ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
             className: "event-membership-btn button pointer",
             onClick: function onClick() {
               return _this3.handleRemoveMember(memberID, eventID);
             }
-          }, "Remove"));
+          }, "Remove")));
         } else if (memberID === _this3.props.state.session.id) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             className: "row",
             key: memberID
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "event-center"
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, users[memberID].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
             className: "event-membership-btn button",
             onClick: function onClick() {
               return _this3.handleRemoveMembership(memberID);
             }
-          }, "Leave Event"));
+          }, "Leave Event")));
         } else {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             key: memberID
@@ -3106,13 +3114,17 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "event-name"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, event.name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "event-center"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "event-exit",
           onClick: function onClick() {
             return _this7.setState({
               "eventId": undefined
             });
           }
-        }, "X")), this.showEditButton(event.id), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "MEMBERS"), this.showMembers(membersIDs, owner, eventId), this.showDeleteEventButton(owner, event, membersIDs), this.showJoinEventButton(event.id)));
+        }, "X"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "event-center"
+        }, this.showEditButton(event.id)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "MEMBERS"), this.showMembers(membersIDs, owner, eventId), this.showDeleteEventButton(owner, event, membersIDs), this.showJoinEventButton(event.id)));
       }
     }
   }, {
@@ -3121,12 +3133,14 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
       var _this8 = this;
 
       if (owner === this.props.state.session.id) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "event-center"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           className: "event-controls-btn button",
           onClick: function onClick() {
             return _this8.handleRemoveEvent(event.id, membersIDs);
           }
-        }, "Delete Event");
+        }, "Delete Event"));
       }
     }
   }, {
