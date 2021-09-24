@@ -2892,35 +2892,44 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
             return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
               className: "event-center"
             }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+              className: "room-user",
               key: memberID
             }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Owner: ", users[memberID].name)));
           }
         }
 
         if (owner === _this3.props.state.session.id) {
-          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-            className: "event-center"
-          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-            key: memberID,
-            className: "row"
-          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, users[memberID].name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-            className: "event-membership-btn button pointer",
-            onClick: function onClick() {
-              return _this3.handleRemoveMember(memberID, eventID);
-            }
-          }, "Remove")));
+          return (
+            /*#__PURE__*/
+            // <div className="event-center">
+            react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+              key: memberID,
+              className: "row"
+            }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+              className: "event-name"
+            }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, users[memberID].name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+              className: "event-exit",
+              onClick: function onClick() {
+                return _this3.handleRemoveMember(memberID, eventID);
+              }
+            }, "X")) // </div>
+
+          );
         } else if (memberID === _this3.props.state.session.id) {
-          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-            className: "event-center"
-          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-            className: "row",
-            key: memberID
-          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, users[memberID].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-            className: "event-membership-btn button",
-            onClick: function onClick() {
-              return _this3.handleRemoveMembership(memberID);
-            }
-          }, "Leave Event")));
+          return (
+            /*#__PURE__*/
+            // <div className="event-center">
+            react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+              className: "event-name",
+              key: memberID
+            }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, users[memberID].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+              className: "event-exit",
+              onClick: function onClick() {
+                return _this3.handleRemoveMembership(memberID);
+              }
+            }, "X")) // </div>
+
+          );
         } else {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             key: memberID

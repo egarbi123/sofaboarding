@@ -189,30 +189,30 @@ class EventPage extends React.Component {
                 } else {
                     return (
                         <div className="event-center">
-                            <div key={memberID}><p>Owner: {users[memberID].name}</p></div>
+                            <div className="room-user" key={memberID}><p>Owner: {users[memberID].name}</p></div>
                         </div>
                     )
                 }
             }
             if (owner ===  this.props.state.session.id) {
                 return (
-                    <div className="event-center">
+                    // <div className="event-center">
                         <div key={memberID} className="row">
-                            <div><p>{users[memberID].name}</p></div>
-                            <button className="event-membership-btn button pointer" onClick={() => this.handleRemoveMember(memberID, eventID)} >Remove</button>
+                            <div className="event-name"><p>{users[memberID].name}</p></div>
+                            <button className="event-exit" onClick={() => this.handleRemoveMember(memberID, eventID)} >X</button>
                         </div>
-                    </div>
+                    // </div>
                 )
             } else if (memberID === this.props.state.session.id) {
                 return (
-                    <div className="event-center">
-                        <div className="row" key={memberID}>
+                    // <div className="event-center">
+                        <div className="event-name" key={memberID}>
                             <p>
                                 {users[memberID].name}
                             </p>
-                            <button className="event-membership-btn button" onClick={() => this.handleRemoveMembership(memberID)}>Leave Event</button>
+                            <button className="event-exit" onClick={() => this.handleRemoveMembership(memberID)}>X</button>
                         </div>
-                    </div>
+                    // </div>
                 )
             } else {
                 return (<div key={memberID}>{users[memberID].name}</div>)

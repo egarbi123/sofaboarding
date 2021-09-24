@@ -173,7 +173,7 @@
 }
 
 .event-name-exit p {
-    width: 160px;
+    // width: 160px;
 }
 
 .event-name {
@@ -241,4 +241,13 @@
 
 .event-inp-cat {
     width: 100px;
+}
+
+.event-name {
+    text-align: center;
+    justify-content: center;
+}
+
+.event-exit p {
+    width: 8px;
 }
