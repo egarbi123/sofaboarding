@@ -73,25 +73,29 @@ class FriendCarousel extends React.Component {
             return (<div>CURRENTLY NO {this.props.label}</div>)
         } else if (this.props.friendsList.length < 4) {
             return (
-                <div className="friends-section">
-                    <h3>{this.props.label}</h3>
-                    <div className="carousel">
-                        <ul>
-                            {this.showCarousel()}
-                        </ul>
+                <div className="section-border">
+                    <div className="friends-section">
+                        <h3>{this.props.label}</h3>
+                        <div className="carousel">
+                            <ul>
+                                {this.showCarousel()}
+                            </ul>
+                        </div>
                     </div>
                 </div>
             )
         } else {
             return (
-                <div className="friends-section">
-                    <h3>{this.props.label}</h3>
-                    <div className="carousel">
-                        <div className="buttonLeft" onClick={() => this.clickLeft()}><i className="arrow left"></i></div>
-                        <ul>
-                            {this.showCarousel()}
-                        </ul>
-                        <div className="buttonRight" onClick={() => this.clickRight()}><i className="arrow right"></i></div>
+                <div className="section-border">
+                    <div className="friends-section">
+                        <h3>{this.props.label}</h3>
+                        <div className="carousel">
+                            <div className="buttonLeft" onClick={() => this.clickLeft()}><i className="arrow left"></i></div>
+                            <ul>
+                                {this.showCarousel()}
+                            </ul>
+                            <div className="buttonRight" onClick={() => this.clickRight()}><i className="arrow right"></i></div>
+                        </div>
                     </div>
                 </div>
             )
