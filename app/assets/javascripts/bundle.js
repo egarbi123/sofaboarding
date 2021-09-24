@@ -3205,6 +3205,19 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
       }
     }
   }, {
+    key: "showSingleEvent",
+    value: function showSingleEvent(events) {
+      if (this.state.eventId) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "section-border"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "single-event"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "single-event-info"
+        }, this.eventInfo(events)), this.showEventForm()));
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this11 = this;
@@ -3230,11 +3243,7 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
         onClick: function onClick() {
           return _this11.toggleEventForm();
         }
-      }, "CREATE NEW EVENT"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "single-event"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "single-event-info"
-      }, this.eventInfo(events)), this.showEventForm()));
+      }, "CREATE NEW EVENT"))), this.showSingleEvent(events));
     }
   }]);
 

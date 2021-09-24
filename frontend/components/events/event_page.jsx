@@ -446,6 +446,21 @@ class EventPage extends React.Component {
         }
     }
 
+    showSingleEvent(events) {
+        if (this.state.eventId) {
+            return (
+                <div className="section-border">
+                    <div className="single-event">
+                        <div className="single-event-info">
+                            {this.eventInfo(events)}
+                        </div>
+                        {this.showEventForm()}
+                    </div>
+                </div>
+            )
+        }
+    }
+
     render() {
         let events = this.state.events;
         return (
@@ -459,12 +474,7 @@ class EventPage extends React.Component {
                         <button className="event-piece-button button" onClick={() => this.toggleEventForm()}>CREATE NEW EVENT</button>
                     </div>
                 </div>
-                <div className="single-event">
-                    <div className="single-event-info">
-                        {this.eventInfo(events)}
-                    </div>
-                    {this.showEventForm()}
-                </div>
+                {this.showSingleEvent(events)}
             </div>
         )
     }
