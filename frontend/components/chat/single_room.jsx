@@ -91,9 +91,11 @@ class SingleRoom extends React.Component {
 
     render() {
         return (
-            <div className="single-room">
-                {this.showControls()}
-                <MessagesAreaContainer />
+            <div className="section-border">
+                <div className="single-room">
+                    {this.showControls()}
+                    <MessagesAreaContainer />
+                </div>
             </div>
         )
     }

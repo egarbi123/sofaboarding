@@ -169,9 +169,11 @@ class NewChat extends React.Component {
     showRoom() {
         if (this.props.state.session.activeRoom) {
             return (
-                <div className="single-room">
-                    {this.showControls()}
-                    <MessagesAreaContainer />
+                <div className="section-border">
+                    <div className="single-room">
+                        {this.showControls()}
+                        <MessagesAreaContainer />
+                    </div>
                 </div>
             )
         }
