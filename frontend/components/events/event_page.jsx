@@ -182,37 +182,35 @@ class EventPage extends React.Component {
             if (memberID === owner) {
                 if (owner === this.props.state.session.id) {
                     return (
-                        <div className="event-center">
-                            <div key={memberID}><p>You Are The Owner</p></div>
+                        <div key={memberID} className="event-center">
+                            <div><p>You Are The Owner</p></div>
                         </div>
                     )
                 } else {
                     return (
-                        <div className="event-center">
-                            <div className="room-user" key={memberID}><p>Owner: {users[memberID].name}</p></div>
+                        <div key={memberID} className="event-center">
+                            <div className="room-user"><p>Owner: {users[memberID].name}</p></div>
                         </div>
                     )
                 }
             }
             if (owner ===  this.props.state.session.id) {
                 return (
-                    // <div className="event-center">
                         <div key={memberID} className="row">
-                            <div className="event-name"><p>{users[memberID].name}</p></div>
+                            <div className="event-name">
+                                <p>{users[memberID].name}</p>
+                            </div>
                             <button className="event-exit" onClick={() => this.handleRemoveMember(memberID, eventID)} >X</button>
                         </div>
-                    // </div>
                 )
             } else if (memberID === this.props.state.session.id) {
                 return (
-                    // <div className="event-center">
                         <div className="event-name" key={memberID}>
                             <p>
                                 {users[memberID].name}
                             </p>
-                            <button className="event-exit" onClick={() => this.handleRemoveMembership(memberID)}>X</button>
+                        <button className="event-exit" onClick={() => this.handleRemoveMembership(memberID)}>X</button>
                         </div>
-                    // </div>
                 )
             } else {
                 return (<div key={memberID}>{users[memberID].name}</div>)
