@@ -16,7 +16,7 @@ class Splash extends React.Component {
             <div className="splash">
                 <div className="welcome-info">
                     <h3>WELCOME TO SOFABOARDING!</h3>
-                    <p>Here you can meet new people around the world</p>
+                    <p>Here you can plan events and chat with people</p>
                     <p>Share awesome travel tips and ideas</p>
                     <p>Here we are friends!</p>
                     <div className="splash-buttons">
