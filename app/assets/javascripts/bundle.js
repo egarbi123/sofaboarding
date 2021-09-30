@@ -1492,6 +1492,7 @@ var NewChat = /*#__PURE__*/function (_React$Component) {
     };
     _this.handleClick = _this.handleClick.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.deleteMembership = _this.deleteMembership.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -1580,6 +1581,26 @@ var NewChat = /*#__PURE__*/function (_React$Component) {
       }
     }
   }, {
+    key: "mapRooms",
+    value: function mapRooms(rooms, handleClick, roomIds) {
+      return rooms.map(function (room) {
+        if (room && roomIds.includes(room.id)) {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "room",
+            key: room.id
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "room-name",
+            key: room.id,
+            onClick: function onClick() {
+              return handleClick(room.id);
+            }
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+            key: room.id
+          }, room.title)));
+        }
+      });
+    }
+  }, {
     key: "handleClick",
     value: function handleClick(roomId) {
       this.props.clearMessages();
@@ -1601,42 +1622,36 @@ var NewChat = /*#__PURE__*/function (_React$Component) {
       });
     }
   }, {
-    key: "update",
-    value: function update(field) {
+    key: "showRoom",
+    value: function showRoom() {
+      if (this.props.state.session.activeRoom && this.state.activeRoom > 0) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "section-border"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "single-room"
+        }, this.showControls(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_messages_area_container__WEBPACK_IMPORTED_MODULE_2__["default"], null)));
+      }
+    }
+  }, {
+    key: "showControls",
+    value: function showControls() {
       var _this3 = this;
 
-      return function (e) {
-        return _this3.setState(_defineProperty({}, field, e.currentTarget.value));
-      };
-    }
-  }, {
-    key: "mapRooms",
-    value: function mapRooms(rooms, handleClick, roomIds) {
-      return rooms.map(function (room) {
-        if (room && roomIds.includes(room.id)) {
-          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-            className: "room",
-            key: room.id
-          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-            className: "room-name",
-            key: room.id,
-            onClick: function onClick() {
-              return handleClick(room.id);
-            }
-          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-            key: room.id
-          }, room.title)));
+      var chatters = [];
+      var memberships = Object.values(this.props.state.roomMemberships);
+      memberships.map(function (member) {
+        if (member.room_id === _this3.props.state.session.activeRoom) {
+          chatters.push(_this3.props.state.users[member.user_id].name);
         }
       });
-    }
-  }, {
-    key: "addFriendToRoom",
-    value: function addFriendToRoom(friendId) {
-      var object = {
-        "user_id": friendId,
-        "room_id": this.props.state.session.activeRoom
-      };
-      this.props.createRoomMembership(object);
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "room-controls"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "PARTICIPANTS"), chatters.map(function (names) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "room-user",
+          key: names
+        }, names);
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "INVITE FRIENDS"), this.showFriends(), this.removeFromRoom());
     }
   }, {
     key: "showFriends",
@@ -1661,6 +1676,15 @@ var NewChat = /*#__PURE__*/function (_React$Component) {
           }
         }, friend.name);
       });
+    }
+  }, {
+    key: "addFriendToRoom",
+    value: function addFriendToRoom(friendId) {
+      var object = {
+        "user_id": friendId,
+        "room_id": this.props.state.session.activeRoom
+      };
+      this.props.createRoomMembership(object);
     }
   }, {
     key: "removeFromRoom",
@@ -1693,42 +1717,22 @@ var NewChat = /*#__PURE__*/function (_React$Component) {
           roomIds.push(id);
         }
       });
+      console.log(roomIds);
+      console.log(this);
       this.setState({
-        roomIds: roomIds,
+        "roomIds": roomIds,
         activeRoom: 0
       });
+      console.log(this);
     }
   }, {
-    key: "showControls",
-    value: function showControls() {
+    key: "update",
+    value: function update(field) {
       var _this6 = this;
 
-      var chatters = [];
-      var memberships = Object.values(this.props.state.roomMemberships);
-      memberships.map(function (member) {
-        if (member.room_id === _this6.props.state.session.activeRoom) {
-          chatters.push(_this6.props.state.users[member.user_id].name);
-        }
-      });
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "room-controls"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "PARTICIPANTS"), chatters.map(function (names) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "room-user",
-          key: names
-        }, names);
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "INVITE FRIENDS"), this.showFriends(), this.removeFromRoom());
-    }
-  }, {
-    key: "showRoom",
-    value: function showRoom() {
-      if (this.props.state.session.activeRoom && this.state.activeRoom > 0) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "section-border"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "single-room"
-        }, this.showControls(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_messages_area_container__WEBPACK_IMPORTED_MODULE_2__["default"], null)));
-      }
+      return function (e) {
+        return _this6.setState(_defineProperty({}, field, e.currentTarget.value));
+      };
     }
   }, {
     key: "render",

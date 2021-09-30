@@ -14,6 +14,7 @@ class NewChat extends React.Component {
         };
         this.handleClick = this.handleClick.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.deleteMembership = this.deleteMembership.bind(this);
     }
 
     componentDidMount() {
@@ -27,14 +28,14 @@ class NewChat extends React.Component {
             this.props.fetchUsers();
         }
     }
-
+    
     componentDidUpdate() {
         this.determineRooms();
         if (this.props.state.session.activeRoom) {
             this.determineFriends();
         }
     }
-
+    
     determineRooms() {
         let memberships = Object.values(this.props.state.roomMemberships);
         let myId = this.props.state.session.id;
@@ -80,24 +81,7 @@ class NewChat extends React.Component {
             this.setState({ 'friends': inviteFriends });
         }
     }
-
-    handleClick(roomId) {
-        this.props.clearMessages();
-        this.props.setActiveRoom(roomId);
-        this.setState({ activeRoom: roomId})
-    }
-
-    handleSubmit(e) {
-        e.preventDefault();
-        let object = { "title": this.state.title };
-        this.props.createRoom(object);
-        this.setState({ "title": '' });
-    }
-
-    update(field) {
-        return e => this.setState({ [field]: e.currentTarget.value })
-    }
-
+    
     mapRooms(rooms, handleClick, roomIds) {
         return rooms.map(room => {
             if (room && roomIds.includes(room.id)) {
@@ -112,52 +96,34 @@ class NewChat extends React.Component {
                 )
             }
         });
-    } 
-    
-    addFriendToRoom(friendId) {
-        let object = {
-            "user_id": friendId,
-            "room_id": this.props.state.session.activeRoom
-        };
-        this.props.createRoomMembership(object);
     }
-
-    showFriends() {
-        let users = Object.values(this.props.state.users);
-        let friendsInRoom = [];
-        for (let i = 0; i < users.length; i++) {
-            if (this.state.friends.includes(users[i].id)) {
-                friendsInRoom.push(users[i]);
-            }
+    
+    handleClick(roomId) {
+        this.props.clearMessages();
+        this.props.setActiveRoom(roomId);
+        this.setState({ activeRoom: roomId})
+    }
+    
+    handleSubmit(e) {
+        e.preventDefault();
+        let object = { "title": this.state.title };
+        this.props.createRoom(object);
+        this.setState({ "title": '' });
+    }
+    
+    showRoom() {
+        if (this.props.state.session.activeRoom && this.state.activeRoom > 0) {
+            return (
+                <div className="section-border">
+                    <div className="single-room">
+                        {this.showControls()}
+                        <MessagesAreaContainer />
+                    </div>
+                </div>
+            )
         }
-        return friendsInRoom.map(friend => {
-            return (<div className="room-user pointer" key={friend.id} onClick={() => this.addFriendToRoom(friend.id)} >{friend.name}</div>)
-        })
     }
-
-    removeFromRoom() {
-        let memberships = Object.values(this.props.state.roomMemberships);
-        let myMembership = 0;
-        let roomId = 0;
     
-        memberships.map((membership) => {
-            if (membership.user_id === this.props.state.session.id && membership.room_id === this.props.state.session.activeRoom) {
-                myMembership = membership.id;
-                roomId = membership.room_id;
-            }
-        })
-        return (
-            <div className="chat-leave-btn" onClick={() => this.deleteMembership(myMembership, roomId)}>LEAVE ROOM</div>
-        )
-    }
-
-    deleteMembership(myMembership, roomId) {
-        this.props.deleteRoomMembership(myMembership);
-        let roomIds = [];
-        this.state.roomIds.map(id => { if (id !== roomId) { roomIds.push(id) }});
-        this.setState({ roomIds: roomIds, activeRoom: 0 });
-    }
-
     showControls() {
         let chatters = [];
         let memberships = Object.values(this.props.state.roomMemberships);
@@ -177,18 +143,56 @@ class NewChat extends React.Component {
             </div>
         )
     }
-
-    showRoom() {
-        if (this.props.state.session.activeRoom && this.state.activeRoom > 0) {
-            return (
-                <div className="section-border">
-                    <div className="single-room">
-                        {this.showControls()}
-                        <MessagesAreaContainer />
-                    </div>
-                </div>
-            )
+    
+    showFriends() {
+        let users = Object.values(this.props.state.users);
+        let friendsInRoom = [];
+        for (let i = 0; i < users.length; i++) {
+            if (this.state.friends.includes(users[i].id)) {
+                friendsInRoom.push(users[i]);
+            }
         }
+        return friendsInRoom.map(friend => {
+            return (<div className="room-user pointer" key={friend.id} onClick={() => this.addFriendToRoom(friend.id)} >{friend.name}</div>)
+        })
+    }
+    
+    addFriendToRoom(friendId) {
+        let object = {
+            "user_id": friendId,
+            "room_id": this.props.state.session.activeRoom
+        };
+        this.props.createRoomMembership(object);
+    }
+    
+    removeFromRoom() {
+        let memberships = Object.values(this.props.state.roomMemberships);
+        let myMembership = 0;
+        let roomId = 0;
+        
+        memberships.map((membership) => {
+            if (membership.user_id === this.props.state.session.id && membership.room_id === this.props.state.session.activeRoom) {
+                myMembership = membership.id;
+                roomId = membership.room_id;
+            }
+        })
+        return (
+            <div className="chat-leave-btn" onClick={() => this.deleteMembership(myMembership, roomId)}>LEAVE ROOM</div>
+            )
+    }
+    
+    deleteMembership(myMembership, roomId) {
+        this.props.deleteRoomMembership(myMembership);
+        let roomIds = [];
+        this.state.roomIds.map(id => { if (id !== roomId) { roomIds.push(id) }});
+        console.log(roomIds);
+        console.log(this);
+        this.setState({ "roomIds": roomIds, activeRoom: 0 });
+        console.log(this);
+    }
+    
+    update(field) {
+        return e => this.setState({ [field]: e.currentTarget.value })
     }
 
     render() {
