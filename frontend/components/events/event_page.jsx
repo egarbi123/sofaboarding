@@ -24,6 +24,7 @@ class EventPage extends React.Component {
         this.eventInfo = this.eventInfo.bind(this);
         this.joinEvent = this.joinEvent.bind(this);
         this.showMembers = this.showMembers.bind(this);
+        this.toggleEventForm = this.toggleEventForm.bind(this);
         this.handleAddEvent = this.handleAddEvent.bind(this);
         this.showEventSection = this.showEventSection.bind(this);
         this.update = this.update.bind(this);

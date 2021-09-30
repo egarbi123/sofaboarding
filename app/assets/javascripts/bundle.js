@@ -1487,7 +1487,8 @@ var NewChat = /*#__PURE__*/function (_React$Component) {
     _this.state = {
       "title": "",
       "roomIds": [],
-      "friends": []
+      "friends": [],
+      "activeRoom": 0
     };
     _this.handleClick = _this.handleClick.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
@@ -1583,6 +1584,9 @@ var NewChat = /*#__PURE__*/function (_React$Component) {
     value: function handleClick(roomId) {
       this.props.clearMessages();
       this.props.setActiveRoom(roomId);
+      this.setState({
+        activeRoom: roomId
+      });
     }
   }, {
     key: "handleSubmit",
@@ -1665,17 +1669,34 @@ var NewChat = /*#__PURE__*/function (_React$Component) {
 
       var memberships = Object.values(this.props.state.roomMemberships);
       var myMembership = 0;
+      var roomId = 0;
       memberships.map(function (membership) {
         if (membership.user_id === _this5.props.state.session.id && membership.room_id === _this5.props.state.session.activeRoom) {
           myMembership = membership.id;
+          roomId = membership.room_id;
         }
       });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "chat-leave-btn",
         onClick: function onClick() {
-          return _this5.props.deleteRoomMembership(myMembership);
+          return _this5.deleteMembership(myMembership, roomId);
         }
       }, "LEAVE ROOM");
+    }
+  }, {
+    key: "deleteMembership",
+    value: function deleteMembership(myMembership, roomId) {
+      this.props.deleteRoomMembership(myMembership);
+      var roomIds = [];
+      this.state.roomIds.map(function (id) {
+        if (id !== roomId) {
+          roomIds.push(id);
+        }
+      });
+      this.setState({
+        roomIds: roomIds,
+        activeRoom: 0
+      });
     }
   }, {
     key: "showControls",
@@ -1701,7 +1722,7 @@ var NewChat = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "showRoom",
     value: function showRoom() {
-      if (this.props.state.session.activeRoom) {
+      if (this.props.state.session.activeRoom && this.state.activeRoom > 0) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "section-border"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2677,6 +2698,7 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
     _this.eventInfo = _this.eventInfo.bind(_assertThisInitialized(_this));
     _this.joinEvent = _this.joinEvent.bind(_assertThisInitialized(_this));
     _this.showMembers = _this.showMembers.bind(_assertThisInitialized(_this));
+    _this.toggleEventForm = _this.toggleEventForm.bind(_assertThisInitialized(_this));
     _this.handleAddEvent = _this.handleAddEvent.bind(_assertThisInitialized(_this));
     _this.showEventSection = _this.showEventSection.bind(_assertThisInitialized(_this));
     _this.update = _this.update.bind(_assertThisInitialized(_this));

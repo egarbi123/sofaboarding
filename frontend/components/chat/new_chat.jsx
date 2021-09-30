@@ -9,7 +9,8 @@ class NewChat extends React.Component {
         this.state = {
             "title": "",
             "roomIds": [],
-            "friends": []
+            "friends": [],
+            "activeRoom": 0
         };
         this.handleClick = this.handleClick.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -83,6 +84,7 @@ class NewChat extends React.Component {
     handleClick(roomId) {
         this.props.clearMessages();
         this.props.setActiveRoom(roomId);
+        this.setState({ activeRoom: roomId})
     }
 
     handleSubmit(e) {
@@ -136,14 +138,24 @@ class NewChat extends React.Component {
     removeFromRoom() {
         let memberships = Object.values(this.props.state.roomMemberships);
         let myMembership = 0;
+        let roomId = 0;
+    
         memberships.map((membership) => {
             if (membership.user_id === this.props.state.session.id && membership.room_id === this.props.state.session.activeRoom) {
                 myMembership = membership.id;
+                roomId = membership.room_id;
             }
         })
         return (
-            <div className="chat-leave-btn" onClick={() => this.props.deleteRoomMembership(myMembership)}>LEAVE ROOM</div>
+            <div className="chat-leave-btn" onClick={() => this.deleteMembership(myMembership, roomId)}>LEAVE ROOM</div>
         )
+    }
+
+    deleteMembership(myMembership, roomId) {
+        this.props.deleteRoomMembership(myMembership);
+        let roomIds = [];
+        this.state.roomIds.map(id => { if (id !== roomId) { roomIds.push(id) }});
+        this.setState({ roomIds: roomIds, activeRoom: 0 });
     }
 
     showControls() {
@@ -167,7 +179,7 @@ class NewChat extends React.Component {
     }
 
     showRoom() {
-        if (this.props.state.session.activeRoom) {
+        if (this.props.state.session.activeRoom && this.state.activeRoom > 0) {
             return (
                 <div className="section-border">
                     <div className="single-room">
