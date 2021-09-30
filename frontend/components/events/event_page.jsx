@@ -10,13 +10,13 @@ class EventPage extends React.Component {
             "userIsOwner": false,
             "eventBeingEdited": false,
             "editingId": undefined,
-            name: "",
-            description: "",
-            date: "",
-            time: "",
-            open: false,
-            editCorrect: true,
-            showEventForm: false,
+            "name": "",
+            "description": "",
+            "date": "",
+            "time": "",
+            "open": false,
+            "editCorrect": true,
+            "showEventForm": false,
         }
         this.userIsOwner = false;
         this.handleRemoveEvent = this.handleRemoveEvent.bind(this);
@@ -28,6 +28,7 @@ class EventPage extends React.Component {
         this.handleAddEvent = this.handleAddEvent.bind(this);
         this.showEventSection = this.showEventSection.bind(this);
         this.update = this.update.bind(this);
+        this.showEventForm = this.showEventForm.bind(this);
     }
 
     componentDidMount() {
@@ -421,18 +422,13 @@ class EventPage extends React.Component {
     }
 
     toggleEventForm() {
-        if (this.state.showEventForm) {
+        console.log('in toggleEventForm')
+        if (this.state.showEventForm === true) {
             this.setState({"showEventForm": false, "eventId": undefined });
-        } else {
+        } 
+        if (this.state.showEventForm === false) {
+            console.log('in else')
             this.setState({ "showEventForm": true, "eventId": undefined });
-        }
-    }
-
-    showEventForm() {
-        if (this.state.showEventForm) {
-            return (
-                <EventForm events={this.state.events} showEvent={this.state.showEventForm} toggleShow={() => { this.toggleEventForm() }} handleAddEvent={() => { this.handleAddEvent() }} />
-            )
         }
     }
 
@@ -440,19 +436,36 @@ class EventPage extends React.Component {
         if (this.state.eventId) {
             return (
                 <div className="section-border">
-                    <div className="single-event">
-                        <div className="single-event-info">
-                            {this.eventInfo(events)}
-                        </div>
-                        {this.showEventForm()}
+                <div className="single-event">
+                    <div className="single-event-info">
+                        {this.eventInfo(events)}
                     </div>
+                    {this.showEventForm()}
                 </div>
+            </div>
+            )
+        }
+        console.log(this);
+        if (this.state.showEventForm === true) {
+            return (
+                <EventForm events={this.state.events} toggleShow={() => { this.toggleEventForm() }} handleAddEvent={() => { this.handleAddEvent() }} />
+            )
+        }
+    }
+    
+    showEventForm() {
+        console.log('in showEventForm')
+        if (this.state.showEventForm === true) {
+            console.log('in showEventForm-----IN IF!')
+            return (
+                <EventForm events={this.state.events} toggleShow={() => { this.toggleEventForm() }} handleAddEvent={() => { this.handleAddEvent() }} />
             )
         }
     }
 
     render() {
         let events = this.state.events;
+        console.log(this);
         return (
             <div className="event-page">
                 <div className="events-list">

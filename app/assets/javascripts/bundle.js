@@ -2447,7 +2447,7 @@ var EventForm = /*#__PURE__*/function (_React$Component) {
       time: "",
       open: false,
       user_id: _this.props.state.session.id,
-      showEvent: _this.props.showEvent
+      showEvent: true
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
@@ -2529,59 +2529,50 @@ var EventForm = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this4 = this;
 
-      if (this.state.showEvent === true) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "event-form-cont"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "CREATE A NEW EVENT"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          className: "button",
-          onClick: function onClick() {
-            return _this4.props.toggleShow();
-          }
-        }, "Click Here To Hide Form")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-          className: "event-form",
-          onSubmit: this.handleSubmit
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "row"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Name:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          type: "string",
-          value: this.state.name,
-          onChange: this.update('name')
-        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "row"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Description:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          type: "text",
-          value: this.state.description,
-          onChange: this.update('description')
-        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "row"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Date:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          type: "string",
-          value: this.state.date,
-          onChange: this.update('date'),
-          placeholder: 'December 2, 2021'
-        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-          style: {
-            "fontSize": "xx-small"
-          }
-        }, "Please keep format to Month Day, Year example: December 2, 2021"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "row"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Time:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          type: "string",
-          value: this.state.time,
-          onChange: this.update('time')
-        })), this.showCheckbox(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          type: "submit",
-          className: "button"
-        }, "Create Event")));
-      } else {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "create-event"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          onClick: function onClick() {
-            return _this4.props.toggleShow();
-          }
-        }, "Click Here To Create An Event"));
-      }
+      console.log('hello!');
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "event-form-cont"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "CREATE A NEW EVENT"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "button",
+        onClick: function onClick() {
+          return _this4.props.toggleShow();
+        }
+      }, "Click Here To Hide Form")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        className: "event-form",
+        onSubmit: this.handleSubmit
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Name:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "string",
+        value: this.state.name,
+        onChange: this.update('name')
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Description:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        value: this.state.description,
+        onChange: this.update('description')
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Date:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "string",
+        value: this.state.date,
+        onChange: this.update('date'),
+        placeholder: 'December 2, 2021'
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        style: {
+          "fontSize": "xx-small"
+        }
+      }, "Please keep format to Month Day, Year example: December 2, 2021"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Time:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "string",
+        value: this.state.time,
+        onChange: this.update('time')
+      })), this.showCheckbox(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        type: "submit",
+        className: "button"
+      }, "Create Event")));
     }
   }]);
 
@@ -2688,13 +2679,13 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
       "userIsOwner": false,
       "eventBeingEdited": false,
       "editingId": undefined,
-      name: "",
-      description: "",
-      date: "",
-      time: "",
-      open: false,
-      editCorrect: true,
-      showEventForm: false
+      "name": "",
+      "description": "",
+      "date": "",
+      "time": "",
+      "open": false,
+      "editCorrect": true,
+      "showEventForm": false
     };
     _this.userIsOwner = false;
     _this.handleRemoveEvent = _this.handleRemoveEvent.bind(_assertThisInitialized(_this));
@@ -2706,6 +2697,7 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
     _this.handleAddEvent = _this.handleAddEvent.bind(_assertThisInitialized(_this));
     _this.showEventSection = _this.showEventSection.bind(_assertThisInitialized(_this));
     _this.update = _this.update.bind(_assertThisInitialized(_this));
+    _this.showEventForm = _this.showEventForm.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -3198,12 +3190,17 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "toggleEventForm",
     value: function toggleEventForm() {
-      if (this.state.showEventForm) {
+      console.log('in toggleEventForm');
+
+      if (this.state.showEventForm === true) {
         this.setState({
           "showEventForm": false,
           "eventId": undefined
         });
-      } else {
+      }
+
+      if (this.state.showEventForm === false) {
+        console.log('in else');
         this.setState({
           "showEventForm": true,
           "eventId": undefined
@@ -3211,14 +3208,25 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
       }
     }
   }, {
-    key: "showEventForm",
-    value: function showEventForm() {
+    key: "showSingleEvent",
+    value: function showSingleEvent(events) {
       var _this10 = this;
 
-      if (this.state.showEventForm) {
+      if (this.state.eventId) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "section-border"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "single-event"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "single-event-info"
+        }, this.eventInfo(events)), this.showEventForm()));
+      }
+
+      console.log(this);
+
+      if (this.state.showEventForm === true) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_event_form_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
           events: this.state.events,
-          showEvent: this.state.showEventForm,
           toggleShow: function toggleShow() {
             _this10.toggleEventForm();
           },
@@ -3229,24 +3237,32 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
       }
     }
   }, {
-    key: "showSingleEvent",
-    value: function showSingleEvent(events) {
-      if (this.state.eventId) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "section-border"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "single-event"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "single-event-info"
-        }, this.eventInfo(events)), this.showEventForm()));
+    key: "showEventForm",
+    value: function showEventForm() {
+      var _this11 = this;
+
+      console.log('in showEventForm');
+
+      if (this.state.showEventForm === true) {
+        console.log('in showEventForm-----IN IF!');
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_event_form_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          events: this.state.events,
+          toggleShow: function toggleShow() {
+            _this11.toggleEventForm();
+          },
+          handleAddEvent: function handleAddEvent() {
+            _this11.handleAddEvent();
+          }
+        });
       }
     }
   }, {
     key: "render",
     value: function render() {
-      var _this11 = this;
+      var _this12 = this;
 
       var events = this.state.events;
+      console.log(this);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "event-page"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3254,7 +3270,7 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "EVENTS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "event-piece-cont"
       }, this.showEvents(this.state.events, function (eventId) {
-        return _this11.setState({
+        return _this12.setState({
           eventId: eventId,
           "eventBeingEdited": false,
           editingId: eventId,
@@ -3265,7 +3281,7 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "event-piece-button button",
         onClick: function onClick() {
-          return _this11.toggleEventForm();
+          return _this12.toggleEventForm();
         }
       }, "CREATE NEW EVENT"))), this.showSingleEvent(events));
     }
