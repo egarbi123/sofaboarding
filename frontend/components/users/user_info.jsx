@@ -81,11 +81,14 @@ class UserInfo extends React.Component {
                 <div>
                     <div className="add-image">
                         <input
+                            style={{ 
+                                fontSize: "x-small" 
+                            }}
                             type="file"
                             className="pic-button"
                             onChange={this.handleFile}
                         />
-                        <button className="pic-accept-button button">Save new image</button>
+                        <button className="pic-accept-btn" style={{ fontSize: "x-small" }}>Save new image</button>
                     </div>
                 </div>
             </form>

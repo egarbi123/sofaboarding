@@ -126,19 +126,29 @@
 }
 
 .pic-button {
-    margin: auto;
-    margin-top: 10px;
-    margin-bottom: 5px;
-    margin-left: 50px;
+    width: fit-content;
+    margin-left: 5px;
 }
 
-.pic-accept-button {
-    width: 150px;
-    // height: 25px;
-    // border: 1px solid black;
-    border-radius: 5px;
-    margin-left: 75px;
+.pic-accept-btn {
+    width: fit-content;
+    height: 20px;
+    font-size: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    padding: 4px 8px 4px 8px;
+    font: 1em sans-serif;
+    display: inline;
+    border: none;
+    margin: auto;
     margin-top: 5px;
+    text-decoration: none;
+    text-align: center;
+    transition: background 150ms ease-in-out, transform 150ms ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: hsl(233, 36%, 73%);
+    ;
 }
 
 .bio-container {
@@ -189,7 +199,9 @@
     height: 100px;
     width: 300px;
     font-family: "Trebuchet MS", Helvetica, sans-serif;
-    text-align: center;
+    justify-content: left;
+    display: flex;
+    flex-direction: row;
 }
 
 #bio-text {
