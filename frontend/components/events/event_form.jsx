@@ -73,7 +73,6 @@ class EventForm extends React.Component {
     }
 
     render() {
-        console.log('hello!')
         return (
             <div className="section-border">
                 <div className="event-form-cont">

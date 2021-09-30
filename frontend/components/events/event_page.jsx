@@ -422,12 +422,10 @@ class EventPage extends React.Component {
     }
 
     toggleEventForm() {
-        console.log('in toggleEventForm')
         if (this.state.showEventForm === true) {
             this.setState({"showEventForm": false, "eventId": undefined });
         } 
         if (this.state.showEventForm === false) {
-            console.log('in else')
             this.setState({ "showEventForm": true, "eventId": undefined });
         }
     }
@@ -445,7 +443,6 @@ class EventPage extends React.Component {
             </div>
             )
         }
-        console.log(this);
         if (this.state.showEventForm === true) {
             return (
                 <EventForm events={this.state.events} toggleShow={() => { this.toggleEventForm() }} handleAddEvent={() => { this.handleAddEvent() }} />
@@ -454,9 +451,7 @@ class EventPage extends React.Component {
     }
     
     showEventForm() {
-        console.log('in showEventForm')
         if (this.state.showEventForm === true) {
-            console.log('in showEventForm-----IN IF!')
             return (
                 <EventForm events={this.state.events} toggleShow={() => { this.toggleEventForm() }} handleAddEvent={() => { this.handleAddEvent() }} />
             )
@@ -465,7 +460,6 @@ class EventPage extends React.Component {
 
     render() {
         let events = this.state.events;
-        console.log(this);
         return (
             <div className="event-page">
                 <div className="events-list">

@@ -2529,7 +2529,6 @@ var EventForm = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this4 = this;
 
-      console.log('hello!');
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "section-border"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3188,8 +3187,6 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "toggleEventForm",
     value: function toggleEventForm() {
-      console.log('in toggleEventForm');
-
       if (this.state.showEventForm === true) {
         this.setState({
           "showEventForm": false,
@@ -3198,7 +3195,6 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
       }
 
       if (this.state.showEventForm === false) {
-        console.log('in else');
         this.setState({
           "showEventForm": true,
           "eventId": undefined
@@ -3220,8 +3216,6 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
         }, this.eventInfo(events)), this.showEventForm()));
       }
 
-      console.log(this);
-
       if (this.state.showEventForm === true) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_event_form_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
           events: this.state.events,
@@ -3239,10 +3233,7 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
     value: function showEventForm() {
       var _this11 = this;
 
-      console.log('in showEventForm');
-
       if (this.state.showEventForm === true) {
-        console.log('in showEventForm-----IN IF!');
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_event_form_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
           events: this.state.events,
           toggleShow: function toggleShow() {
@@ -3260,7 +3251,6 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
       var _this12 = this;
 
       var events = this.state.events;
-      console.log(this);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "event-page"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
