@@ -2531,6 +2531,8 @@ var EventForm = /*#__PURE__*/function (_React$Component) {
 
       console.log('hello!');
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "section-border"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "event-form-cont"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "CREATE A NEW EVENT"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "button",
@@ -2559,11 +2561,7 @@ var EventForm = /*#__PURE__*/function (_React$Component) {
         value: this.state.date,
         onChange: this.update('date'),
         placeholder: 'December 2, 2021'
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        style: {
-          "fontSize": "xx-small"
-        }
-      }, "Please keep format to Month Day, Year example: December 2, 2021"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Time:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "string",
@@ -2572,7 +2570,7 @@ var EventForm = /*#__PURE__*/function (_React$Component) {
       })), this.showCheckbox(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "submit",
         className: "button"
-      }, "Create Event")));
+      }, "Create Event"))));
     }
   }]);
 

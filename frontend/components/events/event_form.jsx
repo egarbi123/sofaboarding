@@ -75,49 +75,51 @@ class EventForm extends React.Component {
     render() {
         console.log('hello!')
         return (
-            <div className="event-form-cont">
-                <div>
-                    <h4>CREATE A NEW EVENT</h4>
-                    <button className="button" onClick={() => this.props.toggleShow()}>Click Here To Hide Form</button>
-                </div>
-                <form className="event-form" onSubmit={this.handleSubmit}>
-                    <div className="row">
-                        <p>Name:</p>
-                        <input
-                            type="string"
-                            value={this.state.name}
-                            onChange={this.update('name')}
-                        />
+            <div className="section-border">
+                <div className="event-form-cont">
+                    <div>
+                        <h4>CREATE A NEW EVENT</h4>
+                        <button className="button" onClick={() => this.props.toggleShow()}>Click Here To Hide Form</button>
                     </div>
-                    <div className="row">
-                        <p>Description:</p>
-                        <input
-                            type="text"
-                            value={this.state.description}
-                            onChange={this.update('description')}
-                        />
-                    </div>
-                    <div className="row">
-                        <p>Date:</p>
-                        <input
-                            type="string"
-                            value={this.state.date}
-                            onChange={this.update('date')}
-                            placeholder={'December 2, 2021'}
+                    <form className="event-form" onSubmit={this.handleSubmit}>
+                        <div className="row">
+                            <p>Name:</p>
+                            <input
+                                type="string"
+                                value={this.state.name}
+                                onChange={this.update('name')}
                             />
-                    </div>
-                    <p style={{ "fontSize": "xx-small" }}>Please keep format to Month Day, Year example: December 2, 2021</p>
-                    <div className="row">
-                        <p>Time:</p>
-                        <input
-                            type="string"
-                            value={this.state.time}
-                            onChange={this.update('time')}
-                        />
-                    </div>
-                    {this.showCheckbox()}
-                    <button type="submit" className="button">Create Event</button>
-                </form>
+                        </div>
+                        <div className="row">
+                            <p>Description:</p>
+                            <input
+                                type="text"
+                                value={this.state.description}
+                                onChange={this.update('description')}
+                            />
+                        </div>
+                        <div className="row">
+                            <p>Date:</p>
+                            <input
+                                type="string"
+                                value={this.state.date}
+                                onChange={this.update('date')}
+                                placeholder={'December 2, 2021'}
+                                />
+                        </div>
+                        {/* <p style={{ "fontSize": "xx-small" }}>Please keep format to Month Day, Year example: December 2, 2021</p> */}
+                        <div className="row">
+                            <p>Time:</p>
+                            <input
+                                type="string"
+                                value={this.state.time}
+                                onChange={this.update('time')}
+                            />
+                        </div>
+                        {this.showCheckbox()}
+                        <button type="submit" className="button">Create Event</button>
+                    </form>
+                </div>
             </div>
         )
     }
