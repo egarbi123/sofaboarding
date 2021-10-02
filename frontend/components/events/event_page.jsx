@@ -225,9 +225,9 @@ class EventPage extends React.Component {
 
         } else {
             if (event.open) {
-                return (<p>This Event Is Open To Everyone!</p>);
+                return (<p style={{ textAlign: "center" }}>This Event Is Open To Everyone!</p>);
             } else {
-                return (<p>This Event Is Private, Only The Host Can Invite New Participants!</p>)
+                return (<p style={{ textAlign: "center" }}>This Event Is Private, Only The Host Can Invite New Participants!</p>)
             }
         }
     }
@@ -306,12 +306,9 @@ class EventPage extends React.Component {
                         <h3>Welcome to {event.name}!</h3>
                     </div>
                     <div className="event-column">
-                        <p>About:</p>
-                    </div>
-                    <div className="event-column">
-                        <p className="event-name">{event.description}</p>
-                        <p className="event-name">{event.date}</p>
-                        <p className="event-name">{event.time}</p>
+                        <p>Description: {event.description}</p>
+                        <p style={{ textAlign: "center" }}>Date: {event.date}</p>
+                        <p style={{ textAlign: "center" }}>Time: {event.time}</p>
                     </div>
                 </div>
             )

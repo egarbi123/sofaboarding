@@ -2946,9 +2946,17 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
     value: function showIfOpen(event) {
       if (this.state.eventBeingEdited) {} else {
         if (event.open) {
-          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "This Event Is Open To Everyone!");
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+            style: {
+              textAlign: "center"
+            }
+          }, "This Event Is Open To Everyone!");
         } else {
-          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "This Event Is Private, Only The Host Can Invite New Participants!");
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+            style: {
+              textAlign: "center"
+            }
+          }, "This Event Is Private, Only The Host Can Invite New Participants!");
         }
       }
     }
@@ -3038,15 +3046,15 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
           className: "event-title"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Welcome to ", event.name, "!")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "event-column"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "About:")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "event-column"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-          className: "event-name"
-        }, event.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-          className: "event-name"
-        }, event.date), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-          className: "event-name"
-        }, event.time)));
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Description: ", event.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          style: {
+            textAlign: "center"
+          }
+        }, "Date: ", event.date), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          style: {
+            textAlign: "center"
+          }
+        }, "Time: ", event.time)));
       }
     }
   }, {

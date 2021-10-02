@@ -121,11 +121,6 @@
     text-align: center;
 }
 
-.event-column {
-    display: flex;
-    flex-direction: column;
-}
-
 .events-list h3 {
     font-family: Tahoma, sans-serif;
     cursor: default;
@@ -284,4 +279,8 @@
 .event-description p {
     text-align: left;
     justify-content: left;
+}
+
+.event-column {
+    background-color: white;
 }
