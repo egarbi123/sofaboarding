@@ -198,11 +198,11 @@ class EventPage extends React.Component {
             }
             if (owner ===  this.props.state.session.id) {
                 return (
-                        <div key={memberID} className="row">
-                            <div className="event-name">
+                        <div key={memberID} className="member-row">
+                            <div className="event-member-name">
                                 <p>{users[memberID].name}</p>
                             </div>
-                            <button className="event-exit" onClick={() => this.handleRemoveMember(memberID, eventID)} >X</button>
+                            <button className="event-member-exit" onClick={() => this.handleRemoveMember(memberID, eventID)} >X</button>
                         </div>
                 )
             } else if (memberID === this.props.state.session.id) {
@@ -381,7 +381,7 @@ class EventPage extends React.Component {
                                 <h4>{event.name}</h4>
                             </div>
                             <div className="event-center">
-                                <div className="event-exit" onClick={() => this.setState({ "eventId": undefined })}>X</div>
+                                <button className="event-exit" onClick={() => this.setState({ "eventId": undefined })}>X</button>
                             </div>
                         </div>
                         <div className="event-center">

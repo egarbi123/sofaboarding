@@ -2915,11 +2915,11 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
         if (owner === _this3.props.state.session.id) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             key: memberID,
-            className: "row"
+            className: "member-row"
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-            className: "event-name"
+            className: "event-member-name"
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, users[memberID].name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-            className: "event-exit",
+            className: "event-member-exit",
             onClick: function onClick() {
               return _this3.handleRemoveMember(memberID, eventID);
             }
@@ -3132,7 +3132,7 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
           className: "event-name"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, event.name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "event-center"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           className: "event-exit",
           onClick: function onClick() {
             return _this7.setState({
