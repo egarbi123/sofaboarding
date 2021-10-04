@@ -99,7 +99,9 @@ class NewChat extends React.Component {
     }
     
     handleClick(roomId) {
-        this.props.clearMessages();
+        if (this.state.activeRoom !== roomId) {
+            this.props.clearMessages();
+        }
         this.props.setActiveRoom(roomId);
         this.setState({ activeRoom: roomId})
     }

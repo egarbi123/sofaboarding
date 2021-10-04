@@ -285,7 +285,6 @@ class EventPage extends React.Component {
                             placeholder={'December 2, 2021'}
                         />
                     </div>
-                    <p style={{ "fontSize": "xx-small" }}>Please keep format to Month Day, Year example: December 2, 2021</p>
                     <div className="event-row">
                         <p className="event-inp-cat">Time:</p>
                         <input
@@ -307,8 +306,8 @@ class EventPage extends React.Component {
                     </div>
                     <div className="event-column">
                         <p>Description: {event.description}</p>
-                        <p style={{ textAlign: "center" }}>Date: {event.date}</p>
-                        <p style={{ textAlign: "center" }}>Time: {event.time}</p>
+                        <p style={{ textAlign: "center" }}>{event.date}</p>
+                        <p style={{ textAlign: "center" }}>{event.time}</p>
                     </div>
                 </div>
             )
