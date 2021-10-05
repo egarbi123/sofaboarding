@@ -3128,18 +3128,20 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
             key: memberID,
             className: "member-row"
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-            className: "event-member-name"
+            className: "event-name"
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, users[memberID].name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-            className: "event-member-exit",
+            className: "event-exit",
             onClick: function onClick() {
               return _this7.handleRemoveMember(memberID, eventID);
             }
           }, "X"));
         } else if (memberID === _this7.props.state.session.id) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-            className: "event-name",
+            className: "member-row",
             key: memberID
-          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, users[memberID].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "event-name"
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, users[memberID].name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
             className: "event-exit",
             onClick: function onClick() {
               return _this7.handleRemoveMembership(memberID);
