@@ -257,12 +257,8 @@ class EventPage extends React.Component {
                     </div>
                     <div className="event-controls">
                         <div className="event-name-exit">
-                            <div className="event-name">
-                                <h4>{event.name}</h4>
-                            </div>
-                            <div className="event-center">
-                                <button className="event-exit" onClick={() => this.setState({ "eventId": undefined })}>X</button>
-                            </div>
+                            <h4>{event.name}</h4>
+                            <button className="event-exit" onClick={() => this.setState({ "eventId": undefined })}>EXIT</button>
                         </div>
                         <div className="event-center">
                             {this.showEditButton(event.id)}
@@ -415,7 +411,7 @@ class EventPage extends React.Component {
         if (owner === this.props.state.session.id) {
             return (
                 <div className="event-center">
-                    <button className="event-controls-btn button" onClick={() => this.handleRemoveEvent(event.id, membersIDs)}>Delete Event</button>
+                    <button className="event-delete" onClick={() => this.handleRemoveEvent(event.id, membersIDs)}>Delete Event</button>
                 </div>
             )
         }
