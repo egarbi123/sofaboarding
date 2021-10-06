@@ -330,8 +330,8 @@ class EventPage extends React.Component {
                     </div>
                     <div className="event-column">
                         <p>Description: {event.description}</p>
-                        <p style={{ textAlign: "center" }}>{event.date}</p>
-                        <p style={{ textAlign: "center" }}>{event.time}</p>
+                        <p>Date: {event.date}</p>
+                        <p>Time: {event.time}</p>
                     </div>
                 </div>
             )
