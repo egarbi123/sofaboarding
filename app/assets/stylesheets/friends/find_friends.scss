@@ -81,7 +81,7 @@
 }
 
 .med-user-cont:hover {
-    border: 1px solid black;
+    background-color: rgb(165, 201, 230)
 }
 
 .med-user-cont p {
@@ -126,13 +126,11 @@
 .buttonLeft:hover {
     cursor: pointer;
     background-color: #e7eaf6;
-    border: 1px solid black;
 }
 
 .buttonRight:hover {
     cursor: pointer;
     background-color: #e7eaf6;
-    border: 1px solid black;
 }
 
 .arrow {
