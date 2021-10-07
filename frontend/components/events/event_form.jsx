@@ -81,7 +81,7 @@ class EventForm extends React.Component {
                         <button className="button" onClick={() => this.props.toggleShow()}>Click Here To Hide Form</button>
                     </div>
                     <form className="event-form" onSubmit={this.handleSubmit}>
-                        <div className="row">
+                        <div className="form-row">
                             <p>Name:</p>
                             <input
                                 type="string"
@@ -89,7 +89,7 @@ class EventForm extends React.Component {
                                 onChange={this.update('name')}
                             />
                         </div>
-                        <div className="row">
+                        <div className="form-row">
                             <p>Description:</p>
                             <input
                                 type="text"
@@ -97,7 +97,7 @@ class EventForm extends React.Component {
                                 onChange={this.update('description')}
                             />
                         </div>
-                        <div className="row">
+                        <div className="form-row">
                             <p>Date:</p>
                             <input
                                 type="string"
@@ -106,8 +106,7 @@ class EventForm extends React.Component {
                                 placeholder={'December 2, 2021'}
                                 />
                         </div>
-                        {/* <p style={{ "fontSize": "xx-small" }}>Please keep format to Month Day, Year example: December 2, 2021</p> */}
-                        <div className="row">
+                        <div className="form-row">
                             <p>Time:</p>
                             <input
                                 type="string"
