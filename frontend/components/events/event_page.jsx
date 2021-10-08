@@ -376,7 +376,7 @@ class EventPage extends React.Component {
                 if (owner === this.props.state.session.id) {
                     return (
                         <div key={memberID} className="event-center">
-                            <div><p>You Are The Owner</p></div>
+                            <div><h5>You Are The Owner</h5></div>
                         </div>
                     )
                 } else {
