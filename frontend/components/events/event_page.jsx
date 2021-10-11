@@ -62,7 +62,7 @@ class EventPage extends React.Component {
                     event = ev
                 }
             })
-            if (this.state.name !== event.name) {
+            if (this.state.eventId !== event.id) {
                 this.setState({
                     "name": event.name,
                     "description": event.description,
@@ -100,7 +100,7 @@ class EventPage extends React.Component {
                 newStateEvents.push(event);
             }
         })
-        this.setState({ "eventEdited": true, "events": newStateEvents});
+        this.setState({ "eventEdited": true, "events": newStateEvents, "eventBeingEdited": false});
     }
 
     handleRemoveEvent(eventId, members) {
@@ -167,71 +167,6 @@ class EventPage extends React.Component {
         })
     }
 
-    showMembers(eventMembers, owner, eventID) {
-        let users = this.props.state.users;
-        let listOrder = [];
-        listOrder.push(owner);
-        if (this.props.state.session.id !== owner) {
-            listOrder.push(this.props.state.session.id);
-        }
-        eventMembers.map(memberID => {
-            if (memberID !== owner && memberID !== this.props.state.session.id) {
-                listOrder.push(memberID);
-            }
-        })
-        
-        return listOrder.map(memberID => {
-            if (memberID === owner) {
-                if (owner === this.props.state.session.id) {
-                    return (
-                        <div key={memberID} className="event-center">
-                            <div><p>You Are The Owner</p></div>
-                        </div>
-                    )
-                } else {
-                    return (
-                        <div key={memberID} className="event-center">
-                            <div className="room-user"><p>Owner: {users[memberID].name}</p></div>
-                        </div>
-                    )
-                }
-            }
-            if (owner ===  this.props.state.session.id) {
-                return (
-                        <div key={memberID} className="member-row">
-                            <div className="event-member-name">
-                                <p>{users[memberID].name}</p>
-                            </div>
-                            <button className="event-member-exit" onClick={() => this.handleRemoveMember(memberID, eventID)} >X</button>
-                        </div>
-                )
-            } else if (memberID === this.props.state.session.id) {
-                return (
-                        <div className="event-name" key={memberID}>
-                            <p>
-                                {users[memberID].name}
-                            </p>
-                        <button className="event-exit" onClick={() => this.handleRemoveMembership(memberID)}>X</button>
-                        </div>
-                )
-            } else {
-                return (<div key={memberID}>{users[memberID].name}</div>)
-            }
-        })
-    }
-
-    showIfOpen(event) {
-        if (this.state.eventBeingEdited) {
-
-        } else {
-            if (event.open) {
-                return (<p style={{ textAlign: "center" }}>This Event Is Open To Everyone!</p>);
-            } else {
-                return (<p style={{ textAlign: "center" }}>This Event Is Private, Only The Host Can Invite New Participants!</p>)
-            }
-        }
-    }
-
     handleCheckbox() {
         if (this.state.open) {
             this.setState({ "open": false });
@@ -253,6 +188,95 @@ class EventPage extends React.Component {
         )
     }
 
+    toggleEdit(eventId) {
+        let currentEvent = {};
+        this.state.events.map(event => {
+            if (event.id === eventId) {
+                currentEvent = event;
+            }
+        })
+        console.log(currentEvent);
+        if (this.state.eventBeingEdited) {
+            this.setState({
+                "eventBeingEdited": false
+            });
+        } else {
+            this.setState({
+                "eventBeingEdited": true, 
+                "editingId": eventId,
+                "name": currentEvent.name,
+                "description": currentEvent.description,
+                "date": currentEvent.date,
+                "time": currentEvent.time
+            });
+        }
+    }
+
+    update(field) {
+        return e => {
+            this.setState({ [field]: e.currentTarget.value })
+        }
+    }
+    
+    eventInfo(events) {
+        let event = {
+            name: "No Current Event",
+            description: "No Description",
+            date: "No Date",
+            time: "No Time"
+        }
+        let eventId = undefined;
+        if (this.state.eventId !== undefined) {
+            events.map(ev => {
+                if (ev.id) {
+                    if (ev.id === this.state.eventId) {
+                        event = ev;
+                        eventId = ev.id
+                    }
+                } else {
+                    
+                }
+            })
+            let eventMemberships = Object.values(this.props.state.eventMemberships);
+            let membersIDs = [];
+            let owner = undefined;
+            eventMemberships.map(membership => {
+                if (membership.event_id === eventId) {
+                    membersIDs.push(membership.user_id);
+                    if (membership.owner) {
+                        owner = membership.user_id;
+                    }
+                }
+            })
+            
+            return (
+                <div className="event-display">
+                    <div className="event-info">
+                        {this.showEventSection(event, this.state)}
+                        {this.showIfOpen(event)}
+                    </div>
+                    <div className="event-controls">
+                        <div className="event-name-exit">
+                            <div className="event-name">
+                                <h4>{event.name}</h4>
+                            </div>
+                            <div className="event-center">
+                                <button className="event-exit" onClick={() => this.setState({ "eventId": undefined })}>X</button>
+                            </div>
+                        </div>
+                        <div className="event-center">
+                            {this.showEditButton(event.id)}
+                        </div>
+                        <h4>MEMBERS</h4>
+                        {this.showMembers(membersIDs, owner, eventId)}
+                        {this.showDeleteEventButton(owner, event, membersIDs)}
+                        {this.showJoinEventButton(event.id)}
+                    </div>
+                </div>
+            )
+        }
+    }
+
     showEventSection(event) {
         if (this.state.eventBeingEdited) {
             return (
@@ -261,7 +285,7 @@ class EventPage extends React.Component {
                         <p className="event-inp-cat">Name:</p>
                         <input
                             className="event-inputs"
-                            type="string"
+                            type="text"
                             value={this.state.name}
                             onChange={this.update('name')}
                         />
@@ -313,7 +337,19 @@ class EventPage extends React.Component {
             )
         }
     }
-    
+
+    showIfOpen(event) {
+        if (this.state.eventBeingEdited) {
+
+        } else {
+            if (event.open) {
+                return (<p style={{ textAlign: "center" }}>This Event Is Open To Everyone!</p>);
+            } else {
+                return (<p style={{ textAlign: "center" }}>This Event Is Private, Only The Host Can Invite New Participants!</p>)
+            }
+        }
+    }
+
     showEditButton(eventId) {
         if (this.state.userIsOwner) {
             return (
@@ -322,75 +358,57 @@ class EventPage extends React.Component {
         }
     }
 
-    toggleEdit(eventId) {
-        if (this.state.eventBeingEdited) {
-            this.setState({"eventBeingEdited": false});
-        } else {
-            this.setState({"eventBeingEdited": true, "editingId": eventId});
+    showMembers(eventMembers, owner, eventID) {
+        let users = this.props.state.users;
+        let listOrder = [];
+        listOrder.push(owner);
+        if (this.props.state.session.id !== owner) {
+            listOrder.push(this.props.state.session.id);
         }
-    }
+        eventMembers.map(memberID => {
+            if (memberID !== owner && memberID !== this.props.state.session.id) {
+                listOrder.push(memberID);
+            }
+        })
 
-    update(field) {
-        return e => this.setState({ [field]: e.currentTarget.value })
-    }
-
-    eventInfo(events) {
-        let event = {
-            name: "No Current Event",
-            description: "No Description",
-            date: "No Date",
-            time: "No Time"
-        }
-        let eventId = undefined;
-        if (this.state.eventId !== undefined) {
-            events.map(ev => {
-                if (ev.id) {
-                    if (ev.id === this.state.eventId) {
-                        event = ev;
-                        eventId = ev.id
-                    }
+        return listOrder.map(memberID => {
+            if (memberID === owner) {
+                if (owner === this.props.state.session.id) {
+                    return (
+                        <div key={memberID} className="event-center">
+                            <div><p>You Are The Owner</p></div>
+                        </div>
+                    )
                 } else {
-
-                }
-            })
-            let eventMemberships = Object.values(this.props.state.eventMemberships);
-            let membersIDs = [];
-            let owner = undefined;
-            eventMemberships.map(membership => {
-                if (membership.event_id === eventId) {
-                    membersIDs.push(membership.user_id);
-                    if (membership.owner) {
-                        owner = membership.user_id;
-                    }
-                }
-            })
-            
-            return (
-                <div className="event-display">
-                    <div className="event-info">
-                        {this.showEventSection(event, this.state)}
-                        {this.showIfOpen(event)}
-                    </div>
-                    <div className="event-controls">
-                        <div className="event-name-exit">
-                            <div className="event-name">
-                                <h4>{event.name}</h4>
-                            </div>
-                            <div className="event-center">
-                                <button className="event-exit" onClick={() => this.setState({ "eventId": undefined })}>X</button>
-                            </div>
+                    return (
+                        <div key={memberID} className="event-center">
+                            <div className="room-user"><p>Owner: {users[memberID].name}</p></div>
                         </div>
-                        <div className="event-center">
-                            {this.showEditButton(event.id)}
+                    )
+                }
+            }
+            if (owner === this.props.state.session.id) {
+                return (
+                    <div key={memberID} className="member-row">
+                        <div className="event-member-name">
+                            <p>{users[memberID].name}</p>
                         </div>
-                        <h4>MEMBERS</h4>
-                        {this.showMembers(membersIDs, owner, eventId)}
-                        {this.showDeleteEventButton(owner, event, membersIDs)}
-                        {this.showJoinEventButton(event.id)}
+                        <button className="event-member-exit" onClick={() => this.handleRemoveMember(memberID, eventID)} >X</button>
                     </div>
-                </div>
-            )
-        }
+                )
+            } else if (memberID === this.props.state.session.id) {
+                return (
+                    <div className="event-name" key={memberID}>
+                        <p>
+                            {users[memberID].name}
+                        </p>
+                        <button className="event-exit" onClick={() => this.handleRemoveMembership(memberID)}>X</button>
+                    </div>
+                )
+            } else {
+                return (<div key={memberID}>{users[memberID].name}</div>)
+            }
+        })
     }
 
     showDeleteEventButton(owner, event, membersIDs) {
@@ -456,6 +474,7 @@ class EventPage extends React.Component {
 
     render() {
         let events = this.state.events;
+        console.log(this.state.eventBeingEdited);
         return (
             <div className="event-page">
                 <div className="events-list">

@@ -52,7 +52,7 @@
 }
 
 .row p {
-    width: 150px;
+    /* width: 150px; */
     text-align: right;
     margin-right: 5px;
 }
