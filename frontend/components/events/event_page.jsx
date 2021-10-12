@@ -382,7 +382,7 @@ class EventPage extends React.Component {
                 } else {
                     return (
                         <div key={memberID} className="event-center">
-                            <div className="room-user"><p>Owner: {users[memberID].name}</p></div>
+                            <div className="event-name"><p>{users[memberID].name} (owner)</p></div>
                         </div>
                     )
                 }
@@ -406,7 +406,7 @@ class EventPage extends React.Component {
                     </div>
                 )
             } else {
-                return (<div key={memberID}>{users[memberID].name}</div>)
+                return (<div className="event-user" key={memberID}>{users[memberID].name}</div>)
             }
         })
     }

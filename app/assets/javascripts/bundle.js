@@ -3130,8 +3130,8 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
               key: memberID,
               className: "event-center"
             }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-              className: "room-user"
-            }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Owner: ", users[memberID].name)));
+              className: "event-name"
+            }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, users[memberID].name, " (owner)")));
           }
         }
 
@@ -3159,6 +3159,7 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
           }, "X"));
         } else {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "event-user",
             key: memberID
           }, users[memberID].name);
         }

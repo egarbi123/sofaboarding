@@ -210,6 +210,9 @@
     border-radius: 5px;
     cursor: pointer;
     padding: 0;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 10px;
 }
 
 .event-exit:hover {
@@ -224,6 +227,8 @@
     font-size: 12px;
     cursor: pointer;
     justify-content: center;
+    margin: auto;
+    margin-top: 3px;
     margin-bottom: 3px;
 }
 
@@ -270,10 +275,14 @@
 .event-name {
     text-align: center;
     justify-content: center;
+    display: flex;
+    flex-direction: row;
 }
 
-.event-exit p {
-    width: 8px;
+.event-name p {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: fit-content;
 }
 
 .event-description p {
@@ -283,4 +292,19 @@
 
 .event-column {
     background-color: white;
+}
+
+.event-user {
+    width: 120px;
+    margin-bottom: 3px;
+    border-radius: 3px;
+    // background-color: #a1a7d3;
+    cursor: default;
+}
+
+.event-user {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    text-align: center;
+    width: 100%;
 }
