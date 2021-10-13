@@ -27,3 +27,10 @@ The front end to this single page web application is built with React for quick 
 * BCrypt - User authentication / password protection
 * ActionCable - Live chat capability
 
+### Screenshots
+
+##### Profile
+![Profile](/app/assets/images/user-profile.jpg)
+
+##### Chat
+![Chat](/app/assets/images/chat.jpg)
