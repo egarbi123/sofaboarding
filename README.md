@@ -1,24 +1,29 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+[SofaBoarding](https://sofa-boarding.herokuapp.com/)
 
-Things you may want to cover:
+### Summary
 
-* Ruby version
+[SofaBoarding](https://sofa-boarding.herokuapp.com/) is single-page web application which allows users to:
 
-* System dependencies
+* Create an account
+* Upload a photo for personalization
+* Find and connect with new friends
+* Have live chat sessions with friends
+* Plan events and invite friends to these events
 
-* Configuration
+### Struture
 
-* Database creation
+#### Back End
+SofaBoarding was build with Ruby on Rails using a postgreSQL database.  Requests are sent to the database using AJAX, and responses are sent back as JSON via jbuilder.  Images are stored and uploaded using AWS.  For live chat capability, Action Cable integrates WebSockets for a direct and immediate connection between users.
 
-* Database initialization
+#### Front End
+The front end to this single page web application is built with React for quick rendering and Redux to maintain global state.
 
-* How to run the test suite
+### Technology used
 
-* Services (job queues, cache servers, search engines, etc.)
+* React.js - Front-end rendering
+* Redux - Front-end global state management
+* BCrypt - User authentication / password protection
+* ActionCable - Live chat capability
 
-* Deployment instructions
-
-* ...
