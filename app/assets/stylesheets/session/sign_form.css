@@ -43,6 +43,10 @@
 .sign-text {
     height: 30px;
     margin-bottom: 2px;
+    display: flex;
+    flex-direction: row;
+    width: 400px;
+    margin-left: 50px;
 }
 
 .sign-button-space {
@@ -51,14 +55,14 @@
     margin-bottom: 5px;
 }
 
-.row p {
-    /* width: 150px; */
-    text-align: right;
-    margin-right: 5px;
+.sign-text p {
+    width: 40%;
+    text-align: left;
 }
 
-.row input {
-    width: 200px;
+.sign-text input {
+    width: 60%;
     height: 22px;
     margin-top: 10px;
+    text-align: left;
 }
