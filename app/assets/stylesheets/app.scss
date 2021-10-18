@@ -16,3 +16,22 @@ body {
 }
 
 .controller {}
+
+.button {
+    width: fit-content;
+    height: 30px;
+    font-size: 16px;
+    background-color: hsl(233, 36%, 73%);
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 5px 10px 5px 10px;
+    font: 1em sans-serif;
+    display: inline;
+    border: none;
+    margin-top: 0px;
+    text-decoration: none;
+    text-align: center;
+    transition: background 150ms ease-in-out, transform 150ms ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
