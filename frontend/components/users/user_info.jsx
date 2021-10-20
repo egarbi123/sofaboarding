@@ -56,15 +56,17 @@ class UserInfo extends React.Component {
     }
 
     imageRender() {
-        if (Object.values(this.props.state.users).length > 0 && this.props.state.users[this.props.state.session.id] && this.props.state.users[this.props.state.session.id].profilePicUrl) {
-            return (
-                <img onClick={this.showAddProfilePic} className="profile-pic" src={this.props.state.users[this.props.state.session.id].profilePicUrl}/>
-            )
-        } else {
-            return (
-                <img onClick={this.showAddProfilePic} className="profile-pic" src={window.profile_pic}/>
-            )
-        }
+        return (Object.values(this.props.state.users).length > 0 && 
+            this.props.state.users[this.props.state.session.id] &&
+            this.props.state.users[this.props.state.session.id].profilePicUrl) ?
+                <img onClick={this.showAddProfilePic} 
+                    className="profile-pic" 
+                    src={this.props.state.users[this.props.state.session.id].profilePicUrl}
+                /> :
+                <img onClick={this.showAddProfilePic} 
+                    className="profile-pic" 
+                    src={window.profile_pic} 
+                />;
     }
     
     showAddProfilePic() {
@@ -106,7 +108,6 @@ class UserInfo extends React.Component {
     }
 
     handleBio() {
-        // e.preventDefault();
         let object = {}
         object['user_id'] = this.props.state.session.id;
         object['user_bio'] = this.state.userBio;
@@ -117,7 +118,7 @@ class UserInfo extends React.Component {
             this.props.updateBio(object);
         }
         this.props.createBio(object);
-        this.setState({userBio: ""})
+        this.setState({userBio: ""});
     }
 
     render() {

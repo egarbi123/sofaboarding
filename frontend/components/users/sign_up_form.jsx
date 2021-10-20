@@ -1,5 +1,4 @@
 import React from 'react';
-import { Redirect, Link } from 'react-router-dom';
 
 class SignUpForm extends React.Component {
     constructor(props) {
@@ -15,10 +14,11 @@ class SignUpForm extends React.Component {
     }
 
     handleSubmit() {
-        // e.preventDefault();
         this.verifyPassword();
         if (this.passwordIsGood) {
             this.props.signup(this.state);
+        } else {
+            window.alert('Passwords do not match! Please try again.');
         }
     }
 
@@ -32,11 +32,7 @@ class SignUpForm extends React.Component {
     }
 
     samePassword() {
-        if (this.state.password === this.state.password2) {
-            this.passwordIsGood = true;
-        } else {
-            this.passwordIsGood = false;
-        }
+        (this.state.password === this.state.password2) ? this.passwordIsGood = true : this.passwordIsGood = false;
     }
 
     verifyPassword() {

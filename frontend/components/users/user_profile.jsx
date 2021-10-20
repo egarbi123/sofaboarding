@@ -22,19 +22,12 @@ class UserProfile extends React.Component {
     }
 
     imageRender(user) {
-        if (user.profilePicUrl) {
-            return (
-                <img className="profile-pic-mid" src={user.profilePicUrl} />
-            )
-        } else {
-            return (
-                <img className="profile-pic-mid" src={window.profile_pic} />
-                )
-        }
+        return user.profilePicUrl ? 
+            <img className="profile-pic-mid" src={user.profilePicUrl} /> : 
+            <img className="profile-pic-mid" src={window.profile_pic} />
     }
     
     infoToState() {
-        // Gather info to use
         let usersArray = Object.values(this.props.state.users);
         let requests = {};
         let friendships = {};
@@ -44,17 +37,12 @@ class UserProfile extends React.Component {
         if (this.props.state.friendships) {
             friendships = this.props.state.friendships;
         }
-        
-        // Turn objects into arrays
         let requestsArray = Object.values(requests);
         let friendshipsArray = Object.values(friendships);
-
-        // Set up  different categories
+        
         let requested = [];
         let receivedRequests = [];
         let alreadyFriends = [];
-
-        // Distinguish categories
         if (requestsArray.length > 1) {
             requestsArray.map(request => {
                 if (request.requestor_id === this.props.state.session.id) {
@@ -77,8 +65,6 @@ class UserProfile extends React.Component {
                 }
             })
         }
-        
-        // Info into objects/ arrays
         
         this.friendsArray = [];
         this.acceptFriendsArray = [];

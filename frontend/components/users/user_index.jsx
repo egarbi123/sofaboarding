@@ -14,7 +14,6 @@ class UserIndex extends React.Component {
     render() {
         let usersObject = this.props.state.users;
         let usersArray = Object.entries(usersObject);
-        // console.log(usersArray);
         return (
             <div>
                 <h3>All users, </h3>

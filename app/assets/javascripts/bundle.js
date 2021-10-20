@@ -4861,7 +4861,6 @@ var LogInForm = /*#__PURE__*/function (_React$Component) {
   _createClass(LogInForm, [{
     key: "handleSubmit",
     value: function handleSubmit() {
-      // e.preventDefault();
       this.props.action(this.state);
     }
   }, {
@@ -4989,7 +4988,6 @@ var mDTP = function mDTP(dispatch) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -5013,7 +5011,6 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
 
 
 
@@ -5042,11 +5039,12 @@ var SignUpForm = /*#__PURE__*/function (_React$Component) {
   _createClass(SignUpForm, [{
     key: "handleSubmit",
     value: function handleSubmit() {
-      // e.preventDefault();
       this.verifyPassword();
 
       if (this.passwordIsGood) {
         this.props.signup(this.state);
+      } else {
+        window.alert('Passwords do not match! Please try again.');
       }
     }
   }, {
@@ -5070,11 +5068,7 @@ var SignUpForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "samePassword",
     value: function samePassword() {
-      if (this.state.password === this.state.password2) {
-        this.passwordIsGood = true;
-      } else {
-        this.passwordIsGood = false;
-      }
+      this.state.password === this.state.password2 ? this.passwordIsGood = true : this.passwordIsGood = false;
     }
   }, {
     key: "verifyPassword",
@@ -5208,8 +5202,7 @@ var UserIndex = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       var usersObject = this.props.state.users;
-      var usersArray = Object.entries(usersObject); // console.log(usersArray);
-
+      var usersArray = Object.entries(usersObject);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "All users, "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, usersArray.map(function (user) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           key: user[0]
@@ -5377,19 +5370,15 @@ var UserInfo = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "imageRender",
     value: function imageRender() {
-      if (Object.values(this.props.state.users).length > 0 && this.props.state.users[this.props.state.session.id] && this.props.state.users[this.props.state.session.id].profilePicUrl) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-          onClick: this.showAddProfilePic,
-          className: "profile-pic",
-          src: this.props.state.users[this.props.state.session.id].profilePicUrl
-        });
-      } else {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-          onClick: this.showAddProfilePic,
-          className: "profile-pic",
-          src: window.profile_pic
-        });
-      }
+      return Object.values(this.props.state.users).length > 0 && this.props.state.users[this.props.state.session.id] && this.props.state.users[this.props.state.session.id].profilePicUrl ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        onClick: this.showAddProfilePic,
+        className: "profile-pic",
+        src: this.props.state.users[this.props.state.session.id].profilePicUrl
+      }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        onClick: this.showAddProfilePic,
+        className: "profile-pic",
+        src: window.profile_pic
+      });
     }
   }, {
     key: "showAddProfilePic",
@@ -5440,7 +5429,6 @@ var UserInfo = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleBio",
     value: function handleBio() {
-      // e.preventDefault();
       var object = {};
       object['user_id'] = this.props.state.session.id;
       object['user_bio'] = this.state.userBio;
@@ -5625,24 +5613,19 @@ var UserProfile = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "imageRender",
     value: function imageRender(user) {
-      if (user.profilePicUrl) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-          className: "profile-pic-mid",
-          src: user.profilePicUrl
-        });
-      } else {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-          className: "profile-pic-mid",
-          src: window.profile_pic
-        });
-      }
+      return user.profilePicUrl ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "profile-pic-mid",
+        src: user.profilePicUrl
+      }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "profile-pic-mid",
+        src: window.profile_pic
+      });
     }
   }, {
     key: "infoToState",
     value: function infoToState() {
       var _this2 = this;
 
-      // Gather info to use
       var usersArray = Object.values(this.props.state.users);
       var requests = {};
       var friendships = {};
@@ -5653,15 +5636,13 @@ var UserProfile = /*#__PURE__*/function (_React$Component) {
 
       if (this.props.state.friendships) {
         friendships = this.props.state.friendships;
-      } // Turn objects into arrays
-
+      }
 
       var requestsArray = Object.values(requests);
-      var friendshipsArray = Object.values(friendships); // Set up  different categories
-
+      var friendshipsArray = Object.values(friendships);
       var requested = [];
       var receivedRequests = [];
-      var alreadyFriends = []; // Distinguish categories
+      var alreadyFriends = [];
 
       if (requestsArray.length > 1) {
         requestsArray.map(function (request) {
@@ -5687,8 +5668,7 @@ var UserProfile = /*#__PURE__*/function (_React$Component) {
             }
           }
         });
-      } // Info into objects/ arrays
-
+      }
 
       this.friendsArray = [];
       this.acceptFriendsArray = [];
