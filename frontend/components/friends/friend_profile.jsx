@@ -76,27 +76,23 @@ class FriendProfile extends React.Component {
     }
 
     imageRender() {
-        if (this.props.state.users[this.props.state.session.friendId] && this.props.state.users[this.props.state.session.friendId].profilePicUrl) {
-            return (
-                <img className="profile-pic-friend" src={this.props.state.users[this.props.state.session.friendId].profilePicUrl} />
-            )
-        } else {
-            return (
-                <img className="profile-pic-friend" src={window.profile_pic} />
-            )
-        }
+        return (
+            this.props.state.users[this.props.state.session.friendId] &&
+            this.props.state.users[this.props.state.session.friendId].profilePicUrl
+        ) ? 
+            <img className="profile-pic-friend" 
+            src={this.props.state.users[this.props.state.session.friendId].profilePicUrl} 
+            /> :
+            <img className="profile-pic-friend" src={window.profile_pic} />;
     }
 
     nameRender() {
-        if (this.friendId && this.props.state.users[this.friendId] && this.props.state.users[this.friendId].name) {
-            return (
-                <h3>{this.props.state.users[this.friendId].name}</h3>
-            )
-        } else {
-            return (
-                <h3>USER NAME</h3>
-            )
-        }
+        return (
+            this.friendId && this.props.state.users[this.friendId] &&
+            this.props.state.users[this.friendId].name
+        ) ?
+            <h3>{this.props.state.users[this.friendId].name}</h3> :
+            <h3>USER NAME</h3>
     }
 
     sendFriendRequest() {
@@ -196,19 +192,13 @@ class FriendProfile extends React.Component {
     }
 
     showBio() {
-        if (this.state.bio) {
-            return (
-                <div className="friend-bio">
-                    <p>{this.state.bio}</p>
-                </div>
-            )
-        } else {
-            return (
-                <div className="friend-bio">
-                    <p>This User Does Not Have A Bio!</p>
-                </div>
-            )
-        }
+        return (this.state.bio) ?
+            <div className="friend-bio">
+                <p>{this.state.bio}</p>
+            </div> :
+            <div className="friend-bio">
+                <p>This User Does Not Have A Bio!</p>
+            </div>;
     }
 
     render() {

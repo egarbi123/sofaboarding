@@ -4199,26 +4199,18 @@ var FriendProfile = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "imageRender",
     value: function imageRender() {
-      if (this.props.state.users[this.props.state.session.friendId] && this.props.state.users[this.props.state.session.friendId].profilePicUrl) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-          className: "profile-pic-friend",
-          src: this.props.state.users[this.props.state.session.friendId].profilePicUrl
-        });
-      } else {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-          className: "profile-pic-friend",
-          src: window.profile_pic
-        });
-      }
+      return this.props.state.users[this.props.state.session.friendId] && this.props.state.users[this.props.state.session.friendId].profilePicUrl ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "profile-pic-friend",
+        src: this.props.state.users[this.props.state.session.friendId].profilePicUrl
+      }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "profile-pic-friend",
+        src: window.profile_pic
+      });
     }
   }, {
     key: "nameRender",
     value: function nameRender() {
-      if (this.friendId && this.props.state.users[this.friendId] && this.props.state.users[this.friendId].name) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, this.props.state.users[this.friendId].name);
-      } else {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "USER NAME");
-      }
+      return this.friendId && this.props.state.users[this.friendId] && this.props.state.users[this.friendId].name ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, this.props.state.users[this.friendId].name) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "USER NAME");
     }
   }, {
     key: "sendFriendRequest",
@@ -4369,15 +4361,11 @@ var FriendProfile = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "showBio",
     value: function showBio() {
-      if (this.state.bio) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "friend-bio"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, this.state.bio));
-      } else {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "friend-bio"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "This User Does Not Have A Bio!"));
-      }
+      return this.state.bio ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "friend-bio"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, this.state.bio)) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "friend-bio"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "This User Does Not Have A Bio!"));
     }
   }, {
     key: "render",
