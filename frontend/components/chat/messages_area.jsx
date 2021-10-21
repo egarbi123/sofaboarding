@@ -36,7 +36,6 @@ class MessagesArea extends React.Component {
     }
 
     handleKeyPress(e) {
-        console.log(e);
         if (e.key === 'Enter' && !e.shiftKey) {
             this.handleSubmit(e)
         }
@@ -48,11 +47,9 @@ class MessagesArea extends React.Component {
 
     createSocket() {
         let room_id = this.props.activeRoom;
-        if (process.env.NODE_ENV === 'development') {
-            this.cable = ActionCable.createConsumer('ws://' + window.location.host + '/cable');
-        } else {
+        process.env.NODE_ENV === 'development' ?
+            this.cable = ActionCable.createConsumer('ws://' + window.location.host + '/cable') :
             this.cable = ActionCable.createConsumer('wss://' + window.location.host + '/cable');
-        }
         this.chats = this.cable.subscriptions.create({
             channel: 'RoomsChannel',
             room_id: room_id
@@ -78,15 +75,9 @@ class MessagesArea extends React.Component {
     }
 
     imageRender(userId) {
-        if (this.props.state.users[userId].profilePicUrl) {
-            return (
-                <img className="chat-pic" src={this.props.state.users[userId].profilePicUrl} />
-            )
-        } else {
-            return (
-                <img className="chat-pic" src={window.profile_pic} />
-            )
-        }
+        return this.props.state.users[userId].profilePicUrl ? 
+            <img className="chat-pic" src={this.props.state.users[userId].profilePicUrl} /> :
+            <img className="chat-pic" src={window.profile_pic} />;
     }
 
     mapMessages(messages) {

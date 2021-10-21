@@ -1,5 +1,4 @@
 import React from 'react';
-import MessagesBlock from './messages_block';
 import MessagesAreaContainer from './messages_area_container';
 
 

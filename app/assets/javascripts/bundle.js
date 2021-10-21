@@ -775,9 +775,7 @@ var App = function App() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _room_index_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./room_index_container */ "./frontend/components/chat/room_index_container.jsx");
-/* harmony import */ var _single_room_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./single_room_container */ "./frontend/components/chat/single_room_container.jsx");
-/* harmony import */ var _new_chat_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./new_chat_container */ "./frontend/components/chat/new_chat_container.jsx");
+/* harmony import */ var _new_chat_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./new_chat_container */ "./frontend/components/chat/new_chat_container.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -803,8 +801,6 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-
-
 var ChatBlock = /*#__PURE__*/function (_React$Component) {
   _inherits(ChatBlock, _React$Component);
 
@@ -817,29 +813,11 @@ var ChatBlock = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(ChatBlock, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {}
-  }, {
-    key: "showRoom",
-    value: function showRoom() {
-      if (this.props.state.session.activeRoom) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "messageBlock"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_single_room_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
-          friendId: this.props.friendId
-        }));
-      }
-    }
-  }, {
     key: "showIndex",
     value: function showIndex() {
-      if (this.props.friendId) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_new_chat_container__WEBPACK_IMPORTED_MODULE_3__["default"], {
-          friendId: this.props.friendId
-        });
-      } else {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_new_chat_container__WEBPACK_IMPORTED_MODULE_3__["default"], null);
-      }
+      return this.props.friendId ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_new_chat_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        friendId: this.props.friendId
+      }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_new_chat_container__WEBPACK_IMPORTED_MODULE_1__["default"], null);
     }
   }, {
     key: "render",
@@ -873,17 +851,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_friendship_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/friendship_actions */ "./frontend/actions/friendship_actions.js");
 /* harmony import */ var _actions_chat_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/chat_actions */ "./frontend/actions/chat_actions.js");
 
- // import { createRoom } from '../../actions/chat_actions';
 
 
 
 
 var mSTP = function mSTP(state) {
   return {
-    // room: {
-    //     title: ''
-    // },
-    // formtype: 'Create Room'
     state: state
   };
 };
@@ -918,170 +891,6 @@ var mDTP = function mDTP(dispatch) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_chat_block__WEBPACK_IMPORTED_MODULE_1__["default"]));
-
-/***/ }),
-
-/***/ "./frontend/components/chat/message_form.jsx":
-/*!***************************************************!*\
-  !*** ./frontend/components/chat/message_form.jsx ***!
-  \***************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-
-
-var MessageForm = /*#__PURE__*/function (_React$Component) {
-  _inherits(MessageForm, _React$Component);
-
-  var _super = _createSuper(MessageForm);
-
-  function MessageForm(props) {
-    var _this;
-
-    _classCallCheck(this, MessageForm);
-
-    _this = _super.call(this, props);
-    _this.state = _this.props.message;
-    _this.createSocket = _this.createSocket.bind(_assertThisInitialized(_this));
-    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
-    return _this;
-  }
-
-  _createClass(MessageForm, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.createSocket();
-    }
-  }, {
-    key: "handleSubmit",
-    value: function handleSubmit(e) {
-      e.preventDefault();
-      this.chats.create(this.state.room_id, this.state.user_id, this.state.body);
-    }
-  }, {
-    key: "handleKeyPress",
-    value: function handleKeyPress(e) {
-      if (e.key === 'Enter' && !e.shiftKey) {
-        this.handleSubmit(e);
-      }
-    }
-  }, {
-    key: "update",
-    value: function update(field) {
-      var _this2 = this;
-
-      return function (e) {
-        return _this2.setState(_defineProperty({}, field, e.currentTarget.value));
-      };
-    }
-  }, {
-    key: "createSocket",
-    value: function createSocket() {
-      var room_id = this.props.activeRoom;
-      this.cable = ActionCable.createConsumer('wss://' + window.location.host + '/cable');
-      this.chats = this.cable.subscriptions.create({
-        channel: 'RoomsChannel',
-        room_id: room_id
-      }, {
-        connected: function connected() {},
-        create: function create(currentRoomId, currentUserId, messageBody) {
-          this.perform('create', {
-            body: messageBody,
-            room_id: currentRoomId,
-            user_id: currentUserId
-          });
-        }
-      });
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, this.props.formtype), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        onSubmit: this.handleSubmit
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Message", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "text",
-        value: this.state.body,
-        onChange: this.update('body')
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        type: "submit",
-        className: "button",
-        value: this.props.formtype
-      })));
-    }
-  }]);
-
-  return MessageForm;
-}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
-
-/* harmony default export */ __webpack_exports__["default"] = (MessageForm);
-
-/***/ }),
-
-/***/ "./frontend/components/chat/message_form_container.jsx":
-/*!*************************************************************!*\
-  !*** ./frontend/components/chat/message_form_container.jsx ***!
-  \*************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _message_form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./message_form */ "./frontend/components/chat/message_form.jsx");
-/* harmony import */ var _actions_chat_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/chat_actions */ "./frontend/actions/chat_actions.js");
-
-
-
-
-var mSTP = function mSTP(state) {
-  return {
-    message: {
-      body: '',
-      room_id: state.session.activeRoom,
-      user_id: state.session.id
-    },
-    activeRoom: state.session.activeRoom,
-    formtype: 'New Message'
-  };
-};
-
-var mDTP = function mDTP(dispatch) {
-  return {
-    action: function action(message) {
-      return dispatch(Object(_actions_chat_actions__WEBPACK_IMPORTED_MODULE_2__["newMessage"])(message));
-    }
-  };
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_message_form__WEBPACK_IMPORTED_MODULE_1__["default"]));
 
 /***/ }),
 
@@ -1179,8 +988,6 @@ var MessagesArea = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleKeyPress",
     value: function handleKeyPress(e) {
-      console.log(e);
-
       if (e.key === 'Enter' && !e.shiftKey) {
         this.handleSubmit(e);
       }
@@ -1200,11 +1007,7 @@ var MessagesArea = /*#__PURE__*/function (_React$Component) {
       var _this3 = this;
 
       var room_id = this.props.activeRoom;
-
-      if (true) {
-        this.cable = actioncable__WEBPACK_IMPORTED_MODULE_1___default.a.createConsumer('ws://' + window.location.host + '/cable');
-      } else {}
-
+       true ? this.cable = actioncable__WEBPACK_IMPORTED_MODULE_1___default.a.createConsumer('ws://' + window.location.host + '/cable') : undefined;
       this.chats = this.cable.subscriptions.create({
         channel: 'RoomsChannel',
         room_id: room_id
@@ -1232,17 +1035,13 @@ var MessagesArea = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "imageRender",
     value: function imageRender(userId) {
-      if (this.props.state.users[userId].profilePicUrl) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-          className: "chat-pic",
-          src: this.props.state.users[userId].profilePicUrl
-        });
-      } else {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-          className: "chat-pic",
-          src: window.profile_pic
-        });
-      }
+      return this.props.state.users[userId].profilePicUrl ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "chat-pic",
+        src: this.props.state.users[userId].profilePicUrl
+      }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "chat-pic",
+        src: window.profile_pic
+      });
     }
   }, {
     key: "mapMessages",
@@ -1362,76 +1161,6 @@ var mDTP = function mDTP(dispatch) {
 
 /***/ }),
 
-/***/ "./frontend/components/chat/messages_block.jsx":
-/*!*****************************************************!*\
-  !*** ./frontend/components/chat/messages_block.jsx ***!
-  \*****************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _messages_area_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./messages_area_container */ "./frontend/components/chat/messages_area_container.jsx");
-/* harmony import */ var _message_form_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./message_form_container */ "./frontend/components/chat/message_form_container.jsx");
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
- // import RoomIndexContainer from './room_index_container';
-// import RoomFormContainer from './room_form_container';
-
-
-
-
-var MessagesBlock = /*#__PURE__*/function (_React$Component) {
-  _inherits(MessagesBlock, _React$Component);
-
-  var _super = _createSuper(MessagesBlock);
-
-  function MessagesBlock(props) {
-    var _this;
-
-    _classCallCheck(this, MessagesBlock);
-
-    _this = _super.call(this, props);
-    _this.state = {};
-    return _this;
-  }
-
-  _createClass(MessagesBlock, [{
-    key: "render",
-    value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_messages_area_container__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_message_form_container__WEBPACK_IMPORTED_MODULE_2__["default"], null));
-    }
-  }]);
-
-  return MessagesBlock;
-}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
-
-/* harmony default export */ __webpack_exports__["default"] = (MessagesBlock);
-
-/***/ }),
-
 /***/ "./frontend/components/chat/new_chat.jsx":
 /*!***********************************************!*\
   !*** ./frontend/components/chat/new_chat.jsx ***!
@@ -1443,8 +1172,7 @@ var MessagesBlock = /*#__PURE__*/function (_React$Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _messages_block__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./messages_block */ "./frontend/components/chat/messages_block.jsx");
-/* harmony import */ var _messages_area_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./messages_area_container */ "./frontend/components/chat/messages_area_container.jsx");
+/* harmony import */ var _messages_area_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./messages_area_container */ "./frontend/components/chat/messages_area_container.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -1468,7 +1196,6 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
 
 
 
@@ -1632,7 +1359,7 @@ var NewChat = /*#__PURE__*/function (_React$Component) {
           className: "section-border"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "single-room"
-        }, this.showControls(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_messages_area_container__WEBPACK_IMPORTED_MODULE_2__["default"], null)));
+        }, this.showControls(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_messages_area_container__WEBPACK_IMPORTED_MODULE_1__["default"], null)));
       }
     }
   }, {
@@ -1828,445 +1555,6 @@ var mDTP = function mDTP(dispatch) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_new_chat__WEBPACK_IMPORTED_MODULE_1__["default"]));
-
-/***/ }),
-
-/***/ "./frontend/components/chat/room_index.jsx":
-/*!*************************************************!*\
-  !*** ./frontend/components/chat/room_index.jsx ***!
-  \*************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _messages_block__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./messages_block */ "./frontend/components/chat/messages_block.jsx");
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-
-
-
-var RoomIndex = /*#__PURE__*/function (_React$Component) {
-  _inherits(RoomIndex, _React$Component);
-
-  var _super = _createSuper(RoomIndex);
-
-  function RoomIndex(props) {
-    var _this;
-
-    _classCallCheck(this, RoomIndex);
-
-    _this = _super.call(this, props);
-    _this.state = {
-      "title": "",
-      "roomIds": []
-    };
-    _this.handleClick = _this.handleClick.bind(_assertThisInitialized(_this));
-    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
-    return _this;
-  }
-
-  _createClass(RoomIndex, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      if (Object.values(this.props.state.rooms).length < 2) {
-        this.props.fetchRooms();
-      }
-
-      if (Object.values(this.props.state.roomMemberships).length < 1) {
-        this.props.fetchRoomMemberships();
-      }
-    }
-  }, {
-    key: "componentDidUpdate",
-    value: function componentDidUpdate() {
-      this.determineRooms();
-    }
-  }, {
-    key: "determineRooms",
-    value: function determineRooms() {
-      var memberships = Object.values(this.props.state.roomMemberships);
-      var myId = this.props.state.session.id;
-      var roomIds = [];
-      memberships.map(function (membership) {
-        if (membership.user_id === myId) {
-          roomIds.push(membership.room_id);
-        }
-      });
-
-      if (this.state.roomIds.length !== roomIds.length) {
-        this.setState({
-          "roomIds": roomIds
-        });
-      }
-    }
-  }, {
-    key: "handleClick",
-    value: function handleClick(roomId) {
-      this.props.clearMessages();
-      this.props.setActiveRoom(roomId);
-    }
-  }, {
-    key: "handleSubmit",
-    value: function handleSubmit(e) {
-      e.preventDefault();
-      var object = {
-        "title": this.state.title
-      };
-      this.props.createRoom(object);
-      this.setState({
-        "title": ''
-      });
-    }
-  }, {
-    key: "update",
-    value: function update(field) {
-      var _this2 = this;
-
-      return function (e) {
-        return _this2.setState(_defineProperty({}, field, e.currentTarget.value));
-      };
-    }
-  }, {
-    key: "mapRooms",
-    value: function mapRooms(rooms, handleClick, roomIds) {
-      return rooms.map(function (room) {
-        if (room && roomIds.includes(room.id)) {
-          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-            className: "room",
-            onClick: function onClick() {
-              return handleClick(room.id);
-            },
-            key: room.id
-          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, room.title));
-        }
-      });
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var rooms = [];
-
-      if (this.props.state.rooms) {
-        rooms = Object.values(this.props.state.rooms);
-      }
-
-      console.log(this);
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "roomIndex"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "CHAT ROOMS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "roomBox"
-      }, this.mapRooms(rooms, this.handleClick, this.state.roomIds), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        onSubmit: this.handleSubmit
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        className: "room-input",
-        type: "text",
-        value: this.state.title,
-        onChange: this.update('title')
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        type: "submit",
-        className: "chat-btn"
-      }, "CREATE"))));
-    }
-  }]);
-
-  return RoomIndex;
-}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
-
-/* harmony default export */ __webpack_exports__["default"] = (RoomIndex);
-
-/***/ }),
-
-/***/ "./frontend/components/chat/room_index_container.jsx":
-/*!***********************************************************!*\
-  !*** ./frontend/components/chat/room_index_container.jsx ***!
-  \***********************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _room_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./room_index */ "./frontend/components/chat/room_index.jsx");
-/* harmony import */ var _actions_chat_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/chat_actions */ "./frontend/actions/chat_actions.js");
-
-
-
-
-var mSTP = function mSTP(state) {
-  return {
-    state: state,
-    room: {
-      title: ''
-    }
-  };
-};
-
-var mDTP = function mDTP(dispatch) {
-  return {
-    fetchRooms: function fetchRooms() {
-      return dispatch(Object(_actions_chat_actions__WEBPACK_IMPORTED_MODULE_2__["fetchRooms"])());
-    },
-    setActiveRoom: function setActiveRoom(roomId) {
-      return dispatch(Object(_actions_chat_actions__WEBPACK_IMPORTED_MODULE_2__["makeActiveRoom"])(roomId));
-    },
-    clearMessages: function clearMessages() {
-      return dispatch(Object(_actions_chat_actions__WEBPACK_IMPORTED_MODULE_2__["clearRoomMessages"])());
-    },
-    createRoom: function createRoom(room) {
-      return dispatch(Object(_actions_chat_actions__WEBPACK_IMPORTED_MODULE_2__["createRoom"])(room));
-    },
-    fetchRoomMemberships: function fetchRoomMemberships() {
-      return dispatch(Object(_actions_chat_actions__WEBPACK_IMPORTED_MODULE_2__["fetchRoomMemberships"])());
-    },
-    createRoomMembership: function createRoomMembership(membership) {
-      return dispatch(Object(_actions_chat_actions__WEBPACK_IMPORTED_MODULE_2__["createRoomMembership"])(membership));
-    },
-    deleteRoomMembership: function deleteRoomMembership(membershipId) {
-      return dispatch(Object(_actions_chat_actions__WEBPACK_IMPORTED_MODULE_2__["deleteRoomMembership"])(membershipId));
-    }
-  };
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_room_index__WEBPACK_IMPORTED_MODULE_1__["default"]));
-
-/***/ }),
-
-/***/ "./frontend/components/chat/single_room.jsx":
-/*!**************************************************!*\
-  !*** ./frontend/components/chat/single_room.jsx ***!
-  \**************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _messages_area_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./messages_area_container */ "./frontend/components/chat/messages_area_container.jsx");
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-
-
-
-var SingleRoom = /*#__PURE__*/function (_React$Component) {
-  _inherits(SingleRoom, _React$Component);
-
-  var _super = _createSuper(SingleRoom);
-
-  function SingleRoom(props) {
-    var _this;
-
-    _classCallCheck(this, SingleRoom);
-
-    _this = _super.call(this, props);
-    _this.state = {
-      'friends': []
-    };
-    return _this;
-  }
-
-  _createClass(SingleRoom, [{
-    key: "componentDidUpdate",
-    value: function componentDidUpdate() {
-      this.determineFriends();
-    }
-  }, {
-    key: "determineFriends",
-    value: function determineFriends() {
-      var _this2 = this;
-
-      var friendships = Object.values(this.props.state.friendships);
-      var friendIds = [];
-      friendships.map(function (friendship) {
-        if (friendship.user_id === _this2.props.state.session.id) {
-          friendIds.push(friendship.friend_id);
-        }
-
-        if (friendship.friend_id === _this2.props.state.session.id) {
-          friendIds.push(friendship.user_id);
-        }
-      });
-
-      if (!friendIds.includes(this.props.friendId)) {
-        friendIds.push(this.props.friendId);
-      }
-
-      var memberships = Object.values(this.props.state.roomMemberships);
-      var alreadyInRoom = [];
-      var inviteFriends = [];
-      memberships.map(function (membership) {
-        if (membership.room_id === _this2.props.state.session.activeRoom) {
-          alreadyInRoom.push(membership.user_id);
-        }
-      });
-
-      for (var i = 0; i < friendIds.length; i++) {
-        if (!alreadyInRoom.includes(friendIds[i])) {
-          inviteFriends.push(friendIds[i]);
-        }
-      }
-
-      if (this.state.friends.length !== inviteFriends.length) {
-        this.setState({
-          'friends': inviteFriends
-        });
-      }
-    }
-  }, {
-    key: "addFriendToRoom",
-    value: function addFriendToRoom(friendId) {
-      var object = {
-        "user_id": friendId,
-        "room_id": this.props.state.session.activeRoom
-      };
-      this.props.createRoomMembership(object);
-    }
-  }, {
-    key: "showFriends",
-    value: function showFriends() {
-      var _this3 = this;
-
-      var users = Object.values(this.props.state.users);
-      var friendsInRoom = [];
-
-      for (var i = 0; i < users.length; i++) {
-        if (this.state.friends.includes(users[i].id)) {
-          friendsInRoom.push(users[i]);
-        }
-      }
-
-      return friendsInRoom.map(function (friend) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          key: friend.id,
-          onClick: function onClick() {
-            return _this3.addFriendToRoom(friend.id);
-          }
-        }, friend.name);
-      });
-    }
-  }, {
-    key: "removeFromRoom",
-    value: function removeFromRoom() {
-      var _this4 = this;
-
-      var memberships = Object.values(this.props.state.roomMemberships);
-      var myMembership = 0;
-      memberships.map(function (membership) {
-        if (membership.user_id === _this4.props.state.session.id && membership.room_id === _this4.props.state.session.activeRoom) {
-          myMembership = membership.id;
-        }
-      });
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "chat-btn",
-        onClick: function onClick() {
-          return _this4.props.deleteRoomMembership(myMembership);
-        }
-      }, "LEAVE ROOM");
-    }
-  }, {
-    key: "showControls",
-    value: function showControls() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "room-controls"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, this.props.state.rooms[this.props.state.session.activeRoom].title), this.removeFromRoom(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Invite a friend:"), this.showFriends());
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "section-border"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "single-room"
-      }, this.showControls(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_messages_area_container__WEBPACK_IMPORTED_MODULE_1__["default"], null)));
-    }
-  }]);
-
-  return SingleRoom;
-}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
-
-/* harmony default export */ __webpack_exports__["default"] = (SingleRoom);
-
-/***/ }),
-
-/***/ "./frontend/components/chat/single_room_container.jsx":
-/*!************************************************************!*\
-  !*** ./frontend/components/chat/single_room_container.jsx ***!
-  \************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _single_room__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./single_room */ "./frontend/components/chat/single_room.jsx");
-/* harmony import */ var _actions_chat_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/chat_actions */ "./frontend/actions/chat_actions.js");
-
-
-
-
-var mSTP = function mSTP(state) {
-  return {
-    state: state
-  };
-};
-
-var mDTP = function mDTP(dispatch) {
-  return {
-    createRoomMembership: function createRoomMembership(membership) {
-      return dispatch(Object(_actions_chat_actions__WEBPACK_IMPORTED_MODULE_2__["createRoomMembership"])(membership));
-    },
-    deleteRoomMembership: function deleteRoomMembership(membershipId) {
-      return dispatch(Object(_actions_chat_actions__WEBPACK_IMPORTED_MODULE_2__["deleteRoomMembership"])(membershipId));
-    }
-  };
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_single_room__WEBPACK_IMPORTED_MODULE_1__["default"]));
 
 /***/ }),
 

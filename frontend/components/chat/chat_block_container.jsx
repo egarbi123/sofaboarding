@@ -1,15 +1,10 @@
 import { connect } from 'react-redux';
 import ChatBlock from './chat_block';
-// import { createRoom } from '../../actions/chat_actions';
 import { fetchAllFriendships } from '../../actions/friendship_actions';
 import { fetchRooms, makeActiveRoom, clearRoomMessages, createRoom, fetchRoomMemberships, createRoomMembership, deleteRoomMembership } from '../../actions/chat_actions';
 
 
 const mSTP = state => ({
-    // room: {
-    //     title: ''
-    // },
-    // formtype: 'Create Room'
     state: state
 });
 
