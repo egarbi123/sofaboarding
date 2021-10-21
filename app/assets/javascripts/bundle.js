@@ -2884,15 +2884,11 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleCheckbox",
     value: function handleCheckbox() {
-      if (this.state.open) {
-        this.setState({
-          "open": false
-        });
-      } else {
-        this.setState({
-          "open": true
-        });
-      }
+      this.state.open ? this.setState({
+        "open": false
+      }) : this.setState({
+        "open": true
+      });
     }
   }, {
     key: "showCheckbox",
@@ -2919,21 +2915,16 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
         }
       });
       console.log(currentEvent);
-
-      if (this.state.eventBeingEdited) {
-        this.setState({
-          "eventBeingEdited": false
-        });
-      } else {
-        this.setState({
-          "eventBeingEdited": true,
-          "editingId": eventId,
-          "name": currentEvent.name,
-          "description": currentEvent.description,
-          "date": currentEvent.date,
-          "time": currentEvent.time
-        });
-      }
+      this.state.eventBeingEdited ? this.setState({
+        "eventBeingEdited": false
+      }) : this.setState({
+        "eventBeingEdited": true,
+        "editingId": eventId,
+        "name": currentEvent.name,
+        "description": currentEvent.description,
+        "date": currentEvent.date,
+        "time": currentEvent.time
+      });
     }
   }, {
     key: "update",
@@ -3059,19 +3050,15 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
     key: "showIfOpen",
     value: function showIfOpen(event) {
       if (this.state.eventBeingEdited) {} else {
-        if (event.open) {
-          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-            style: {
-              textAlign: "center"
-            }
-          }, "This Event Is Open To Everyone!");
-        } else {
-          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-            style: {
-              textAlign: "center"
-            }
-          }, "This Event Is Private, Only The Host Can Invite New Participants!");
-        }
+        return event.open ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          style: {
+            textAlign: "center"
+          }
+        }, "This Event Is Open To Everyone!") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          style: {
+            textAlign: "center"
+          }
+        }, "This Event Is Private, Only The Host Can Invite New Participants!");
       }
     }
   }, {
@@ -3262,7 +3249,6 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
       var _this12 = this;
 
       var events = this.state.events;
-      console.log(this.state.eventBeingEdited);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "event-page"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3418,40 +3404,32 @@ var Events = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "toggleEvents",
     value: function toggleEvents() {
-      if (this.state.eventsActive) {
-        this.setState({
-          "eventsActive": false
-        });
-      } else {
-        this.setState({
-          "eventsActive": true
-        });
-      }
+      this.state.eventsActive ? this.setState({
+        "eventsActive": false
+      }) : this.setState({
+        "eventsActive": true
+      });
     }
   }, {
     key: "render",
     value: function render() {
       var _this2 = this;
 
-      if (this.state.eventsActive) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_event_page_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
-          events: this.state.events
-        });
-      } else {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "enter-events"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "row"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Click Below To Enter Events Section"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-          style: {
-            "fontSize": "x-small"
-          }
-        }, "Please Note: Although This Section Is Available, It Is Still Undergoing Maintenance.  Thank You For Your Understanding")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          onClick: function onClick() {
-            return _this2.toggleEvents();
-          }
-        }, "Enter Events"));
-      }
+      return this.state.eventsActive ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_event_page_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        events: this.state.events
+      }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "enter-events"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Click Below To Enter Events Section"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        style: {
+          "fontSize": "x-small"
+        }
+      }, "Please Note: Although This Section Is Available, It Is Still Undergoing Maintenance.  Thank You For Your Understanding")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: function onClick() {
+          return _this2.toggleEvents();
+        }
+      }, "Enter Events"));
     }
   }]);
 

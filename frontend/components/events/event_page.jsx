@@ -168,11 +168,7 @@ class EventPage extends React.Component {
     }
 
     handleCheckbox() {
-        if (this.state.open) {
-            this.setState({ "open": false });
-        } else {
-            this.setState({ "open": true });
-        }
+        (this.state.open) ? this.setState({ "open": false }) : this.setState({ "open": true });
     }
 
     showCheckbox() {
@@ -196,11 +192,10 @@ class EventPage extends React.Component {
             }
         })
         console.log(currentEvent);
-        if (this.state.eventBeingEdited) {
+        (this.state.eventBeingEdited) ?
             this.setState({
                 "eventBeingEdited": false
-            });
-        } else {
+            }) :
             this.setState({
                 "eventBeingEdited": true, 
                 "editingId": eventId,
@@ -209,7 +204,7 @@ class EventPage extends React.Component {
                 "date": currentEvent.date,
                 "time": currentEvent.time
             });
-        }
+        
     }
 
     update(field) {
@@ -338,11 +333,9 @@ class EventPage extends React.Component {
         if (this.state.eventBeingEdited) {
 
         } else {
-            if (event.open) {
-                return (<p style={{ textAlign: "center" }}>This Event Is Open To Everyone!</p>);
-            } else {
-                return (<p style={{ textAlign: "center" }}>This Event Is Private, Only The Host Can Invite New Participants!</p>)
-            }
+            return event.open ? 
+                <p style={{ textAlign: "center" }}>This Event Is Open To Everyone!</p> :
+                <p style={{ textAlign: "center" }}>This Event Is Private, Only The Host Can Invite New Participants!</p>
         }
     }
 
@@ -470,7 +463,6 @@ class EventPage extends React.Component {
 
     render() {
         let events = this.state.events;
-        console.log(this.state.eventBeingEdited);
         return (
             <div className="event-page">
                 <div className="events-list">
