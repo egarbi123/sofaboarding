@@ -261,6 +261,17 @@
 
 .event-inputs {
     height: 26px;
+    min-width: 400px;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+.event-inputs-desc {
+    height: 52px;
+    min-width: 400px;
+    margin-top: 10px;
+    display: inline-block;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
 }
 
 .event-inp-cat {

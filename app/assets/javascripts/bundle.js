@@ -3017,8 +3017,8 @@ var EventPage = /*#__PURE__*/function (_React$Component) {
           className: "event-row"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
           className: "event-inp-cat"
-        }, "Description:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          className: "event-inputs",
+        }, "Description:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+          className: "event-inputs-desc",
           type: "text",
           value: this.state.description,
           onChange: this.update('description')

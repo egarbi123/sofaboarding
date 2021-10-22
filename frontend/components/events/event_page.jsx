@@ -288,8 +288,8 @@ class EventPage extends React.Component {
                     </div>
                     <div className="event-row">
                         <p className="event-inp-cat">Description:</p>
-                        <input
-                            className="event-inputs"
+                        <textarea
+                            className="event-inputs-desc"
                             type="text"
                             value={this.state.description}
                             onChange={this.update('description')}
