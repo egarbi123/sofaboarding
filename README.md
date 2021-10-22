@@ -12,7 +12,7 @@
 * Have live chat sessions with friends
 * Plan events and invite friends to these events
 
-### Struture
+### Structure
 
 #### Back End
 SofaBoarding was build with Ruby on Rails using a postgreSQL database.  Requests are sent to the database using AJAX, and responses are sent back as JSON via jbuilder.  Images are stored and uploaded using AWS.  For live chat capability, Action Cable integrates WebSockets for a direct and immediate connection between users.
