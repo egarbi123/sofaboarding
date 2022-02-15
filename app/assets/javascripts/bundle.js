@@ -3237,7 +3237,11 @@ var FriendCarousel = /*#__PURE__*/function (_React$Component) {
       var _this3 = this;
 
       if (this.props.friendsList.length < 1) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "CURRENTLY NO ", this.props.label);
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "friends-no-list-cont"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "friends-no-list"
+        }, "CURRENTLY NO ", this.props.label));
       } else if (this.props.friendsList.length < 4) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "section-border"
