@@ -6,8 +6,37 @@ class ShowSingleEvent extends React.Component {
     this.state = {
       "events": this.props.events,
       "eventId": undefined,
+      "userIsOwner": false,
+      "eventBeingEdited": false,
       "showEventForm": false,
+      "name": "",
+      "description": "",
+      "date": "",
+      "time": "",
+      "open": false,
     }
+  }
+
+  handleEditEvent(e) {
+        e.preventDefault();
+        let object = {};
+        object['name'] = this.state.name;
+        object['description'] = this.state.description;
+        object['date'] = this.state.date;
+        object['time'] = this.state.time;
+        object['open'] = this.state.open;
+        object['id'] = this.state.eventId;
+        this.props.updateEvent(object); // import
+        let stateEvents = this.state.events;
+        let newStateEvents = [];
+        stateEvents.map(event => {
+            if (event.id === object.id) {
+                newStateEvents.push(object);
+            } else {
+                newStateEvents.push(event);
+            }
+        })
+        this.setState({ "eventEdited": true, "events": newStateEvents, "eventBeingEdited": false});
   }
 
   eventInfo(events) {
@@ -29,6 +58,7 @@ class ShowSingleEvent extends React.Component {
                     
                 }
             })
+            // this.props.state.eventMemberships
             let eventMemberships = Object.values(this.props.state.eventMemberships);
             let membersIDs = [];
             let owner = undefined;
@@ -44,8 +74,8 @@ class ShowSingleEvent extends React.Component {
             return (
                 <div className="event-display">
                     <div className="event-info">
-                        {this.showEventSection(event, this.state)}
-                        {this.showIfOpen(event)}
+                        {this.showEventSection(event, this.state)} //
+                        {this.showIfOpen(event)} //
                     </div>
                     <div className="event-controls">
                         <div className="event-name-exit">
@@ -53,10 +83,10 @@ class ShowSingleEvent extends React.Component {
                             <button className="event-exit" onClick={() => this.setState({ "eventId": undefined })}>EXIT</button>
                         </div>
                         <div className="event-center">
-                            {this.showEditButton(event.id)}
+                            {this.showEditButton(event.id)} //
                         </div>
                         <h4>MEMBERS</h4>
-                        {this.showMembers(membersIDs, owner, eventId)}
+                        {this.showMembers(membersIDs, owner, eventId)} //
                         {this.showDeleteEventButton(owner, event, membersIDs)}
                         {this.showJoinEventButton(event.id)}
                     </div>
@@ -145,10 +175,10 @@ class ShowSingleEvent extends React.Component {
     }
 
     showMembers(eventMembers, owner, eventID) {
-        let users = this.props.state.users;
+        let users = this.props.state.users; // import
         let listOrder = [];
         listOrder.push(owner);
-        if (this.props.state.session.id !== owner) {
+        if (this.props.state.session.id !== owner) { // import
             listOrder.push(this.props.state.session.id);
         }
         eventMembers.map(memberID => {
