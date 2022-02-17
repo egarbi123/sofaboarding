@@ -39,6 +39,38 @@ class ShowSingleEvent extends React.Component {
         this.setState({ "eventEdited": true, "events": newStateEvents, "eventBeingEdited": false});
   }
 
+  handleRemoveEvent(eventId, members) {
+    let eventsArray = this.state.events; 
+    let newEventsArray = [];
+    for (let i = 0; i < eventsArray.length; i++) {
+        if (eventsArray[i]['id'] !== eventId) {
+            newEventsArray.push(eventsArray[i]);
+        }
+    }
+    this.props.deleteEvent(eventId);
+    if (members.length > 0) {
+        this.deleteMemberships(eventId);
+    }
+    this.setState({"events": newEventsArray, "eventId": undefined});
+  }
+
+  handleRemoveMember(memberID, eventID) {
+    let memberships = Object.values(this.props.state.eventMemberships);
+    let membershipID = undefined;
+    for (let i = 0; i < memberships.length; i++) {
+        if (memberships[i].event_id === eventID && memberships[i].user_id === memberID) {
+            membershipID = memberships[i].id
+        }
+    }
+    if (membershipID) {
+        this.handleRemoveMembership(membershipID);
+    }
+  }
+
+  handleRemoveMembership(membershipID) {
+      this.props.deleteEventMembership(membershipID);
+  }
+
   eventInfo(events) {
         let event = {
             name: "No Current Event",
@@ -236,6 +268,7 @@ class ShowSingleEvent extends React.Component {
             )
         }
     }
+
     
     showJoinEventButton(eventID) {
         let userID = this.props.state.session.id;
