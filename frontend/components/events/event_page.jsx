@@ -252,7 +252,7 @@ class EventPage extends React.Component {
                     </div>
                     <div className="event-controls">
                         <div className="event-name-exit">
-                            <h5>{event.name}</h5>
+                            <h3>{event.name}</h3>
                             <button className="event-exit" onClick={() => this.setState({ "eventId": undefined })}>EXIT</button>
                         </div>
                         <div className="event-center">
